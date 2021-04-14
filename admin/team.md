@@ -59,5 +59,10 @@ Included here is an overview of our team.
   - I love swimmimg and watching anime (That's right, I'm a weeb.)
   - Addicted to all kinds of board games
   - Github: [@github/fatIvan](https://github.com/fatIvan)
+- Katherine Baker
+  - Second year Computer Science Major
+  - Interested in software engineering and intellectual property law.
+  - I enjoy doing gymnastics, trying new foods, and learning guitar
+  - GitHub: [@github/klbaker](https://github.com/klbaker)
 
 
