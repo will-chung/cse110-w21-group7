@@ -1,5 +1,5 @@
-# CSE110-SP21-Group7
-## this is the landing page for our group
-## TODO: Desription of the project
+# CSE110 Group 7 - RIVER
 
-[Here is a link to our team page](admin/team.md)
+Welcome to the CSE 110 Group 7 GitHub Repository! Our team is called RIVER, which is an acronym for Reflection, Improvement, Values, Empowerment, Refinement. Throughout spring quarter, we will be creating a digital bullet journal. \
+
+Learn more about each of our members and our goals on the [RIVER Team Page](admin/team.md).
