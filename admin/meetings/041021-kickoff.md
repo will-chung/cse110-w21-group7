@@ -41,7 +41,7 @@
 5. _Todo Checklist_
     - [ ] **Everyone**: Finish your roster and create a pull request for team.md, update your info in rules.md, record videos (before Wednesday), sign the rules
         - Transition document: https://docs.google.com/document/d/1oDzp0IFgDbKQAJ1BR_Wf924TqPTcGqcfvAvUGDpwJlM/edit?usp=sharing 
-    - [ ] **Yuzi Lyu**: Finish the team page, hash out the details of team branding
+    - [X] **Yuzi Lyu**: Finish the team page, hash out the details of team branding
     - [ ] **Zhiyuan Zhang**: Find Logo(has 7 in it), update slack channel profile pic, put the pic in admin/branding
     - [ ] **Noah Teshima**: Finish the team page
     - [ ] **Rachel Doron**: Organize Group Contract
@@ -49,3 +49,5 @@
     - [ ] **Alvin Wang** Handle pull request
     - [ ] **William Chung**: Find color pallete with hex number
     - [ ] **Brett Herbst**: Will help Yuzi with team page
+    - [X] **Thanh Tong**: Update README
+
