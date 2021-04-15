@@ -64,5 +64,10 @@ Included here is an overview of our team.
   - Interested in software engineering and intellectual property law.
   - I enjoy doing gymnastics, trying new foods, and learning guitar
   - GitHub: [@github/klbaker](https://github.com/klbaker)
+- Thanh Tong
+  - Second year Computer Science major, Cognitive Science minor at UCSD
+  - Interested in learning more about software engineering
+  - I enjoy playing piano and watching kdramas
+  - Github: [@github/thanhtong010](https://github.com/thanhtong010)
 
 

@@ -7,15 +7,17 @@
     TA: Jordan Gassaway
 2. Team Member Info
    
-    | Name:         | Email:            | Phone:       | Weekly Hours: |
-    | ------------- | ----------------- | ------------ | ------------- |
-    | Yuzi Lyu      | yul134@ucs.dedu   | 978 457 6645 | 10-15         |
-    | Noah Teshima  | nteshima@ucsd.edu | 858 888 5510 | 10-15         |
-    | Alvin Wang    | acw011@ucsd.edu   | 510 984 8499 | 10-15         |
-    | Brett Herbst  | bherbst@ucsd.edu  | 361 960 2288 | 10-15         |
-    | Rachel Doron  | rdoron@ucsd.edu   | 858 261 8505 | 10-15         |
-    | Zhiyuan Zhang | zhz018@ucsd.edu   | 858 900 4739 | 10            |
-    | William Chung | wchung@ucsd.edu   | 714 696 4702 | 10-15         |
+    | Name:          | Email:            | Phone:       | Weekly Hours: |
+    | -------------  | ----------------- | ------------ | ------------- |
+    | Yuzi Lyu       | yul134@ucs.dedu   | 978 457 6645 | 10-15         |
+    | Noah Teshima   | nteshima@ucsd.edu | 858 888 5510 | 10-15         |
+    | Alvin Wang     | acw011@ucsd.edu   | 510 984 8499 | 10-15         |
+    | Brett Herbst   | bherbst@ucsd.edu  | 361 960 2288 | 10-15         |
+    | Rachel Doron   | rdoron@ucsd.edu   | 858 261 8505 | 10-15         |
+    | Zhiyuan Zhang  | zhz018@ucsd.edu   | 858 900 4739 | 10            |
+    | William Chung  | wchung@ucsd.edu   | 714 696 4702 | 10-15         |
+    | Thanh Tong     | ttong@ucsd.edu    | 909 551 9355 | 10-15         |
+    | Katherine Baker| klbaker@ucsd.edu  | 818 397 1106 | 10            |
     
 
 3. Primary Means of Communicaiton
