@@ -49,3 +49,4 @@
     - [ ] **Alvin Wang** Handle pull request
     - [ ] **William Chung**: Find color pallete with hex number
     - [ ] **Brett Herbst**: Will help Yuzi with team page
+    - [X] **Thanh Tong**: Update README
