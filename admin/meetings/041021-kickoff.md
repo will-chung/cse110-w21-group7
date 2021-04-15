@@ -22,7 +22,7 @@
     - Theme (Mission): Improve ourselves day by day -> RIVER: Reflection, Improvement, Values, Empowerment, Refinement.
     - Team Color: Blue like a river
     - Logo: Big seven with blue water color
-    - Place: admin/branding
+    - Place: [admin/branding]
 2. _Team Page_
     - Team page: create team.md (link to this file from the README.md in your repository root)
     - Team page should have the team name, brand, any values you think are important, and a roster of all the team members.  The roster should provide a brief overview of each member with a link to their personal Github page. The team page can include humor or whatever culture makes sense to your team, but keep it reasonable as it may be shown to others
