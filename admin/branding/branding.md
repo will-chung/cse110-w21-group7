@@ -19,7 +19,7 @@ Possible color palette for journal:
 - ![#83A603](https://via.placeholder.com/25/83A603/) #83A603
 - ![#627324](https://via.placeholder.com/25/627324/) #627324
 - ![#D9A404](https://via.placeholder.com/25/D9A404/) #D9A404
-- 
+
 Blue tones for RIVER theme, green tones for growth theme (improve ourselves day by day), and golden tone for contrast.
 
 Credit to [imagecolorpicker.com](https://imagecolorpicker.com), [placeholder.com](https://placeholder.com), and [color.adobe.com](https://color.adobe.com/explore).
