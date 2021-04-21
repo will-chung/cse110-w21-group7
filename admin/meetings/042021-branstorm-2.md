@@ -26,9 +26,9 @@
 4. Daily Log
    - Noah and William
 5. Collection
-   - 
+   - Alvin, Ivan, and Yuzi
 6. Weekly index
-   - Rachel and 
+   - Rachel and Katherine
 7. TODO list:
    - Everyone: talk to your teammates.
    -           Project documentation, as detailed as possible with all the functionaility your interface is going to have, and how you would achieve this functionality using the current knowledge that you have
