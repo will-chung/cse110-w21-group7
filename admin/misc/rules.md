@@ -2,8 +2,8 @@
 ## Spring 2021
 ## Creation: April 10th, 2021
 1. Group Identification
-    Team 7
-    Team Name: RIVER
+    Team 7\
+    Team Name: RIVER\
     TA: Jordan Gassaway
 2. Team Member Info
    
@@ -20,7 +20,7 @@
     | Katherine Baker| klbaker@ucsd.edu  | 818 397 1106 | 10            |
     
 
-3. Primary Means of Communicaiton
+3. Primary Means of Communication
     - Discord server for team meeting
     - Zoom room if there are members absent
     - Slack for regular updates
