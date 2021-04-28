@@ -2,7 +2,7 @@
 ## Bookshelf
 - Represents our bullet journal index. Each shelf represents a year, and each “book” on the shelf represents a month.
 - Index stores links to collections/logs that the user has saved
-### Month (“Book”)
+### Month (“Book” on Shelf)
 onClick: Redirect to a page with the monthly index (storing links to daily/weekly logs or collections that the user has saved)
 #### Logs/Collections on Monthly index
 onClick: Redirect to the log/collection that the user has clicked on
