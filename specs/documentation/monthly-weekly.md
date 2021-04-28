@@ -17,12 +17,12 @@ OnClick: Display weekly view for corresponding date (Sunday - Saturday)
 - Week Calendar where each day is a column  
 - For each day there is a bulleted list of To-Do's on top with Schedule/Tasks on bottom
 
-## To-Do Bullet
+### To-Do Bullet
 Bullet denotes incomplete  
 "X" denotes complete  
 OnClick: Toggle complete/incomplete  
 
-## Date Button
+### Date Button
 Button is at the top where the date is written.  
 Written as: ----day, MM/DD  
 OnClick: Redirect to specified Daily Log
