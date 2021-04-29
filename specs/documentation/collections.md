@@ -71,15 +71,21 @@ onClick: redirect to “/collections/:col_id/files”
 
 Box grid format of all files
 
-Green add button on bottom left corner
+Two add buttons on bottom left corner, one for add image, one for add video
 
-Red remove button on bottom right corner
+Remove button on bottom right corner
 
-### Add File Button
+### Add Image Button
 
-onClick: prompt user to upload file
+onClick: prompt user to upload image
 
-onSubmit: query current list of files in collection of :col_id, add file to list, update files list in schema with new list 
+onSubmit: query current list of image in collection of :col_id, add image file to list, update files list in schema with new images list 
+
+### Add Video Button
+
+onClick: prompt user to upload video
+
+onSubmit: query current list of video in collection of :col_id, add video file to list, update files list in schema with new videos list 
 
 ### Delete File Button
 
