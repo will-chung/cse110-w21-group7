@@ -1,0 +1,13 @@
+# RIVER Bujo
+Short introduction, recapture the theme of our Bujo
+## Key function of Bujo
+1. Index
+   - We envision this to be ....
+2. Rapid-Logging
+   - This will be achieved using ...
+3. Logs
+   - We keep the logs in ...
+4. Collection
+   - We use .... order for collection
+5. Migration
+   - Migration will be done using ...
