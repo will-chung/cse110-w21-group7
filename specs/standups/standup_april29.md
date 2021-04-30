@@ -5,19 +5,13 @@
 - [ ] No
 
 ### What I did yesterday:
-* Task 1
-* Task 2
-* etc.
+* Wireframe for Collections page
 
 ### What I plan to do today:
-* Task 1
-* Task 2
-* etc.
+* ADRs for Collections page
 
 ### Blocking issues:
-* Blocker 1
-* Blocker 2
-* etc.
+* none so far
 
 
 
