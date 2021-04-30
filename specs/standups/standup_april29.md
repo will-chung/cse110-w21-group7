@@ -21,19 +21,13 @@
 - [ ] No
 
 ### What I did yesterday:
-* Task 1
-* Task 2
-* etc.
+* Reworked the flowchart of the collection section
 
 ### What I plan to do today:
-* Task 1
-* Task 2
-* etc.
+* Assist with ADR
 
 ### Blocking issues:
-* Blocker 1
-* Blocker 2
-* etc.
+* N/A
 
 
 
