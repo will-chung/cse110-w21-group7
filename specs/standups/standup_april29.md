@@ -43,19 +43,15 @@
 - [ ] No
 
 ### What I did yesterday:
-* Task 1
-* Task 2
-* etc.
+* Refactored flowchart for daily logging to include markdown approach for tasks/notes/events
+* Standup template
 
 ### What I plan to do today:
-* Task 1
-* Task 2
-* etc.
+* Assist with ADR
+* User stories (tentative)
 
 ### Blocking issues:
-* Blocker 1
-* Blocker 2
-* etc.
+* N/A
 
 
 
