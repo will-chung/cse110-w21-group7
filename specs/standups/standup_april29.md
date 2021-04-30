@@ -55,19 +55,14 @@
 - [ ] No
 
 ### What I did yesterday:
-* Task 1
-* Task 2
-* etc.
+* documnetation for weekly/monthly log
+* wireframe for weekly/monthly log 
 
 ### What I plan to do today:
-* Task 1
-* Task 2
-* etc.
+* ADR for weekly/monthly log 
 
 ### Blocking issues:
-* Blocker 1
-* Blocker 2
-* etc.
+* N/A
 
 
 
