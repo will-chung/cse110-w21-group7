@@ -127,19 +127,13 @@
 - [ ] No
 
 ### What I did yesterday:
-* Task 1
-* Task 2
-* etc.
+* Update wireframes and project documentation for Daily Log Interface
 
 ### What I plan to do today:
-* Task 1
-* Task 2
-* etc.
+* Update ADRs for Daily Log Interface
 
 ### Blocking issues:
-* Blocker 1
-* Blocker 2
-* etc.
+* No blockers
 
 
 
