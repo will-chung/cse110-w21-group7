@@ -148,16 +148,10 @@
 - [ ] No
 
 ### What I did yesterday:
-* Task 1
-* Task 2
-* etc.
+* Helped created index wireframe
 
 ### What I plan to do today:
-* Task 1
-* Task 2
-* etc.
+* Complete index ADR
 
 ### Blocking issues:
-* Blocker 1
-* Blocker 2
-* etc.
+* N/A
