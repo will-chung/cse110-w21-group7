@@ -19,3 +19,9 @@
 ## Agenda:
 1. Go over issues
 2. Miro Wireframes
+
+## Updates
+
+### Katherine Baker
+- Today: I worked with Rachel to make the wireframe
+- Problems: N/A
