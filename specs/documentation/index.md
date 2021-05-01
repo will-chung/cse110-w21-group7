@@ -1,4 +1,5 @@
 # Index Documentation
+- Overview linked [here](https://docs.google.com/document/d/1Gn9ymIpjDE_iCI9ynEAthM5dkbBKciJL9alMobhA6SE/edit?usp=sharing)
 ## Bookshelf
 - Represents our bullet journal index. Each shelf represents a year, and each “book” on the shelf represents a month.
 - Index stores links to collections/logs that the user has saved

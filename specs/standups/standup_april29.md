@@ -132,19 +132,13 @@
 - [ ] No
 
 ### What I did yesterday:
-* Task 1
-* Task 2
-* etc.
+* Created wireframe and updated project documentation for the Index Interface
 
 ### What I plan to do today:
-* Task 1
-* Task 2
-* etc.
+* Work on the index ADRs
 
 ### Blocking issues:
-* Blocker 1
-* Blocker 2
-* etc.
+* no blockers
 
 
 
