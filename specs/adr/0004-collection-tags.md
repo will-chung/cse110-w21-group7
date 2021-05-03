@@ -12,8 +12,8 @@ How should entries be organized into collections?
 
 ## Considered Options
 
-* Collection Tags
-* Breadcrumb Navigation
+* Collection Tags (tags that appear next to an entry's title)
+* Breadcrumb Navigation (e.g., Larger Container > Smaller Container > Entry)
 
 ## Decision Outcome
 Chosen option: "Collection Tags", because
