@@ -12,8 +12,8 @@ How can the bullet journal make entries easier to read?
 
 ## Considered Options
 
-* Color-coding
-* Sorting
+* Color-coding (color bullet types)
+* Sorting (sort bullet types into separate sections)
 
 ## Decision Outcome
 Chosen option: both "Color-coding" and "Sorting", because
@@ -21,7 +21,7 @@ Chosen option: both "Color-coding" and "Sorting", because
 * Color-coding and sorting can be combined into one feature
 * Sorting divides content into sections for easier reading
 * Color-coding associates bullet types with chosen colors
-  * Overtime makes reading bullets easier for users
+  * Over time makes reading bullets easier for users
 
 ## Pros and Cons of the Options 
 
@@ -31,6 +31,6 @@ Chosen option: both "Color-coding" and "Sorting", because
 * Bad, because could become chaotic/cluttered
 
 ### Sorting
-* Good, because user can choose how to display their content
-* Good, because allows for easier reading of content (advantage of digital bullet journal)
+* Good, because user can choose how to display their content (sorting can be toggled)
+* Good, because allows for easier reading of content (sorting is an advantage of a digital bullet journal)
 * Bad, because ...
