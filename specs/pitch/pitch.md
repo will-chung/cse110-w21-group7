@@ -10,25 +10,22 @@ For individuals in their undergraduate studies/starting point of their career, f
 Notice how there is no way to distinguish between completed/uncompleted tasks, notes about each day, special occasions, etc. Furthermore, if tasks are not completed, it is cumbersome to remember what still needs to be done, in addition to how uncompleted tasks should be dealt with. Ultimately, as a student, I want an easy way to organize, manage, and reflect on my schedule, so that I can more effectively manage my time and assess what still needs to be accomplished.
 
 ## Appetite/Problem Constraints
-
 Since this project’s timeframe is limited by the remaining time for the spring quarter, we formulated our design specification to have an expected time of completion of six weeks.
 Miscellaneous obligations. We respect the assumption that everyone on our team is a full time student with other commitments. We constrain our problem based on the amount of time each member is willing to commit. Our rules.md file contains information about the amount of time everyone is willing to spend on a weekly basis.
 Weekly lab work. The labs contain essential information for each component of the deliverable for this project. For instance, the final project needs a CI/CD pipeline, unit testing, etc. Since labs are released on a weekly basis, this staggers our ability to plan batch plan our project/evaluate everything up front
 I.e. we have some exposure to CI/CD, but cannot make strong inferences on how much time must be committed to unit testing/QA
-Proposed Design Specification
+
+## Proposed Design Specification
+
 We are proposing a web-app encapsulating the functionality of a bullet journal. Attached are low-level diagrams describing how it works:
  - Index
-   - Wireframes (@TODO: include here)
-   -  Project Documentation (@TODO: include documentation here)
+   - [Wireframes](/specs/interface/wireframes/index-wireframe.png)
  - Monthly/Weekly Index
-   - Wireframes (@TODO: include here)
-   - Project Documentation (@TODO: include documentation here)
+   - [Wireframes](/specs/interface/wireframes/monthly-weekly-wireframe.png)
  - Collections
-   - Wireframes (@TODO: include here)
-   - Project Documentation (@TODO: include documentation here)
+   - [Wireframes](/specs/interface/wireframes/Collections-wireframe.PNG)
  - Daily Log
-   - Wireframes (@TODO: include here)
-   - Project Documentation (@TODO: include documentation here)
+   - [Wireframes](/specs/interface/wireframes/dailylog-wireframe.md)
 
 ## Rabbit Holes
  - Will searching from the index be addressed?
