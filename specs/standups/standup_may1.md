@@ -102,13 +102,13 @@
 - [ ] No
 
 ### What I did yesterday:
-* 
+* Updated ADRs for Daily Log Interface
 
 ### What I plan to do today:
-* 
+* Finalize design for Daily Log Interface
 
 ### Blocking issues:
-* 
+* Unclear picture of final product, an alignment board would be useful
 
 
 
