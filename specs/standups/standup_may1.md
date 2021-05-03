@@ -33,17 +33,17 @@
 
 ## Noah Teshima
 ### Present:
-- [X] Yes
-- [ ] No
+- [ ] Yes
+- [X] No
 
 ### What I did yesterday:
-* 
+* Shape Up in anticipation of project pitch
 
 ### What I plan to do today:
-* 
+* Project pitch
 
 ### Blocking issues:
-* 
+* N/A
 
 
 
