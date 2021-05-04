@@ -69,14 +69,14 @@
 - [ ] No
 
 ### What I did yesterday:
-* 
+* Completed ADR for Monthly/Weekly
 
 
 ### What I plan to do today:
-* 
+* Change format of ADR
 
 ### Blocking issues:
-* 
+* N/A
 
 
 
