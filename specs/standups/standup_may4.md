@@ -45,23 +45,18 @@
 
 ## Noah Teshima
 ### Present:
-- [ ] Yes
+- [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Task 1
-* Task 2
-* etc.
+* Bullet Journal `pitch.md`
+* Pitch presentation slides with Yuzi
 
 ### What I plan to do today:
-* Task 1
-* Task 2
-* etc.
+* Architecture diagrams for presentation
 
 ### Blocking issues:
-* Blocker 1
-* Blocker 2
-* etc.
+* N/A
 
 
 
