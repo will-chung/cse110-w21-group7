@@ -1,46 +1,52 @@
-# Standup May 1, 2021
+# Standup May 4, 2021
 ## Yuzi Lyu
 ### Present:
 - [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-* 
+* Project Pitch Presentation
+* Login High-fi prototype
 
 ### What I plan to do today:
-* 
-
+* delegate roles
 ### Blocking issues:
-* 
+* N/A
 
 
 
 ## Zhiyuan Zhang
 ### Present:
-- [X] Yes
+- [ ] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Coming up thoughts for collection ADR
+* Task 1
+* Task 2
+* etc.
 
 ### What I plan to do today:
-* Rework collection ADR
+* Task 1
+* Task 2
+* etc.
 
 ### Blocking issues:
-* N/A
+* Blocker 1
+* Blocker 2
+* etc.
 
 
 
 ## Noah Teshima
 ### Present:
 - [ ] Yes
-- [X] No
+- [ ] No
 
 ### What I did yesterday:
-* Shape Up in anticipation of project pitch
+* task
 
 ### What I plan to do today:
-* Project pitch
+* task
 
 ### Blocking issues:
 * N/A
@@ -49,82 +55,105 @@
 
 ## Rachel Doron
 ### Present:
-- [X] Yes
+- [ ] Yes
 - [ ] No
 
 ### What I did yesterday:
-* 
+* Task 1
+* Task 2
+* etc.
 
 ### What I plan to do today:
-* 
+* Task 1
+* Task 2
+* etc.
 
 ### Blocking issues:
-* 
+* Blocker 1
+* Blocker 2
+* etc.
 
 
 
 ## Katherine Baker
 ### Present:
-- [X] Yes
+- [ ] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Completed ADR for Monthly/Weekly
-
+* Task 1
+* Task 2
+* etc.
 
 ### What I plan to do today:
-* Change format of ADR
+* Task 1
+* Task 2
+* etc.
 
 ### Blocking issues:
-* N/A
+* Blocker 1
+* Blocker 2
+* etc.
 
 
 
 ## Alvin Wang
 ### Present:
-- [X] Yes
+- [ ] Yes
 - [ ] No
 
 ### What I did yesterday:
-* 
+* Task 1
+* Task 2
+* etc.
 
 ### What I plan to do today:
-* 
+* Task 1
+* Task 2
+* etc.
 
 ### Blocking issues:
-* 
+* Blocker 1
+* Blocker 2
+* etc.
 
 
 
 ## William Chung
 ### Present:
-- [X] Yes
+- [ ] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Updated ADRs for Daily Log Interface
+* task
 
 ### What I plan to do today:
-* Finalize design for Daily Log Interface
+* task
 
 ### Blocking issues:
-* Unclear picture of final product, an alignment board would be useful
+* No blockers
 
 
 
 ## Thanh Tong
 ### Present:
-- [X] Yes
+- [ ] Yes
 - [ ] No
 
 ### What I did yesterday:
-* 
+* Task 1
+* Task 2
+* etc.
 
 ### What I plan to do today:
-* 
+* Task 1
+* Task 2
+* etc.
 
 ### Blocking issues:
-* 
+* Blocker 1
+* Blocker 2
+* etc.
 
 
 
@@ -134,10 +163,12 @@
 - [ ] No
 
 ### What I did yesterday:
-* 
+* Fixed High Fidelity Index
+* Looked into databases
 
 ### What I plan to do today:
-* 
+* Do more research on sign in page
+* TBD
 
 ### Blocking issues:
-* 
+* None
