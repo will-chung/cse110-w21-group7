@@ -1,23 +1,18 @@
 # Standup May 4, 2021
 ## Yuzi Lyu
 ### Present:
-- [ ] Yes
+- [x] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Task 1
-* Task 2
-* etc.
+* High fidelity COllections Protoytpe
+
 
 ### What I plan to do today:
-* Task 1
-* Task 2
-* etc.
+* High fidelity log in prototype
 
 ### Blocking issues:
-* Blocker 1
-* Blocker 2
-* etc.
+
 
 
 
