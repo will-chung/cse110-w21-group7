@@ -5,13 +5,17 @@
 - [ ] No
 
 ### What I did yesterday:
+
 * High fidelity Collections prototype
+
 
 ### What I plan to do today:
 * High fidelity log in prototype
 
 ### Blocking issues:
+
 * N/A
+
 
 
 
