@@ -1,15 +1,15 @@
 # Standup May 4, 2021
 ## Yuzi Lyu
 ### Present:
-- [x] Yes
+- [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-* High fidelity Collections prototype
+* Project Pitch Presentation
+* Login High-fi prototype
 
 ### What I plan to do today:
-* High fidelity log in prototype
-
+* delegate roles
 ### Blocking issues:
 * N/A
 
@@ -39,15 +39,14 @@
 
 ## Noah Teshima
 ### Present:
-- [X] Yes
+- [ ] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Bullet Journal `pitch.md`
-* Pitch presentation slides with Yuzi
+* task
 
 ### What I plan to do today:
-* Architecture diagrams for presentation
+* task
 
 ### Blocking issues:
 * N/A
@@ -122,14 +121,14 @@
 
 ## William Chung
 ### Present:
-- [x] Yes
+- [ ] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Updated high-fidelity design for Daily Log Interface
+* task
 
 ### What I plan to do today:
-* Polish pitch presentation
+* task
 
 ### Blocking issues:
 * No blockers
