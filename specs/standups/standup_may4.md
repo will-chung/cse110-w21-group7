@@ -1,46 +1,59 @@
-# Standup May 1, 2021
+# Standup May 4, 2021
 ## Yuzi Lyu
 ### Present:
-- [X] Yes
+- [ ] Yes
 - [ ] No
 
 ### What I did yesterday:
-* 
+* Task 1
+* Task 2
+* etc.
 
 ### What I plan to do today:
-* 
+* Task 1
+* Task 2
+* etc.
 
 ### Blocking issues:
-* 
+* Blocker 1
+* Blocker 2
+* etc.
 
 
 
 ## Zhiyuan Zhang
 ### Present:
-- [X] Yes
+- [ ] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Coming up thoughts for collection ADR
+* Task 1
+* Task 2
+* etc.
 
 ### What I plan to do today:
-* Rework collection ADR
+* Task 1
+* Task 2
+* etc.
 
 ### Blocking issues:
-* N/A
+* Blocker 1
+* Blocker 2
+* etc.
 
 
 
 ## Noah Teshima
 ### Present:
-- [ ] Yes
-- [X] No
+- [X] Yes
+- [ ] No
 
 ### What I did yesterday:
-* Shape Up in anticipation of project pitch
+* Bullet Journal `pitch.md`
+* Pitch presentation slides with Yuzi
 
 ### What I plan to do today:
-* Project pitch
+* Architecture diagrams for presentation
 
 ### Blocking issues:
 * N/A
@@ -49,95 +62,124 @@
 
 ## Rachel Doron
 ### Present:
-- [X] Yes
+- [ ] Yes
 - [ ] No
 
 ### What I did yesterday:
-* 
+* Task 1
+* Task 2
+* etc.
 
 ### What I plan to do today:
-* 
+* Task 1
+* Task 2
+* etc.
 
 ### Blocking issues:
-* 
+* Blocker 1
+* Blocker 2
+* etc.
 
 
 
 ## Katherine Baker
 ### Present:
-- [X] Yes
+- [ ] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Completed ADR for Monthly/Weekly
-
+* Task 1
+* Task 2
+* etc.
 
 ### What I plan to do today:
-* Change format of ADR
+* Task 1
+* Task 2
+* etc.
 
 ### Blocking issues:
-* N/A
+* Blocker 1
+* Blocker 2
+* etc.
 
 
 
 ## Alvin Wang
 ### Present:
-- [X] Yes
+- [ ] Yes
 - [ ] No
 
 ### What I did yesterday:
-* 
+* Task 1
+* Task 2
+* etc.
 
 ### What I plan to do today:
-* 
+* Task 1
+* Task 2
+* etc.
 
 ### Blocking issues:
-* 
+* Blocker 1
+* Blocker 2
+* etc.
 
 
 
 ## William Chung
 ### Present:
-- [X] Yes
+- [x] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Updated ADRs for Daily Log Interface
+* Updated high-fidelity design for Daily Log Interface
 
 ### What I plan to do today:
-* Finalize design for Daily Log Interface
+* Polish pitch presentation
 
 ### Blocking issues:
-* Unclear picture of final product, an alignment board would be useful
+* No blockers
 
 
 
 ## Thanh Tong
 ### Present:
-- [X] Yes
+- [ ] Yes
 - [ ] No
 
 ### What I did yesterday:
-* 
+* Task 1
+* Task 2
+* etc.
 
 ### What I plan to do today:
-* 
+* Task 1
+* Task 2
+* etc.
 
 ### Blocking issues:
-* 
+* Blocker 1
+* Blocker 2
+* etc.
 
 
 
 ## Brett Herbst
 ### Present:
-- [X] Yes
+- [ ] Yes
 - [ ] No
 
 ### What I did yesterday:
-* 
+* Task 1
+* Task 2
+* etc.
 
 ### What I plan to do today:
-* 
+* Task 1
+* Task 2
+* etc.
 
 ### Blocking issues:
-* 
+* Blocker 1
+* Blocker 2
+* etc.
