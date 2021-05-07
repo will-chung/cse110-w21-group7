@@ -1,4 +1,4 @@
-# Standup May 4, 2021
+# Standup May 6, 2021
 ## Yuzi Lyu
 ### Present:
 - [X] Yes
@@ -39,17 +39,17 @@
 
 ## Noah Teshima
 ### Present:
-- [ ] Yes
+- [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-* task
+* Architecture diagrams (system, container, component diagrams)
 
 ### What I plan to do today:
-* task
+* Finalize architecture diagrams from review
 
 ### Blocking issues:
-* N/A
+* API choice (if any) for reflection quote on daily log, calendary for monthly/weekly view
 
 
 
