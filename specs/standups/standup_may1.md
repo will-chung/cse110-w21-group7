@@ -118,13 +118,13 @@
 - [ ] No
 
 ### What I did yesterday:
-* 
+* Updated ADR for Index Interface
 
 ### What I plan to do today:
-* 
+* Finalize high-fidelity design for Index Interface
 
 ### Blocking issues:
-* 
+* Not completely sure what to update for high-fid design
 
 
 

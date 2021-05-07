@@ -137,22 +137,16 @@
 ## Thanh Tong
 ### Present:
 - [ ] Yes
-- [ ] No
+- [X] No
 
 ### What I did yesterday:
-* Task 1
-* Task 2
-* etc.
+* Updated some design for the Index interface
 
 ### What I plan to do today:
-* Task 1
-* Task 2
-* etc.
+* Finalize high-fidelity design for Index page
 
 ### Blocking issues:
-* Blocker 1
-* Blocker 2
-* etc.
+* Making sure the bookshelf looks clean and minimalistic
 
 
 
