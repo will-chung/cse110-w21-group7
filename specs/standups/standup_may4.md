@@ -21,23 +21,17 @@
 
 ## Zhiyuan Zhang
 ### Present:
-- [ ] Yes
+- [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Task 1
-* Task 2
-* etc.
+* Reworked Collection ADR
 
 ### What I plan to do today:
-* Task 1
-* Task 2
-* etc.
+* Figure out how to do log in with google
 
 ### Blocking issues:
-* Blocker 1
-* Blocker 2
-* etc.
+* N/A
 
 
 
@@ -164,20 +158,14 @@
 
 ## Brett Herbst
 ### Present:
-- [ ] Yes
+- [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Task 1
-* Task 2
-* etc.
+* Finishing touches on High fidelity Index
 
 ### What I plan to do today:
-* Task 1
-* Task 2
-* etc.
+* Finilize high fidelity Index
 
 ### Blocking issues:
-* Blocker 1
-* Blocker 2
-* etc.
+* None

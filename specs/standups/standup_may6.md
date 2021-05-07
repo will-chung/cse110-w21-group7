@@ -159,20 +159,16 @@
 
 ## Brett Herbst
 ### Present:
-- [ ] Yes
+- [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Task 1
-* Task 2
-* etc.
+* Fixed High Fidelity Index
+* Looked into databases
 
 ### What I plan to do today:
-* Task 1
-* Task 2
-* etc.
+* Do more research on sign in page
+* TBD
 
 ### Blocking issues:
-* Blocker 1
-* Blocker 2
-* etc.
+* None
