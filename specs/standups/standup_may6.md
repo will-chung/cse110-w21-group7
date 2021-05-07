@@ -81,19 +81,13 @@
 - [ ] No
 
 ### What I did yesterday:
-* Task 1
-* Task 2
-* etc.
+* Adjusted high fidelity with Rachel
 
 ### What I plan to do today:
-* Task 1
-* Task 2
-* etc.
+* N/A
 
 ### Blocking issues:
-* Blocker 1
-* Blocker 2
-* etc.
+* Our icons are bold (but I don't think that is a problem for our high fidelity)
 
 
 
@@ -121,14 +115,14 @@
 
 ## William Chung
 ### Present:
-- [x] Yes
+- [ ] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Finalized high-fidelity design for Daily Log Interface
+* task
 
 ### What I plan to do today:
-* Exploratory programming to prepare for sprint
+* task
 
 ### Blocking issues:
 * No blockers
