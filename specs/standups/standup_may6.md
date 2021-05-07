@@ -115,14 +115,14 @@
 
 ## William Chung
 ### Present:
-- [ ] Yes
+- [x] Yes
 - [ ] No
 
 ### What I did yesterday:
-* task
+* Finalized high-fidelity design for Daily Log Interface
 
 ### What I plan to do today:
-* task
+* Exploratory programming to prepare for sprint
 
 ### Blocking issues:
 * No blockers
