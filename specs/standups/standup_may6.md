@@ -17,23 +17,18 @@
 
 ## Zhiyuan Zhang
 ### Present:
-- [ ] Yes
+- [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Task 1
-* Task 2
-* etc.
+* Finalizing Collection ADR
+* Look up how to add google login to website
 
 ### What I plan to do today:
-* Task 1
-* Task 2
-* etc.
+* Prepare HTML and CSS for our project
 
 ### Blocking issues:
-* Blocker 1
-* Blocker 2
-* etc.
+* N/A
 
 
 
