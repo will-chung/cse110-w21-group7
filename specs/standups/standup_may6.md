@@ -159,7 +159,7 @@
 * Looked into databases
 
 ### What I plan to do today:
-* Do more research on sign in page
+* Do more research on databases and tools I can use
 * TBD
 
 ### Blocking issues:
