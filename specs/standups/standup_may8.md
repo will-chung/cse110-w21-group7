@@ -109,14 +109,14 @@
 
 ## William Chung
 ### Present:
-- [ ] Yes
+- [x] Yes
 - [ ] No
 
 ### What I did yesterday:
-* 
+* Exploratory programming
 
 ### What I plan to do today:
-* 
+* Exploratory programming
 
 ### Blocking issues:
 * No blockers
