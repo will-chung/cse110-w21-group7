@@ -20,10 +20,10 @@
 - [ ] No
 
 ### What I did yesterday:
-* 
+* created channel for html/css group
 
 ### What I plan to do today:
-* 
+* program the html and css part for the project
 
 ### Blocking issues:
 * N/A
