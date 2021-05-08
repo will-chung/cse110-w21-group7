@@ -32,17 +32,18 @@
 
 ## Noah Teshima
 ### Present:
-- [ ] Yes
+- [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-*
+* N/A (miscellaneous obligations over past two days)
 
 ### What I plan to do today:
-*
+* Exploratory programming
+* CI/CD pipeline
 
 ### Blocking issues:
-* 
+* Feedback for architecture diagrams to make final revisions
 
 
 
