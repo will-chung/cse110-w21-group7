@@ -16,7 +16,7 @@
 
 ## Zhiyuan Zhang
 ### Present:
-- [ ] Yes
+- [X] Yes
 - [ ] No
 
 ### What I did yesterday:
