@@ -124,20 +124,17 @@
 
 ## Thanh Tong
 ### Present:
-- [ ] Yes
+- [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-* 
+* Some research on javascript
+
 ### What I plan to do today:
-* Task 1
-* Task 2
-* etc.
+* 
 
 ### Blocking issues:
-* Blocker 1
-* Blocker 2
-* etc.
+* 
 
 
 
