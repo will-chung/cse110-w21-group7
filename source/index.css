@@ -1,0 +1,112 @@
+#bujo-header{
+    text-align: center;
+}
+
+#nav-menu{
+    list-style-type: none;
+    margin:10px;
+    padding:10px;
+    width:130px;
+    background-color: antiquewhite;
+    border-style:solid;
+    border-top-color: white;
+    border-left-color: white;
+    border-bottom-color: white;
+}
+
+#collection{
+    position: absolute;
+    top: 90%;
+    left: 15%;
+}
+
+#jump-to{
+    position: absolute;
+    top: 90%;
+    left: 65%;
+}
+
+#rapid-log{
+    position: absolute;
+    top: 90%;
+    left: 75%;
+    border-radius: 100%;
+}
+
+button{
+    width: 120px;
+    height: 50px;
+}
+
+li > button {
+    background-color: #448FF2;
+    border: none;
+    color: black;
+    padding: 12px 16px;
+    font-size:16px;
+    cursor: pointer;
+    margin-top: 10%;
+}
+
+
+li > button:hover {
+    background-color: #66A3F2;
+}
+
+li > a, a:link{
+    color: white;
+}
+
+.navbar{
+    display:flex;
+    flex-direction: column;
+}
+
+.button > button:hover{
+    background-color:bisque;
+    cursor:pointer;
+    transform: rotate(-10deg) skew(10deg) translate(20px,-15px);
+    box-shadow: -50px 50px 50px rgba(0,0,0,.5);
+}
+
+.button > button {
+    border-width:3px;
+    transition:.5s;
+    box-shadow: -20px 20px 10px rgba(0,0,0,.5);
+    transform: translate(0,0);
+}
+
+.shelf-item > button {
+    width: 50px;
+    height: 100px;
+    background-color: red;
+    display:inline-block;
+    margin:10px;
+}
+
+.shelf-item {
+    border-style: solid;
+    border-top-color:white;
+    border-left-color:white;
+    border-right-color:white;
+    border-bottom-color:black;
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.shelf{
+    margin-left: 10%;
+    width : 80%;
+    border-color:coral;
+    border-style:solid;
+}
+
+#body {
+    border-style: solid;
+    border-color: black;
+    display: flex;
+    flex-direction: row;
+}
+
