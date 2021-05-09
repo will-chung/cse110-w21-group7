@@ -1,4 +1,10 @@
+# artifact
+Html and CSS: Ivan, Yuzi, William
+Javascript: Katherine, Noah, Thanh
+DB: Brett, Rachel, Alvin
+=======
 # Standup May 6, 2021
+
 ## Yuzi Lyu
 ### Present:
 - [X] Yes
@@ -10,6 +16,7 @@
 
 ### What I plan to do today:
 * delegate roles
+* 
 ### Blocking issues:
 * N/A
 
