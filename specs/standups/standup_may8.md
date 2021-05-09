@@ -1,15 +1,14 @@
-# Standup May 6, 2021
+# Standup May 8, 2021
 ## Yuzi Lyu
 ### Present:
 - [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Project Pitch Presentation
-* Login High-fi prototype
+* exploratory programming on html and css
 
 ### What I plan to do today:
-* delegate roles
+* 
 ### Blocking issues:
 * N/A
 
@@ -21,11 +20,10 @@
 - [ ] No
 
 ### What I did yesterday:
-* Finalizing Collection ADR
-* Look up how to add google login to website
+* created channel for html/css group
 
 ### What I plan to do today:
-* Prepare HTML and CSS for our project
+* program the html and css part for the project
 
 ### Blocking issues:
 * N/A
@@ -38,13 +36,14 @@
 - [ ] No
 
 ### What I did yesterday:
-* Architecture diagrams (system, container, component diagrams)
+* N/A (miscellaneous obligations over past two days)
 
 ### What I plan to do today:
-* Finalize architecture diagrams from review
+* Exploratory programming
+* CI/CD pipeline
 
 ### Blocking issues:
-* API choice (if any) for reflection quote on daily log, calendary for monthly/weekly view
+* Feedback for architecture diagrams to make final revisions
 
 
 
@@ -76,13 +75,13 @@
 - [ ] No
 
 ### What I did yesterday:
-* Adjusted high fidelity with Rachel
+* 
 
 ### What I plan to do today:
 * N/A
 
 ### Blocking issues:
-* Our icons are bold (but I don't think that is a problem for our high fidelity)
+* 
 
 
 
@@ -114,10 +113,10 @@
 - [ ] No
 
 ### What I did yesterday:
-* Finalized high-fidelity design for Daily Log Interface
+* Exploratory programming
 
 ### What I plan to do today:
-* Exploratory programming to prepare for sprint
+* Exploratory programming
 
 ### Blocking issues:
 * No blockers
@@ -130,32 +129,27 @@
 - [ ] No
 
 ### What I did yesterday:
-* Finalized high-fidelity design for Index Interface
+* Some research on javascript
 
 ### What I plan to do today:
-* Task 1
-* Task 2
-* etc.
+* 
 
 ### Blocking issues:
-* Blocker 1
-* Blocker 2
-* etc.
+* 
 
 
 
 ## Brett Herbst
 ### Present:
-- [X] Yes
+- [] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Fixed High Fidelity Index
-* Looked into databases
+*
 
 ### What I plan to do today:
-* Do more research on databases and tools I can use
-* TBD
+* 
 
 ### Blocking issues:
 * None
+
