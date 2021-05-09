@@ -21,6 +21,12 @@
    - how responsive does this have to be
 2. html, javascript, DB in browser Cache, CSS
 3. log in through other platform
+4. consistent nav bar
+   - search
+   - index
+   - daily log
+   - navigation to monthly
+   - navigation to collection
 
 ## Updates
 
