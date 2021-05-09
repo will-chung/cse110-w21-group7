@@ -1,9 +1,10 @@
-# Standup May 4, 2021
-
 # artifact
 Html and CSS: Ivan, Yuzi, William
 Javascript: Katherine, Noah, Thanh
 DB: Brett, Rachel, Alvin
+=======
+# Standup May 6, 2021
+
 ## Yuzi Lyu
 ### Present:
 - [X] Yes
@@ -23,39 +24,34 @@ DB: Brett, Rachel, Alvin
 
 ## Zhiyuan Zhang
 ### Present:
-- [ ] Yes
+- [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Task 1
-* Task 2
-* etc.
+* Finalizing Collection ADR
+* Look up how to add google login to website
 
 ### What I plan to do today:
-* Task 1
-* Task 2
-* etc.
+* Prepare HTML and CSS for our project
 
 ### Blocking issues:
-* Blocker 1
-* Blocker 2
-* etc.
+* N/A
 
 
 
 ## Noah Teshima
 ### Present:
-- [ ] Yes
+- [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-* task
+* Architecture diagrams (system, container, component diagrams)
 
 ### What I plan to do today:
-* task
+* Finalize architecture diagrams from review
 
 ### Blocking issues:
-* N/A
+* API choice (if any) for reflection quote on daily log, calendary for monthly/weekly view
 
 
 
@@ -87,19 +83,13 @@ DB: Brett, Rachel, Alvin
 - [ ] No
 
 ### What I did yesterday:
-* Task 1
-* Task 2
-* etc.
+* Adjusted high fidelity with Rachel
 
 ### What I plan to do today:
-* Task 1
-* Task 2
-* etc.
+* N/A
 
 ### Blocking issues:
-* Blocker 1
-* Blocker 2
-* etc.
+* Our icons are bold (but I don't think that is a problem for our high fidelity)
 
 
 
@@ -127,14 +117,14 @@ DB: Brett, Rachel, Alvin
 
 ## William Chung
 ### Present:
-- [ ] Yes
+- [x] Yes
 - [ ] No
 
 ### What I did yesterday:
-* task
+* Finalized high-fidelity design for Daily Log Interface
 
 ### What I plan to do today:
-* task
+* Exploratory programming to prepare for sprint
 
 ### Blocking issues:
 * No blockers
@@ -143,13 +133,11 @@ DB: Brett, Rachel, Alvin
 
 ## Thanh Tong
 ### Present:
-- [ ] Yes
+- [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Task 1
-* Task 2
-* etc.
+* Finalized high-fidelity design for Index Interface
 
 ### What I plan to do today:
 * Task 1
@@ -173,7 +161,7 @@ DB: Brett, Rachel, Alvin
 * Looked into databases
 
 ### What I plan to do today:
-* Do more research on sign in page
+* Do more research on databases and tools I can use
 * TBD
 
 ### Blocking issues:
