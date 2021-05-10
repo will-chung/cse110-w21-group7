@@ -1,17 +1,21 @@
 #bujo-header{
     text-align: center;
+    color: black;
+    padding-left:200px;
 }
-
+body{
+    background-color: #E8CEBF;
+}
 #nav-menu{
     list-style-type: none;
     margin:10px;
     padding:10px;
     width:130px;
-    background-color: antiquewhite;
+    background-color: #DDAF94;
     border-style:solid;
-    border-top-color: white;
-    border-left-color: white;
-    border-bottom-color: white;
+    border-top-color: #E8CEBF;
+    border-left-color: #E8CEBF;
+    border-bottom-color: #E8CEBF;
 }
 
 #collection{
@@ -39,9 +43,10 @@ button{
 }
 
 li > button {
-    background-color: #448FF2;
-    border: none;
-    color: black;
+    border-color:#4F4846;
+    background-color:#FDF8F5;
+    height: 90px;
+    border-radius: 50%;
     padding: 12px 16px;
     font-size:16px;
     cursor: pointer;
@@ -50,11 +55,11 @@ li > button {
 
 
 li > button:hover {
-    background-color: #66A3F2;
+    background-color: #DDAF94;
 }
 
 li > a, a:link{
-    color: white;
+    color: black;
 }
 
 .navbar{
@@ -63,7 +68,7 @@ li > a, a:link{
 }
 
 .button > button:hover{
-    background-color:bisque;
+    background-color:#DDAF94;
     cursor:pointer;
     transform: rotate(-10deg) skew(10deg) translate(20px,-15px);
     box-shadow: -50px 50px 50px rgba(0,0,0,.5);
@@ -79,33 +84,39 @@ li > a, a:link{
 .shelf-item > button {
     width: 50px;
     height: 100px;
-    background-color: red;
+    background-color: #266150;
     display:inline-block;
     margin:10px;
+    border-radius:0;
+    text-align: center;
+    padding: 0;
 }
 
 .shelf-item {
     border-style: solid;
-    border-top-color:white;
-    border-left-color:white;
-    border-right-color:white;
-    border-bottom-color:black;
+    border-top-color:#E8CEBF;
+    border-left-color:#E8CEBF;
+    border-right-color:#E8CEBF;
+    border-bottom-color:white;
     display:flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
+    margin-top:30px;
 }
 
 .shelf{
-    margin-left: 10%;
+    margin-left: 5%;
     width : 80%;
-    border-color:coral;
+    border-color:white;
     border-style:solid;
+    align-items: center;
+    margin-top: 5%;
 }
 
 #body {
     border-style: solid;
-    border-color: black;
+    border-color: #E8CEBF;
     display: flex;
     flex-direction: row;
 }
