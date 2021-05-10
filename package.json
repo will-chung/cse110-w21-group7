@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive ./source/javascript/tests/*",
-    "lint_tests":"./node_modules/.bin/eslint source/javascript/tests/*",
-    "fix_tests":"./node_modules/.bin/eslint source/javascript/tests/* --fix",
-    "lint_src":"./node_modules/.bin/eslint source/javascript/src/*",
-    "fix_src":"./node_modules/.bin/eslint source/javascript/src/* --fix"
+    "lint_tests": "./node_modules/.bin/eslint source/javascript/tests/*",
+    "fix_tests": "./node_modules/.bin/eslint source/javascript/tests/* --fix",
+    "lint_src": "./node_modules/.bin/eslint source/javascript/src/*",
+    "fix_src": "./node_modules/.bin/eslint source/javascript/src/* --fix",
+    "docs": "./node_modules/.bin/jsdoc source/javascript/src/* --destination source/docs/"
   },
   "repository": {
     "type": "git",
@@ -64,6 +65,7 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.3.1",
+    "jsdoc": "^3.6.6",
     "mocha": "^8.4.0",
     "npm": "^7.12.0",
     "sinon": "^10.0.0"
