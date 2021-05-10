@@ -30,7 +30,7 @@ jobs:
     - run: npm test
 
   lint:
-    name: Linting and StandardJS styleguide enforcement on ${{ matrix.node_version }}
+    name: Linting and StandardJS styleguide enforcement ${{ matrix.node_version }}
     runs-on: ubuntu-latest
     
     strategy:
@@ -40,7 +40,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Lint Node.js ${{ matrix.node-version }}
-      uses: actions/setup-note@v2
+      uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
@@ -49,7 +49,7 @@ jobs:
     - run: npm run lint_src --if-present
   
   coverage:
-    name: Code coverage on ${{ matrix.node_version }}
+    name: Code coverage ${{ matrix.node_version }}
     runs-on: ubuntu-latest
     
     strategy:
@@ -59,7 +59,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Lint Node.js ${{ matrix.node-version }}
-      uses: actions/setup-note@v2
+      uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
@@ -73,7 +73,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Coverage Node.js
-      uses: actions/setup-note@v2
+      uses: actions/setup-node@v2
       with:
         node-version: 15.x
     - run: npm ci
