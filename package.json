@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive ./source/javascript/tests/*",
+    "coverage": "nyc npm run test",
     "lint_tests": "./node_modules/.bin/eslint source/javascript/tests/*",
     "fix_tests": "./node_modules/.bin/eslint source/javascript/tests/* --fix",
     "lint_src": "./node_modules/.bin/eslint source/javascript/src/*",
@@ -65,9 +66,11 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.3.1",
+    "istanbul": "^0.4.5",
     "jsdoc": "^3.6.6",
     "mocha": "^8.4.0",
     "npm": "^7.12.0",
+    "nyc": "^15.1.0",
     "sinon": "^10.0.0"
   }
 }
