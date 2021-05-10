@@ -1,17 +1,16 @@
-# Standup May 1, 2021
+# Standup May 8, 2021
 ## Yuzi Lyu
 ### Present:
 - [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-* 
+* exploratory programming on html and css
 
 ### What I plan to do today:
 * 
-
 ### Blocking issues:
-* 
+* N/A
 
 
 
@@ -21,10 +20,10 @@
 - [ ] No
 
 ### What I did yesterday:
-* Coming up thoughts for collection ADR
+* created channel for html/css group
 
 ### What I plan to do today:
-* Rework collection ADR
+* program the html and css part for the project
 
 ### Blocking issues:
 * N/A
@@ -33,82 +32,94 @@
 
 ## Noah Teshima
 ### Present:
-- [ ] Yes
-- [X] No
+- [X] Yes
+- [ ] No
 
 ### What I did yesterday:
-* Shape Up in anticipation of project pitch
+* N/A (miscellaneous obligations over past two days)
 
 ### What I plan to do today:
-* Project pitch
+* Exploratory programming
+* CI/CD pipeline
 
 ### Blocking issues:
-* N/A
+* Feedback for architecture diagrams to make final revisions
 
 
 
 ## Rachel Doron
 ### Present:
-- [X] Yes
+- [ ] Yes
 - [ ] No
 
 ### What I did yesterday:
-* 
+* Task 1
+* Task 2
+* etc.
 
 ### What I plan to do today:
-* 
+* Task 1
+* Task 2
+* etc.
 
 ### Blocking issues:
-* 
+* Blocker 1
+* Blocker 2
+* etc.
 
 
 
 ## Katherine Baker
 ### Present:
-- [X] Yes
+- [ ] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Completed ADR for Monthly/Weekly
-
+* 
 
 ### What I plan to do today:
-* Change format of ADR
+* N/A
 
 ### Blocking issues:
-* N/A
+* 
 
 
 
 ## Alvin Wang
 ### Present:
-- [X] Yes
+- [ ] Yes
 - [ ] No
 
 ### What I did yesterday:
-* 
+* Task 1
+* Task 2
+* etc.
 
 ### What I plan to do today:
-* 
+* Task 1
+* Task 2
+* etc.
 
 ### Blocking issues:
-* 
+* Blocker 1
+* Blocker 2
+* etc.
 
 
 
 ## William Chung
 ### Present:
-- [X] Yes
+- [x] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Updated ADRs for Daily Log Interface
+* Exploratory programming
 
 ### What I plan to do today:
-* Finalize design for Daily Log Interface
+* Exploratory programming
 
 ### Blocking issues:
-* Unclear picture of final product, an alignment board would be useful
+* No blockers
 
 
 
@@ -118,26 +129,27 @@
 - [ ] No
 
 ### What I did yesterday:
-* Updated ADR for Index Interface
+* Some research on javascript
 
 ### What I plan to do today:
-* Finalize high-fidelity design for Index Interface
+* 
 
 ### Blocking issues:
-* Not completely sure what to update for high-fid design
+* 
 
 
 
 ## Brett Herbst
 ### Present:
-- [X] Yes
+- [] Yes
 - [ ] No
 
 ### What I did yesterday:
-* 
+*
 
 ### What I plan to do today:
 * 
 
 ### Blocking issues:
-* 
+* None
+

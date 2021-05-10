@@ -1,7 +1,7 @@
 # Monthly/Weeky Index Documentation
 
 ## Monthly View  
-- Square calendar with depicting numbers corresponding to days in the month. 
+- Square calendar with depicting numbers corresponding to days in the month 
 - At the top the month is written next to triangular forward and back buttons 
 
 ### Monthly Forward Button  
