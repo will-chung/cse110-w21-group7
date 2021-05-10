@@ -8,6 +8,7 @@
  */
 
 const Foo = require('./example.js').Foo
+const should = require('chai').should()
 
 /**
  * Use describe(..) to create new test suites
