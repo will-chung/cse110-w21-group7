@@ -10,7 +10,7 @@
     "fix_tests": "./node_modules/.bin/eslint source/javascript/tests/* --fix",
     "lint_src": "./node_modules/.bin/eslint source/javascript/src/*",
     "fix_src": "./node_modules/.bin/eslint source/javascript/src/* --fix",
-    "docs": "./node_modules/.bin/jsdoc source/javascript/src/* --destination source/docs/"
+    "docs": "./node_modules/.bin/jsdoc source/javascript/src/* --destination specs/ci-cd/docs/"
   },
   "repository": {
     "type": "git",
