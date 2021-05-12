@@ -16,14 +16,14 @@
 
 ## Zhiyuan Zhang
 ### Present:
-- [ ] Yes
+- [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-* 
+* created channel for html/css group
 
 ### What I plan to do today:
-* 
+* program the html and css part for the project
 
 ### Blocking issues:
 * N/A
@@ -32,17 +32,18 @@
 
 ## Noah Teshima
 ### Present:
-- [ ] Yes
+- [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-*
+* N/A (miscellaneous obligations over past two days)
 
 ### What I plan to do today:
-*
+* Exploratory programming
+* CI/CD pipeline
 
 ### Blocking issues:
-* 
+* Feedback for architecture diagrams to make final revisions
 
 
 
@@ -108,14 +109,14 @@
 
 ## William Chung
 ### Present:
-- [ ] Yes
+- [x] Yes
 - [ ] No
 
 ### What I did yesterday:
-* 
+* Exploratory programming
 
 ### What I plan to do today:
-* 
+* Exploratory programming
 
 ### Blocking issues:
 * No blockers
