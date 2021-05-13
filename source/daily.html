@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Log</title>
+    <link rel="stylesheet" href="daily.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="navbar">
+        <ul id="nav-menu">
+            <li>
+                <button id="menu"><i class="fa fa-bars"></i><a href="#"> Menu</a></button>
+            </li>
+            <li>
+                <button id="search"><i class="fa fa-search"></i><a href="#">Search</a></button>
+            </li>
+            <li>
+                <button id="index"><i class="fa fa-home"></i><a href="#">Index</a></button>
+            </li>
+            <li>
+                <button id="daily-log"><i class="fa fa-pencil"></i><a href="#">Daily Log</a></button>
+            </li>
+            <li>
+                <button id="monthly"><i class="fa fa-calendar"></i><a href="#">Monthly</a></button>
+            </li>
+            <li>
+                <button id="nav-collection"><i class="fa fa-folder-open" wid></i><a href="#">Collection</a></button>
+            </li>
+        </ul>
+    </div>
+    <div id="content">
+        <div id="journal-content">
+            
+            <div id="title">
+                <div class="date">
+                    <!-- TODO: this needs to fetch today's date-->
+                    <h1 class="date">5.4.2021</h1>
+                </div>
+                <div id="tag">
+                    <!-- TODO: this will be a dropdown for all possible tags-->
+                    <p>temp tag</p>
+                </div>
+            </div>
+            <div id="entry">
+
+                <ul id="myUL">
+                </ul>
+                
+                <div id="myDIV" class="header">
+                  <h2 style="margin:5px">Enter input</h2>
+                  <input type="text" id="myInput" placeholder="Title...">
+                  <span onclick="newElement()" class="addBtn">Add</span>
+                </div>
+
+                <!--<form id="textbox">
+                    <input type="text" id="text-input" name="todo" placeholder="Input your todo here" size="70" >            
+                    <button id="cancel">Cancel</button>
+                    <button id="save" type="submit">Save</button>
+                </form>-->
+                
+                <!-- List for input actions in the dropdown on the left -->
+                <!--<ul id="actions">
+                    <li>add bullet</li>
+                    <li>edit</li>
+                    <li>delete</li>
+                    <li>...</li>
+                </ul>-->
+            </div>
+
+            <div id="reflection">
+                <div id="quote">
+                    <h1>Sample Quote</h1>
+                </div>
+                <button id="collapse">collapse</button>
+                <button id="right">right</button>
+            </div>
+            
+            <button id="pretty">zoom</button>
+        </div>
+    </div>
+    <script src="daily.js"></script>
+</body>
+</html>
