@@ -5,8 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
-    <link rel="stylesheet" href="index.css"/>
+    <link rel="stylesheet" href="../css/index.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script>
+        // document.addEventListener('DOMContentLoaded', (event) => {
+        //     document.querySelector('#rapid-log > a').href = "https://www.google.com"
+        // })
+    </script>
 </head>
 <body>
     <div class="header">
@@ -82,10 +87,20 @@
         </ul>
     </div>
 
-    <div id="footer">
+    <footer>
         <button id="collection">Collection</button>
-        <button id="jump-to">Jump to...</button>
-        <button id="rapid-log"><i class="fa fa-plus"></i>Add</button>
-    </div>
+        <details>
+            <summary id="jump-to">Jump to...</summary>
+            <ul>
+                <li><a href="daily.html"></a>Daily log</li>
+                <li><a href="">Weekly view</a></li>
+            </ul>
+        </details>
+        <button id="rapid-log"><i class="fa fa-plus"></i><a href="daily.html">Add</a></button>
+    </footer>
 </body>
 </html>
+
+
+
+
