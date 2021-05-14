@@ -1,3 +1,25 @@
+
+const collapse = document.getElementById('collapse')
+const right = document.getElementById('right')
+const quote = document.getElementById('quote')
+/*
+ * This onclick toggles the display style of the quote to none
+ * TODO: Collapse the whole div, not just the quote
+ * Resource: https://codepen.io/Mdade89/pen/JKkYGq
+ * the link above provides a collapsible text box
+ */
+collapse.addEventListener('click', () => {
+  if (quote.style.display === 'none') {
+    collapse.innerHTML = 'collapse'
+    right.style.visibility = 'visible'
+    quote.style.display = 'block'
+  } else {
+    collapse.innerHTML = 'expand'
+    right.style.visibility = 'hidden'
+    quote.style.display = 'none'
+  }
+})
+
 function newElement () {
   const span = document.createElement('select')
   span.className = 'dropdown'
@@ -12,7 +34,6 @@ function newElement () {
   complete.className = 'complete'
   txt.text = 'options'
   txt.value = 'value'
-  // span.className = "select";
   span.appendChild(txt)
   span.appendChild(close)
   span.appendChild(complete)
@@ -25,7 +46,6 @@ function newElement () {
     alert('You must write something!')
   } else {
     // span.appendChild(li);
-    // document.getElementById("myUL").appendChild(span);
     document.getElementById('myUL').appendChild(li)
   }
   document.getElementById('myInput').value = ''

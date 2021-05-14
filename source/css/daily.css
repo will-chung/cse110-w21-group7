@@ -4,15 +4,13 @@ body {
     background-color: #FDF8F5;
 }
 
-
-
 .header{
     background-color: #FDF8F5;
 }
+
 h1{
     text-align: center;
 }
-
 
 #nav-menu{
     list-style-type: none;
@@ -85,8 +83,26 @@ li > a, a:link {
 } */
 
 #collapse {
+  position: relative;
+  left: 44%; 
+}
 
-  p}
+#right {
+  float: right;
+  top: 50%;
+  /* margin-right: 20px;
+  margin-top:50px; 
+  width:50px;
+  position: relative;
+  left: 95%;
+  margin-right: 100px; */
+}
+
+#quote {
+  border-style: solid;
+  border-color: black;
+}
+
 
 #pretty {
   position: fixed;
