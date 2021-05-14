@@ -1,0 +1,18 @@
+{
+    "date": "5/12/2021",
+    "log-info": [
+        {
+            "type": "task",
+            "content": "This is a task"
+        },
+        {
+            "type": "note",
+            "content": "This is a note"
+        },
+        {
+            "type": "event",
+            "content": "This is an event"
+        }
+    ]
+}
+
