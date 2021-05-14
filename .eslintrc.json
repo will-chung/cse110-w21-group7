@@ -13,6 +13,7 @@
         "ecmaVersion": 12
     },
     "rules": {
+        "no-unused-vars": "off"
     },
     "overrides": [
         {

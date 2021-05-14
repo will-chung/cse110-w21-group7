@@ -1,4 +1,4 @@
-# Standup May 8, 2021
+# Standup May 11, 2021
 ## Yuzi Lyu
 ### Present:
 - [X] Yes
@@ -15,139 +15,126 @@
 
 ## Zhiyuan Zhang
 ### Present:
-- [ ] Yes
+- [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-*
-
+* Finished index.html and index.css
 ### What I plan to do today:
-* 
-
+*  FIrst draft of daily.html and daily.css and some daily.js
 ### Blocking issues:
-* N/A
+* the button position on the daily.html. Need to modify the css.
 
 
 
 ## Noah Teshima
 ### Present:
-- [ ] Yes
+- [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-* 
+* First iteration of CI/CD pipeline
 
 ### What I plan to do today:
-* 
-* 
+* Exploratory programming for daily log
 
 ### Blocking issues:
-* 
+* Schema choice for backend
 
 
 
 ## Rachel Doron
 ### Present:
-- [ ] Yes
+- [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Task 1
-* Task 2
-* etc.
+* Research for database choice on backend
 
 ### What I plan to do today:
-* Task 1
-* Task 2
-* etc.
+* Exploratory programming w/ MongoDB
 
 ### Blocking issues:
-* Blocker 1
-* Blocker 2
-* etc.
+* N/A
 
 
 
 ## Katherine Baker
 ### Present:
-- [ ] Yes
+- [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-* 
+* Research task
 
 ### What I plan to do today:
-* N/A
+* Meeting w/ Thanh and Noah
 
 ### Blocking issues:
-* 
+* Schema choice
 
 
 
 ## Alvin Wang
 ### Present:
-- [ ] Yes
+- [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Task 1
-* Task 2
-* etc.
+* Research for database choice on backend
 
 ### What I plan to do today:
-* Task 1
-* Task 2
-* etc.
+* Exploratory programming w/ MongoDB
 
 ### Blocking issues:
-* Blocker 1
-* Blocker 2
-* etc.
+* N/A
 
 
 
 ## William Chung
 ### Present:
-- [ ] Yes
+- [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-* 
+* First iteration of CI/CD pipeline w/ Noah
+* HTML/CSS for index
 
 ### What I plan to do today:
-* 
+* HTML/CSS for collections
 
 ### Blocking issues:
-* 
+* N/A
 
 
 
 ## Thanh Tong
 ### Present:
-- [ ] Yes
+- [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-*
+* Research for JS
 
 ### What I plan to do today:
-* 
+* Meeting w/ Katherine and Noah
+* Continue with exploratory programming and research
 
 ### Blocking issues:
-* 
+* Schema choice
 
 
 
 ## Brett Herbst
 ### Present:
-- [] Yes
+- [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-*
+* Research for database choice on backend
 
 ### What I plan to do today:
-* 
+* Exploratory programming w/ MongoDB
 
 ### Blocking issues:
-* None
+* N/A
