@@ -104,4 +104,3 @@ function sendLogInfoAsJSON () {
 document.addEventListener('DOMContentLoaded', (event) => {
   getLogInfoAsJSON(new Date(), setDate)
 })
-
