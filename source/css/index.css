@@ -89,7 +89,7 @@ li > a, a:link {
 }
 
 .shelf-item > button {
-    background-image: url("book-icon.jpg");
+    background-image: url("../image/book-icon.jpg");
     background-size: 57px 68px;
     width: 60px;
     height: 70px;
