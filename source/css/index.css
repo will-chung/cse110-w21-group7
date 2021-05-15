@@ -1,0 +1,140 @@
+.header{
+    background-color: #FDF8F5;
+}
+#bujo-header{
+    text-align: center;
+    color: black;
+    padding-left:200px;
+}
+
+body{
+    background-color: #FDF8F5;
+}
+
+#nav-menu{
+    list-style-type: none;
+    margin:10px;
+    padding:10px;
+    width:130px;
+    background-color: #DDAF94;
+    border-style:solid;
+    border-top-color: #E8CEBF;
+    border-left-color: #E8CEBF;
+    border-bottom-color: #E8CEBF;
+}
+
+#collection{
+    position: absolute;
+    top: 90%;
+    left: 20%;
+}
+
+#jump-to{
+    position: absolute;
+    top: 90%;
+    left: 75%;
+}
+
+#rapid-log{
+    position: absolute;
+    top: 90%;
+    left: 85%;
+    border-radius: 100%;
+}
+
+button{
+    width: 120px;
+    height: 50px;
+}
+
+li > button {
+    border:none;
+    background-color:#FDF8F5;
+    height: 90px;
+    border-radius: 40%;
+    padding: 12px 16px;
+    font-size:16px;
+    cursor: pointer;
+    margin-top: 10%;
+}
+
+
+li > button:hover {
+    background-color: #266150;
+    color:white;
+}
+
+li > a, a:link {
+    color: #4F4846;
+}
+
+
+.navbar{
+    display:flex;
+    flex-direction: column;
+}
+
+footer > button:hover{
+    background-color:#DDAF94;
+    cursor:pointer;
+    transform: rotate(-10deg) skew(10deg) translate(20px,-15px);
+    box-shadow: -50px 50px 50px rgba(0,0,0,.5);
+}
+
+footer > button {
+    border-width:3px;
+    transition:.5s;
+    box-shadow: -20px 20px 10px rgba(0,0,0,.5);
+    transform: translate(0,0);
+}
+
+.shelf-item > button {
+    background-image: url("../image/book-icon.jpg");
+    background-size: 57px 68px;
+    width: 60px;
+    height: 70px;
+    background-color: #266150;
+    display:block;
+    margin:20px;
+    border-radius:0;
+    text-align: center;
+    padding: 0;
+    box-shadow: -10px 10px 5px rgba(0,0,0,.5);
+    
+}
+
+.shelf-item > button:hover {
+    box-shadow: -25px 25px 15px rgba(0,0,0,.5);
+    transform: scale(1.25) translateY(-10px);
+    transition:0.5s;
+}
+
+.shelf-item {
+    border-style: solid;
+    border-top-color:#E8CEBF;
+    border-left-color:#E8CEBF;
+    border-right-color:#E8CEBF;
+    border-bottom-color:white;
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    margin-top:30px;
+}
+
+.shelf{
+    margin-left: 5%;
+    width : 80%;
+    border-color:white;
+    border-style:solid;
+    align-items: center;
+    margin-top: 5%;
+}
+
+#content {
+    border-style: solid;
+    border-color: #E8CEBF;
+    display: flex;
+    flex-direction: row;
+    background-color: #E8CEBF
+}
