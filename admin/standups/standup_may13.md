@@ -102,7 +102,7 @@
 ## William Chung
 ### Present:
 - [X] Yes
-- [] No
+- [ ] No
 
 ### What I did yesterday:
 * Frontend work w/ Yuzi and Ivan
