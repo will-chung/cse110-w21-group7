@@ -16,7 +16,7 @@ As a User
 I want to have an index page displaying the contents of my bullet journal  
 Because I need to keep track of what I have written  
 **Scenario: Navigating to the index page**  
-Given I'm someone who regularly journals  
+Given I'm a regular journaler 
 When I go to my index  
 Then I should see what my bullet journal contains  
 And I should be able to further navigate to a specific piece of content  
@@ -38,7 +38,7 @@ As a User
 I want to organize my journal entries into collections   
 Because grouping similar entries together helps me with organization  
 **Scenario: Adding an entry to a Collection**  
-Given I'm someone who wants to stayed organized  
+Given I'm an organized person  
 When I want to add an entry to a collection  
 Then there should be an option to do so  
 And the collection that an entry belongs to should be visually apparent
@@ -93,7 +93,7 @@ As a User
 I want to reflect on my experiences  
 Because I strive to improve myself through daily reflection  
 **Scenario: Reflecting on the day's experiences**  
-Given I'm a reflective college student  
+Given I'm a reflective person  
 When I want to reflect about today  
 Then I should have a way of recording my reflection distinct from a regular entry  
 And I should be able to view useful metrics about my reflections
