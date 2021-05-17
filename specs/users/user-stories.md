@@ -16,7 +16,7 @@ As a User
 I want to have an index page displaying the contents of my bullet journal  
 Because I need to keep track of what I have written  
 **Scenario: Navigating to the index page**  
-Given I'm a regular journaler 
+Given I'm a regular journaler   
 When I go to my index  
 Then I should see what my bullet journal contains  
 And I should be able to further navigate to a specific piece of content  
@@ -60,7 +60,7 @@ As a User
 I want to have an overview of each week   
 Because I tend to operate on a weekly basis  
 **Scenario: Checking schedule for upcoming week**  
-Given I'm a college student who maintains a schedule  
+Given I'm a college student who maintains a schedule   
 When I want to see what my upcoming week looks like   
 Then all the notes, events, and tasks for the week should be displayed  
 And I should be able to easily edit them
