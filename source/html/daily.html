@@ -7,8 +7,6 @@
     <title>Daily Log</title>
     <link rel="stylesheet" href="../css/daily.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="../javascript/src/daily.js"></script>
-
 </head>
 <body>
     <div class="navbar">
@@ -29,7 +27,7 @@
                 <button id="monthly"><i class="fa fa-calendar"></i><a href="#">Monthly</a></button>
             </li>
             <li>
-                <button id="nav-collection"><i class="fa fa-folder-open" wid></i><a href="#">Collection</a></button>
+                <button id="nav-collection"><i class="fa fa-folder-open"></i><a href="#">Collection</a></button>
             </li>
         </ul>
     </div>
@@ -49,31 +47,50 @@
             <div id="entry">
 
                 <ul id="myUL">
+                    <li><i class="fa fa-heart"></i></i>test1<a href="#"><i class="fa fa-check"></i></a><a href="#"><i class="fa fa-trash-o"></i></a></li>
+                    <li><i class="fa fa-dot-circle-o"></i>test2</li>
+                    <li><i class="fa fa-circle-o"></i>test3</li>
                 </ul>
                 
-                <div id="myDIV" class="header">
+                <!-- <div id="myDIV" class="header">
                   <h2 style="margin:5px">Enter input</h2>
                   <input type="text" id="myInput" placeholder="Title...">
                   <span onclick="newElement()" class="addBtn">Add</span>
-                </div>
+                </div> -->
 
-                <!--<form id="textbox">
-                    <input type="text" id="text-input" name="todo" placeholder="Input your todo here" size="70" >            
-                    <button id="cancel">Cancel</button>
+                <form id="textbox">
+                    <div id="dropdown">
+                        <select id="bullet-type">
+                            <option value="options">Options</option>
+                            <option value="note">Note</option>
+                            <option value="event">Event</option>
+                            <option value="task">Task</option>
+                            <option value="reflection">Reflection</option>
+                        </select>
+                    </div>
+                    <div id="date-time">
+                        <input type="date" id="date-input" placeholder="Date">
+                        <input type="time" id="time-input" placeholder="Time">
+                    </div>
+                    
+                    <input type="text" id="text-input" name="todo" placeholder="Input your todo here">
+                    <br>
                     <button id="save" type="submit">Save</button>
-                </form>-->
-                
+                    <button id="cancel">Cancel</button>
+                    
+                </form>              
                 <!-- List for input actions in the dropdown on the left -->
-                <!--<ul id="actions">
-                    <li>add bullet</li>
-                    <li>edit</li>
-                    <li>delete</li>
+                 <!-- <ul id="actions">
+                    <li>Change bullet type</li>
+                    <li>Edit</li>
+                    <li>Delete</li>
                     <li>...</li>
-                </ul>-->
+                </ul>  -->
             </div>
-
+            
+            <button id="collapse">collapse</button> 
             <div id="reflection">
-                <button id="collapse">collapse</button> 
+                
                 <div id="quote">
                     <h1>Sample Quote</h1>
                 </div>
@@ -83,5 +100,6 @@
             <button id="pretty">zoom</button>
         </div>
     </div>
+    <script src="../javascript/src/daily.js"></script>
 </body>
 </html>

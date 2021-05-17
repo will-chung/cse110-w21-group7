@@ -1,13 +1,44 @@
-
+const entryType = document.getElementById('bullet-type')
 const collapse = document.getElementById('collapse')
 const right = document.getElementById('right')
-const quote = document.getElementById('quote')
+const quote = document.getElementById('reflection')
+const text = document.getElementById('text-input')
+const date = document.getElementById('date-input')
+const time = document.getElementById('time-input')
+const saveBtn = document.getElementById('save')
+const cancelBtn = document.getElementById('cancel')
+
+console.log(entryType.value);
 /*
  * This onclick toggles the display style of the quote to none
  * TODO: Collapse the whole div, not just the quote
  * Resource: https://codepen.io/Mdade89/pen/JKkYGq
  * the link above provides a collapsible text box
  */
+document.addEventListener('DOMContentLoaded', () => {
+  text.type = 'hidden'
+  date.type = 'hidden'
+  time.type = 'hidden'
+})
+
+entryType.addEventListener('change', () => {
+  if (entryType.value == 'event' || entryType.value === 'task') {
+    text.type = 'text'
+    date.type = 'date'
+    time.type = 'time'
+  } else if (entryType.value == 'note' || entryType.value === 'reflection') {
+    text.type = 'text'
+    date.type = 'hidden'
+    time.type = 'hidden'
+  } else {
+    text.type = 'hidden'
+    date.type = 'hidden'
+    time.type = 'hidden'
+  }
+});
+
+
+
 collapse.addEventListener('click', () => {
   if (quote.style.display === 'none') {
     collapse.innerHTML = 'collapse'
@@ -18,9 +49,9 @@ collapse.addEventListener('click', () => {
     right.style.visibility = 'hidden'
     quote.style.display = 'none'
   }
-})
+});
 
-function newElement () {
+function newElement() {
   const span = document.createElement('select')
   span.className = 'dropdown'
   const txt = document.createElement('option')
@@ -67,7 +98,7 @@ function newElement () {
  * @returns JSON type response, containing the information needed to
  * initialize the daily log.
  */
-function getLogInfoAsJSON (date = new Date(), cb) {
+function getLogInfoAsJSON(date = new Date(), cb) {
   if (!(date instanceof Date) || (date === null)) {
     throw Error('date reference must be an instance of Date.')
   }
@@ -85,11 +116,11 @@ function getLogInfoAsJSON (date = new Date(), cb) {
 
 /* Business logic */
 
-function populateDailyLog () {
+function populateDailyLog() {
 
 }
 
-function setDate () {
+function setDate() {
   const response = JSON.parse(this.responseText)
   const date = response.date
 
@@ -97,7 +128,7 @@ function setDate () {
   dateElement.innerText = date
 }
 
-function sendLogInfoAsJSON () {
+function sendLogInfoAsJSON() {
   // @TODO
 }
 

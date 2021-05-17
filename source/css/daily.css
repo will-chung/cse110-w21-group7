@@ -130,6 +130,7 @@ li > a, a:link {
     text-align: center;
     letter-spacing: -0.015em;
     color: #83A603;
+    outline: none;
 }
 
 #myUL li {
@@ -241,3 +242,79 @@ li > a, a:link {
       display:flex;
       flex-direction: row;
   }
+
+  #dropdown{
+    display: inline;
+
+  }
+
+ #textbox{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    border-style:dashed;
+    border-color:gold;
+  } 
+  
+  #save, #cancel {
+    width: 60px;
+    height: 30px;
+  }
+
+  #save:hover {
+    background-color: grey;
+    cursor: pointer;
+  }
+
+  #cancel:hover {
+    background-color: grey;
+    cursor: pointer;
+  }
+
+
+#date-input {
+  width: 10vw;
+  flex:1;
+  outline: none;
+}
+#time-input {
+  width: 10vw;
+  flex:1;
+  outline: none;
+}
+input{
+  background: transparent;
+  padding-bottom: 10px;
+  border-bottom: 1px solid green;
+  margin-left:20px;
+}
+
+input:focus {
+  outline: none;
+}
+
+#date-time{
+  display: inline;
+}
+
+#save{
+  margin-bottom: 30px;
+  margin-left: 30px;
+  margin-top: 30px;
+}
+
+#cancel{
+  margin-bottom: 30px;
+  margin-left:10px;
+  margin-top: 30px;
+}
+
+#text-input{
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+#bullet-type{
+  margin-left: 30px;
+}
