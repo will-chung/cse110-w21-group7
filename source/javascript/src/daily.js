@@ -37,15 +37,19 @@ entryType.addEventListener('change', () => {
   }
 });
 
-
-
 collapse.addEventListener('click', () => {
   if (quote.style.display === 'none') {
-    collapse.innerHTML = 'collapse'
+    collapse.removeChild(collapse.childNodes[0]);
+    let downArrow = document.createElement('i');
+    downArrow.className = 'fa fa-chevron-up fa-lg';
+    collapse.appendChild(downArrow);
     right.style.visibility = 'visible'
     quote.style.display = 'block'
   } else {
-    collapse.innerHTML = 'expand'
+    collapse.removeChild(collapse.childNodes[0]);
+    let upArrow = document.createElement('i');
+    upArrow.className = 'fa fa-chevron-down fa-lg';
+    collapse.appendChild(upArrow);
     right.style.visibility = 'hidden'
     quote.style.display = 'none'
   }

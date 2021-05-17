@@ -63,8 +63,7 @@ li > a, a:link {
 
 #entry {
     width: 80vw;
-    border-style: dotted;
-    border-color: red;
+    
     margin-left: 10px;
 }
 
@@ -81,12 +80,23 @@ li > a, a:link {
     flex-direction: column;
     align-items:baseline;
 } */
+#mid-section {
+  margin: 30px;
+  flex-direction: row;
+  justify-content: center;
+}
 
 #collapse {
   position: relative;
   left: 44%; 
 }
-
+#yesterday{
+  position:relative;
+}
+#tomorrow {
+  position:relative;
+  left:90%;
+}
 #right {
   float: right;
   top: 50%;
