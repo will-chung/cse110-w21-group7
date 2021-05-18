@@ -8,7 +8,7 @@ const time = document.getElementById('time-input')
 const saveBtn = document.getElementById('save')
 const cancelBtn = document.getElementById('cancel')
 
-console.log(entryType.value);
+console.log(entryType.value)
 /*
  * This onclick toggles the display style of the quote to none
  * TODO: Collapse the whole div, not just the quote
@@ -22,11 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 entryType.addEventListener('change', () => {
-  if (entryType.value == 'event' || entryType.value === 'task') {
+  if (entryType.value === 'event' || entryType.value === 'task') {
     text.type = 'text'
     date.type = 'date'
     time.type = 'time'
-  } else if (entryType.value == 'note' || entryType.value === 'reflection') {
+  } else if (entryType.value === 'note' || entryType.value === 'reflection') {
     text.type = 'text'
     date.type = 'hidden'
     time.type = 'hidden'
@@ -35,27 +35,27 @@ entryType.addEventListener('change', () => {
     date.type = 'hidden'
     time.type = 'hidden'
   }
-});
+})
 
 collapse.addEventListener('click', () => {
   if (quote.style.display === 'none') {
-    collapse.removeChild(collapse.childNodes[0]);
-    let downArrow = document.createElement('i');
-    downArrow.className = 'fa fa-chevron-up fa-lg';
-    collapse.appendChild(downArrow);
+    collapse.removeChild(collapse.childNodes[0])
+    const downArrow = document.createElement('i')
+    downArrow.className = 'fa fa-chevron-up fa-lg'
+    collapse.appendChild(downArrow)
     right.style.visibility = 'visible'
     quote.style.display = 'block'
   } else {
-    collapse.removeChild(collapse.childNodes[0]);
-    let upArrow = document.createElement('i');
-    upArrow.className = 'fa fa-chevron-down fa-lg';
-    collapse.appendChild(upArrow);
+    collapse.removeChild(collapse.childNodes[0])
+    const upArrow = document.createElement('i')
+    upArrow.className = 'fa fa-chevron-down fa-lg'
+    collapse.appendChild(upArrow)
     right.style.visibility = 'hidden'
     quote.style.display = 'none'
   }
-});
+})
 
-function newElement() {
+function newElement () {
   const span = document.createElement('select')
   span.className = 'dropdown'
   const txt = document.createElement('option')
@@ -102,7 +102,7 @@ function newElement() {
  * @returns JSON type response, containing the information needed to
  * initialize the daily log.
  */
-function getLogInfoAsJSON(date = new Date(), cb) {
+function getLogInfoAsJSON (date = new Date(), cb) {
   if (!(date instanceof Date) || (date === null)) {
     throw Error('date reference must be an instance of Date.')
   }
@@ -120,11 +120,11 @@ function getLogInfoAsJSON(date = new Date(), cb) {
 
 /* Business logic */
 
-function populateDailyLog() {
+function populateDailyLog () {
 
 }
 
-function setDate() {
+function setDate () {
   const response = JSON.parse(this.responseText)
   const date = response.date
 
@@ -132,7 +132,7 @@ function setDate() {
   dateElement.innerText = date
 }
 
-function sendLogInfoAsJSON() {
+function sendLogInfoAsJSON () {
   // @TODO
 }
 
