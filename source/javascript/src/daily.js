@@ -10,7 +10,7 @@ const noteRadio = document.getElementById('input1')
 const eventRadio = document.getElementById('input2')
 const taskRadio = document.getElementById('input3')
 const refRadio = document.getElementById('input4')
-const radioContainer = document.getElementsByClassName('container')[0];
+const radioContainer = document.getElementsByClassName('container')[0]
 /*
  * This onclick toggles the display style of the quote to none
  * TODO: Collapse the whole div, not just the quote
@@ -24,15 +24,15 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 radioContainer.addEventListener('change', () => {
-  if(noteRadio.checked || refRadio.checked){
+  if (noteRadio.checked || refRadio.checked) {
     text.type = 'text'
     date.type = 'hidden'
     time.type = 'hidden'
-  }else if(eventRadio.checked || taskRadio.checked){
+  } else if (eventRadio.checked || taskRadio.checked) {
     text.type = 'text'
     date.type = 'date'
     time.type = 'time'
-  }else{
+  } else {
     text.type = 'hidden'
     date.type = 'hidden'
     time.type = 'hidden'
