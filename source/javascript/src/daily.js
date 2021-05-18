@@ -1,20 +1,55 @@
-
+const entryType = document.getElementById('bullet-type')
 const collapse = document.getElementById('collapse')
 const right = document.getElementById('right')
-const quote = document.getElementById('quote')
+const quote = document.getElementById('reflection')
+const text = document.getElementById('text-input')
+const date = document.getElementById('date-input')
+const time = document.getElementById('time-input')
+const saveBtn = document.getElementById('save')
+const cancelBtn = document.getElementById('cancel')
+
+console.log(entryType.value)
 /*
  * This onclick toggles the display style of the quote to none
  * TODO: Collapse the whole div, not just the quote
  * Resource: https://codepen.io/Mdade89/pen/JKkYGq
  * the link above provides a collapsible text box
  */
+document.addEventListener('DOMContentLoaded', () => {
+  text.type = 'hidden'
+  date.type = 'hidden'
+  time.type = 'hidden'
+})
+
+entryType.addEventListener('change', () => {
+  if (entryType.value === 'event' || entryType.value === 'task') {
+    text.type = 'text'
+    date.type = 'date'
+    time.type = 'time'
+  } else if (entryType.value === 'note' || entryType.value === 'reflection') {
+    text.type = 'text'
+    date.type = 'hidden'
+    time.type = 'hidden'
+  } else {
+    text.type = 'hidden'
+    date.type = 'hidden'
+    time.type = 'hidden'
+  }
+})
+
 collapse.addEventListener('click', () => {
   if (quote.style.display === 'none') {
-    collapse.innerHTML = 'collapse'
+    collapse.removeChild(collapse.childNodes[0])
+    const downArrow = document.createElement('i')
+    downArrow.className = 'fa fa-chevron-up fa-lg'
+    collapse.appendChild(downArrow)
     right.style.visibility = 'visible'
     quote.style.display = 'block'
   } else {
-    collapse.innerHTML = 'expand'
+    collapse.removeChild(collapse.childNodes[0])
+    const upArrow = document.createElement('i')
+    upArrow.className = 'fa fa-chevron-down fa-lg'
+    collapse.appendChild(upArrow)
     right.style.visibility = 'hidden'
     quote.style.display = 'none'
   }
