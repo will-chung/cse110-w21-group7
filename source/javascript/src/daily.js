@@ -10,6 +10,12 @@ const refRadio = document.getElementById('input1')
 const eventRadio = document.getElementById('input2')
 const taskRadio = document.getElementById('input3')
 const radioContainer = document.getElementsByClassName('container')[0]
+
+// import {
+//   LogItem as LogItem
+// } from './components/LogItem'
+
+
 /*
  * This onclick toggles the display style of the quote to none
  * TODO: Collapse the whole div, not just the quote
@@ -87,6 +93,12 @@ collapse.addEventListener('click', () => {
   }
 })
 
+/**
+ * Adds tasks, notes, and events to the daily log. If the entr is evmpty,
+ * then the bullet journal alerts the user that they must write something
+ * for that task/note/event.
+ * 
+ */
 function newElement () {
   const span = document.createElement('select')
   span.className = 'dropdown'
@@ -170,4 +182,15 @@ function sendLogInfoAsJSON () {
 
 document.addEventListener('DOMContentLoaded', (event) => {
   getLogInfoAsJSON(new Date(), setDate)
+
+  const entryArea = document.getElementById('entry-area')
+
+  let item = document.createElement('log-item')
+
+  // item.description = 'This is the description'
+  // item.date = new Date()
+  // item.LogItem = 'event'
+  entryArea.appendChild(item)
+
+
 })
