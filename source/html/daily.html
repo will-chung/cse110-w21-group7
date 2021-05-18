@@ -44,7 +44,7 @@
                     <p>temp tag</p>
                 </div>
             </div>
-            <div id="entry">
+            <div id="entry-area">
 
                 <ul id="myUL">
                     <li><i class="fa fa-heart"></i></i>test1<a href="#"><i class="fa fa-check"></i></a><a href="#"><i class="fa fa-trash-o"></i></a></li>
@@ -52,31 +52,32 @@
                     <li><i class="fa fa-circle-o"></i>test3</li>
                 </ul>
                 
-                <!-- <div id="myDIV" class="header">
-                  <h2 style="margin:5px">Enter input</h2>
-                  <input type="text" id="myInput" placeholder="Title...">
-                  <span onclick="newElement()" class="addBtn">Add</span>
-                </div> -->
-
                 <form id="textbox">
                     <div id="dropdown">
-                        <select id="bullet-type">
-                            <option value="options">Options</option>
-                            <option value="note">Note</option>
-                            <option value="event">Event</option>
-                            <option value="task">Task</option>
-                            <option value="reflection">Reflection</option>
-                        </select>
+                        <div class="containerOuter">
+                            <div class="container">
+                              <input type="radio" class="hidden" id="input1" name="inputs">
+                              <label class="entry" for="input1"><div class="circle"></div><div class="entry-label">Note</div></label>
+                              <input type="radio" class="hidden" id="input2" name="inputs">
+                              <label class="entry" for="input2"><div class="circle"></div><div class="entry-label">Event</div></label>
+                              <input type="radio" class="hidden" id="input3" name="inputs">
+                              <label class="entry" for="input3"><div class="circle"></div><div class="entry-label">Task</div></label>
+                              <input type="radio" class="hidden" id="input4" name="inputs">
+                              <label class="entry" for="input4"><div class="circle"></div><div class="entry-label">Reflection</div></label>
+                              <div class="highlight"></div>
+                              <div class="overlay"></div>
+                            </div>
+                          </div>
                     </div>
                     <div id="date-time">
                         <input type="date" id="date-input" placeholder="Date">
                         <input type="time" id="time-input" placeholder="Time">
                     </div>
-                    
-                    <input type="text" id="text-input" name="todo" placeholder="Input your todo here">
-                    <br>
-                    <button id="save" type="submit">Save</button>
-                    <button id="cancel">Cancel</button>
+                    <div id='text-input'>
+                        <input type="text" id="input-area" name="todo" placeholder="Input your todo here">
+                        <button id="save" type="submit">Save</button>
+                        <button id="cancel">Cancel</button>
+                    </div>
                     
                 </form>              
                 <!-- List for input actions in the dropdown on the left -->

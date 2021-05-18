@@ -1,4 +1,3 @@
-const entryType = document.getElementById('bullet-type')
 const collapse = document.getElementById('collapse')
 const right = document.getElementById('right')
 const quote = document.getElementById('reflection')
@@ -7,8 +6,11 @@ const date = document.getElementById('date-input')
 const time = document.getElementById('time-input')
 const saveBtn = document.getElementById('save')
 const cancelBtn = document.getElementById('cancel')
-
-console.log(entryType.value)
+const noteRadio = document.getElementById('input1')
+const eventRadio = document.getElementById('input2')
+const taskRadio = document.getElementById('input3')
+const refRadio = document.getElementById('input4')
+const radioContainer = document.getElementsByClassName('container')[0]
 /*
  * This onclick toggles the display style of the quote to none
  * TODO: Collapse the whole div, not just the quote
@@ -21,15 +23,15 @@ document.addEventListener('DOMContentLoaded', () => {
   time.type = 'hidden'
 })
 
-entryType.addEventListener('change', () => {
-  if (entryType.value === 'event' || entryType.value === 'task') {
-    text.type = 'text'
-    date.type = 'date'
-    time.type = 'time'
-  } else if (entryType.value === 'note' || entryType.value === 'reflection') {
+radioContainer.addEventListener('change', () => {
+  if (noteRadio.checked || refRadio.checked) {
     text.type = 'text'
     date.type = 'hidden'
     time.type = 'hidden'
+  } else if (eventRadio.checked || taskRadio.checked) {
+    text.type = 'text'
+    date.type = 'date'
+    time.type = 'time'
   } else {
     text.type = 'hidden'
     date.type = 'hidden'
