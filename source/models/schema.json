@@ -2,6 +2,7 @@
     "$id": "xxxxxxxx",
     "description": "A user's information for their bullet journal",
     "type": "object",
+    "name": "string",
     "properties": {
       "collections": {
         "type": "array",
@@ -24,6 +25,20 @@
           "event": {
             "type": "string",
             "description": "Brief description of the event."
+          },
+          "todos": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of todos for the day."
+          },
+          "mood": {
+            "type": "number",
+            "multipleOf": 1,
+            "minimum": 0,
+            "exclusiveMaximum": 100,
+            "description": "Daily mood on a range of 0-99."
           }
         }
       }
