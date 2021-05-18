@@ -32,12 +32,12 @@ radioContainer.addEventListener('change', () => {
     saveBtn.style.visibility = 'visible'
     cancelBtn.style.visibility = 'visible'
   } else if (eventRadio.checked) {
-    //reset input field start
+    // reset input field start
     saveBtn.style.visibility = 'hidden'
     cancelBtn.style.visibility = 'hidden'
     text.type = 'hidden'
     text.value = ''
-    //reset input field done
+    // reset input field done
     date.type = 'date'
     date.addEventListener('change', () => {
       time.type = 'time'
@@ -48,21 +48,21 @@ radioContainer.addEventListener('change', () => {
       cancelBtn.style.visibility = 'visible'
     })
   } else if (taskRadio.checked) {
-    //reset input field start
-    date.value = '';
+    // reset input field start
+    date.value = ''
     text.value = ''
     saveBtn.style.visibility = 'hidden'
     cancelBtn.style.visibility = 'hidden'
     text.type = 'hidden'
     time.type = 'hidden'
-    //reset input field done
+    // reset input field done
     date.type = 'date'
     date.addEventListener('change', () => {
       text.type = 'text'
       saveBtn.style.visibility = 'visible'
       cancelBtn.style.visibility = 'visible'
     })
-  }else{
+  } else {
     text.type = 'hidden'
     date.type = 'hidden'
     time.type = 'hidden'
