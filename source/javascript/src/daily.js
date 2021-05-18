@@ -1,15 +1,14 @@
 const collapse = document.getElementById('collapse')
 const right = document.getElementById('right')
 const quote = document.getElementById('reflection')
-const text = document.getElementById('text-input')
+const text = document.getElementById('input-area')
 const date = document.getElementById('date-input')
 const time = document.getElementById('time-input')
 const saveBtn = document.getElementById('save')
 const cancelBtn = document.getElementById('cancel')
-const noteRadio = document.getElementById('input1')
+const refRadio = document.getElementById('input1')
 const eventRadio = document.getElementById('input2')
 const taskRadio = document.getElementById('input3')
-const refRadio = document.getElementById('input4')
 const radioContainer = document.getElementsByClassName('container')[0]
 /*
  * This onclick toggles the display style of the quote to none
@@ -18,20 +17,51 @@ const radioContainer = document.getElementsByClassName('container')[0]
  * the link above provides a collapsible text box
  */
 document.addEventListener('DOMContentLoaded', () => {
+  saveBtn.style.visibility = 'hidden'
+  cancelBtn.style.visibility = 'hidden'
   text.type = 'hidden'
   date.type = 'hidden'
   time.type = 'hidden'
 })
 
 radioContainer.addEventListener('change', () => {
-  if (noteRadio.checked || refRadio.checked) {
+  if (refRadio.checked) {
     text.type = 'text'
     date.type = 'hidden'
     time.type = 'hidden'
-  } else if (eventRadio.checked || taskRadio.checked) {
-    text.type = 'text'
+    saveBtn.style.visibility = 'visible'
+    cancelBtn.style.visibility = 'visible'
+  } else if (eventRadio.checked) {
+    // reset input field start
+    saveBtn.style.visibility = 'hidden'
+    cancelBtn.style.visibility = 'hidden'
+    text.type = 'hidden'
+    text.value = ''
+    // reset input field done
     date.type = 'date'
-    time.type = 'time'
+    date.addEventListener('change', () => {
+      time.type = 'time'
+    })
+    time.addEventListener('change', () => {
+      text.type = 'text'
+      saveBtn.style.visibility = 'visible'
+      cancelBtn.style.visibility = 'visible'
+    })
+  } else if (taskRadio.checked) {
+    // reset input field start
+    date.value = ''
+    text.value = ''
+    saveBtn.style.visibility = 'hidden'
+    cancelBtn.style.visibility = 'hidden'
+    text.type = 'hidden'
+    time.type = 'hidden'
+    // reset input field done
+    date.type = 'date'
+    date.addEventListener('change', () => {
+      text.type = 'text'
+      saveBtn.style.visibility = 'visible'
+      cancelBtn.style.visibility = 'visible'
+    })
   } else {
     text.type = 'hidden'
     date.type = 'hidden'
