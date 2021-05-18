@@ -1,14 +1,16 @@
 .header{
-    background-color: #FDF8F5;
+    background-color: #293241;
+    
 }
 #bujo-header{
     text-align: center;
-    color: black;
+    color:#EE6C4D;
     padding-left:200px;
+    border-style: dashed;
 }
 
 body{
-    background-color: #FDF8F5;
+    background-color: #3D5A80;
 }
 
 #nav-menu{
@@ -16,11 +18,8 @@ body{
     margin:10px;
     padding:10px;
     width:130px;
-    background-color: #DDAF94;
-    border-style:solid;
-    border-top-color: #E8CEBF;
-    border-left-color: #E8CEBF;
-    border-bottom-color: #E8CEBF;
+    background-color: #98C1D9;
+    box-shadow: -10px 10px #E0FBFC;
 }
 
 #collection{

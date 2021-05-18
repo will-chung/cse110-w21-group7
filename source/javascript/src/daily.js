@@ -37,6 +37,8 @@ radioContainer.addEventListener('change', () => {
     cancelBtn.style.visibility = 'hidden'
     text.type = 'hidden'
     text.value = ''
+    date.value = ''
+    time.value = ''
     // reset input field done
     date.type = 'date'
     date.addEventListener('change', () => {
@@ -59,6 +61,7 @@ radioContainer.addEventListener('change', () => {
     date.type = 'date'
     date.addEventListener('change', () => {
       text.type = 'text'
+      time.type = 'hidden'
       saveBtn.style.visibility = 'visible'
       cancelBtn.style.visibility = 'visible'
     })
