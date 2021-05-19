@@ -1,122 +1,113 @@
-export class LogItem extends HTMLElement {
-    /**
+class LogItem extends HTMLElement {
+  /**
      * Constructor containing the business logic for
-     * creating a new log item. Log items are formatted as
-     * follows:
-     * <span>
-            <span><i>symbol type</i></span>
-            <b>Time</b>
-            <span>Description</span>
-            <button type="button"><i class="fa fa-trash-o"></i></button>
-        </span>
+     * creating a new log item.
      */
-    constructor() {
-        super()
+  constructor () {
+    super()
 
-        let template = document.createElement('template')
+    this.attachShadow({ mode: 'open' })
+    // Unfortunately this cannot be made a private field, since ESLint does not properly
+    // lint private fields.
+    this._itemEntry = {}
+    this._itemEntry.logType = 'note'
+    this._itemEntry.description = ''
+    this.render()
+  }
 
-        template.innerHTML = '<span>'
-                            + '<span><i>symbol type</i></span>'
-                            + '<b>Time</b>'
-                            + '<span>Description</span>'
-                            + '<button type="button"><i class="fa fa-trash-o"></i></button>'
-                            + '</span>'
-        // const container = document.createElement('span')
-        // const type = document.createElement('span')
-        // const time = document.createElement('b')
-        // const description = document.createElement('span')
-        // const trashButton = document.createElement('button')
-        // const trashIcon = document.createElement('i')
+  render () {
+    this.shadowRoot.innerHTML = `<style>
+                                    .icon {
+                                        background-size: contain;
+                                        display:inline-block;
+                                        width:1em;
+                                        height:1em;
+                                    }
+                                    .trash-button-icon {
+                                        background: url(../../../images/log-item_icons/trash-solid.svg) no-repeat center center;
+                                    }
+                                    .task-unfinished-icon {
+                                        background: url(../../../images/log-item_icons/times-solid.svg) no-repeat center center;
+                                    }
+                                    .task-finished-icon {
+                                        background: url(../../../images/log-item_icons/check-solid.svg) no-repeat center center;
+                                    }
+                                    .note-icon {
+                                        background: url(../../../images/log-item_icons/note-solid.svg) no-repeat center center;
+                                    }
+                                    .event-icon {
+                                        background: url(../../../images/log-item_icons/event-solid.svg) no-repeat center center;
+                                    }
+                                    button {
+                                        background-color: rgba(0,0,0,0);
+                                        border:0;
+                                        padding:0;
+                                        font-size: inherit;
+                                    }
+                                    </style>
+                                    <span>
+                                        <i class="icon ${this.getFASymbolClass()}"></i>
+                                        <b>${this.getMilitaryTime()}</b>
+                                        <span>${this._itemEntry.description}</span>
+                                        <button type="button">
+                                        <span class="icon trash-button-icon"></span>
+                                        </button>
+                                    </span>`
+  }
 
-        // container.appendChild(type)
-        // container.appendChild(time)
-        // container.appendChild(description)
-        // container.appendChild(trashButton)
-        // trashButton.appendChild(trashIcon)
+  /**
+     * Setter for private field itemEntry, containing
+     * the logType, description, and date of our entry.
+     * @param {Object} entry JSON object containing the
+     * new fields for our log item.
+     */
+  set itemEntry (entry) {
+    this._itemEntry = entry
+    console.log(this._itemEntry)
+    this.render()
+  }
 
-        // trashIcon.classList.add('fa')
-        // trashIcon.classList.add('fa-trash-o')
-        this.attachShadow({mode: 'open'})
-        this.shadowRoot.appendChild(template.content.cloneNode(true))
+  /**
+     * Getter for private field itemEntry, containing
+     * the logType, description, and date of our entry.
+     * @return {Object} JSON object containing the
+     * new fields for our log item.
+     */
+  get itemEntry () {
+    return this._itemEntry
+  }
+
+  /**
+     * Get the corresponding time in military time for events.
+     * @returns The corresponding time in military time. If the
+     * log item is not an event, an empty string is returned.
+     */
+  getMilitaryTime () {
+    if (this._itemEntry.logType !== 'event') {
+      return ''
     }
 
-    /**
-     * Gets the description of the corresponding log item.
-     * @returns {String} String object containing the description.
-     */
-    get description() {
-        let desc = this.querySelector('span > span:last-of-type').textContent
-        return desc
-    }
+    return `${this._itemEntry.date.getHours()}:${this._itemEntry.date.getMinutes()}`
+  }
 
-    /**
-     * Sets the corresponding description for the log item.
-     * @param {String} description String object containing the description.
-     * @throws {Error} if the description is undefined
+  /**
+     * Private method to get the font awesome icons corresponding
+     * to our log item.
      */
-    set description(description) {
-        if (description === undefined) {
-            throw new Error('The description must not be undefined.')
-        }
-        this.querySelector('span > span:last-of-type').textContent = description
+  getFASymbolClass () {
+    switch (this._itemEntry.logType) {
+      case 'task-unfinished':
+        return 'task-unfinished-icon'
+      case 'task-finished':
+        return 'task-finished-icon'
+      case 'note':
+        return 'note-icon'
+      case 'event':
+        return 'event-icon'
+      default:
+        return ''
     }
-
-    /**
-     * Gets the corresponding time for the given log item.
-     * @returns {String} String object containing the time in
-     * military time (HH:MM), where HH denotes the hour on the
-     * open interval [0, 24) and MM denotes the minutes on the open
-     * interval [0, 60). If the type of the given log item is not
-     * an event, the returned time is undefined.
-     */
-    get time() {
-        let time = this.querySelector('b').textContent
-        return (time === '' ? undefined : time);
-    }
-
-    /**
-     * Sets the corresponding time for the given log item.
-     * @param {Date} time Date object containing the corresponding
-     * hour and minute corresponding to the given event.
-     * @throws {TypeError} if the log type is not an event, or if time is
-     * not of type Date.
-     */
-    set time(time) {
-        if (this.logType !== 'event') {
-            throw new TypeError('<log-item> only permits time for events.')
-        } else if (!(time instanceof Date)) {
-            throw new TypeError('time should be an instance of Date.')
-        }
-        const hours = time.getHours()
-        const minutes = time.getMinutes()
-        this.querySelector('b').textContent = `${hours}:${minutes}`
-    }
-    
-    /**
-     * Get the corresponding type of the given log item. 
-     * @returns {String} corresponding to type of given log
-     */
-    get logType() {
-        let type = this.querySelector('span > span:first-of-type').className
-        return type
-    }
-
-    /**
-     * Sets the log type for the given item
-     * @param {String} type object containing the corresponding log
-     * type ("task", "note", "event")
-     * @throws {TypeError} if the given type is undefined
-     */
-    set logType(type) {
-        if (type === undefined) {
-            throw TypeError('<log-item> requires a type.')
-        }
-        this.querySelector('span > span:first-of-type').className = type
-    }
+  }
 }
 
-
 customElements.define('log-item', LogItem)
-
-
-// export { LogItem }
