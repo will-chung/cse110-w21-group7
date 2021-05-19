@@ -1,25 +1,99 @@
-
 const collapse = document.getElementById('collapse')
 const right = document.getElementById('right')
-const quote = document.getElementById('quote')
+const quote = document.getElementById('reflection')
+const text = document.getElementById('input-area')
+const date = document.getElementById('date-input')
+const time = document.getElementById('time-input')
+const saveBtn = document.getElementById('save')
+const cancelBtn = document.getElementById('cancel')
+const refRadio = document.getElementById('input1')
+const eventRadio = document.getElementById('input2')
+const taskRadio = document.getElementById('input3')
+const radioContainer = document.getElementsByClassName('container')[0]
+
 /*
  * This onclick toggles the display style of the quote to none
  * TODO: Collapse the whole div, not just the quote
  * Resource: https://codepen.io/Mdade89/pen/JKkYGq
  * the link above provides a collapsible text box
  */
+document.addEventListener('DOMContentLoaded', () => {
+  saveBtn.style.visibility = 'hidden'
+  cancelBtn.style.visibility = 'hidden'
+  text.type = 'hidden'
+  date.type = 'hidden'
+  time.type = 'hidden'
+})
+
+radioContainer.addEventListener('change', () => {
+  if (refRadio.checked) {
+    text.type = 'text'
+    date.type = 'hidden'
+    time.type = 'hidden'
+    saveBtn.style.visibility = 'visible'
+    cancelBtn.style.visibility = 'visible'
+  } else if (eventRadio.checked) {
+    // reset input field start
+    saveBtn.style.visibility = 'hidden'
+    cancelBtn.style.visibility = 'hidden'
+    text.type = 'hidden'
+    text.value = ''
+    // reset input field done
+    date.type = 'date'
+    date.addEventListener('change', () => {
+      time.type = 'time'
+    })
+    time.addEventListener('change', () => {
+      text.type = 'text'
+      saveBtn.style.visibility = 'visible'
+      cancelBtn.style.visibility = 'visible'
+    })
+  } else if (taskRadio.checked) {
+    // reset input field start
+    date.value = ''
+    text.value = ''
+    saveBtn.style.visibility = 'hidden'
+    cancelBtn.style.visibility = 'hidden'
+    text.type = 'hidden'
+    time.type = 'hidden'
+    // reset input field done
+    date.type = 'date'
+    date.addEventListener('change', () => {
+      text.type = 'text'
+      saveBtn.style.visibility = 'visible'
+      cancelBtn.style.visibility = 'visible'
+    })
+  } else {
+    text.type = 'hidden'
+    date.type = 'hidden'
+    time.type = 'hidden'
+  }
+})
+
 collapse.addEventListener('click', () => {
   if (quote.style.display === 'none') {
-    collapse.innerHTML = 'collapse'
+    collapse.removeChild(collapse.childNodes[0])
+    const downArrow = document.createElement('i')
+    downArrow.className = 'fa fa-chevron-up fa-lg'
+    collapse.appendChild(downArrow)
     right.style.visibility = 'visible'
     quote.style.display = 'block'
   } else {
-    collapse.innerHTML = 'expand'
+    collapse.removeChild(collapse.childNodes[0])
+    const upArrow = document.createElement('i')
+    upArrow.className = 'fa fa-chevron-down fa-lg'
+    collapse.appendChild(upArrow)
     right.style.visibility = 'hidden'
     quote.style.display = 'none'
   }
 })
 
+/**
+ * Adds tasks, notes, and events to the daily log. If the entr is evmpty,
+ * then the bullet journal alerts the user that they must write something
+ * for that task/note/event.
+ *
+ */
 function newElement () {
   const span = document.createElement('select')
   span.className = 'dropdown'
@@ -67,7 +141,7 @@ function newElement () {
  * @returns JSON type response, containing the information needed to
  * initialize the daily log.
  */
-function getLogInfoAsJSON (date = new Date(), cb) {
+function getLogInfoAsJSON (date = new Date(), url, cb) {
   if (!(date instanceof Date) || (date === null)) {
     throw Error('date reference must be an instance of Date.')
   }
@@ -79,22 +153,79 @@ function getLogInfoAsJSON (date = new Date(), cb) {
     }
   }
 
-  req.open('GET', '../mock_data/daily_log.json', true)
+  req.open('GET', url, true)
   req.send()
 }
 
 /* Business logic */
 
-function populateDailyLog () {
+/**
+ * Business logic subroutine for adding individual entries (tasks/notes/events)
+ * to the comprehensive view on the daily log
+ * @author Noah Teshima <nteshima@ucsd.edu>
+ * @param {Object} log JSON object formatted based on the schema for
+ * a single daily log
+ */
+function setEntries (log) {
+  function populateTypeOfEntry (entries) {
+    entries.forEach((entry, index) => {
+      const li = document.createElement('li')
+      const logItem = document.createElement('log-item')
 
+      logItem.itemEntry = entry
+
+      li.appendChild(logItem)
+      document.getElementById('myUL').appendChild(li)
+    })
+  }
+
+  /* make tasks */
+  populateTypeOfEntry(log.properties.tasks)
+  populateTypeOfEntry(log.properties.notes)
+  populateTypeOfEntry(log.properties.events)
 }
 
-function setDate () {
-  const response = JSON.parse(this.responseText)
-  const date = response.date
+/**
+ * Business logic subroutine for adding the date of the daily log to the title
+ * of the page.
+ * @author Noah Teshima <nteshima@ucsd.edu>
+ * @param {Object} log JSON object formatted based on the schema for
+ * a single daily log
+ */
+function setDate (log) {
+  const time = Number(log.properties.date.time)
+  const date = getDateFromUNIXTimestamp(time)
 
   const dateElement = document.querySelector('#title > .date')
-  dateElement.innerText = date
+  dateElement.innerText = date.toLocaleDateString()
+}
+
+/**
+ * Business logic callback function containing all the needed
+ * subroutines for initializing the daily log
+ * @author Noah Teshima <nteshima@ucsd.edu>
+ */
+function populateDailyLog () {
+  /* TODO: replace response with schema for single daily log
+  (see https://github.com/cse110-w21-group7/cse110-SP21-group7/issues/161
+    and https://github.com/cse110-w21-group7/cse110-SP21-group7/issues/162)
+  */
+  const response = JSON.parse(this.responseText)
+  const log = response.$defs['daily-logs'][0]
+  setDate(log)
+  setEntries(log)
+}
+
+/**
+ * Function to get the date from a given UNIX timestamp.
+ * @author Noah Teshima <nteshima@ucsd.edu>
+ * @param {Number} timestamp Number object representing our
+ * UNIX timestamp
+ * @returns {Date} Date object containing the date contained
+ * in the UNIX timestamp.
+ */
+function getDateFromUNIXTimestamp (timestamp) {
+  return new Date(timestamp)
 }
 
 function sendLogInfoAsJSON () {
@@ -102,5 +233,5 @@ function sendLogInfoAsJSON () {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-  getLogInfoAsJSON(new Date(), setDate)
+  getLogInfoAsJSON(new Date(), '../mock_data/user_bujo_info.json', populateDailyLog)
 })
