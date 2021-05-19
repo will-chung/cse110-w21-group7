@@ -17,7 +17,5 @@ assignees: ''
 <!--- Not obligatory, but suggest an idea for implementing addition or change -->
 ## Your Environment
 <!--- Include as many relevant details about the environment you experienced the bug in -->
-* Version used:
 * Browser Name and version:
 * Operating System and version (desktop or mobile):
-* Link to your project:
