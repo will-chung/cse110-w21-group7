@@ -99,15 +99,13 @@ class LogItem extends HTMLElement {
      */
   getFASymbolClass () {
     switch (this._itemEntry.logType) {
-      case 'task-unfinished':
-        return 'task-unfinished-icon'
-      case 'task-finished':
-        return 'task-finished-icon'
-      case 'note':
+        case 'task':
+            return (this._itemEntry.finished) ? 'task-finished-icon' : 'task-unfinished-icon'
+        case 'note':
         return 'note-icon'
-      case 'event':
+        case 'event':
         return 'event-icon'
-      default:
+        default:
         return ''
     }
   }
