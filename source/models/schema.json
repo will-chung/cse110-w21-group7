@@ -13,14 +13,19 @@
         }
       }
     },
+    /* change events to daily log and make daily log's children event and todo list */
     "$defs": {
       "events": {
         "type": "object",
-        "required": [ "date", "description" ],
+        "required": [ "date", "time", "description" ],
         "properties": {
           "date": {
             "type": "date",
             "description": "The date of the event."
+          },
+          "time": {
+            "type": "time",
+            "description": "The time of the event."
           },
           "event": {
             "type": "string",
