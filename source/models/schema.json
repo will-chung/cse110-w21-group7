@@ -1,51 +1,60 @@
 {
-    "$id": "xxxxxxxx",
     "description": "A user's information for their bullet journal",
     "type": "object",
     "name": "string",
+    "current_log": "UNIX timestamp", /*timestamp corresponding to date of daily log that should be populated on daily.html
+    when next visited*/
     "properties": {
       "collections": {
         "type": "array",
-        "items": {
-          "type": "string",
-          "images": "image",
-          "videos": "video"
-        }
+        "items": [
+          {
+            "type": "string",
+            "images": "image",
+            "videos": "video"
+          }
+        ]
       }
     },
-    /* change events to daily log and make daily log's children event and todo list */
     "$defs": {
-      "events": {
-        "type": "object",
-        "required": [ "date", "time", "description" ],
-        "properties": {
-          "date": {
-            "type": "date",
-            "description": "The date of the event."
-          },
-          "time": {
-            "type": "time",
-            "description": "The time of the event."
-          },
-          "event": {
-            "type": "string",
-            "description": "Brief description of the event."
-          },
-          "todos": {
-            "type": "array",
-            "items": {
-              "type": "string"
+      "daily-logs": [
+        {
+          "type": "object",
+          "required": [ "date", "description" ],
+          "properties": {
+            "date": {
+              "type": "string",
+              "time": "UNIX timestamp",
+              "description": "The date of the event."
             },
-            "description": "List of todos for the day."
-          },
-          "mood": {
-            "type": "number",
-            "multipleOf": 1,
-            "minimum": 0,
-            "exclusiveMaximum": 100,
-            "description": "Daily mood on a range of 0-99."
+            "events": [
+              {
+                "description": "description for event",
+                "logType": "event",
+                "time": "UNIX timestamp"
+              }
+            ],
+            "tasks": [
+                {
+                  "description": "description for task",
+                  "logType": "task",
+                  "finished": true
+                }
+            ],
+            "notes": [
+              {
+                "description": "description for note",
+                "logType": "note"
+              }
+          ],
+            "mood": {
+              "type": "number",
+              "multipleOf": 1,
+              "minimum": 0,
+              "exclusiveMaximum": 100,
+              "description": "Daily mood on a range of 0-99."
+            }
           }
-        }
-      }
+      }]
     }
   }
