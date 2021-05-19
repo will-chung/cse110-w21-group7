@@ -25,19 +25,15 @@ h1{
 }
 
 button{
-    width: 120px;
-    height: 50px;
+    width: auto;
+    height: auto;
 }
 
 li > button {
     border:none;
-    background-color:#FDF8F5;
-    height: 90px;
-    border-radius: 40%;
     padding: 12px 16px;
     font-size:16px;
     cursor: pointer;
-    margin-top: 10%;
 }
 
 li > button:hover {
