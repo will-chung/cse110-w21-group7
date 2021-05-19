@@ -53,6 +53,9 @@ class LogItem extends HTMLElement {
                                         <span class="icon trash-button-icon"></span>
                                         </button>
                                     </span>`
+    this.shadowRoot.querySelector('button').addEventListener('click', (event) => {
+      this.parentElement.remove()
+    })
   }
 
   /**
