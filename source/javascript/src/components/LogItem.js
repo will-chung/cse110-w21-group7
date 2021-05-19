@@ -65,8 +65,14 @@ class LogItem extends HTMLElement {
      * new fields for our log item.
      */
   set itemEntry (entry) {
+    // data massaging from UNIX timestamp given by key 'time'
+    // to Date object given by key 'date'. This is done to reflect
+    // the changes in our schema
+    if (entry.logType === 'event') {
+      entry.date = new Date(Number(entry.time))
+      delete entry.time
+    }
     this._itemEntry = entry
-    console.log(this._itemEntry)
     this.render()
   }
 
@@ -99,13 +105,13 @@ class LogItem extends HTMLElement {
      */
   getFASymbolClass () {
     switch (this._itemEntry.logType) {
-        case 'task':
-            return (this._itemEntry.finished) ? 'task-finished-icon' : 'task-unfinished-icon'
-        case 'note':
+      case 'task':
+        return (this._itemEntry.finished) ? 'task-finished-icon' : 'task-unfinished-icon'
+      case 'note':
         return 'note-icon'
-        case 'event':
+      case 'event':
         return 'event-icon'
-        default:
+      default:
         return ''
     }
   }
