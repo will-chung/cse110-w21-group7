@@ -6,7 +6,7 @@
 font-size: 2em;
 }
 .fa {
-color: black;
+color: #293241;
 position: relative;
 display: table-cell;
 width: 60px;
@@ -23,8 +23,8 @@ overflow:hidden;
 }
 
 .main-menu {
-background:#ADB5BD;
-border-right:5px solid #CED4DA; 
+background:#3D5A80;
+border-right:5px solid #98c1d9; 
 position:absolute;
 top:0;
 bottom:0;
@@ -75,7 +75,7 @@ vertical-align:middle;
 width:200px;
 font-family: 'Pattaya', sans-serif;
 font-size: 35px;
-color: black;
+color: white;
 }
 
 .no-touch .scrollable.hover {
@@ -109,6 +109,8 @@ padding:0;
 background-color:white; */
 height: 140px;
 vertical-align: center;
+border-style:solid;
+border-color:#98c1d9;
 transform: scale(1.1);
 }
 @font-face {
@@ -122,8 +124,7 @@ transform: scale(1.1);
 .header{
     /* background-color: #293241;
     border-color: #293241; */
-    border-style: solid;
-    margin: 5px;
+    margin-bottom: 15px;
 }
 #bujo-header{
     text-align: center;
@@ -133,7 +134,8 @@ transform: scale(1.1);
 }
 
 body{
-    background-color: #E9ECEF;
+    background: rgb(61,90,128);
+    background: linear-gradient(90deg, rgba(61,90,128,1) 0%, rgba(152,193,217,1) 6%, rgba(224,251,252,1) 100%);
 }
 
 #nav-menu{
@@ -211,38 +213,44 @@ footer > button {
 }
 
 .shelf-item > button {
-    background-image: url("../image/book-icon.jpg");
+    font-family: 'Pattaya', sans-serif;
     background-size: 57px 68px;
     width: 60px;
     height: 70px;
-    /* background-color: #266150; */
+    background: rgb(61,90,128);
+    background: linear-gradient(90deg, rgba(61,90,128,1) 0%, rgba(152,193,217,1) 6%, rgba(224,251,252,1) 100%);
     display:block;
-    margin:20px;
-    border-radius:0;
+    margin-top:50px;
+    margin-left:25px;
+    margin-right:25px;
+    border-radius:20px;
+    border-style:solid;
+    border-color:#293241;
+    border-width:2px;
     text-align: center;
     padding: 0;
-    box-shadow: -10px 10px 5px rgba(0,0,0,.5);
+    box-shadow: -10px 0px 5px rgba(0,0,0,.5);
     
 }
 
 .shelf-item > button:hover {
     box-shadow: -25px 25px 15px rgba(0,0,0,.5);
-    transform: scale(1.25) translateY(-10px);
+    transform: scale(1.1) translateY(-10px);
     transition:0.5s;
 }
 
 .shelf-item {
     border-style: solid;
-    /* border-top-color:#E8CEBF;
-    border-left-color:#E8CEBF;
-    border-right-color:#E8CEBF;
-    border-bottom-color:white; */
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom-style:none;
+    border-width:5px;
     display:flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content:flex-start;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    /* margin-top: 25px;
+    margin-bottom: 25px; */
     margin-right: 25px;
 }
 
@@ -250,19 +258,18 @@ footer > button {
     margin-left: 5%;
     width : 80%;
     /* border-color:white; */
-    border-style:solid;
+    border-bottom-style:solid;
+    border-width:15px;
     align-items: center;
-    background-color: white;
 }
 
 #content {
-    border-style: solid;
+    
     /* border-color: #EE6C4D; */
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: center;
-    background-color: #F8F9FA;
 }
 
 .shelf-tag{
