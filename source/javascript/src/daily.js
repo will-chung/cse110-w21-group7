@@ -10,6 +10,7 @@ const refRadio = document.getElementById('input1')
 const eventRadio = document.getElementById('input2')
 const taskRadio = document.getElementById('input3')
 const radioContainer = document.getElementsByClassName('container')[0]
+
 /*
  * This onclick toggles the display style of the quote to none
  * TODO: Collapse the whole div, not just the quote
@@ -90,6 +91,12 @@ collapse.addEventListener('click', () => {
   }
 })
 
+/**
+ * Adds tasks, notes, and events to the daily log. If the entr is evmpty,
+ * then the bullet journal alerts the user that they must write something
+ * for that task/note/event.
+ *
+ */
 function newElement () {
   const span = document.createElement('select')
   span.className = 'dropdown'
@@ -156,7 +163,7 @@ function getLogInfoAsJSON (date = new Date(), cb) {
 /* Business logic */
 
 function populateDailyLog () {
-
+  // @TODO (see issue https://github.com/cse110-w21-group7/cse110-SP21-group7/issues/165)
 }
 
 function setDate () {
@@ -173,4 +180,38 @@ function sendLogInfoAsJSON () {
 
 document.addEventListener('DOMContentLoaded', (event) => {
   getLogInfoAsJSON(new Date(), setDate)
+
+  let li = document.createElement('li')
+  let item = document.createElement('log-item')
+  item.itemEntry = {
+    description: 'Description for an event',
+    date: new Date(),
+    logType: 'event'
+  }
+  li.appendChild(item)
+  document.getElementById('myUL').appendChild(li)
+  li = document.createElement('li')
+  item = document.createElement('log-item')
+  item.itemEntry = {
+    description: 'Description for an unfinished task',
+    logType: 'task-unfinished'
+  }
+  li.appendChild(item)
+  document.getElementById('myUL').appendChild(li)
+  li = document.createElement('li')
+  item = document.createElement('log-item')
+  item.itemEntry = {
+    description: 'Description for a finished task',
+    logType: 'task-finished'
+  }
+  li.appendChild(item)
+  document.getElementById('myUL').appendChild(li)
+  li = document.createElement('li')
+  item = document.createElement('log-item')
+  item.itemEntry = {
+    description: 'Description for an unfinished note',
+    logType: 'note'
+  }
+  li.appendChild(item)
+  document.getElementById('myUL').appendChild(li)
 })
