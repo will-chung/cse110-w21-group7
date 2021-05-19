@@ -141,7 +141,7 @@ function newElement () {
  * @returns JSON type response, containing the information needed to
  * initialize the daily log.
  */
-function getLogInfoAsJSON (date = new Date(), cb) {
+function getLogInfoAsJSON (date = new Date(), url, cb) {
   if (!(date instanceof Date) || (date === null)) {
     throw Error('date reference must be an instance of Date.')
   }
@@ -153,22 +153,79 @@ function getLogInfoAsJSON (date = new Date(), cb) {
     }
   }
 
-  req.open('GET', '../mock_data/daily_log.json', true)
+  req.open('GET', url, true)
   req.send()
 }
 
 /* Business logic */
 
-function populateDailyLog () {
-  // @TODO (see issue https://github.com/cse110-w21-group7/cse110-SP21-group7/issues/165)
+/**
+ * Business logic subroutine for adding individual entries (tasks/notes/events)
+ * to the comprehensive view on the daily log
+ * @author Noah Teshima <nteshima@ucsd.edu>
+ * @param {Object} log JSON object formatted based on the schema for
+ * a single daily log
+ */
+function setEntries (log) {
+  function populateTypeOfEntry (entries) {
+    entries.forEach((entry, index) => {
+      const li = document.createElement('li')
+      const logItem = document.createElement('log-item')
+
+      logItem.itemEntry = entry
+
+      li.appendChild(logItem)
+      document.getElementById('myUL').appendChild(li)
+    })
+  }
+
+  /* make tasks */
+  populateTypeOfEntry(log.properties.tasks)
+  populateTypeOfEntry(log.properties.notes)
+  populateTypeOfEntry(log.properties.events)
 }
 
-function setDate () {
-  const response = JSON.parse(this.responseText)
-  const date = response.date
+/**
+ * Business logic subroutine for adding the date of the daily log to the title
+ * of the page.
+ * @author Noah Teshima <nteshima@ucsd.edu>
+ * @param {Object} log JSON object formatted based on the schema for
+ * a single daily log
+ */
+function setDate (log) {
+  const time = Number(log.properties.date.time)
+  const date = getDateFromUNIXTimestamp(time)
 
   const dateElement = document.querySelector('#title > .date')
-  dateElement.innerText = date
+  dateElement.innerText = date.toLocaleDateString()
+}
+
+/**
+ * Business logic callback function containing all the needed
+ * subroutines for initializing the daily log
+ * @author Noah Teshima <nteshima@ucsd.edu>
+ */
+function populateDailyLog () {
+  /* TODO: replace response with schema for single daily log
+  (see https://github.com/cse110-w21-group7/cse110-SP21-group7/issues/161
+    and https://github.com/cse110-w21-group7/cse110-SP21-group7/issues/162)
+  */
+  const response = JSON.parse(this.responseText)
+  const log = response.$defs['daily-logs'][0]
+  setDate(log)
+  setEntries(log)
+}
+
+/**
+ * Function to get the date from a given UNIX timestamp.
+ * @author Noah Teshima <nteshima@ucsd.edu>
+ * @param {Number} timestamp Number object representing our
+ * UNIX timestamp
+ * @returns {Date} Date object containing the date contained
+ * in the UNIX timestamp.
+ */
+function getDateFromUNIXTimestamp (timestamp) {
+  return new Date(timestamp)
 }
 
 function sendLogInfoAsJSON () {
@@ -176,39 +233,5 @@ function sendLogInfoAsJSON () {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-  getLogInfoAsJSON(new Date(), setDate)
-
-  let li = document.createElement('li')
-  let item = document.createElement('log-item')
-  item.itemEntry = {
-    description: 'Description for an event',
-    date: new Date(),
-    logType: 'event'
-  }
-  li.appendChild(item)
-  document.getElementById('myUL').appendChild(li)
-  li = document.createElement('li')
-  item = document.createElement('log-item')
-  item.itemEntry = {
-    description: 'Description for an unfinished task',
-    logType: 'task-unfinished'
-  }
-  li.appendChild(item)
-  document.getElementById('myUL').appendChild(li)
-  li = document.createElement('li')
-  item = document.createElement('log-item')
-  item.itemEntry = {
-    description: 'Description for a finished task',
-    logType: 'task-finished'
-  }
-  li.appendChild(item)
-  document.getElementById('myUL').appendChild(li)
-  li = document.createElement('li')
-  item = document.createElement('log-item')
-  item.itemEntry = {
-    description: 'Description for an unfinished note',
-    logType: 'note'
-  }
-  li.appendChild(item)
-  document.getElementById('myUL').appendChild(li)
+  getLogInfoAsJSON(new Date(), '../mock_data/user_bujo_info.json', populateDailyLog)
 })
