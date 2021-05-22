@@ -23,7 +23,7 @@
           "properties": {
             "date": {
               "type": "string",
-              "time": "UNIX timestamp",
+              "time": "1621721543299",
               "description": "The date of the event."
             },
             "events": [
