@@ -24,19 +24,19 @@ class LogItem extends HTMLElement {
                                         height:1em;
                                     }
                                     .trash-button-icon {
-                                        background: url(../../../images/log-item_icons/trash-solid.svg) no-repeat center center;
+                                        background: url(../images/log-item_icons/trash-solid.svg) no-repeat center center;
                                     }
                                     .task-unfinished-icon {
-                                        background: url(../../../images/log-item_icons/times-solid.svg) no-repeat center center;
+                                        background: url(../images/log-item_icons/times-solid.svg) no-repeat center center;
                                     }
                                     .task-finished-icon {
-                                        background: url(../../../images/log-item_icons/check-solid.svg) no-repeat center center;
+                                        background: url(../images/log-item_icons/check-solid.svg) no-repeat center center;
                                     }
                                     .note-icon {
-                                        background: url(../../../images/log-item_icons/note-solid.svg) no-repeat center center;
+                                        background: url(../images/log-item_icons/note-solid.svg) no-repeat center center;
                                     }
                                     .event-icon {
-                                        background: url(../../../images/log-item_icons/event-solid.svg) no-repeat center center;
+                                        background: url(../images/log-item_icons/event-solid.svg) no-repeat center center;
                                     }
                                     button {
                                         background-color: rgba(0,0,0,0);
@@ -56,6 +56,14 @@ class LogItem extends HTMLElement {
     this.shadowRoot.querySelector('button').addEventListener('click', (event) => {
       this.parentElement.remove()
     })
+
+    // When dealing with log of type task, we must update the task status when it is clicked.
+    if (this._itemEntry.logType === 'task') {
+      this.shadowRoot.querySelector('i').addEventListener('click', (event) => {
+        this._itemEntry.finished = !this._itemEntry.finished
+        this.render()
+      })
+    }
   }
 
   /**
