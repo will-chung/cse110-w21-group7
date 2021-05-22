@@ -17,4 +17,14 @@
 
 ## Agenda:
 1. Katherine/Rachel, Scrum master, update standup.md
-2. Retrium
+2. HTML/CSS Team update
+    - Accomplishment
+    - Plan for next sprint
+3. JS Team update
+    - Accomplishment
+    - Plan for next sprint
+4. DB Team update
+    - Accompliment
+    - Plan for next sprint
+5. Moving HTML team to JS team
+6. Create detailed issues
