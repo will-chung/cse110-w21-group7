@@ -72,7 +72,8 @@ height: 106px;
 
 #current{
     border-bottom-style:solid;
-    border-radius: 50px;
+    background:radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 100%);
+    border-radius: 30px;
     border-color:black;
 }
 
@@ -277,8 +278,8 @@ h1 {
     border-style:solid;
     border-width:2px;
     border-color:#98c1d9;
-    background: rgb(152,193,217);
-    background: radial-gradient(circle, rgba(152,193,217,1) 0%, rgba(224,251,252,1) 72%);
+    background: rgb(224,251,252);
+background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 100%);
     border-radius:25px;
     height: 13vh;
     margin-top: 5vh;
@@ -293,8 +294,8 @@ h1 {
     border-width:2px;
     border-color:#98c1d9;
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-    background: rgb(152,193,217);
-    background: radial-gradient(circle, rgba(152,193,217,1) 0%, rgba(224,251,252,1) 72%);
+    background: rgb(224,251,252);
+background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 100%);
     border-radius:25px;
     height: 13vh;
     margin-top: 7vh;
@@ -314,7 +315,7 @@ h1 {
 
 .shelf-tag{
     font-family: 'Pattaya', sans-serif;
-    border-color: #98c1d9;
+    border-color: #e0fbfc;
     border-width: 3px;
     border-style: solid;
     border-top:white;

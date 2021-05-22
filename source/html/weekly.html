@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weekly</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/weekly.css"/>
     <!-- <link rel="stylesheet" href="../css/calendar.css"/> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13,33 +14,63 @@
     
 </head>
 <body>
-    <div class="bujo-header">
-        <h1 id="title">User's Weekly view</h1>
-    </div>
-    <div class = "content">
-        <div class="navbar">
-            <ul id="nav-menu">
-                <li>
-                    <button id="menu"><i class="fa fa-bars"></i><a href="#"> Menu</a></button>
-                </li>
-                <li>
-                    <button id="search"><i class="fa fa-search"></i><a href="#">Search</a></button>
-                </li>
-                <li>
-                    <button id="index"><i class="fa fa-home"></i><a href="#">Index</a></button>
-                </li>
-                <li>
-                    <button id="daily-log"><i class="fa fa-pencil"></i><a href="#">Daily Log</a></button>
-                </li>
-                <li>
-                    <button id="monthly"><i class="fa fa-calendar"></i><a href="#">Monthly</a></button>
-                </li>
-                <li>
-                    <button id="nav-collection"><i class="fa fa-folder-open" wid></i><a href="#">Collection</a></button>
-                </li>
-            </ul>
+    <div class="header">
+        <div id="title">
+            <h1 id="bujo-header">Your Weekly View</h1>
         </div>
-        
+    </div>
+
+    <nav class="main-menu">
+        <ul>
+          <li>
+            <a href="./index.html" id="home">
+              <i class="fa fa-home fa-2x"></i>
+              <span class="nav-text" >
+                Index
+              </span>
+            </a>
+    
+          </li>
+          <li class="has-subnav">
+            <a href="#" class="underline">
+              <i class="fa fa-search fa-2x"></i>
+              <span class="nav-text">
+                Search
+              </span>
+            </a>
+    
+          </li>
+          <li class="has-subnav">
+            <a href="./daily.html" class="underline">
+              <i class="fa fa-pencil fa-2x"></i>
+              <span class="nav-text">
+                Daily Log
+              </span>
+            </a>
+    
+          </li>
+          <li class="has-subnav">
+            <a href="./collection.html" class="underline">
+              <i class="fa fa-folder-open fa-2x"></i>
+              <span class="nav-text">
+                Collection
+              </span>
+            </a>
+    
+          </li>
+          <li class="has-subnav">
+            <a href="./weekly.html" class="underline"  id="current" >
+              <i class="fa fa-calendar fa-2x"></i>
+              <span class="nav-text">
+                Monthly
+              </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+
+    <div class = "content">
         <div id="calendar"> 
             <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FLos_Angeles&amp;src=ZW4udXNhI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%230B8043" style="border:solid 1px #777" width="400" height="600" frameborder="0" scrolling="no"></iframe>
             <!-- <div id="calendar_header">
@@ -54,39 +85,25 @@
         
         <div class="weekly">
             <div class="weekday" id="Monday">
-                <h2>
-                    <a href="#">Monday</a>
-                </h2>
+                    <a href="#">Monday</a>      
             </div>
             <div class="weekday" id="Tuesday">
-                <h2>
                     <a href="#">Tuesday</a>
-                </h2>
             </div>
             <div class="weekday" id="Wednesday">
-                <h2>
                     <a href="#">Wednesday</a>
-                </h2>
             </div>
             <div class="weekday" id="Thursday">
-                <h2>
                     <a href="#">Thursday</a>
-                </h2>
             </div>
             <div class="weekday" id="Friday">
-                <h2>
                     <a href="#">Friday</a>
-                </h2>
             </div>
             <div class="weekday" id="Saturday">
-                <h2>
                     <a href="#">Saturday</a>
-                </h2>
             </div>
             <div class="weekday" id="Sunday">
-                <h2>
                     <a href="#">Sunday</a>
-                </h2>
             </div>
         </div>
     </div>
