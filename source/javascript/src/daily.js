@@ -1,3 +1,6 @@
+import {IndexedDBWrapper as IndexedDBWrapper} from './indexedDB/IndexedDBWrapper.js'
+import { DateConverter } from './utils/DateConverter.js'
+
 const collapse = document.getElementById('collapse')
 const right = document.getElementById('right')
 const quote = document.getElementById('reflection')
@@ -134,30 +137,38 @@ function newElement () {
  * If there is no daily log information for the given date,
  * a new daily log is created if the date is the present day.
  * @author Noah Teshima <nteshima@ucsd.edu>
- * @param {Date} date Date object containing the corresponding date. Based
- * on the timestamp of the given Date object, a JSON type response will
- * be returned containing the corresponding daily log information. If no
- * date is specified, a Date object is initialized for the present day.
  * @throws Error object if date reference is null, undefined. Otherwise,
  * an error is thrown if the given date is not the present day and failed
  * to retrieve log info for given day.
  * @returns JSON type response, containing the information needed to
  * initialize the daily log.
  */
-function getLogInfoAsJSON (date = new Date(), url, cb) {
-  if (!(date instanceof Date) || (date === null)) {
-    throw Error('date reference must be an instance of Date.')
-  }
+function getLogInfoAsJSON (cb) {
+  // if (!(date instanceof Number) || (date === null)) {
+  //   throw Error('date reference must be an instance of Number.')
+  // }
 
-  const req = new XMLHttpRequest()
-  req.onreadystatechange = function () {
-    if (req.readyState === XMLHttpRequest.DONE && req.status === 200) {
-      cb.apply(this)
+  const wrapper = new IndexedDBWrapper("experimentalDB22", 1)
+
+  wrapper.transaction((event) => {
+    let db = event.target.result
+
+    let store = db.transaction(['currentLogStore'], 'readonly')
+                  .objectStore('currentLogStore')
+    store.openCursor().onsuccess = function(event) {
+      let cursor = event.target.result
+      if(cursor) {
+        let dateConverter = new DateConverter(Number(cursor.value.current_log))
+        cursor.value.$defs['daily-logs'].forEach((log, index) => {
+          if(dateConverter.equals(Number(log.properties.date.time))) {
+            cb.bind(this)
+            console.log(cursor.value)
+            cb(cursor.value.$defs['daily-logs'][index])
+          }
+        });
+      }
     }
-  }
-
-  req.open('GET', url, true)
-  req.send()
+  })
 }
 
 /* Business logic */
@@ -208,15 +219,15 @@ function setDate (log) {
  * subroutines for initializing the daily log
  * @author Noah Teshima <nteshima@ucsd.edu>
  */
-function populateDailyLog () {
+function populateDailyLog (response) {
   /* TODO: replace response with schema for single daily log
   (see https://github.com/cse110-w21-group7/cse110-SP21-group7/issues/161
     and https://github.com/cse110-w21-group7/cse110-SP21-group7/issues/162)
   */
-  const response = JSON.parse(this.responseText)
-  const log = response.$defs['daily-logs'][0]
-  setDate(log)
-  setEntries(log)
+  // const response = JSON.parse(this.responseText)
+  // const log = response.$defs['daily-logs'][0]
+  setDate(response)
+  setEntries(response)
 }
 
 /**
@@ -236,5 +247,5 @@ function sendLogInfoAsJSON () {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-  getLogInfoAsJSON(new Date(), '../mock_data/user_bujo_info.json', populateDailyLog)
+  getLogInfoAsJSON(populateDailyLog)
 })
