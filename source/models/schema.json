@@ -2,8 +2,7 @@
     "description": "A user's information for their bullet journal",
     "type": "object",
     "name": "string",
-    "current_log": "UNIX timestamp", /*timestamp corresponding to date of daily log that should be populated on daily.html
-    when next visited*/
+    "current_log": "UNIX timestamp",
     "properties": {
       "collections": {
         "type": "array",
@@ -29,21 +28,31 @@
             },
             "events": [
               {
-                "description": "description for event",
+                "description": "Get groceries",
                 "logType": "event",
-                "time": "UNIX timestamp"
+                "time": "1621718384658"
+              },
+              {
+                "description": "Walk dog",
+                "logType": "event",
+                "time": "1621729208633"
               }
             ],
             "tasks": [
                 {
-                  "description": "description for task",
+                  "description": "Study for midterm",
                   "logType": "task",
                   "finished": true
+                },
+                {
+                  "description": "Weeknight meal prep",
+                  "logType": "task",
+                  "finished": false
                 }
             ],
             "notes": [
               {
-                "description": "description for note",
+                "description": "I should send a card for Jordan's birthday.",
                 "logType": "note"
               }
           ],
