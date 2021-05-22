@@ -20,7 +20,8 @@ class IndexedDBWrapper {
   constructor (dbName, version) {
     this._dbName = dbName
     this._version = version
-    this._EMPTY_SCHEMA = '../../../models/schema_empty.json'
+    this._EMPTY_SCHEMA = '/source/models/schema_empty.json'
+    this._MOCK_LOG = '/source/models/schema.json'
     console.log('initialized indexedDBWrapper')
   }
 
@@ -85,8 +86,10 @@ class IndexedDBWrapper {
    * @param {Event} event Event object containing the
    * result of our callback. Using event.target.result yields
    * an IDBRequest object for transactions.
+   * @param {Boolean} synthetic Determines whether we use a mock
+   * response to populate our daily log. Solely for testing purposes.
    */
-  addDefault (event) {
+  addNewLog (event, synthetic = false) {
     const db = event.target.result
     const tempObjectStore = db.transaction(['currentLogStore'], 'readwrite')
       .objectStore('currentLogStore')
@@ -100,7 +103,7 @@ class IndexedDBWrapper {
         tempStore.put(response)
       }
     }
-    req.open('GET', this._EMPTY_SCHEMA)
+    req.open('GET', synthetic ? this._MOCK_LOG : this._EMPTY_SCHEMA)
     req.send()
   }
 
