@@ -39,10 +39,20 @@ class DateConverter extends Date {
      * @returns {Number} Number of days since January 1, 1970 given
      * by the UNIX timestamp
      */
-    getDaysFromTimeStamp() {
+    getDaysFromTimeStamp(timestamp = this._timestamp) {
         // Number of days since January 1, 1970
         const days = Math.floor(this._timestamp / (24*60*60*1000))  
         return days
+    }
+
+    /**
+     * Checks if the given UNIX timestamp is correct up to the
+     * number of days.
+     * @param {Number} timestamp UNIX timestamp to check for
+     * equality to the number of days
+     */
+    equals(timestamp) {
+        return (this.getDaysFromTimeStamp() === this.getDaysFromTimeStamp(timestamp))
     }
 }
 
