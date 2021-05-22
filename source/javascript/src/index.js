@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   addDailyLog.onclick = function (event) {
     // Allows us to make write transactions before navigating
     event.preventDefault()
-    const wrapper = new IndexedDBWrapper('experimentalDB', 1)
+    const wrapper = new IndexedDBWrapper('experimentalDB26', 1)
     wrapper.transaction((event) => {
       const db = event.target.result
 
@@ -29,8 +29,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
       const req = store.openCursor()
       // Fires when cursor is successfully opened.
-      req.onsuccess = (event) => {
-        const cursor = event.target.result
+      req.onsuccess = function (e) {
+        const cursor = e.target.result
         if (cursor) {
           console.log(cursor.value.current_log)
           cursor.value.current_log = String(Date.now())
@@ -40,17 +40,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
           // object storage (i.e. new user who clicked on 'Add+')
           const tempObjectStore = db.transaction(['currentLogStore'], 'readwrite')
             .objectStore('currentLogStore')
-          const req = new XMLHttpRequest()
-          req.onreadystatechange = () => {
-            if (req.readyState === XMLHttpRequest.DONE && req.status === 200) {
-              const response = JSON.parse(req.responseText)
-              const tempStore = db.transaction('currentLogStore', 'readwrite').objectStore('currentLogStore')
-              response.current_log = String(Date.now())
-              tempStore.put(response)
-            }
-          }
-          req.open('GET', '../models/schema.json')
-          req.send()
+          wrapper.addNewLog(event, true)
           console.log('Made new entry!')
         }
         // Unsuspend navigation
