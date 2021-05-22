@@ -58,7 +58,7 @@ class LogItem extends HTMLElement {
     })
 
     // When dealing with log of type task, we must update the task status when it is clicked.
-    if(this._itemEntry.logType === 'task') {
+    if (this._itemEntry.logType === 'task') {
       this.shadowRoot.querySelector('i').addEventListener('click', (event) => {
         this._itemEntry.finished = !this._itemEntry.finished
         this.render()

@@ -1,4 +1,4 @@
-import {IndexedDBWrapper as IndexedDBWrapper} from './indexedDB/IndexedDBWrapper.js'
+import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 import { DateConverter } from './utils/DateConverter.js'
 
 const collapse = document.getElementById('collapse')
@@ -148,24 +148,24 @@ function getLogInfoAsJSON (cb) {
   //   throw Error('date reference must be an instance of Number.')
   // }
 
-  const wrapper = new IndexedDBWrapper("experimentalDB22", 1)
+  const wrapper = new IndexedDBWrapper('experimentalDB22', 1)
 
   wrapper.transaction((event) => {
-    let db = event.target.result
+    const db = event.target.result
 
-    let store = db.transaction(['currentLogStore'], 'readonly')
-                  .objectStore('currentLogStore')
-    store.openCursor().onsuccess = function(event) {
-      let cursor = event.target.result
-      if(cursor) {
-        let dateConverter = new DateConverter(Number(cursor.value.current_log))
+    const store = db.transaction(['currentLogStore'], 'readonly')
+      .objectStore('currentLogStore')
+    store.openCursor().onsuccess = function (event) {
+      const cursor = event.target.result
+      if (cursor) {
+        const dateConverter = new DateConverter(Number(cursor.value.current_log))
         cursor.value.$defs['daily-logs'].forEach((log, index) => {
-          if(dateConverter.equals(Number(log.properties.date.time))) {
+          if (dateConverter.equals(Number(log.properties.date.time))) {
             cb.bind(this)
             console.log(cursor.value)
             cb(cursor.value.$defs['daily-logs'][index])
           }
-        });
+        })
       }
     }
   })
