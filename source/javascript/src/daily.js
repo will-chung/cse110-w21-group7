@@ -148,7 +148,7 @@ function getLogInfoAsJSON (cb) {
   //   throw Error('date reference must be an instance of Number.')
   // }
 
-  const wrapper = new IndexedDBWrapper('experimentalDB22', 1)
+  const wrapper = new IndexedDBWrapper('experimentalDB26', 1)
 
   wrapper.transaction((event) => {
     const db = event.target.result
