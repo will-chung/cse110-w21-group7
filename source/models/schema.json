@@ -61,6 +61,7 @@
               "multipleOf": 1,
               "minimum": 0,
               "exclusiveMaximum": 100,
+              "value": 20,
               "description": "Daily mood on a range of 0-99."
             }
           }
