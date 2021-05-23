@@ -148,7 +148,7 @@ function getLogInfoAsJSON (cb) {
   //   throw Error('date reference must be an instance of Number.')
   // }
 
-  const wrapper = new IndexedDBWrapper('experimentalDB26', 1)
+  const wrapper = new IndexedDBWrapper('experimentalDB', 1)
 
   wrapper.transaction((event) => {
     const db = event.target.result
@@ -200,6 +200,20 @@ function setEntries (log) {
 }
 
 /**
+ * Business logic subroutine for updating the reflection section (mood slider)
+ * 
+ * @author Noah Teshima <nteshima@ucsd.edu>
+ * @param {Object} log JSON object formatted based on the schema for
+ * a single daily log
+ */
+
+function setReflection(log) {
+  const reflection = log.properties.mood
+  const reflectionItem = document.querySelector('reflection-item')
+  reflectionItem.entry = reflection
+}
+
+/**
  * Business logic subroutine for adding the date of the daily log to the title
  * of the page.
  * @author Noah Teshima <nteshima@ucsd.edu>
@@ -228,6 +242,7 @@ function populateDailyLog (response) {
   // const log = response.$defs['daily-logs'][0]
   setDate(response)
   setEntries(response)
+  setReflection(response)
 }
 
 /**
