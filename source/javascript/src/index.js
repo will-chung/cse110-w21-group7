@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   addDailyLog.onclick = function (event) {
     // Allows us to make write transactions before navigating
     event.preventDefault()
-    const wrapper = new IndexedDBWrapper('experimentalDB26', 1)
+    const wrapper = new IndexedDBWrapper('experimentalDB', 1)
     wrapper.transaction((event) => {
       const db = event.target.result
 
