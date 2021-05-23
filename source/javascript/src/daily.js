@@ -201,13 +201,13 @@ function setEntries (log) {
 
 /**
  * Business logic subroutine for updating the reflection section (mood slider)
- * 
+ *
  * @author Noah Teshima <nteshima@ucsd.edu>
  * @param {Object} log JSON object formatted based on the schema for
  * a single daily log
  */
 
-function setReflection(log) {
+function setReflection (log) {
   const reflection = log.properties.mood
   const reflectionItem = document.querySelector('reflection-item')
   reflectionItem.entry = reflection
