@@ -501,7 +501,7 @@ input:focus {
   margin-bottom: 10px;
   overflow: hidden;
   width: 160px;
-  height: 200px;
+  height: 240px;
   flex-direction: column;
   justify-content: center;
 }
@@ -527,7 +527,7 @@ input:focus {
 }
 .entry:nth-child(9) {
   left: 8px;
-  top: 158px;
+  top: 208px;
 }
 
 
@@ -581,6 +581,9 @@ input:focus {
 .hidden:nth-child(6):checked ~ .highlight {
   transform: translateY(150px);
 }
+.hidden:nth-child(8):checked ~ .highlight {
+  transform: translateY(200px);
+}
 .hidden:nth-child(2):checked + .entry .circle {
   border-color: #4D98EF;
 }
@@ -588,6 +591,9 @@ input:focus {
   border-color: #4D98EF;
 }
 .hidden:nth-child(6):checked + .entry .circle {
+  border-color: #4D98EF;
+}
+.hidden:nth-child(8):checked + .entry .circle {
   border-color: #4D98EF;
 }
 .check:checked ~ .containerOuter .overlay {

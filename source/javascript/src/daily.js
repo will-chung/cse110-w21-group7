@@ -9,6 +9,7 @@ const cancelBtn = document.getElementById('cancel')
 const refRadio = document.getElementById('input1')
 const eventRadio = document.getElementById('input2')
 const taskRadio = document.getElementById('input3')
+const noteRadio = document.getElementById('input4')
 const radioContainer = document.getElementsByClassName('container')[0]
 
 /*
@@ -66,7 +67,17 @@ radioContainer.addEventListener('change', () => {
       saveBtn.style.visibility = 'visible'
       cancelBtn.style.visibility = 'visible'
     })
-  } else {
+  }else if(noteRadio.checked){
+    date.value = ''
+    text.value = ''
+    saveBtn.style.visibility = 'hidden'
+    cancelBtn.style.visibility = 'hidden'
+    text.type = 'hidden'
+    time.type = 'hidden'
+    text.type = 'text'
+    saveBtn.style.visibility = 'visible'
+    cancelBtn.style.visibility = 'visible'
+  }else {
     text.type = 'hidden'
     date.type = 'hidden'
     time.type = 'hidden'
