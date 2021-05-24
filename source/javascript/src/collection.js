@@ -1,5 +1,11 @@
 import { CollectionItem } from './components/CollectionItem.js'
 
+const addBtn = document.getElementById('add')
+
+addBtn.addEventListener('click', () => {
+  location.pathname = '/source/html/collection-edit.html'
+})
+
 function getLogInfoAsJSON (cb) {
   // TODO replace this with indexedDB transaction
   const request = new XMLHttpRequest()
