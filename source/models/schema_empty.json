@@ -1,0 +1,40 @@
+{
+    "description": "A user's information for their bullet journal",
+    "type": "object",
+    "name": "string",
+    "current_log": "",
+    "properties": {
+      "collections": {
+        "type": "array",
+        "items": [
+          {
+            "type": "string",
+            "images": "image",
+            "videos": "video"
+          }
+        ]
+      }
+    },
+    "$defs": {
+      "daily-logs": [
+        {
+          "type": "object",
+          "required": [ "date", "description" ],
+          "properties": {
+            "date": {
+              "type": "string",
+              "time": "UNIX timestamp",
+              "description": "The date of the event."
+            },
+            "events": [
+            ],
+            "tasks": [
+            ],
+            "notes": [
+          ],
+            "mood": {
+            }
+          }
+      }]
+    }
+}

@@ -1,12 +1,12 @@
+
 {
     "description": "A user's information for their bullet journal",
     "type": "object",
     "name": "string",
     "current_log": "UNIX timestamp",
     "properties": {
-      "collections": [{
+      "collections": {
         "type": "array",
-        "name": "Collection one",
         "items": [
           {
             "type": "string",
@@ -14,29 +14,7 @@
             "videos": "video"
           }
         ]
-      },
-      {
-        "type": "array",
-        "name": "Collection two",
-        "items": [
-          {
-            "type": "string",
-            "images": "image",
-            "videos": "video"
-          }
-        ]
-      },
-      {
-        "type": "array",
-        "name": "Collection three",
-        "items": [
-          {
-            "type": "string",
-            "images": "image",
-            "videos": "video"
-          }
-        ]
-      }]
+      }
     },
     "$defs": {
       "daily-logs": [
@@ -46,36 +24,40 @@
           "properties": {
             "date": {
               "type": "string",
-              "time": "1621721543299",
+              "time": "1621445109502",
               "description": "The date of the event."
             },
             "events": [
               {
-                "description": "Get groceries",
+                "description": "description for event one",
                 "logType": "event",
-                "time": "1621718384658"
+                "time": "1621427132543"
               },
               {
-                "description": "Walk dog",
+                "description": "description for event two",
                 "logType": "event",
-                "time": "1621729208633"
+                "time": "1621470343054"
               }
             ],
             "tasks": [
                 {
-                  "description": "Study for midterm",
+                  "description": "description for task one",
                   "logType": "task",
                   "finished": true
                 },
                 {
-                  "description": "Weeknight meal prep",
+                  "description": "description for task two",
                   "logType": "task",
                   "finished": false
                 }
             ],
             "notes": [
               {
-                "description": "I should send a card for Jordan's birthday.",
+                "description": "description for note one",
+                "logType": "note"
+              },
+              {
+                "description": "description for note two",
                 "logType": "note"
               }
           ],
@@ -84,10 +66,10 @@
               "multipleOf": 1,
               "minimum": 0,
               "exclusiveMaximum": 100,
-              "value": 20,
               "description": "Daily mood on a range of 0-99."
             }
           }
-      }]
-    }
+      }
+    ]
   }
+}
