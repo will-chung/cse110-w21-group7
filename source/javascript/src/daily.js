@@ -70,7 +70,7 @@ radioContainer.addEventListener('change', () => {
       saveBtn.style.visibility = 'visible'
       cancelBtn.style.visibility = 'visible'
     })
-  }else if(noteRadio.checked){
+  } else if (noteRadio.checked) {
     date.value = ''
     text.value = ''
     saveBtn.style.visibility = 'hidden'
@@ -80,7 +80,7 @@ radioContainer.addEventListener('change', () => {
     text.type = 'text'
     saveBtn.style.visibility = 'visible'
     cancelBtn.style.visibility = 'visible'
-  }else {
+  } else {
     text.type = 'hidden'
     date.type = 'hidden'
     time.type = 'hidden'
