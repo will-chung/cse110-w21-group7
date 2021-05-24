@@ -1,5 +1,5 @@
-const addBtn = document.getElementById('add');
+const addBtn = document.getElementById('add')
 
 addBtn.addEventListener('click', () => {
-    location.pathname = '/source/html/collection-edit.html'
+  location.pathname = '/source/html/collection-edit.html'
 })
