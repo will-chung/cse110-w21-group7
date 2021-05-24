@@ -4,8 +4,9 @@
     "name": "string",
     "current_log": "UNIX timestamp",
     "properties": {
-      "collections": {
+      "collections": [{
         "type": "array",
+        "name": "Collection one",
         "items": [
           {
             "type": "string",
@@ -13,7 +14,29 @@
             "videos": "video"
           }
         ]
-      }
+      },
+      {
+        "type": "array",
+        "name": "Collection two",
+        "items": [
+          {
+            "type": "string",
+            "images": "image",
+            "videos": "video"
+          }
+        ]
+      },
+      {
+        "type": "array",
+        "name": "Collection three",
+        "items": [
+          {
+            "type": "string",
+            "images": "image",
+            "videos": "video"
+          }
+        ]
+      }]
     },
     "$defs": {
       "daily-logs": [
