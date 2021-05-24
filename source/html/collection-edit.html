@@ -5,32 +5,59 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Collection-edit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/collection-edit.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <div class="navbar">
-        <ul id="nav-menu">
-            <li>
-                <button id="menu"><i class="fa fa-bars"></i><a href="#"> Menu</a></button>
-            </li>
-            <li>
-                <button id="search"><i class="fa fa-search"></i><a href="#">Search</a></button>
-            </li>
-            <li>
-                <button id="index"><i class="fa fa-home"></i><a href="#">Index</a></button>
-            </li>
-            <li>
-                <button id="daily-log"><i class="fa fa-pencil"></i><a href="#">Daily Log</a></button>
-            </li>
-            <li>
-                <button id="monthly"><i class="fa fa-calendar"></i><a href="#">Monthly</a></button>
-            </li>
-            <li>
-                <button id="nav-collection"><i class="fa fa-folder-open" wid></i><a href="#">Collection</a></button>
-            </li>
+    <nav id="main-menu">
+        <ul>
+          <li >
+            <a href="./index.html" id="home">
+              <i class="fa fa-home fa-2x"></i>
+              <span class="nav-text" >
+                Index
+              </span>
+            </a>
+    
+          </li>
+          <li class="has-subnav">
+            <a href="#" class="underline">
+              <i class="fa fa-search fa-2x"></i>
+              <span class="nav-text">
+                Search
+              </span>
+            </a>
+    
+          </li>
+          <li class="has-subnav">
+            <a href="./daily.html" class="underline"  >
+              <i class="fa fa-pencil fa-2x"></i>
+              <span class="nav-text">
+                Daily Log
+              </span>
+            </a>
+    
+          </li>
+          <li class="has-subnav">
+            <a href="./collection.html" class="underline"  id="current">
+              <i class="fa fa-folder-open fa-2x"></i>
+              <span class="nav-text">
+                Collection
+              </span>
+            </a>
+    
+          </li>
+          <li class="has-subnav">
+            <a href="./weekly.html" class="underline">
+              <i class="fa fa-calendar fa-2x"></i>
+              <span class="nav-text">
+                Monthly
+              </span>
+            </a>
+          </li>
         </ul>
-    </div>
+      </nav>
     <div id="content">
         <div id="journal-content">
             
@@ -39,13 +66,8 @@
             </div>
 
             <div id="entry">
-                
-                
-
-
                 <ul id="myUL">
                 </ul>
-                
                 <div id="myDIV" class="header">
                   <h2 style="margin:5px">Enter new tasks</h2>
                   <input type="text" id="myInput" placeholder="Title...">
@@ -75,7 +97,7 @@
                     <input type="text" placeholder = "Input your caption here" size = "5">
                     <img src="../image/Group 7 (1).png" alt="placeholder">
                     <input type="text" placeholder = "Input your caption here" size = "5">
-                    <button id="add-image-btn"><img src="" alt="add image"></button>
+                    <input type='file' id="add-image-btn" name='imageName'></button>
                 </div>
                 <!-- <div class='media-gallary'>
                     <div class='row'>
@@ -99,7 +121,7 @@
                 <div id="video-collection">
                     <h2>Video Gallery</h2>
                     <video src="../video/pexels-cottonbro-5473805.mp4" controls></video>
-                    <button id="add-video-btn"><img src="" alt="add video"></button>
+                    <input type='file' id="add-video-btn" name='videoName'></input>
                 </div>
                 <!-- <div id="quote">
                     <h1>Sample Quote</h1>

@@ -211,6 +211,10 @@ li > a, a:link {
     right: 40px;
 }
 
+#add:hover{
+    cursor: pointer;
+}
+
 .folder {
     margin-right: 1vw;
     border-bottom-style:solid;
