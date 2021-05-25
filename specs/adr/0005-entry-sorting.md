@@ -3,7 +3,6 @@
 * Status: proposed
 * Deciders: entire team
 * Date: 2021-05-01
-* Technical Story: TODO
 
 ## Context and Problem Statement
 
