@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
       }
     })
   }
-<<<<<<< HEAD
 }).call(this)
 
 const shelves = document.getElementsByTagName('book-shelf');
@@ -63,6 +62,3 @@ for (let i = 0; i < shelves.length; i++) {
   }
 }
 
-=======
-})
->>>>>>> 65a6049157a11246cffdc796c7efa7ae2bd4cb21
