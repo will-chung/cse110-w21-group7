@@ -23,6 +23,10 @@ const radioContainer = document.getElementsByClassName('container')[0]
  */
 document.addEventListener('DOMContentLoaded', () => {
   saveBtn.style.visibility = 'hidden'
+  saveBtn.addEventListener('click', (event) => {
+    event.preventDefault()
+    newElement()
+  })
   cancelBtn.style.visibility = 'hidden'
   text.type = 'hidden'
   date.type = 'hidden'
@@ -106,38 +110,43 @@ collapse.addEventListener('click', () => {
 })
 
 /**
- * Adds tasks, notes, and events to the daily log. If the entr is evmpty,
+ * Adds tasks, notes, and events to the daily log. If the entry is evmpty,
  * then the bullet journal alerts the user that they must write something
  * for that task/note/event.
  *
  */
 function newElement () {
-  const span = document.createElement('select')
-  span.className = 'dropdown'
-  const txt = document.createElement('option')
-  const close = document.createElement('option')
-  const complete = document.createElement('option')
-  close.text = 'delete'
-  close.value = 'close'
-  close.className = 'close'
-  complete.text = 'complete'
-  complete.value = 'complete'
-  complete.className = 'complete'
-  txt.text = 'options'
-  txt.value = 'value'
-  span.appendChild(txt)
-  span.appendChild(close)
-  span.appendChild(complete)
-  const li = document.createElement('li')
-  const inputValue = document.getElementById('myInput').value
-  const t = document.createTextNode(inputValue)
-  li.appendChild(span)
-  li.appendChild(t)
+  // const span = document.createElement('select')
+  // span.className = 'dropdown'
+  // const txt = document.createElement('option')
+  // const close = document.createElement('option')
+  // const complete = document.createElement('option')
+  // close.text = 'delete'
+  // close.value = 'close'
+  // close.className = 'close'
+  // complete.text = 'complete'
+  // complete.value = 'complete'
+  // complete.className = 'complete'
+  // txt.text = 'options'
+  // txt.value = 'value'
+  // span.appendChild(txt)
+  // span.appendChild(close)
+  // span.appendChild(complete)
+  const inputValue = document.getElementById('input-area').value
+  // li.appendChild(span)
   if (inputValue === '') {
     alert('You must write something!')
   } else {
-    // span.appendChild(li);
+    const li = document.createElement('li')
+    const t = document.createTextNode(inputValue)
+    li.appendChild(t)
     document.getElementById('myUL').appendChild(li)
+    const itemEntry = {}
+    // if (taskRadio.checked) {
+    //   itemEntry.logType = 'task'
+    // } else if (noteRad) {
+
+    // }
   }
   document.getElementById('myInput').value = ''
 }
