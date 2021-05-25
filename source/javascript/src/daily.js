@@ -116,36 +116,19 @@ collapse.addEventListener('click', () => {
  *
  */
 function newElement () {
-  // const span = document.createElement('select')
-  // span.className = 'dropdown'
-  // const txt = document.createElement('option')
-  // const close = document.createElement('option')
-  // const complete = document.createElement('option')
-  // close.text = 'delete'
-  // close.value = 'close'
-  // close.className = 'close'
-  // complete.text = 'complete'
-  // complete.value = 'complete'
-  // complete.className = 'complete'
-  // txt.text = 'options'
-  // txt.value = 'value'
-  // span.appendChild(txt)
-  // span.appendChild(close)
-  // span.appendChild(complete)
   const inputValue = document.getElementById('input-area').value
-  // li.appendChild(span)
   if (inputValue === '') {
     alert('You must write something!')
   } else {
     const li = document.createElement('li')
     const logItem = document.createElement('log-item')
     const itemEntry = {}
-    if(taskRadio.checked) {
+    if (taskRadio.checked) {
       itemEntry.logType = 'task'
       itemEntry.finished = false
-    } else if(noteRadio.checked) {
+    } else if (noteRadio.checked) {
       itemEntry.logType = 'note'
-    } else if(eventRadio.checked) {
+    } else if (eventRadio.checked) {
       itemEntry.logtype = 'event'
       itemEntry.time = time
     } else {
@@ -173,10 +156,6 @@ function newElement () {
  * initialize the daily log.
  */
 function getLogInfoAsJSON (cb) {
-  // if (!(date instanceof Number) || (date === null)) {
-  //   throw Error('date reference must be an instance of Number.')
-  // }
-
   const wrapper = new IndexedDBWrapper('experimentalDB', 1)
 
   wrapper.transaction((event) => {
@@ -267,8 +246,6 @@ function populateDailyLog (response) {
   (see https://github.com/cse110-w21-group7/cse110-SP21-group7/issues/161
     and https://github.com/cse110-w21-group7/cse110-SP21-group7/issues/162)
   */
-  // const response = JSON.parse(this.responseText)
-  // const log = response.$defs['daily-logs'][0]
   setDate(response)
   setEntries(response)
   setReflection(response)
