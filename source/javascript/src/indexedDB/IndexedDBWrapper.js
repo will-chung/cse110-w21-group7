@@ -68,13 +68,31 @@ class IndexedDBWrapper {
      * be changed.
      * @param {IDBVersionChangeEvent} event Handler for
      * the onupgradeneeded event.
+     * @param {String} LOG_DATA String containing the relpath of
+     * the schema to use
      */
-  init (event) {
+  init (event, LOG_DATA) {
     // Save the IDBDatabase interface
     const db = event.target.result
     // Create an objectStore for this database
     if (!db.objectStoreNames.contains('currentLogStore')) {
       const objectStore = db.createObjectStore('currentLogStore', { autoIncrement: true })
+      objectStore.transaction.oncomplete = (event) => {
+        const tempObjectStore = db.transaction(['currentLogStore'], 'readwrite')
+          .objectStore('currentLogStore')
+        tempObjectStore.transaction.oncomplete = (event) => {}
+        const req = new XMLHttpRequest()
+        req.onreadystatechange = () => {
+          if (req.readyState === XMLHttpRequest.DONE && req.status === 200) {
+            const response = JSON.parse(req.responseText)
+            const tempStore = db.transaction('currentLogStore', 'readwrite').objectStore('currentLogStore')
+            response.current_log = String(Date.now())
+            tempStore.put(response)
+          }
+        }
+        req.open('GET', LOG_DATA)
+        req.send()
+      }
     } else {
       console.log('currentLogStore already created!')
     }
@@ -91,20 +109,6 @@ class IndexedDBWrapper {
    */
   addNewLog (event, synthetic = false) {
     const db = event.target.result
-    const tempObjectStore = db.transaction(['currentLogStore'], 'readwrite')
-      .objectStore('currentLogStore')
-    tempObjectStore.transaction.oncomplete = (event) => {}
-    const req = new XMLHttpRequest()
-    req.onreadystatechange = () => {
-      if (req.readyState === XMLHttpRequest.DONE && req.status === 200) {
-        const response = JSON.parse(req.responseText)
-        const tempStore = db.transaction('currentLogStore', 'readwrite').objectStore('currentLogStore')
-        response.current_log = String(Date.now())
-        tempStore.put(response)
-      }
-    }
-    req.open('GET', synthetic ? this._MOCK_LOG : this._EMPTY_SCHEMA)
-    req.send()
   }
 
   /**
@@ -119,12 +123,14 @@ class IndexedDBWrapper {
      * what kind of transaction to undergo
      * @param {Function} upgradeCb Callback function that should be
      * invoked when the version number or specified database changes.
+     * @param {Boolean} synthetic Determines whether we use a mock
+     * response to populate our daily log. Solely for testing purposes.
      */
-  transaction (successCb = (event) => {}, upgradeCb = this.init) {
+  transaction (successCb = (event) => {}, upgradeCb = this.init, synthetic = true) {
     const request = window.indexedDB.open(this._dbName, this._version)
     request.onupgradeneeded = function (event) {
       upgradeCb.bind(this)
-      upgradeCb(event)
+      upgradeCb(event, synthetic ? '/source/models/schema.json' : '/source/models/schema_empty.json')
     }
 
     request.onsuccess = function (event) {
