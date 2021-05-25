@@ -16,12 +16,12 @@ class DateConverter extends Date {
   }
 
   /**
-     * Getter for the UNIX timestamp used for formatting
+     * Getter for the UNIX timestamp used for formatting in given timezone.
      * @returns {Number} Number containing the UNIX timestamp used for
      * formatting
      */
   get timestamp () {
-    return this._timestamp
+    return this._timestamp + (this.getTimezoneOffset() * 60 * 1000)
   }
 
   /**
@@ -41,7 +41,7 @@ class DateConverter extends Date {
      */
   getDaysFromTimeStamp (timestamp = this._timestamp) {
     // Number of days since January 1, 1970
-    const days = Math.floor(this._timestamp / (24 * 60 * 60 * 1000))
+    const days = Math.floor(timestamp / (24 * 60 * 60 * 1000))
     return days
   }
 
