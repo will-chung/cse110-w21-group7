@@ -73,7 +73,7 @@ class CollectionItem extends HTMLElement {
       /**
        * Create indexedDBWrapper
        * open a transaction and store to currentLogStore
-       * 
+       *
        * Update the corresponding collection to remove the collection with name given by this._entry.name (see below)
        * https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB#updating_an_entry_in_the_database
        */
