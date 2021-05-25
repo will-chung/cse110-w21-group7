@@ -20,21 +20,21 @@ The following is documenting the decisions we made about what package the databa
 
 ## Decision Outcome
 
-IndexDB for our implementation of our website would work best because of it’s ease of use
+IndexDB for our implementation of our website would work best because of it’s ease of use, in addition to the fact that it can be introduced during some of the labs for this course.
 
 ### Positive Consequences
 
-* Allows JS team to further implement feature of the website
+* Allows frontend team to further implement feature of the website
 * Implements critical feature of web app
 
 ### Negative Consequences
 
-* Learning curve could end up slowing down team in general
+* Spike task: we would have to dedicate some of the people in our group to learning indexedDB. This could take at least one sprint to get comfortable with, and consequently cause blocking issues for everyone else.
 
 ### Pros and Cons of using IndexDB
-* Good, because CS 110 staff can provide support using IndexDB
-* Good because IndexDB is recommended by staff
-* Good, because IndexDB will easier to learn than other options
-* Bad, because indexDB uses local storage, thus the user can’t access journal from other devices
-* Bad, because no one on Database team is comfortable with indexDB yet
+* Good, since indexedDB is introduced during some of the labs for this course, the CS110 staff can provide support for any indexedDB-related questions
+* Good because IndexDB is recommended by staff for those new to database programming
+* Good, because (due to the added support from the CSE110 staff) IndexDB will be easier to learn than other options. indexedDB also includes a great guide to [getting started](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB)
+* Bad, because indexedDB uses local storage, thus the user can’t access journal from other devices
+* Bad, because no one on Database team is comfortable with indexDB yet. This will introduct a spike task for a couple group members
 
