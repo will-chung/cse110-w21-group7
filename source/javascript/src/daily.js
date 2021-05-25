@@ -7,12 +7,22 @@ const quote = document.getElementById('reflection')
 const text = document.getElementById('input-area')
 const date = document.getElementById('date-input')
 const time = document.getElementById('time-input')
-const saveBtn = document.getElementById('save')
-const cancelBtn = document.getElementById('cancel')
+const saveBtn = document.getElementById('cb1')
+const realCanBtn = document.getElementById('cancel')
+const cancelBtn = document.getElementById('cb2')
 const refRadio = document.getElementById('input1')
 const eventRadio = document.getElementById('input2')
 const taskRadio = document.getElementById('input3')
 const radioContainer = document.getElementsByClassName('container')[0]
+const realSavBtn = document.getElementById('save');
+
+
+saveBtn.addEventListener("click", () =>{
+  realSavBtn.click();
+})
+cancelBtn.addEventListener("click", () =>{
+  realCanBtn.click();
+})
 
 /*
  * This onclick toggles the display style of the quote to none
@@ -272,3 +282,5 @@ const custZoom = document.getElementById("button1");
 custZoom.addEventListener("click", function(){
   zoom.click();
 })
+
+
