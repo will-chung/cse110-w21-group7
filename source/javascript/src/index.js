@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
       }
     })
   }
-}).call(this)
+})//.call(this)
 
 const shelves = document.getElementsByTagName('book-shelf');
 

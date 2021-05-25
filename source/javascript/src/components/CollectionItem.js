@@ -71,14 +71,65 @@ class CollectionItem extends HTMLElement {
                                     </div>`
     this.shadowRoot.querySelector('span[class="icon-trash trash-button-icon"]').addEventListener('click', (event) => {
       /**
-       * Create indexedDBWrapper
-       * open a transaction and store to currentLogStore
-       *
-       * Update the corresponding collection to remove the collection with name given by this._entry.name (see below)
-       * https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB#updating_an_entry_in_the_database
+       * onClick remove from page and from database 
        */
-      event.target.parentElement.remove()
-    })
+
+      // Get clicked collection-item
+      const collectionItem = event.target.getRootNode().host;
+      // Get name of clicked collection
+      const name = collectionItem.getCollectionName();
+
+      // Create indexedDBWrapper
+      const wrapper = new IndexedDBWrapper('experimentalDB', 1);
+
+      // Open a transaction and objectStore to 'currentLogStore'
+      wrapper.transaction((event) => {
+        const db = event.target.result;
+
+        const transaction = db.transaction(['currentLogStore'], 'readwrite');
+        const objectStore = transaction.objectStore('currentLogStore');
+        objectStore.openCursor().onsuccess = function (event) {
+          const cursor = event.target.result
+          if (cursor) {
+            /* Update collections array to remove collection with
+             * name given by this._entry.name (see below)
+             * https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor/update
+             */
+
+
+            // Get JSON 
+            const json = cursor.value;
+            
+            // Get collections array
+            const collectionsArray = json['properties']['collections']; 
+            // index of collection to remove
+            let index;
+
+            // Search for collection to remove
+            collectionsArray.forEach(collection => {
+              if (collection.name == name) {
+                index = collectionsArray.indexOf(collection);
+              }
+            });
+
+            // Remove collection
+            collectionsArray.splice(index, 1);
+
+            // Save changes
+            const requestUpdate = cursor.update(json);
+            requestUpdate.onerror = function(event) {
+              // Do something with the error
+            };
+            requestUpdate.onsuccess = function(event) {
+              // Success - the data is updated!
+              console.log('successfully removed "' + name + '"');
+            };
+          }
+        };
+      });
+
+      event.target.parentElement.remove();
+    });
   }
 
   /**
