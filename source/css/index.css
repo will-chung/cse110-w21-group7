@@ -72,7 +72,8 @@ height: 106px;
 
 #current{
     border-bottom-style:solid;
-    border-radius: 50px;
+    background:radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 100%);
+    border-radius: 30px;
     border-color:black;
 }
 
