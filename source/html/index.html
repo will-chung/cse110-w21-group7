@@ -7,42 +7,26 @@
     <title>Index</title>
     <link rel="stylesheet" href="../css/index.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap" rel="stylesheet">
     <script>
         // document.addEventListener('DOMContentLoaded', (event) => {
         //     document.querySelector('#rapid-log > a').href = "https://www.google.com"
         // })
     </script>
+    <script src="../javascript/src/index.js" type="module"></script>
 </head>
 <body>
     <div class="header">
-        <h1 id="bujo-header">User's Bullet Journal</h1>
+        <div id="title">
+            <h1 id="bujo-header">R.I.V.E.R BuJo</h1>
+        </div>
     </div>
 
     <div id = "content">
-        <div class="navbar">
-            <ul id="nav-menu">
-                <li>
-                    <button id="menu"><i class="fa fa-bars"></i><a href="#"> Menu</a></button>
-                </li>
-                <li>
-                    <button id="search"><i class="fa fa-search"></i><a href="#">Search</a></button>
-                </li>
-                <li>
-                    <button id="index"><i class="fa fa-home"></i><a href="#">Index</a></button>
-                </li>
-                <li>
-                    <button id="daily-log"><i class="fa fa-pencil"></i><a href="./daily.html">Daily Log</a></button>
-                </li>
-                <li>
-                    <button id="monthly"><i class="fa fa-calendar"></i><a href="./weekly.html">Monthly</a></button>
-                </li>
-                <li>
-                    <button id="nav-collection"><i class="fa fa-folder-open" wid></i><a href="./collection.html">Collection</a></button>
-                </li>
-            </ul>
-        </div>
-        <ul class = "shelf">
-            <li class="shelf-item">
+        <ul class="shelf">
+          <a class="shelf-tag">2021</a>
+            <!-- <li class="shelf-item">
                 <button>Jan</button> 
                 <button>Feb</button>
                 <button>Mar</button>
@@ -55,8 +39,13 @@
                 <button>Oct</button>
                 <button>Nov</button>
                 <button>Dec</button>
-            </li>
-            <li class="shelf-item">
+            </li> -->
+            <book-shelf></book-shelf>
+          </ul>
+          <ul class="shelf">
+            <a class="shelf-tag"> 2022 </a>
+            <!-- <li class="shelf-item">
+                
                 <button>Jan</button> 
                 <button>Feb</button>
                 <button>Mar</button>
@@ -69,8 +58,13 @@
                 <button>Oct</button>
                 <button>Nov</button>
                 <button>Dec</button>
-            </li>
-            <li class="shelf-item">
+            </li> -->
+            <book-shelf></book-shelf>
+          </ul>
+          <ul class="shelf">
+            <a class="shelf-tag">2023</a>
+            <!-- <li class="shelf-item">
+                
                 <button>Jan</button> 
                 <button>Feb</button>
                 <button>Mar</button>
@@ -83,11 +77,61 @@
                 <button>Oct</button>
                 <button>Nov</button>
                 <button>Dec</button>
-            </li>
+            </li> -->
+            <book-shelf></book-shelf>
         </ul>
     </div>
+    
+    <nav class="main-menu">
+        <ul>
+          <li>
+            <a href="./index.html" id="current" >
+              <i class="fa fa-home fa-2x"></i>
+              <span class="nav-text" >
+                Index
+              </span>
+            </a>
+    
+          </li>
+          <li class="has-subnav">
+            <a href="#" class="underline">
+              <i class="fa fa-search fa-2x"></i>
+              <span class="nav-text">
+                Search
+              </span>
+            </a>
+    
+          </li>
+          <li class="has-subnav">
+            <a href="./daily.html" class="underline">
+              <i class="fa fa-pencil fa-2x"></i>
+              <span class="nav-text">
+                Daily Log
+              </span>
+            </a>
+    
+          </li>
+          <li class="has-subnav">
+            <a href="./collection.html" class="underline">
+              <i class="fa fa-folder-open fa-2x"></i>
+              <span class="nav-text">
+                Collection
+              </span>
+            </a>
+    
+          </li>
+          <li class="has-subnav">
+            <a href="./weekly.html" class="underline">
+              <i class="fa fa-calendar fa-2x"></i>
+              <span class="nav-text">
+                Monthly
+              </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
     <footer>
-        <button id="collection">Collection</button>
         <details>
             <summary id="jump-to">Jump to...</summary>
             <ul>
@@ -97,7 +141,9 @@
         </details>
         <button id="rapid-log"><i class="fa fa-plus"></i><a href="daily.html">Add</a></button>
     </footer>
+
+    <script src="../javascript/src/components/shelf.js"></script>
+    <script src="../javascript/src/components/book.js"></script>
+    <script src="../javascript/src/index.js" type="module"></script>
 </body>
 </html>
-
-
