@@ -1,7 +1,7 @@
 /**
  * Data massaging layer to help with convering
  * UNIX timestamps to relevant formats.
- * @author Thanh Tong <ttong@ucsd.edu>, Noah Teshima <nteshima@ucsd.edu>
+ * @author Thanh Tong <ttong@ucsd.edu>, Noah Teshima <nteshima@ucsd.edu>, Zhiyuan Zhang <zhz018@ucsd.edu>
  */
 class DateConverter extends Date {
   /**
@@ -16,12 +16,12 @@ class DateConverter extends Date {
   }
 
   /**
-     * Getter for the UNIX timestamp used for formatting
+     * Getter for the UNIX timestamp used for formatting in given timezone.
      * @returns {Number} Number containing the UNIX timestamp used for
      * formatting
      */
   get timestamp () {
-    return this._timestamp
+    return this._timestamp + (this.getTimezoneOffset() * 60 * 1000)
   }
 
   /**
@@ -41,8 +41,33 @@ class DateConverter extends Date {
      */
   getDaysFromTimeStamp (timestamp = this._timestamp) {
     // Number of days since January 1, 1970
-    const days = Math.floor(this._timestamp / (24 * 60 * 60 * 1000))
+    const days = Math.floor(timestamp / (24 * 60 * 60 * 1000))
     return days
+  }
+
+  /**
+   * Determines whether the given UNIX timestamp meets the following criteria:
+   * 1. The day of the week corresponding to this timestamp is at or before
+   * the day of the week for the timestamp inside this DateConverter object
+   * 2. The date of the corresponding timestamp is within seven days of the
+   * timestamp inside this dateconverter object.
+   *
+   * @param {Number} timestamp UNIX timestamp for comparison
+   * @returns {Boolean} Whether the given UNIX timestamp is within the same week
+   * as the current date.
+   *
+   **/
+  timestampsInSameWeek (timestamp) {
+    // compare to this._timestamp
+    // get the days correspond to _timestamp
+    const that = this
+    const timestampDateConverter = new DateConverter(timestamp)
+    if (Math.abs(timestampDateConverter.getDaysFromTimeStamp(timestamp) - that.getDaysFromTimeStamp()) < 7) {
+      if (((that.getDay() - 1) % 7) - ((timestampDateConverter.getDay() - 1) % 7) >= 0) {
+        return true
+      }
+    }
+    return false
   }
 
   /**

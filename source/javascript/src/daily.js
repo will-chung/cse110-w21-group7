@@ -23,6 +23,10 @@ const radioContainer = document.getElementsByClassName('container')[0]
  */
 document.addEventListener('DOMContentLoaded', () => {
   saveBtn.style.visibility = 'hidden'
+  saveBtn.addEventListener('click', (event) => {
+    event.preventDefault()
+    newElement()
+  })
   cancelBtn.style.visibility = 'hidden'
   text.type = 'hidden'
   date.type = 'hidden'
@@ -106,40 +110,48 @@ collapse.addEventListener('click', () => {
 })
 
 /**
- * Adds tasks, notes, and events to the daily log. If the entr is evmpty,
+ * Adds tasks, notes, and events to the daily log. If the entry is evmpty,
  * then the bullet journal alerts the user that they must write something
  * for that task/note/event.
  *
  */
 function newElement () {
-  const span = document.createElement('select')
-  span.className = 'dropdown'
-  const txt = document.createElement('option')
-  const close = document.createElement('option')
-  const complete = document.createElement('option')
-  close.text = 'delete'
-  close.value = 'close'
-  close.className = 'close'
-  complete.text = 'complete'
-  complete.value = 'complete'
-  complete.className = 'complete'
-  txt.text = 'options'
-  txt.value = 'value'
-  span.appendChild(txt)
-  span.appendChild(close)
-  span.appendChild(complete)
-  const li = document.createElement('li')
-  const inputValue = document.getElementById('myInput').value
-  const t = document.createTextNode(inputValue)
-  li.appendChild(span)
-  li.appendChild(t)
-  if (inputValue === '') {
+  const inputValue = document.getElementById('input-area').value
+  if (inputValue.length === 0) {
     alert('You must write something!')
-  } else {
-    // span.appendChild(li);
-    document.getElementById('myUL').appendChild(li)
+    return
   }
-  document.getElementById('myInput').value = ''
+  const li = document.createElement('li')
+  const logItem = document.createElement('log-item')
+  const itemEntry = {}
+  if (taskRadio.checked) {
+    itemEntry.logType = 'task'
+    itemEntry.finished = false
+  } else if (noteRadio.checked) {
+    itemEntry.logType = 'note'
+  } else if (eventRadio.checked) {
+    itemEntry.logType = 'event'
+    // parse the number of hours
+    const hours = Number(time.value.substring(0, 2))
+    // parse the number of minutes
+    const minutes = Number(time.value.substring(3))
+    // update UNIX timestamp with hours and minutes
+    const timestamp = Date.parse(date.value) +
+                (hours * 60 * 60 * 1000) +
+                (minutes * 60 * 1000)
+    const dateConverter = new DateConverter(timestamp)
+
+    // @TODO
+    itemEntry.time = dateConverter.timestamp
+  } else {
+    itemEntry.logType = 'reflection'
+  }
+  itemEntry.description = inputValue
+
+  logItem.itemEntry = itemEntry
+  li.appendChild(logItem)
+  document.getElementById('myUL').appendChild(li)
+  document.getElementById('input-area').value = ''
 }
 
 /**
@@ -155,10 +167,6 @@ function newElement () {
  * initialize the daily log.
  */
 function getLogInfoAsJSON (cb) {
-  // if (!(date instanceof Number) || (date === null)) {
-  //   throw Error('date reference must be an instance of Number.')
-  // }
-
   const wrapper = new IndexedDBWrapper('experimentalDB', 1)
 
   wrapper.transaction((event) => {
@@ -173,7 +181,6 @@ function getLogInfoAsJSON (cb) {
         cursor.value.$defs['daily-logs'].forEach((log, index) => {
           if (dateConverter.equals(Number(log.properties.date.time))) {
             cb.bind(this)
-            console.log(cursor.value)
             cb(cursor.value.$defs['daily-logs'][index])
           }
         })
@@ -249,8 +256,6 @@ function populateDailyLog (response) {
   (see https://github.com/cse110-w21-group7/cse110-SP21-group7/issues/161
     and https://github.com/cse110-w21-group7/cse110-SP21-group7/issues/162)
   */
-  // const response = JSON.parse(this.responseText)
-  // const log = response.$defs['daily-logs'][0]
   setDate(response)
   setEntries(response)
   setReflection(response)

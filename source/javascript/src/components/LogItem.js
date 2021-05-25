@@ -1,3 +1,9 @@
+/**
+ * Component class used in order to add individual
+ * tasks, notes, and events to the daily logging page
+ * and monthly/weekly view
+ * @author Noah Teshima <nteshima@ucsd.edu>
+ */
 class LogItem extends HTMLElement {
   /**
      * Constructor containing the business logic for
@@ -37,6 +43,9 @@ class LogItem extends HTMLElement {
                                     }
                                     .event-icon {
                                         background: url(../images/log-item_icons/event-solid.svg) no-repeat center center;
+                                    }
+                                    .reflection-icon {
+                                        background: url(../images/log-item_icons/reflection-solid.svg) no-repeat center center;
                                     }
                                     button {
                                         background-color: rgba(0,0,0,0);
@@ -119,6 +128,8 @@ class LogItem extends HTMLElement {
         return 'note-icon'
       case 'event':
         return 'event-icon'
+      case 'reflection':
+        return 'reflection-icon'
       default:
         return ''
     }
