@@ -23,7 +23,6 @@ addBtn.addEventListener('click', () => {
 // }
 
 /**
- * Performs an AJAX call for JSON type response containing
  * the daily log information corresponding to the given date.
  * If there is no daily log information for the given date,
  * a new daily log is created if the date is the present day.
@@ -34,21 +33,21 @@ addBtn.addEventListener('click', () => {
  * @returns JSON type response, containing the information needed to
  * initialize the daily log.
  */
- function getLogInfoAsJSON (cb) {
+function getLogInfoAsJSON (cb) {
   const wrapper = new IndexedDBWrapper('experimentalDB', 1)
 
   wrapper.transaction((event) => {
     const db = event.target.result
 
-    const store = db.transaction(['currentLogStore'], 'readonly')
-                    .objectStore('currentLogStore')
+    const transaction = db.transaction(['currentLogStore'], 'readonly')
+    const store = transaction.objectStore('currentLogStore')
     store.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
-      console.log(cursor.value)
       if (cursor) {
         // JSON as per the schema.json file
-        cb(cursor.value)
-        cursor.continue()
+        console.log(cursor.value.properties.collections)
+        // cb(cursor.value)
+        // cursor.continue()
       }
     }
   })
