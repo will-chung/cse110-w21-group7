@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
           // object storage (i.e. new user who clicked on 'Add+')
           const tempObjectStore = db.transaction(['currentLogStore'], 'readwrite')
             .objectStore('currentLogStore')
-          wrapper.addNewLog(event, true)
+          wrapper.addNewLog(event, true) // @TODO
           console.log('Made new entry!')
         }
         // Unsuspend navigation

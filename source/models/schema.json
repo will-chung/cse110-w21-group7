@@ -77,7 +77,13 @@
               {
                 "description": "I should send a card for Jordan's birthday.",
                 "logType": "note"
-              }
+            }
+          ],
+          "reflection": [
+            {
+              "description": "Today was a good day. I got a lot of work done.",
+              "logType": "reflection"
+            }
           ],
             "mood": {
               "type": "number",
@@ -91,3 +97,5 @@
       }]
     }
   }
+
+
