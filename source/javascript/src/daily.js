@@ -264,3 +264,11 @@ function sendLogInfoAsJSON () {
 document.addEventListener('DOMContentLoaded', (event) => {
   getLogInfoAsJSON(populateDailyLog)
 })
+
+
+const zoom = document.getElementById("pretty");
+const custZoom = document.getElementById("button1");
+
+custZoom.addEventListener("click", function(){
+  zoom.click();
+})

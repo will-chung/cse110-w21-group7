@@ -49,3 +49,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     })
   }
 })
+
+
+const realAdd = document.getElementById("rapid-log");
+const custADD = document.getElementById("cb");
+document.addEventListener("click", function(){
+  realAdd.click();
+});
