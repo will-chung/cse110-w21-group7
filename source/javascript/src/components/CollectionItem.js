@@ -1,3 +1,9 @@
+import { IndexedDBWrapper } from '../indexedDB/IndexedDBWrapper.js'
+
+/**
+ * Component class for individual collections on 'collections.html'
+ * @author Noah Teshima <nteshima@ucsd.edu>
+ */
 class CollectionItem extends HTMLElement {
   /**
        * Constructor containing the business logic for
@@ -64,6 +70,13 @@ class CollectionItem extends HTMLElement {
                                         <h1><a href="/source/html/collection-edit.html">${this.getCollectionName()}</a></h1>
                                     </div>`
     this.shadowRoot.querySelector('span[class="icon-trash trash-button-icon"]').addEventListener('click', (event) => {
+      /**
+       * Create indexedDBWrapper
+       * open a transaction and store to currentLogStore
+       * 
+       * Update the corresponding collection to remove the collection with name given by this._entry.name (see below)
+       * https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB#updating_an_entry_in_the_database
+       */
       event.target.parentElement.remove()
     })
   }
