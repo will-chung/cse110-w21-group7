@@ -117,30 +117,45 @@ collapse.addEventListener('click', () => {
  */
 function newElement () {
   const inputValue = document.getElementById('input-area').value
-  if (inputValue === '') {
+  if (inputValue.length === 0) {
     alert('You must write something!')
-  } else {
-    const li = document.createElement('li')
-    const logItem = document.createElement('log-item')
-    const itemEntry = {}
-    if (taskRadio.checked) {
-      itemEntry.logType = 'task'
-      itemEntry.finished = false
-    } else if (noteRadio.checked) {
-      itemEntry.logType = 'note'
-    } else if (eventRadio.checked) {
-      itemEntry.logtype = 'event'
-      itemEntry.time = time
-    } else {
-      itemEntry.logtype = 'reflection'
-    }
-    itemEntry.description = inputValue
-
-    logItem.itemEntry = itemEntry
-    li.appendChild(logItem)
-    document.getElementById('myUL').appendChild(li)
-    document.getElementById('input-area').value = ''
+    return
   }
+  const li = document.createElement('li')
+  const logItem = document.createElement('log-item')
+  const itemEntry = {}
+  if (taskRadio.checked) {
+    itemEntry.logType = 'task'
+    itemEntry.finished = false
+  } else if (noteRadio.checked) {
+    itemEntry.logType = 'note'
+  } else if (eventRadio.checked) {
+    itemEntry.logType = 'event'
+    // parse the UNIX timestamp for the date
+    // let timestamp = Date.parse(date.value)
+    const years = Number(date.value.substring(0, 4))
+    const months = Number(date.value.substring(5, 7))
+    const days = Number(date.value.substring(8))
+    // parse the number of hours
+    const hours = Number(time.value.substring(0, 2))
+    // parse the number of minutes
+    const minutes = Number(time.value.substring(3))
+    // update UNIX timestamp with hours and minutes
+    // timestamp = (60 * 1000 * minutes)
+    //           + (60 * 60 * 1000 * hours)
+    //           + (24 * 60 * 60 * 1000 * days)
+    //           + (12 *)
+    // @TODO
+    itemEntry.time = (60 * 1000 * minutes) + (60 * 60 * 1000 * hours)
+  } else {
+    itemEntry.logType = 'reflection'
+  }
+  itemEntry.description = inputValue
+
+  logItem.itemEntry = itemEntry
+  li.appendChild(logItem)
+  document.getElementById('myUL').appendChild(li)
+  document.getElementById('input-area').value = ''
 }
 
 /**
