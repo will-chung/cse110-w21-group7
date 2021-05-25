@@ -1,4 +1,5 @@
 import { CollectionItem } from './components/CollectionItem.js'
+import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 
 const addBtn = document.getElementById('add')
 
@@ -6,19 +7,51 @@ addBtn.addEventListener('click', () => {
   location.pathname = '/source/html/collection-edit.html'
 })
 
-function getLogInfoAsJSON (cb) {
-  // TODO replace this with indexedDB transaction
-  const request = new XMLHttpRequest()
-  request.onreadystatechange = (event) => {
-    cb.bind(this)
-    if (request.status === 200 && request.readyState === XMLHttpRequest.DONE) {
-      const response = event.target.response
-      cb(response)
-    }
-  }
+// function getLogInfoAsJSON (cb) {
+//   // TODO replace this with indexedDB transaction
+//   const request = new XMLHttpRequest()
+//   request.onreadystatechange = (event) => {
+//     cb.bind(this)
+//     if (request.status === 200 && request.readyState === XMLHttpRequest.DONE) {
+//       const response = event.target.response
+//       cb(response)
+//     }
+//   }
 
-  request.open('GET', '/source/models/schema.json')
-  request.send()
+//   request.open('GET', '/source/models/schema.json')
+//   request.send()
+// }
+
+/**
+ * Performs an AJAX call for JSON type response containing
+ * the daily log information corresponding to the given date.
+ * If there is no daily log information for the given date,
+ * a new daily log is created if the date is the present day.
+ * @author Noah Teshima <nteshima@ucsd.edu>
+ * @throws Error object if date reference is null, undefined. Otherwise,
+ * an error is thrown if the given date is not the present day and failed
+ * to retrieve log info for given day.
+ * @returns JSON type response, containing the information needed to
+ * initialize the daily log.
+ */
+ function getLogInfoAsJSON (cb) {
+  const wrapper = new IndexedDBWrapper('experimentalDB', 1)
+
+  wrapper.transaction((event) => {
+    const db = event.target.result
+
+    const store = db.transaction(['currentLogStore'], 'readonly')
+                    .objectStore('currentLogStore')
+    store.openCursor().onsuccess = function (event) {
+      const cursor = event.target.result
+      console.log(cursor.value)
+      if (cursor) {
+        // JSON as per the schema.json file
+        cb(cursor.value)
+        cursor.continue()
+      }
+    }
+  })
 }
 
 /* Business logic */
@@ -52,9 +85,7 @@ function populateCollections (response) {
  * containing the collection data surfaced from our backend
  */
 function populatePage (response) {
-  const responseJson = JSON.parse(response)
-
-  populateCollections(responseJson)
+  populateCollections(response)
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
