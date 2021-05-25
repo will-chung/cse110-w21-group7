@@ -6,7 +6,7 @@ import { DateConverter } from './utils/DateConverter.js'
  * the daily log information corresponding to the given date.
  * If there is no daily log information for the given date,
  * a new daily log is created if the date is the present day.
- * @author Noah Teshima <nteshima@ucsd.edu>
+ * @author Noah Teshima <nteshima@ucsd.edu>, Zhiyuan Zhang <zhz018@ucsd.edu>
  * @throws Error object if date reference is null, undefined. Otherwise,
  * an error is thrown if the given date is not the present day and failed
  * to retrieve log info for given day.
