@@ -138,17 +138,26 @@ function newElement () {
     alert('You must write something!')
   } else {
     const li = document.createElement('li')
-    const t = document.createTextNode(inputValue)
-    li.appendChild(t)
-    document.getElementById('myUL').appendChild(li)
+    const logItem = document.createElement('log-item')
     const itemEntry = {}
-    // if (taskRadio.checked) {
-    //   itemEntry.logType = 'task'
-    // } else if (noteRad) {
+    if(taskRadio.checked) {
+      itemEntry.logType = 'task'
+      itemEntry.finished = false
+    } else if(noteRadio.checked) {
+      itemEntry.logType = 'note'
+    } else if(eventRadio.checked) {
+      itemEntry.logtype = 'event'
+      itemEntry.time = time
+    } else {
+      itemEntry.logtype = 'reflection'
+    }
+    itemEntry.description = inputValue
 
-    // }
+    logItem.itemEntry = itemEntry
+    li.appendChild(logItem)
+    document.getElementById('myUL').appendChild(li)
+    document.getElementById('input-area').value = ''
   }
-  document.getElementById('myInput').value = ''
 }
 
 /**
