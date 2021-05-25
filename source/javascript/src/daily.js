@@ -131,22 +131,18 @@ function newElement () {
     itemEntry.logType = 'note'
   } else if (eventRadio.checked) {
     itemEntry.logType = 'event'
-    // parse the UNIX timestamp for the date
-    // let timestamp = Date.parse(date.value)
-    const years = Number(date.value.substring(0, 4))
-    const months = Number(date.value.substring(5, 7))
-    const days = Number(date.value.substring(8))
     // parse the number of hours
     const hours = Number(time.value.substring(0, 2))
     // parse the number of minutes
     const minutes = Number(time.value.substring(3))
     // update UNIX timestamp with hours and minutes
-    // timestamp = (60 * 1000 * minutes)
-    //           + (60 * 60 * 1000 * hours)
-    //           + (24 * 60 * 60 * 1000 * days)
-    //           + (12 *)
+    const timestamp = Date.parse(date.value) +
+                (hours * 60 * 60 * 1000) +
+                (minutes * 60 * 1000)
+    const dateConverter = new DateConverter(timestamp)
+
     // @TODO
-    itemEntry.time = (60 * 1000 * minutes) + (60 * 60 * 1000 * hours)
+    itemEntry.time = dateConverter.timestamp
   } else {
     itemEntry.logType = 'reflection'
   }
@@ -185,7 +181,6 @@ function getLogInfoAsJSON (cb) {
         cursor.value.$defs['daily-logs'].forEach((log, index) => {
           if (dateConverter.equals(Number(log.properties.date.time))) {
             cb.bind(this)
-            console.log(cursor.value)
             cb(cursor.value.$defs['daily-logs'][index])
           }
         })
