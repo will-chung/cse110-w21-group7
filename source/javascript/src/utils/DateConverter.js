@@ -1,7 +1,7 @@
 /**
  * Data massaging layer to help with convering
  * UNIX timestamps to relevant formats.
- * @author Thanh Tong <ttong@ucsd.edu>, Noah Teshima <nteshima@ucsd.edu>
+ * @author Thanh Tong <ttong@ucsd.edu>, Noah Teshima <nteshima@ucsd.edu>, Zhiyuan Zhang <zhz018@ucsd.edu>
  */
 class DateConverter extends Date {
   /**
