@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   }
 })// .call(this)
 
-const shelves = document.getElementsByTagName('book-shelf');
+const shelves = document.getElementsByTagName('book-shelf')
 
 for (let i = 0; i < shelves.length; i++) {
   const shelf = shelves[i]

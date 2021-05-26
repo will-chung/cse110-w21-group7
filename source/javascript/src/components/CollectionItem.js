@@ -109,7 +109,7 @@ class CollectionItem extends HTMLElement {
               if (collection.name === name) {
                 index = collectionsArray.indexOf(collection)
               }
-            });
+            })
 
             // Remove collection
             collectionsArray.splice(index, 1)
@@ -118,17 +118,17 @@ class CollectionItem extends HTMLElement {
             const requestUpdate = cursor.update(json)
             requestUpdate.onerror = function (event) {
               // Do something with the error
-            };
+            }
             requestUpdate.onsuccess = function (event) {
               // Success - the data is updated!
               console.log('successfully removed "' + name + '"')
-            };
+            }
           }
-        };
-      });
+        }
+      })
 
       event.target.parentElement.remove()
-    });
+    })
   }
 
   /**

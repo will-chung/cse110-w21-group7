@@ -1,9 +1,8 @@
 # Navigation Bar
 
-* Status: proposed
+* Status: accepted
 * Deciders: entire team
 * Date: 2021-05-01
-* Technical Story: TODO
 
 ## Context and Problem Statement
 
@@ -13,24 +12,22 @@ How should the user navigate the bullet journal?
 ## Considered Options
 
 * Navigation Bar
+  * Provides quick access to qualitative pages (index, search, daily log, collections, weekly view)
 * Index Page
+  * Provides quick access to specific months in the most recent 3 years
 
 ## Decision Outcome
 Chosen option: both "Navigation Bar" and "Index Page", because 
 
-* Index Page is core component of a bullet journal and must be included
+* Index Page is a core component of a bullet journal
 * Navigation Bar provides easiest access to navigational tools beyond Index Page
-* Navigation from either is essentially the same
-  * Only difference being the Navigation Bar is constantly accessible whereas the Index Page has to be navigated to first
 
 ## Pros and Cons of the Options 
 
 ### Navigation Bar
 * Good, because always accessible
-* Good, because centralizes navigation
-* Bad, because creates redundancy in navigation (could also be a good thing)
+* Good, because centralizes navigation and allows quick access to different functionalities
 
 ### Index
-* Good, because realizes a core component of the bullet journal
-* Good, because familiar to users
-* Bad, because users have to navigate to Index Page before navigating elsewhere
+* Good, because enables users to reflect on a specific time
+* Bad, because users have to navigate to Index Page before navigating to non-current date

@@ -1,9 +1,8 @@
 # Reflection Section
 
-* Status: proposed
+* Status: accepted
 * Deciders: entire team
 * Date: 2021-05-01
-* Technical Story: TODO
 
 ## Context and Problem Statement
 
@@ -20,13 +19,13 @@ Chosen option: both "Mood Tracker" and "Reflection Questions", because
 
 * Both are important in getting the user to reflect on their experiences
 * Both can be combined into one "Reflection Section" 
-* Mood Tracker can provide visual indication of reflection (color-coding according to mood)
-* Reflection Questions can inspire user to record thoughts
+* Mood Tracker can provide visual indication of reflection
+* Reflection Questions can help users start putting their day into words
 
 ## Pros and Cons of the Options 
 
 ### Mood Tracker
-* Good, because simple way to reflect
+* Good, because simple, fast way to reflect
 * Good, because effective to get the user thinking introspectively
 * Bad, because not detailed enough for more thoughtful reflection
 
