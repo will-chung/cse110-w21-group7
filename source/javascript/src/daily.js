@@ -175,7 +175,7 @@ function getLogInfoAsJSON (cb) {
       const cursor = event.target.result
       if (cursor) {
         const dateConverter = new DateConverter(Number(cursor.value.current_log))
-        console.log(cursor.value);
+        console.log(cursor.value)
         cursor.value.$defs['daily-logs'].forEach((log, index) => {
           if (dateConverter.equals(Number(log.properties.date.time))) {
             cb.bind(this)

@@ -1,5 +1,5 @@
 import { IndexedDBWrapper } from '../indexedDB/IndexedDBWrapper.js'
-import { DateConverter as DateConverter } from '../utils/DateConverter.js'
+import { DateConverter } from '../utils/DateConverter.js'
 
 /**
  * Component class for individual columns for daily log information on 'weekly.html'
@@ -52,36 +52,36 @@ class WeeklyViewItem extends HTMLElement {
                                         <ul id="weekday-entries">
                                         </ul>
                                     </div>`
-    
-    let ul = this.shadowRoot.getElementById('weekday-entries')
-    let tasks = this._entry.properties.tasks
-    let notes = this._entry.properties.notes
-    let events = this._entry.properties.events
-    let reflection = this._entry.properties.reflection
-    
+
+    const ul = this.shadowRoot.getElementById('weekday-entries')
+    const tasks = this._entry.properties.tasks
+    const notes = this._entry.properties.notes
+    const events = this._entry.properties.events
+    const reflection = this._entry.properties.reflection
+
     tasks.forEach((task, index) => {
-        let taskItem = this.getEntryToWeeklyView(task)
-        let li = document.createElement('li')
-        li.appendChild(taskItem)
-        ul.appendChild(li)
+      const taskItem = this.getEntryToWeeklyView(task)
+      const li = document.createElement('li')
+      li.appendChild(taskItem)
+      ul.appendChild(li)
     })
     notes.forEach((notes, index) => {
-        let noteItem = this.getEntryToWeeklyView(notes)
-        let li = document.createElement('li')
-        li.appendChild(noteItem)
-        ul.appendChild(li)
+      const noteItem = this.getEntryToWeeklyView(notes)
+      const li = document.createElement('li')
+      li.appendChild(noteItem)
+      ul.appendChild(li)
     })
     events.forEach((event, index) => {
-        let eventItem = this.getEntryToWeeklyView(event)
-        let li = document.createElement('li')
-        li.appendChild(eventItem)
-        ul.appendChild(li)
+      const eventItem = this.getEntryToWeeklyView(event)
+      const li = document.createElement('li')
+      li.appendChild(eventItem)
+      ul.appendChild(li)
     })
     reflection.forEach((reflection, index) => {
-        let reflectionItem = this.getEntryToWeeklyView(reflection)
-        let li = document.createElement('li')
-        li.appendChild(reflectionItem)
-        ul.appendChild(li)
+      const reflectionItem = this.getEntryToWeeklyView(reflection)
+      const li = document.createElement('li')
+      li.appendChild(reflectionItem)
+      ul.appendChild(li)
     })
   }
 
@@ -89,12 +89,12 @@ class WeeklyViewItem extends HTMLElement {
    * Getter for getting the date correpsonding to the given
    * weekly view item
    * @returns {String} The date corresponding to the weekly view
-   * item being displayed, corresponding to 
+   * item being displayed, corresponding to
    */
-  getDate() {
-      let timestamp = this._entry.date.time
-      let dateConverter = new DateConverter(timestamp)
-      return dateConverter.toLocaleDateString()
+  getDate () {
+    const timestamp = this._entry.date.time
+    const dateConverter = new DateConverter(timestamp)
+    return dateConverter.toLocaleDateString()
   }
 
   /**
@@ -104,8 +104,8 @@ class WeeklyViewItem extends HTMLElement {
    * @returns {LogItem} LogItem object containing the representation of
    * the given entry as a log item in the weekly view.
    */
-  getEntryToWeeklyView(entry) {
-    let logItem = document.createElement('log-item')
+  getEntryToWeeklyView (entry) {
+    const logItem = document.createElement('log-item')
     entry.editable = false
     logItem.entry = entry
     return logItem

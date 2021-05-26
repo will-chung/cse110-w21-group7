@@ -63,13 +63,13 @@ class LogItem extends HTMLElement {
                                         </button>
                                     </span>`
 
-    let editable = this._itemEntry.editable
-    if(!editable) {
-      this.shadowRoot.querySelector('span[class="icon trash-button-icon"]').style.visibility = "hidden"
+    const editable = this._itemEntry.editable
+    if (!editable) {
+      this.shadowRoot.querySelector('span[class="icon trash-button-icon"]').style.visibility = 'hidden'
       // console.log("not editable")
     } else {
       // console.log("editable")
-        // When dealing with log of type task, we must update the task status when it is clicked.
+      // When dealing with log of type task, we must update the task status when it is clicked.
       if (this._itemEntry.logType === 'task') {
         this.shadowRoot.querySelector('i').addEventListener('click', (event) => {
           this._itemEntry.finished = !this._itemEntry.finished
