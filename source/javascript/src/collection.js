@@ -44,7 +44,7 @@ function getLogInfoAsJSON (cb) {
     store.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
       if (cursor) {
-        return cb(cursor.value);
+        return cb(cursor.value)
       }
     }
   })

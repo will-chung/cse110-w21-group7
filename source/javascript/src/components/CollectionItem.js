@@ -71,23 +71,23 @@ class CollectionItem extends HTMLElement {
                                     </div>`
     this.shadowRoot.querySelector('span[class="icon-trash trash-button-icon"]').addEventListener('click', (event) => {
       /**
-       * onClick remove from page and from database 
+       * onClick remove from page and from database
        */
 
       // Get clicked collection-item
-      const collectionItem = event.target.getRootNode().host;
+      const collectionItem = event.target.getRootNode().host
       // Get name of clicked collection
-      const name = collectionItem.getCollectionName();
+      const name = collectionItem.getCollectionName()
 
       // Create indexedDBWrapper
-      const wrapper = new IndexedDBWrapper('experimentalDB', 1);
+      const wrapper = new IndexedDBWrapper('experimentalDB', 1)
 
       // Open a transaction and objectStore to 'currentLogStore'
       wrapper.transaction((event) => {
-        const db = event.target.result;
+        const db = event.target.result
 
-        const transaction = db.transaction(['currentLogStore'], 'readwrite');
-        const objectStore = transaction.objectStore('currentLogStore');
+        const transaction = db.transaction(['currentLogStore'], 'readwrite')
+        const objectStore = transaction.objectStore('currentLogStore')
         objectStore.openCursor().onsuccess = function (event) {
           const cursor = event.target.result
           if (cursor) {
@@ -96,39 +96,38 @@ class CollectionItem extends HTMLElement {
              * https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor/update
              */
 
+            // Get JSON
+            const json = cursor.value
 
-            // Get JSON 
-            const json = cursor.value;
-            
             // Get collections array
-            const collectionsArray = json['properties']['collections']; 
+            const collectionsArray = json.properties.collections
             // index of collection to remove
-            let index;
+            let index
 
             // Search for collection to remove
             collectionsArray.forEach(collection => {
-              if (collection.name == name) {
-                index = collectionsArray.indexOf(collection);
+              if (collection.name === name) {
+                index = collectionsArray.indexOf(collection)
               }
             });
 
             // Remove collection
-            collectionsArray.splice(index, 1);
+            collectionsArray.splice(index, 1)
 
             // Save changes
-            const requestUpdate = cursor.update(json);
-            requestUpdate.onerror = function(event) {
+            const requestUpdate = cursor.update(json)
+            requestUpdate.onerror = function (event) {
               // Do something with the error
             };
-            requestUpdate.onsuccess = function(event) {
+            requestUpdate.onsuccess = function (event) {
               // Success - the data is updated!
-              console.log('successfully removed "' + name + '"');
+              console.log('successfully removed "' + name + '"')
             };
           }
         };
       });
 
-      event.target.parentElement.remove();
+      event.target.parentElement.remove()
     });
   }
 
