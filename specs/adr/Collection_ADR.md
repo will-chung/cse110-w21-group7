@@ -1,13 +1,14 @@
 # Collections Format
 
-* Status: proposed 
+* Status: accepted 
 * Deciders: Alvin Wang, Zhiyuan Zhang, Yuzi Lyu
 * Date: 2021-05-04
 
 
 ## Context and Problem Statement
 
-The following is documenting the decisions we made about how the collections page will be designed and the reasons behind it
+The following is documenting the decisions we made about how the collections page will be designed and the reasons behind it.  
+* Collections are places to track various activities (i.e. exercise, water, etc.) 
 
 ## Decision Drivers
 
@@ -15,21 +16,21 @@ The following is documenting the decisions we made about how the collections pag
 
 ## Considered Options
 
-* See options on Miro
+* Various options in the [Miro Fat-Marker Sketches](https://miro.com/app/board/o9J_lLcA_EQ=/)
 * Post-It Notes
 
 ## Decision Outcome
 
-Grid of Post-It Notes, each containing a collection (Noah’s idea ? )
+Grid of Post-It Notes, each linking to a different collection
 
 ### Positive Consequences
 
 * Organized and structured collection interface
+* The collection selector is not cluttered
 
 ### Negative Consequences
 
-* Each Post-It Note could be too general since we are only offering a text box and picture/video upload
-* The add collection button on the bottom right corner could be misclicked
+* No preview of each collection before entering it
 
 ### Collections Home Page
 

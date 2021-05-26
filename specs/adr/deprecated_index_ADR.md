@@ -1,6 +1,6 @@
 # Indexing Format
 
-* Status: proposed 
+* Status: deprecated by updated_index_ADR.md 
 * Deciders: Thanh Tong, Brett Herbst
 * Date: 2021-04-30 
 
@@ -15,7 +15,7 @@ The following is documenting the decisions we made about how the indexing page w
 
 ## Considered Options
 
-* See options on Miro
+* See options on [Miro Fat-Marker Sketches](https://miro.com/app/board/o9J_lLcA_EQ=/)
 * Bookshelf
 * Calendar view
 * Indexing by year (past, present, future)
