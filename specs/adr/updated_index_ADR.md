@@ -1,7 +1,7 @@
 # Indexing Format
 
-* Status: deprecated by updated_index_ADR.md 
-* Deciders: Thanh Tong, Brett Herbst
+* Status: accepted
+* Deciders: whole team (originated by Yuzi Lyu)
 * Date: 2021-04-30 
 
 
@@ -11,26 +11,28 @@ The following is documenting the decisions we made about how the indexing page w
 
 ## Decision Drivers
 
-* Implementing a clean interface for index
+* Implementing a clean interface for index that is aesthetically pleasing and easy to understand
 
 ## Considered Options
 
 * See options on [Miro Fat-Marker Sketches](https://miro.com/app/board/o9J_lLcA_EQ=/)
-* Bookshelf
+* Bookshelf (continuous over many years with scrolling)
 * Calendar view
-* Indexing by year (past, present, future)
+* Indexing by year (past, present, *future*)
+* Square per month, Row per year, and display most recent 3 years
 
 ## Decision Outcome
 
-Thanh’s fat market sketch
+Square per month, Row per year, and display most recent 3 years
 
 ### Positive Consequences
 
 * Clean/simple index interface
+* Month labels aren't sideways
 
 ### Negative Consequences
 
-* No qualitative indexing on the direct home screen (on the navbar instead)
+* No qualitative indexing directly on the home screen (but it is on the side in the NavBar)
 
 ### 1. NavBar
 
@@ -73,6 +75,8 @@ See point 5 in index png. Allows users to quickly access their custom collection
 
 
 ## Automatic Migration  
-When a user creates a log for a new month, will automaticaly create new book for that month  
+When a user creates a log for an empty month, the square for that month is automatically colored  
 * good, because allows user to access logs for this new month
-
+* good, because the user is able to access previous dates for after the fact logging if needed
+* bad, because the user can add logs to previous dates they might not be accurate (accuracy falls on the user)
+* bad, the page is always full with every month so it may look cluttered
