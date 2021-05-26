@@ -3,7 +3,6 @@
 * Status: proposed
 * Deciders: entire team
 * Date: 2021-05-01
-* Technical Story: TODO
 
 ## Context and Problem Statement
 
@@ -13,15 +12,15 @@ How can the bullet journal make entries easier to read?
 ## Considered Options
 
 * Color-coding (color bullet types)
+* Denoting type by icon
 * Sorting (sort bullet types into separate sections)
 
 ## Decision Outcome
-Chosen option: both "Color-coding" and "Sorting", because
+Chosen option: both "Denoting type by icon" and "Sorting", because
 
-* Color-coding and sorting can be combined into one feature
 * Sorting divides content into sections for easier reading
-* Color-coding associates bullet types with chosen colors
-  * Over time makes reading bullets easier for users
+* Using icons associates bullet types with meaningful images
+  * Makes reading bullets easier for users
 
 ## Pros and Cons of the Options 
 
@@ -29,8 +28,14 @@ Chosen option: both "Color-coding" and "Sorting", because
 * Good, because color association is effective
 * Good, because adds an attractive design element to the bullet journal
 * Bad, because could become chaotic/cluttered
+* Bad, user would have to reference a key in order to understand meaning
+
+### Denoting Type by Icon
+* Good, because icons have meaning that can be easily inferred
+* Good, strongly differentiates different bullets in the daily log list
+* Bad, too many different icons can me the page look cluttered
 
 ### Sorting
 * Good, because user can choose how to display their content (sorting can be toggled)
 * Good, because allows for easier reading of content (sorting is an advantage of a digital bullet journal)
-* Bad, because ...
+* Bad, because the user has to toggle the view of the screen in order to get this view

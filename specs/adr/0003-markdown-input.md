@@ -1,6 +1,6 @@
 # Markdown-Style Input
 
-* Status: proposed
+* Status: deprecated
 * Deciders: entire team
 * Date: 2021-05-01
 * Technical Story: TODO
