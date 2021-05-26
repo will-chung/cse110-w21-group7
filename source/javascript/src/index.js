@@ -48,17 +48,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
       }
     })
   }
-})//.call(this)
+})// .call(this)
 
 const shelves = document.getElementsByTagName('book-shelf');
 
 for (let i = 0; i < shelves.length; i++) {
-  const shelf = shelves[i];
-  shelf.label = 2021 + i;
-  const books = shelf.booksArray;
+  const shelf = shelves[i]
+  shelf.label = 2021 + i
+  const books = shelf.booksArray
   for (let j = 0; j < books.length; j++) {
-    books[j].title = j+1;
-    books[j].shelf = shelf.label;
+    books[j].title = j + 1
+    books[j].shelf = shelf.label
   }
 }
-
