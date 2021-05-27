@@ -138,6 +138,11 @@ border-color:#98c1d9; */
     /* color:#EE6C4D; */
 }
 
+book-shelf {
+    width: 95%;
+    margin: auto;
+}
+
 body{
     /* background: rgb(61,90,128);
     background: linear-gradient(90deg, rgba(61,90,128,1) 0%, rgba(152,193,217,1) 6%, rgba(224,251,252,1) 100%);
@@ -281,10 +286,12 @@ h1 {
     background: rgb(224,251,252);
 background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 100%);
     border-radius:25px;
-    height: 13vh;
+    height: 125px;
     margin-top: 5vh;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 10px;
+    padding-right: 10px;
 }
 
 #first-shelf{
@@ -365,4 +372,3 @@ background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 
     -webkit-transform: translateY(0);
     transform: translateY(0);
   }
-  
