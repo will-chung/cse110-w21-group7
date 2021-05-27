@@ -117,6 +117,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
   //         finished: true
   //       },
   //       {
+  //         description: 'Study for final',
+  //         logType: 'task',
+  //         finished: false
+  //       },
+  //       {
+  //         description: 'Study',
+  //         logType: 'task',
+  //         finished: true
+  //       },
+  //       {
   //         description: 'Weeknight meal prep',
   //         logType: 'task',
   //         finished: false
@@ -144,7 +154,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   //     }
   //   }
   // }
-  // saturday.appendChild(weeklyItem)
+  // tuesday.appendChild(weeklyItem)
 })
 
 function appendDate (dayNum, date, month, year) {
