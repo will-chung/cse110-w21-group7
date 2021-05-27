@@ -1,6 +1,7 @@
 import { IndexedDBWrapper } from '../indexedDB/IndexedDBWrapper.js'
 import { DateConverter } from '../utils/DateConverter.js'
 
+
 /**
  * Component class for individual columns for daily log information on 'weekly.html'
  * @author Yuzi Lyu <yul134@ucsd.edu>, Noah Teshima <nteshima@ucsd.edu>
@@ -22,68 +23,89 @@ class WeeklyViewItem extends HTMLElement {
 
   render () {
     this.shadowRoot.innerHTML = `<style>
-                                    .single-weekday {
-                                        display: flex;
-                                        flex-direction: column;
-                                        flex-wrap: wrap;
-                                        margin-left: 10px;
-                                        margin-right: 10px;
+                                    #single-weekday {
+                                      margin:auto;
+                                      margin-bottom:10px;
+                                      display: flex;
+                                      flex-direction: column;
+                                      flex-wrap: wrap;
+                                      align-items:flex-start;
+
                                     }
-                                    #weekday-entries {
+                                    #single-weekday p:nth-child(odd) {
+                                      background: #f9f9f9;
+                                    }
+                                    #single-weekday p:hover {
+                                      background: grey;
+                                    }
+                                    .weekday-entries {
                                         border-style: solid;
-                                        border-width: 5px;
-                                        border-radius: 20px;
-                                        display: flex;
-                                        flex-direction: column;
-                                        flex-wrap: wrap;
-                                        margin: auto;
-                                        align-items: flex-start;
-                                    }
-                                    #weekday-entries > li {
-                                        margin-top: 5px;
-                                        margin-bottom: 5px;
+                                        border-left-style: none;
+                                        border-right-style:none;
+                                        border-width: 2px;
+                                        border-radius: 5px;
+                                        margin:auto;
+                                        text-align:left;
                                     }
                                     a {
                                         font-size: 40px;
                                     }
                                       </style>
-                                    <div class="single-weekday">
-                                        <a href="#"></a>
-                                        <ul id="weekday-entries">
-                                        </ul>
+                                    <div id="single-weekday">
+                                        
                                     </div>`
 
-    const ul = this.shadowRoot.getElementById('weekday-entries')
+    const weekdayCol = this.shadowRoot.getElementById('single-weekday')
+    
     const tasks = this._entry.properties.tasks
+    //console.log(tasks);
     const notes = this._entry.properties.notes
+    //console.log(notes);
     const events = this._entry.properties.events
+    //console.log(events);
     const reflection = this._entry.properties.reflection
+    //console.log(reflection);
 
     tasks.forEach((task, index) => {
       const taskItem = this.getEntryToWeeklyView(task)
-      const li = document.createElement('li')
-      li.appendChild(taskItem)
-      ul.appendChild(li)
+      taskItem.shadowRoot.querySelector('button').style.visibility = 'hidden'
+      const row = this.makeRow(taskItem)
+      weekdayCol.appendChild(row)
     })
     notes.forEach((notes, index) => {
       const noteItem = this.getEntryToWeeklyView(notes)
-      const li = document.createElement('li')
-      li.appendChild(noteItem)
-      ul.appendChild(li)
+      noteItem.shadowRoot.querySelector('button').style.visibility = 'hidden'
+      const row = this.makeRow(noteItem)
+      weekdayCol.appendChild(row)
     })
     events.forEach((event, index) => {
       const eventItem = this.getEntryToWeeklyView(event)
-      const li = document.createElement('li')
-      li.appendChild(eventItem)
-      ul.appendChild(li)
+      eventItem.shadowRoot.querySelector('button').style.visibility = 'hidden'
+      //li.appendChild(eventItem)
+      const row = this.makeRow(eventItem)
+      weekdayCol.appendChild(row)
     })
     reflection.forEach((reflection, index) => {
       const reflectionItem = this.getEntryToWeeklyView(reflection)
-      const li = document.createElement('li')
-      li.appendChild(reflectionItem)
-      ul.appendChild(li)
+      const row = this.makeRow(reflectionItem)
+      reflectionItem.shadowRoot.querySelector('button').style.visibility = 'hidden'
+      //li.appendChild(reflectionItem)
+      weekdayCol.appendChild(row)
     })
   }
+
+   /**
+   * subroutine for creating one row of logItem
+   * @returns {p} The row that should be appended to the div
+   */
+  makeRow (singleLog) {
+    const row = document.createElement('p')
+    row.setAttribute('class', 'weekday-entries')
+    row.appendChild(singleLog)
+    return row
+  }
+
+
 
   /**
    * Getter for getting the date correpsonding to the given
@@ -107,7 +129,7 @@ class WeeklyViewItem extends HTMLElement {
   getEntryToWeeklyView (entry) {
     const logItem = document.createElement('log-item')
     entry.editable = false
-    logItem.entry = entry
+    logItem.itemEntry = entry //this is not working
     return logItem
   }
 
