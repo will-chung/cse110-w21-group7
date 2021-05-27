@@ -69,8 +69,8 @@ class LogItem extends HTMLElement {
      * I added code in WeeklyViewItem.js to hide the trashcan buttons
      */
     if (!editable) {
-      //console.log('toggling display...')
-      //console.log(this.shadowRoot.querySelector('button'));
+      // console.log('toggling display...')
+      // console.log(this.shadowRoot.querySelector('button'));
       this.shadowRoot.querySelector('button').style.visibility = 'hidden'
       // console.log("not editable")
     } else {
@@ -103,7 +103,7 @@ class LogItem extends HTMLElement {
       entry.date = new Date(Number(entry.time))
       delete entry.time
     }
-    entry.editable = true;
+    entry.editable = true
     this._itemEntry = entry
     this.render()
   }

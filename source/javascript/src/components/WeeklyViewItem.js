@@ -1,7 +1,6 @@
 import { IndexedDBWrapper } from '../indexedDB/IndexedDBWrapper.js'
 import { DateConverter } from '../utils/DateConverter.js'
 
-
 /**
  * Component class for individual columns for daily log information on 'weekly.html'
  * @author Yuzi Lyu <yul134@ucsd.edu>, Noah Teshima <nteshima@ucsd.edu>
@@ -56,15 +55,15 @@ class WeeklyViewItem extends HTMLElement {
                                     </div>`
 
     const weekdayCol = this.shadowRoot.getElementById('single-weekday')
-    
+
     const tasks = this._entry.properties.tasks
-    //console.log(tasks);
+    // console.log(tasks);
     const notes = this._entry.properties.notes
-    //console.log(notes);
+    // console.log(notes);
     const events = this._entry.properties.events
-    //console.log(events);
+    // console.log(events);
     const reflection = this._entry.properties.reflection
-    //console.log(reflection);
+    // console.log(reflection);
 
     tasks.forEach((task, index) => {
       const taskItem = this.getEntryToWeeklyView(task)
@@ -81,7 +80,7 @@ class WeeklyViewItem extends HTMLElement {
     events.forEach((event, index) => {
       const eventItem = this.getEntryToWeeklyView(event)
       eventItem.shadowRoot.querySelector('button').style.visibility = 'hidden'
-      //li.appendChild(eventItem)
+      // li.appendChild(eventItem)
       const row = this.makeRow(eventItem)
       weekdayCol.appendChild(row)
     })
@@ -89,12 +88,12 @@ class WeeklyViewItem extends HTMLElement {
       const reflectionItem = this.getEntryToWeeklyView(reflection)
       const row = this.makeRow(reflectionItem)
       reflectionItem.shadowRoot.querySelector('button').style.visibility = 'hidden'
-      //li.appendChild(reflectionItem)
+      // li.appendChild(reflectionItem)
       weekdayCol.appendChild(row)
     })
   }
 
-   /**
+  /**
    * subroutine for creating one row of logItem
    * @returns {p} The row that should be appended to the div
    */
@@ -104,8 +103,6 @@ class WeeklyViewItem extends HTMLElement {
     row.appendChild(singleLog)
     return row
   }
-
-
 
   /**
    * Getter for getting the date correpsonding to the given
@@ -129,7 +126,7 @@ class WeeklyViewItem extends HTMLElement {
   getEntryToWeeklyView (entry) {
     const logItem = document.createElement('log-item')
     entry.editable = false
-    logItem.itemEntry = entry //this is not working
+    logItem.itemEntry = entry // this is not working
     return logItem
   }
 

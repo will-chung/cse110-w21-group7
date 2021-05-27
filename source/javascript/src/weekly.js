@@ -47,7 +47,7 @@ function getLogInfoAsJSON (cb) {
 
     getReq.onsuccess = (event) => {
       const allEntries = getReq.result
-      //populateWeeklyView(allEntries)
+      // populateWeeklyView(allEntries)
     }
 
     store.openCursor().onsuccess = function (event) {
@@ -69,8 +69,8 @@ function getLogInfoAsJSON (cb) {
 }
 
 function populateWeeklyView (entryArr) {
-  //TODO: fix the index, right now it's just populating the first few
-  let i = 6;
+  // TODO: fix the index, right now it's just populating the first few
+  let i = 6
   const week = document.getElementById('weekly-div')
   entryArr.forEach((entry) => {
     const weeklyItem = document.createElement('weekly-view-item')
@@ -86,9 +86,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const dayNum = today.getDay()
   const date = today.getDate()
   const year = today.getFullYear()
-  appendDate(dayNum, date, month, year);
+  appendDate(dayNum, date, month, year)
 
-  //const weeklyItem = document.createElement('weekly-view-item')
+  // const weeklyItem = document.createElement('weekly-view-item')
   // weeklyItem.entry = {
   //   type: 'object',
   //   required: ['date', 'description'],
