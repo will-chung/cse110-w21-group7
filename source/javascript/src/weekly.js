@@ -47,7 +47,7 @@ function getLogInfoAsJSON (cb) {
 
     getReq.onsuccess = (event) => {
       const allEntries = getReq.result
-      populateWeeklyView(allEntries)
+      // populateWeeklyView(allEntries)
     }
 
     store.openCursor().onsuccess = function (event) {
@@ -61,18 +61,21 @@ function getLogInfoAsJSON (cb) {
           const timestamp = log.properties.date.time
           return current.timestampsInSameWeek(Number(timestamp))
         })
-
         console.log(result)
+        cb(result)
       }
     }
   })
 }
 
 function populateWeeklyView (entryArr) {
+  // TODO: fix the index, right now it's just populating the first few
+  let i = 6
+  const week = document.getElementById('weekly-div')
   entryArr.forEach((entry) => {
-    const temp = document.createElement('li')
-    temp.innerText = entry.content
-    tuesday.appendChild(temp)
+    const weeklyItem = document.createElement('weekly-view-item')
+    weeklyItem.entry = entry
+    week.children[i--].appendChild(weeklyItem)
   })
 }
 
@@ -83,65 +86,65 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const dayNum = today.getDay()
   const date = today.getDate()
   const year = today.getFullYear()
-  // appendDate(dayNum, date, month, year);
+  appendDate(dayNum, date, month, year)
 
-  const weeklyItem = document.createElement('weekly-view-item')
-  weeklyItem.entry = {
-    type: 'object',
-    required: ['date', 'description'],
-    properties: {
-      date: {
-        type: 'string',
-        time: '1621553378082',
-        description: 'The date of the event.'
-      },
-      events: [
-        {
-          description: 'This is an event from last week',
-          logType: 'event',
-          time: '1621718384658'
-        },
-        {
-          description: 'I walked my dog last week',
-          logType: 'event',
-          time: '1621729208633'
-        }
-      ],
-      tasks: [
-        {
-          description: 'Study for midterm',
-          logType: 'task',
-          finished: true
-        },
-        {
-          description: 'Weeknight meal prep',
-          logType: 'task',
-          finished: false
-        }
-      ],
-      notes: [
-        {
-          description: "I should send a card for Jordan's birthday.",
-          logType: 'note'
-        }
-      ],
-      reflection: [
-        {
-          description: 'Today was a good day. I got a lot of work done.',
-          logType: 'reflection'
-        }
-      ],
-      mood: {
-        type: 'number',
-        multipleOf: 1,
-        minimum: 0,
-        exclusiveMaximum: 100,
-        value: 20,
-        description: 'Daily mood on a range of 0-99.'
-      }
-    }
-  }
-  saturday.appendChild(weeklyItem)
+  // const weeklyItem = document.createElement('weekly-view-item')
+  // weeklyItem.entry = {
+  //   type: 'object',
+  //   required: ['date', 'description'],
+  //   properties: {
+  //     date: {
+  //       type: 'string',
+  //       time: '1621553378082',
+  //       description: 'The date of the event.'
+  //     },
+  //     events: [
+  //       {
+  //         description: 'This is an event from last week',
+  //         logType: 'event',
+  //         time: '1621718384658'
+  //       },
+  //       {
+  //         description: 'I walked my dog last week',
+  //         logType: 'event',
+  //         time: '1621729208633'
+  //       }
+  //     ],
+  //     tasks: [
+  //       {
+  //         description: 'Study for midterm',
+  //         logType: 'task',
+  //         finished: true
+  //       },
+  //       {
+  //         description: 'Weeknight meal prep',
+  //         logType: 'task',
+  //         finished: false
+  //       }
+  //     ],
+  //     notes: [
+  //       {
+  //         description: "I should send a card for Jordan's birthday.",
+  //         logType: 'note'
+  //       }
+  //     ],
+  //     reflection: [
+  //       {
+  //         description: 'Today was a good day. I got a lot of work done.',
+  //         logType: 'reflection'
+  //       }
+  //     ],
+  //     mood: {
+  //       type: 'number',
+  //       multipleOf: 1,
+  //       minimum: 0,
+  //       exclusiveMaximum: 100,
+  //       value: 20,
+  //       description: 'Daily mood on a range of 0-99.'
+  //     }
+  //   }
+  // }
+  // saturday.appendChild(weeklyItem)
 })
 
 function appendDate (dayNum, date, month, year) {
