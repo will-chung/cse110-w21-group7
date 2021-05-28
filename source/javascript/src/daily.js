@@ -155,6 +155,27 @@ function newElement () {
 }
 
 /**
+ * Updates tasks, notes, and events in the daily log. 
+ * (i.e. deleting entries, editing entries, or toggling tasks)
+ * These changes should be saved and reflected the next time
+ * the user opens the daily log.
+ * 
+ * @param entry The associated entry to edit/delete/toggle tasks
+ */
+function updateElement (entry) {
+  const wrapper = new IndexedDBWrapper('DB', 2)
+
+  wrapper.transaction((event) => {
+    const db = event.target.result
+
+    const transaction = db.transaction(['updateLogStore'], 'readwrite')
+
+    // Should there be an edit button that toggles the delete buttons on the entries and editing them?
+  }
+
+
+}
+/**
  * Performs an AJAX call for JSON type response containing
  * the daily log information corresponding to the given date.
  * If there is no daily log information for the given date,
