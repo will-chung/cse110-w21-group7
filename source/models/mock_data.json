@@ -3,38 +3,26 @@
     "type": "object",
     "name": "string",
     "current_log": "UNIX timestamp",
+    "current_collection": "Collection one",
     "properties": {
       "collections": [{
         "type": "array",
         "name": "Collection one",
-        "items": [
+        "tasks": [
           {
-            "type": "string",
-            "images": "image",
-            "videos": "video"
-          }
-        ]
-      },
-      {
-        "type": "array",
-        "name": "Collection two",
-        "items": [
+            "description": "Finished task for collection one",
+            "logType": "task",
+            "finished": true
+          },
           {
-            "type": "string",
-            "images": "image",
-            "videos": "video"
+            "description": "Unfinished task for collection one",
+            "logType": "task",
+            "finished": false
           }
-        ]
-      },
-      {
-        "type": "array",
-        "name": "Collection three",
-        "items": [
-          {
-            "type": "string",
-            "images": "image",
-            "videos": "video"
-          }
+        ],
+        "images": [
+        ],
+        "videos": [
         ]
       }]
     },
