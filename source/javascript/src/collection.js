@@ -1,7 +1,12 @@
 import { CollectionItem } from './components/CollectionItem.js'
 import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 
-const addBtn = document.getElementById('add')
+const RealAddButton = document.getElementById("add");
+const CustAddButton = document.getElementsByClassName("custAdd");
+
+CustAddButton.addEventListener("click", ()=>{
+    RealAddButton.click();
+})
 
 addBtn.addEventListener('click', () => {
   location.pathname = '/source/html/collection-edit.html'

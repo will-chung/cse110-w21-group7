@@ -1,6 +1,12 @@
 import { DateConverter } from './utils/DateConverter.js'
 import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 
+const realAdd = document.getElementById("rapid-log");
+const custADD = document.getElementById("cb");
+document.addEventListener("click", function(){
+  realAdd.click();
+});
+
 document.addEventListener('DOMContentLoaded', (event) => {
   const addDailyLog = document.querySelector("button[id='rapid-log'] > a")
 
@@ -61,3 +67,5 @@ for (let i = 0; i < shelves.length; i++) {
     books[j].shelf = shelf.label
   }
 }
+
+
