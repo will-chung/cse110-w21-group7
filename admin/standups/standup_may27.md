@@ -115,10 +115,10 @@
 - [ ] No
 
 ### What I did yesterday:
-* Working on logic on transactions
+* Working on logic on read/write transactions for `daily.html`
 
 ### What I plan to do today:
-* Keep working on it and finish it by Saturday
+* Keep working on logic for read/write transactions with indexedDB and finish it by Saturday
 
 ### Blocking issues:
 * N/A
@@ -131,7 +131,7 @@
 - [ ] No
 
 ### What I did yesterday:
-* Worked with Katherine on issues
+* Worked with Katherine on NPM development dependency issues
 
 ### What I plan to do today:
 * Finish the rest of the issues with Katherine
