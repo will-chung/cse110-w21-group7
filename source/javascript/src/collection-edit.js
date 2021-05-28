@@ -1,4 +1,4 @@
-import { IndexedDBWrapper as IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
+import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 
 const collapse = document.getElementById('collapse')
 const imageBox = document.getElementById('image-collection')
@@ -61,17 +61,17 @@ function newElement () {
  * @param {Object} JSON object containing the collection
  * surfaced from indexedDB
  */
-function populateTasks(collection) {
-  function createLogItem(task) {
-    let logItem = document.createElement('log-item')
+function populateTasks (collection) {
+  function createLogItem (task) {
+    const logItem = document.createElement('log-item')
     logItem.itemEntry = task
     return logItem
   }
-  let tasks = collection.tasks
-  let taskList = document.getElementById('myUL')
+  const tasks = collection.tasks
+  const taskList = document.getElementById('myUL')
   tasks.forEach((task, index) => {
-    let logItem = createLogItem(task)
-    let li = document.createElement('li')
+    const logItem = createLogItem(task)
+    const li = document.createElement('li')
     li.appendChild(logItem)
     taskList.appendChild(li)
   })
@@ -83,9 +83,9 @@ function populateTasks(collection) {
  * @param {Object} JSON object containing the collection
  * surfaced from indexedDB
  */
-function populateCollectionName(collection) {
-  let name = collection.name
-  let title = document.querySelector('#title > h1')
+function populateCollectionName (collection) {
+  const name = collection.name
+  const title = document.querySelector('#title > h1')
   title.textContent = name
 }
 
@@ -100,7 +100,7 @@ function populateCollectionName(collection) {
  * @returns JSON type response, containing the information needed to
  * initialize the daily log.
  */
- function getLogInfoAsJSON (cb) {
+function getLogInfoAsJSON (cb) {
   const wrapper = new IndexedDBWrapper('experimentalDB', 1)
 
   wrapper.transaction((event) => {
@@ -111,9 +111,9 @@ function populateCollectionName(collection) {
     store.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
       if (cursor) {
-        let collection_name = cursor.value.current_collection
-        let collection = cursor.value.properties.collections.find((element) => {
-          return element.name === collection_name
+        const collectionName = cursor.value.current_collection
+        const collection = cursor.value.properties.collections.find((element) => {
+          return element.name === collectionName
         })
         cb.bind(this)
         cb(collection)
@@ -128,15 +128,11 @@ function populateCollectionName(collection) {
  * @param {Object} response JSON object containing the
  * collectin data for the collection to view
  */
- function populatePage (response) {
+function populatePage (response) {
   populateTasks(response)
   populateCollectionName(response)
 }
 
-
 document.addEventListener('DOMContentLoaded', (event) => {
   getLogInfoAsJSON(populatePage)
 })
-
-
-
