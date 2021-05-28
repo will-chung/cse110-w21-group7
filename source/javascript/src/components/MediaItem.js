@@ -82,14 +82,21 @@ class MediaItem extends HTMLElement {
             const collection = cursor.value.properties.collections.find((element) => {
               return element.name === collectionName
             })
+            let target
             if (that._media === MEDIA_TYPE.IMAGE) {
-              collection.images = collection.images.filter((image, index) => {
-                return image.file.name !== that._file.name
-              })
+              target = collection.images
             } else {
-              collection.videos = collection.videos.filter((video, index) => {
-                return video.file.name !== that._file.name
-              })
+              target = collection.videos
+            }
+            // filter does not act in place on existing collections, so target is a deep copy.
+            target = target.filter((media, index) => {
+              return media.file.name !== that._file.name
+            })
+            // since target is a deep copy, we need to update the existing collection
+            if (that._media === MEDIA_TYPE.IMAGE) {
+              collection.images = target
+            } else {
+              collection.videos = target
             }
             cursor.update(cursor.value)
           }
