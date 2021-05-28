@@ -14,14 +14,13 @@ const eventRadio = document.getElementById('input2')
 const taskRadio = document.getElementById('input3')
 const noteRadio = document.getElementById('input4')
 const radioContainer = document.getElementsByClassName('container')[0]
-const realSavBtn = document.getElementById('save');
+const realSavBtn = document.getElementById('save')
 
-
-saveBtn.addEventListener("click", () =>{
-  realSavBtn.click();
+saveBtn.addEventListener('click', () => {
+  realSavBtn.click()
 })
-cancelBtn.addEventListener("click", () =>{
-  realCanBtn.click();
+cancelBtn.addEventListener('click', () => {
+  realCanBtn.click()
 })
 
 /*
@@ -289,12 +288,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
   getLogInfoAsJSON(populateDailyLog)
 })
 
+const zoom = document.getElementById('pretty')
+const custZoom = document.getElementById('button1')
 
-const zoom = document.getElementById("pretty");
-const custZoom = document.getElementById("button1");
-
-custZoom.addEventListener("click", function(){
-  zoom.click();
+custZoom.addEventListener('click', function () {
+  zoom.click()
 })
-
-
