@@ -94,43 +94,29 @@ function populateCollectionName (collection) {
 
 /**
  * Business logic subroutine used to populate the
- * images of the given collection
+ * media components of the given collection
  * @param {Object} collection JSON object containing the
- * collection images to display
+ * collection images and videos to display
  */
-function populateImages (collection) {
-  function createImageItem (image) {
-    const imageItem = document.createElement('media-item')
-    imageItem.file = image.file
-    imageItem.media = MEDIA_TYPE.IMAGE
-    return imageItem
+function populateMedia (collection, mediaType = MEDIA_TYPE.IMAGE) {
+  function createMediaItem (media) {
+    const mediaItem = document.createElement('media-item')
+    mediaItem.file = media.file
+    mediaItem.media = mediaType
+    return mediaItem
   }
-  const images = collection.images
-  const imageCollection = document.getElementById('image-collection')
-  images.forEach((image, index) => {
-    const imageItem = createImageItem(image)
-    imageCollection.appendChild(imageItem)
-  })
-}
-
-/**
- * Business logic subroutine used to populate the
- * videos of the given collection
- * @param {Object} collection JSON object containing the
- * collection videos to display
- */
-function populateVideos (collection) {
-  function createVideoItem (video) {
-    const videoItem = document.createElement('media-item')
-    videoItem.file = video.file
-    videoItem.media = MEDIA_TYPE.VIDEO
-    return videoItem
+  let target
+  let mediaCollection
+  if (mediaType === MEDIA_TYPE.IMAGE) {
+    target = collection.images
+    mediaCollection = document.getElementById('image-collection')
+  } else {
+    target = collection.videos
+    mediaCollection = document.getElementById('video-collection')
   }
-  const videos = collection.videos
-  const videoCollection = document.getElementById('video-collection')
-  videos.forEach((video, index) => {
-    const videoItem = createVideoItem(video)
-    videoCollection.appendChild(videoItem)
+  target.forEach((media, index) => {
+    const mediaItem = createMediaItem(media)
+    mediaCollection.appendChild(mediaItem)
   })
 }
 
@@ -235,8 +221,8 @@ function insertMedia (event, media = MEDIA_TYPE.IMAGE) {
 function populatePage (response) {
   populateTasks(response)
   populateCollectionName(response)
-  populateImages(response)
-  populateVideos(response)
+  populateMedia(response, MEDIA_TYPE.IMAGE)
+  populateMedia(response, MEDIA_TYPE.VIDEO)
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
