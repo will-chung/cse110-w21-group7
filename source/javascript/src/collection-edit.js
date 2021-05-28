@@ -92,41 +92,41 @@ function populateCollectionName (collection) {
 }
 
 /**
- * Business logic subroutine used to populate the 
+ * Business logic subroutine used to populate the
  * images of the given collection
  * @param {Object} collection JSON object containing the
  * collection images to display
  */
-function populateImages(collection) {
-  function createImageItem(image) {
-    let imageItem = document.createElement('image-item')
+function populateImages (collection) {
+  function createImageItem (image) {
+    const imageItem = document.createElement('image-item')
     imageItem.file = image.file
     return imageItem
   }
-  let images = collection.images
-  let imageCollection = document.getElementById('image-collection')
+  const images = collection.images
+  const imageCollection = document.getElementById('image-collection')
   images.forEach((image, index) => {
-    let imageItem = createImageItem(image)
+    const imageItem = createImageItem(image)
     imageCollection.appendChild(imageItem)
   })
 }
 
 /**
- * Business logic subroutine used to populate the 
+ * Business logic subroutine used to populate the
  * videos of the given collection
  * @param {Object} collection JSON object containing the
  * collection videos to display
  */
- function populateVideos(collection) {
-  function createVideoItem(video) {
-    let videoItem = document.createElement('video-item')
+function populateVideos (collection) {
+  function createVideoItem (video) {
+    const videoItem = document.createElement('video-item')
     videoItem.file = video.file
     return videoItem
   }
-  let videos = collection.videos
-  let videoCollection = document.getElementById('video-collection')
+  const videos = collection.videos
+  const videoCollection = document.getElementById('video-collection')
   videos.forEach((video, index) => {
-    let videoItem = createVideoItem(video)
+    const videoItem = createVideoItem(video)
     videoCollection.appendChild(videoItem)
   })
 }
@@ -170,7 +170,7 @@ function getLogInfoAsJSON (cb) {
  * @param {Function} cb Callback function which takes collection data as JSON
  * and returns the modified collection to write to indexedDb
  */
-function updateLogInfo(cb) {
+function updateLogInfo (cb) {
   const wrapper = new IndexedDBWrapper('experimentalDB', 1)
 
   wrapper.transaction((event) => {
@@ -205,19 +205,17 @@ function populatePage (response) {
   populateVideos(response)
 }
 
-
-
 document.addEventListener('DOMContentLoaded', (event) => {
   getLogInfoAsJSON(populatePage)
 
   imageButton.addEventListener('input', (event) => {
     const selectedFile = event.target.files[0]
-    let imageItem = document.createElement('image-item')
+    const imageItem = document.createElement('image-item')
     imageItem.file = selectedFile
     updateLogInfo((collection) => {
       collection.images.push({
-        "type": "string",
-        "file": selectedFile
+        type: 'string',
+        file: selectedFile
       })
       console.log('pushed to images!')
       return collection
@@ -227,12 +225,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   videoButton.addEventListener('input', (event) => {
     const selectedFile = event.target.files[0]
-    let imageItem = document.createElement('video-item')
+    const imageItem = document.createElement('video-item')
     imageItem.file = selectedFile
     updateLogInfo((collection) => {
       collection.videos.push({
-        "type": "string",
-        "file": selectedFile
+        type: 'string',
+        file: selectedFile
       })
       console.log('pushed to videos!')
       return collection
