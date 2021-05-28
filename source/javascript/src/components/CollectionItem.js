@@ -126,8 +126,48 @@ class CollectionItem extends HTMLElement {
           }
         }
       })
-
       event.target.parentElement.remove()
+    })
+
+
+    this.dataset.name = this._entry.name
+    this.shadowRoot.querySelector('a').addEventListener('click', (event) => {
+      event.preventDefault()
+      
+      // read/write transactions
+      // 
+      let that = this
+      const wrapper = new IndexedDBWrapper('experimentalDB', 1)
+
+      wrapper.transaction((event) => {
+        const db = event.target.result
+
+        const transaction = db.transaction(['currentLogStore'], 'readwrite')
+        const objectStore = transaction.objectStore('currentLogStore')
+        objectStore.openCursor().onsuccess = function (event) {
+          const cursor = event.target.result
+          if (cursor) {
+            // Get JSON
+            const json = cursor.value
+
+            // Set current_collection field
+            json.current_collection = that.dataset.name
+
+            // Save changes
+            const requestUpdate = cursor.update(json)
+            requestUpdate.onerror = function (event) {
+              // Do something with the error
+            }
+            requestUpdate.onsuccess = function (event) {
+              // Success - the data is updated!
+              console.log('successfully saved "' + json.current_collection + '"')
+            }
+          }
+        }
+      })
+
+      // unsuspend navigation
+      window.location.href = '/source/html/collection-edit.html'
     })
   }
 
