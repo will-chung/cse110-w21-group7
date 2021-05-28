@@ -34,7 +34,7 @@
           "properties": {
             "date": {
               "type": "string",
-              "time": "1621721543299",
+              "time": "1621985417521",
               "description": "The date of the event."
             },
             "events": [
@@ -82,7 +82,118 @@
               "description": "Daily mood on a range of 0-99."
             }
           }
-      }]
+      },
+      {
+        "type": "object",
+        "required": [ "date", "description" ],
+        "properties": {
+          "date": {
+            "type": "string",
+            "time": "1621898936093",
+            "description": "The date of the event."
+          },
+          "events": [
+            {
+              "description": "This is an event from yesterday",
+              "logType": "event",
+              "time": "1621718384658"
+            },
+            {
+              "description": "I walked my dog yesterday",
+              "logType": "event",
+              "time": "1621729208633"
+            }
+          ],
+          "tasks": [
+              {
+                "description": "Study for midterm",
+                "logType": "task",
+                "finished": true
+              },
+              {
+                "description": "Weeknight meal prep",
+                "logType": "task",
+                "finished": false
+              }
+          ],
+          "notes": [
+            {
+              "description": "I should send a card for Jordan's birthday.",
+              "logType": "note"
+          }
+        ],
+        "reflection": [
+          {
+            "description": "Today was a good day. I got a lot of work done.",
+            "logType": "reflection"
+          }
+        ],
+          "mood": {
+            "type": "number",
+            "multipleOf": 1,
+            "minimum": 0,
+            "exclusiveMaximum": 100,
+            "value": 20,
+            "description": "Daily mood on a range of 0-99."
+          }
+        }
+      },
+      {
+        "type": "object",
+        "required": [ "date", "description" ],
+        "properties": {
+          "date": {
+            "type": "string",
+            "time": "1621553378082",
+            "description": "The date of the event."
+          },
+          "events": [
+            {
+              "description": "This is an event from last week",
+              "logType": "event",
+              "time": "1621718384658"
+            },
+            {
+              "description": "I walked my dog last week",
+              "logType": "event",
+              "time": "1621729208633"
+            }
+          ],
+          "tasks": [
+              {
+                "description": "Study for midterm",
+                "logType": "task",
+                "finished": true
+              },
+              {
+                "description": "Weeknight meal prep",
+                "logType": "task",
+                "finished": false
+              }
+          ],
+          "notes": [
+            {
+              "description": "I should send a card for Jordan's birthday.",
+              "logType": "note"
+          }
+        ],
+        "reflection": [
+          {
+            "description": "Today was a good day. I got a lot of work done.",
+            "logType": "reflection"
+          }
+        ],
+          "mood": {
+            "type": "number",
+            "multipleOf": 1,
+            "minimum": 0,
+            "exclusiveMaximum": 100,
+            "value": 20,
+            "description": "Daily mood on a range of 0-99."
+          }
+        }
+      }
+    ]
     }
   }
 

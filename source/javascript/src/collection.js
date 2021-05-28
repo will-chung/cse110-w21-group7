@@ -1,9 +1,14 @@
 import { CollectionItem } from './components/CollectionItem.js'
 import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 
-const addBtn = document.getElementById('add')
+const RealAddButton = document.getElementById('add')
+const CustAddButton = document.getElementsByClassName('custAdd')
 
-addBtn.addEventListener('click', () => {
+CustAddButton.addEventListener('click', () => {
+  RealAddButton.click()
+})
+
+RealAddButton.addEventListener('click', () => {
   location.pathname = '/source/html/collection-edit.html'
 })
 
@@ -29,10 +34,7 @@ function getLogInfoAsJSON (cb) {
     store.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
       if (cursor) {
-        // JSON as per the schema.json file
-        console.log(cursor.value.properties.collections)
-        // cb(cursor.value)
-        // cursor.continue()
+        return cb(cursor.value)
       }
     }
   })
