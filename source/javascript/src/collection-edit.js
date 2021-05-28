@@ -1,4 +1,5 @@
 import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
+import { MediaItem, MEDIA_TYPE } from './components/MediaItem.js'
 
 const collapse = document.getElementById('collapse')
 const imageBox = document.getElementById('image-collection')
@@ -99,8 +100,9 @@ function populateCollectionName (collection) {
  */
 function populateImages (collection) {
   function createImageItem (image) {
-    const imageItem = document.createElement('image-item')
+    const imageItem = document.createElement('media-item')
     imageItem.file = image.file
+    imageItem.media = MEDIA_TYPE.IMAGE
     return imageItem
   }
   const images = collection.images
@@ -119,8 +121,9 @@ function populateImages (collection) {
  */
 function populateVideos (collection) {
   function createVideoItem (video) {
-    const videoItem = document.createElement('video-item')
+    const videoItem = document.createElement('media-item')
     videoItem.file = video.file
+    videoItem.media = MEDIA_TYPE.VIDEO
     return videoItem
   }
   const videos = collection.videos
@@ -193,6 +196,37 @@ function updateLogInfo (cb) {
 }
 
 /**
+ * Event handler for adding videos and images
+ * to a collection. When a collection has a new
+ * video/image, we must perform a write transaction
+ * to indexedDB to save this media element, in addition
+ * to performing the necessary presentation logic on the
+ * page itself
+ * @param {Number} media Enum value denoting whether an
+ * image or video is being created.
+ */
+function insertMedia (event, media = MEDIA_TYPE.IMAGE) {
+  const selectedFile = event.target.files[0]
+  const mediaItem = document.createElement('media-item')
+  mediaItem.file = selectedFile
+  mediaItem.media = media
+  updateLogInfo((collection) => {
+    const target = (media === MEDIA_TYPE.IMAGE) ? collection.images : collection.videos
+    target.push({
+      type: 'string',
+      file: selectedFile
+    })
+    console.log(`pushed to ${media === MEDIA_TYPE.IMAGE ? 'images' : 'videos'}!`)
+    return collection
+  })
+  if (media === MEDIA_TYPE.IMAGE) {
+    document.getElementById('image-collection').appendChild(mediaItem)
+  } else {
+    document.getElementById('video-collection').appendChild(mediaItem)
+  }
+}
+
+/**
  * Business logic to call all necessary subroutines
  * to display colleciton data on the page
  * @param {Object} response JSON object containing the
@@ -209,32 +243,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
   getLogInfoAsJSON(populatePage)
 
   imageButton.addEventListener('input', (event) => {
-    const selectedFile = event.target.files[0]
-    const imageItem = document.createElement('image-item')
-    imageItem.file = selectedFile
-    updateLogInfo((collection) => {
-      collection.images.push({
-        type: 'string',
-        file: selectedFile
-      })
-      console.log('pushed to images!')
-      return collection
-    })
-    document.getElementById('image-collection').appendChild(imageItem)
+    insertMedia.bind(event)
+    insertMedia(event, MEDIA_TYPE.IMAGE)
   })
 
   videoButton.addEventListener('input', (event) => {
-    const selectedFile = event.target.files[0]
-    const imageItem = document.createElement('video-item')
-    imageItem.file = selectedFile
-    updateLogInfo((collection) => {
-      collection.videos.push({
-        type: 'string',
-        file: selectedFile
-      })
-      console.log('pushed to videos!')
-      return collection
-    })
-    document.getElementById('video-collection').appendChild(imageItem)
+    insertMedia.bind(event)
+    insertMedia(event, MEDIA_TYPE.VIDEO)
   })
 })
