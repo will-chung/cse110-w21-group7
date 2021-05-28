@@ -12,21 +12,6 @@ RealAddButton.addEventListener('click', () => {
   location.pathname = '/source/html/collection-edit.html'
 })
 
-// function getLogInfoAsJSON (cb) {
-//   // TODO replace this with indexedDB transaction
-//   const request = new XMLHttpRequest()
-//   request.onreadystatechange = (event) => {
-//     cb.bind(this)
-//     if (request.status === 200 && request.readyState === XMLHttpRequest.DONE) {
-//       const response = event.target.response
-//       cb(response)
-//     }
-//   }
-
-//   request.open('GET', '/source/models/schema.json')
-//   request.send()
-// }
-
 /**
  * the daily log information corresponding to the given date.
  * If there is no daily log information for the given date,
