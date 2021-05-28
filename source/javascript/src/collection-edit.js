@@ -4,6 +4,8 @@ const collapse = document.getElementById('collapse')
 const imageBox = document.getElementById('image-collection')
 const videoBox = document.getElementById('video-collection')
 const gallery = document.getElementById('media-gallery')
+const imageButton = document.getElementById('add-image-btn')
+const videoButton = document.getElementById('add-video-btn')
 /*
  * This onclick toggles the display style of the media gallery
  * TODO: When onclick, the size of the media gallery should be changed
@@ -90,15 +92,52 @@ function populateCollectionName (collection) {
 }
 
 /**
- * Daily log information corresponding to the given date.
- * If there is no daily log information for the given date,
- * a new daily log is created if the date is the present day.
+ * Business logic subroutine used to populate the 
+ * images of the given collection
+ * @param {Object} collection JSON object containing the
+ * collection images to display
+ */
+function populateImages(collection) {
+  function createImageItem(image) {
+    let imageItem = document.createElement('image-item')
+    imageItem.file = image.file
+    return imageItem
+  }
+  let images = collection.images
+  let imageCollection = document.getElementById('image-collection')
+  images.forEach((image, index) => {
+    let imageItem = createImageItem(image)
+    imageCollection.appendChild(imageItem)
+  })
+}
+
+/**
+ * Business logic subroutine used to populate the 
+ * videos of the given collection
+ * @param {Object} collection JSON object containing the
+ * collection videos to display
+ */
+ function populateVideos(collection) {
+  function createVideoItem(video) {
+    let videoItem = document.createElement('video-item')
+    videoItem.file = video.file
+    return videoItem
+  }
+  let videos = collection.videos
+  let videoCollection = document.getElementById('video-collection')
+  videos.forEach((video, index) => {
+    let videoItem = createVideoItem(video)
+    videoCollection.appendChild(videoItem)
+  })
+}
+
+/**
+ * Gets collection information as JSON corresponding to the field current_collection
+ * in indexedDB. This collection data is passed as JSON to a callback to handle the
+ * presentation logic for the page.
  * @author Noah Teshima <nteshima@ucsd.edu>
- * @throws Error object if date reference is null, undefined. Otherwise,
- * an error is thrown if the given date is not the present day and failed
- * to retrieve log info for given day.
- * @returns JSON type response, containing the information needed to
- * initialize the daily log.
+ * @param {Function} cb Callback function, which takes a JSON object
+ * representing the collection data being used
  */
 function getLogInfoAsJSON (cb) {
   const wrapper = new IndexedDBWrapper('experimentalDB', 1)
@@ -111,12 +150,43 @@ function getLogInfoAsJSON (cb) {
     store.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
       if (cursor) {
+        console.log(cursor.value)
         const collectionName = cursor.value.current_collection
         const collection = cursor.value.properties.collections.find((element) => {
           return element.name === collectionName
         })
+        console.log(collection)
         cb.bind(this)
         cb(collection)
+      }
+    }
+  })
+}
+
+/**
+ * Write transaction to indexedDB in order to update the current collection.
+ * The manner in which our write transaction occurs depends on the specified
+ * callback.
+ * @param {Function} cb Callback function which takes collection data as JSON
+ * and returns the modified collection to write to indexedDb
+ */
+function updateLogInfo(cb) {
+  const wrapper = new IndexedDBWrapper('experimentalDB', 1)
+
+  wrapper.transaction((event) => {
+    const db = event.target.result
+
+    const transaction = db.transaction(['currentLogStore'], 'readwrite')
+    const store = transaction.objectStore('currentLogStore')
+    store.openCursor().onsuccess = function (event) {
+      const cursor = event.target.result
+      if (cursor) {
+        const collectionName = cursor.value.current_collection
+        let collection = cursor.value.properties.collections.find((element) => {
+          return element.name === collectionName
+        })
+        collection = cb(collection)
+        cursor.update(cursor.value)
       }
     }
   })
@@ -126,13 +196,47 @@ function getLogInfoAsJSON (cb) {
  * Business logic to call all necessary subroutines
  * to display colleciton data on the page
  * @param {Object} response JSON object containing the
- * collectin data for the collection to view
+ * collection data for the collection to view
  */
 function populatePage (response) {
   populateTasks(response)
   populateCollectionName(response)
+  populateImages(response)
+  populateVideos(response)
 }
+
+
 
 document.addEventListener('DOMContentLoaded', (event) => {
   getLogInfoAsJSON(populatePage)
+
+  imageButton.addEventListener('input', (event) => {
+    const selectedFile = event.target.files[0]
+    let imageItem = document.createElement('image-item')
+    imageItem.file = selectedFile
+    updateLogInfo((collection) => {
+      collection.images.push({
+        "type": "string",
+        "file": selectedFile
+      })
+      console.log('pushed to images!')
+      return collection
+    })
+    document.getElementById('image-collection').appendChild(imageItem)
+  })
+
+  videoButton.addEventListener('input', (event) => {
+    const selectedFile = event.target.files[0]
+    let imageItem = document.createElement('video-item')
+    imageItem.file = selectedFile
+    updateLogInfo((collection) => {
+      collection.videos.push({
+        "type": "string",
+        "file": selectedFile
+      })
+      console.log('pushed to videos!')
+      return collection
+    })
+    document.getElementById('video-collection').appendChild(imageItem)
+  })
 })
