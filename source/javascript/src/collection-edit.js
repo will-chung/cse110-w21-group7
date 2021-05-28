@@ -1,7 +1,7 @@
 const collapse = document.getElementById('collapse')
 const imageBox = document.getElementById('image-collection')
 const videoBox = document.getElementById('video-collection')
-const gallery = document.getElementById('media-gallery')
+const gallery = document.getElementById('media-gallery') 
 /*
  * This onclick toggles the display style of the media gallery
  * TODO: When onclick, the size of the media gallery should be changed

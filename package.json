@@ -76,5 +76,10 @@
   "dependencies": {
     "fullcalendar": "^5.7.0",
     "googleapis": "^39.2.0"
-  }
+  },
+  
+  "jest": {
+    "preset": "jest-puppeteer",
+    "verbose": true
+ }
 }
