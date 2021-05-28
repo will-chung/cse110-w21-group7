@@ -129,14 +129,13 @@ class CollectionItem extends HTMLElement {
       event.target.parentElement.remove()
     })
 
-
     this.dataset.name = this._entry.name
     this.shadowRoot.querySelector('a').addEventListener('click', (event) => {
       event.preventDefault()
-      
+
       // read/write transactions
-      // 
-      let that = this
+      //
+      const that = this
       const wrapper = new IndexedDBWrapper('experimentalDB', 1)
 
       wrapper.transaction((event) => {
