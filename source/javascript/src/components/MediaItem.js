@@ -1,20 +1,26 @@
-import { IndexedDBWrapper } from './../indexedDB/IndexedDBWrapper.js'
+import { IndexedDBWrapper } from '../indexedDB/IndexedDBWrapper.js'
+
+const MEDIA_TYPE = {
+  IMAGE: 0,
+  VIDEO: 1
+}
 
 /**
  * Component class used in order to add individual
- * images to the collections-edit page.
+ * images/video to the collections-edit page.
  * @author Noah Teshima <nteshima@ucsd.edu>
  */
-class ImageItem extends HTMLElement {
+class MediaItem extends HTMLElement {
   /**
        * Constructor containing the business logic for
-       * creating a new image.
+       * creating a new media item.
        */
   constructor () {
     super()
 
     this.attachShadow({ mode: 'open' })
     this._file = null
+    this._media = MEDIA_TYPE.IMAGE
   }
 
   render () {
@@ -24,10 +30,10 @@ class ImageItem extends HTMLElement {
                                         width: 400px;
                                         height: auto;
                                     }
-                                    .image-wrapper {
+                                    .media-wrapper {
                                         align-self: stretch;
                                     }
-                                    .image-wrapper > img {
+                                    .media-wrapper > img {
                                         height: auto;
                                         width: 100%;
                                         display:inline-block;
@@ -53,14 +59,14 @@ class ImageItem extends HTMLElement {
                                     }
                                     </style>
                                     <span class="container">
-                                        <span class="image-wrapper">
+                                        <span class="media-wrapper">
                                             <button type="button">
                                             <span class="icon trash-button-icon"></span>
                                             </button>
                                         </span>
                                     </span>`
-    const wrapper = this.shadowRoot.querySelector('.image-wrapper')
-    wrapper.appendChild(this.getImage())
+    const wrapper = this.shadowRoot.querySelector('.media-wrapper')
+    wrapper.appendChild(this.getMedia())
     const that = this
     this.shadowRoot.querySelector('button').addEventListener('click', (event) => {
       const wrapper = new IndexedDBWrapper('experimentalDB', 1)
@@ -76,9 +82,15 @@ class ImageItem extends HTMLElement {
             const collection = cursor.value.properties.collections.find((element) => {
               return element.name === collectionName
             })
-            collection.images = collection.images.filter((image, index) => {
-              return image.file.name !== that._file.name
-            })
+            if (that._media === MEDIA_TYPE.IMAGE) {
+              collection.images = collection.images.filter((image, index) => {
+                return image.file.name !== that._file.name
+              })
+            } else {
+              collection.videos = collection.videos.filter((video, index) => {
+                return video.file.name !== that._file.name
+              })
+            }
             cursor.update(cursor.value)
           }
         }
@@ -88,7 +100,7 @@ class ImageItem extends HTMLElement {
   }
 
   /**
-       * Setter for the file used to render the image.
+       * Setter for the file used to render the media item.
        * Setting the file triggers a re-render of this
        * component.
        * @param {File} file File object containing the image
@@ -100,8 +112,8 @@ class ImageItem extends HTMLElement {
   }
 
   /**
-       * Getter for the file used to render the image
-       * @return {File} File object containing the image
+       * Getter for the file used to render the media item.
+       * @return {File} File object containing the media item
        * displayed
        */
   get file () {
@@ -109,21 +121,52 @@ class ImageItem extends HTMLElement {
   }
 
   /**
+       * Setter for the media type used to render the
+       * component.
+       * Changing the media type triggers a re-render of this
+       * component.
+       * @param {Number} media enum value from the field MEDIA_TYPE.
+       * The possible values are MEDIA_TYPE.IMAGE (0) and MEDIA_TYPE.VIDEO (1)
+       */
+  set media (media) {
+    this._media = media
+    this.render()
+  }
+
+  /**
+       * Getter for the media type used to render the component.
+       * @return {Number} Enum value containing the enum
+       * from the field MEDIA_TYPE
+       */
+  get media () {
+    return this._media
+  }
+
+  /**
      * Subroutine used to make an <img> element
      * from the field _file.
-     * @returns {HTMLImageElement} Image element containing
+     * @returns {HTMLElement} HTMLImageElement or HTMLVideoElement containing
      * the source corresponding to the field _file
      */
-  getImage () {
-    const img = document.createElement('img')
-    img.file = this._file
+  getMedia () {
+    let media
+    if (this._media === MEDIA_TYPE.IMAGE) {
+      media = document.createElement('img')
+    } else {
+      media = document.createElement('video')
+      media.controls = true
+    }
+    media.file = this._file
+
     const reader = new FileReader()
     reader.onload = (event) => {
-      img.src = event.target.result
+      media.src = event.target.result
     }
     reader.readAsDataURL(this._file)
-    return img
+    return media
   }
 }
 
-customElements.define('image-item', ImageItem)
+customElements.define('media-item', MediaItem)
+
+export { MediaItem, MEDIA_TYPE }
