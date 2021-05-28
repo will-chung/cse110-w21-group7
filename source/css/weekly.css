@@ -127,7 +127,6 @@ border-color:#98c1d9; */
     text-align: center;
     vertical-align: center;
     font-family: 'Pattaya', sans-serif;
-    font-size: 60px;
     /* color:#EE6C4D; */
 }
 #title{
@@ -136,6 +135,8 @@ border-color:#98c1d9; */
     border-width:5px;
     width: 25vw;
     margin:auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
     box-shadow: 20px 0px 40px #3d5180;
     border-radius: 20px;
     color:#293241;
@@ -212,11 +213,13 @@ li > a, a:link {
 }
 
 #calendar {
-    border-style: solid;
-    border-color: black;
+    border-style:solid;
+    border-color:#98c1d9;
+    border-width:5px;
+    box-shadow: 10px 0px 10px #98c1d9;
+    border-radius: 5px;
     width: 400px;
-    height: 610px;
-    
+    height: 605px;
 }
 
 .weekly {
@@ -230,24 +233,34 @@ li > a, a:link {
     margin-left: 30px;
 }
 
+#weekly-div {
+    border-style:solid;
+    border-color:#98c1d9;
+    border-width:5px;
+    box-shadow: 20px 0px 10px #98c1d9;
+    border-radius: 20px;
+}
+
 .content {
     display: flex;
     flex-direction: row;
     align-items: center;
     margin:auto;
     margin-top: 3vh;
-    margin-left: 12vw;
+    margin-left: 8vw;
 
 }
 
 .weekday {
-    border-style:groove;
-    border-color:#266150;
+    border-style:solid;
+    border-color:#98c1d9;
+    border-width:2px;
+    box-shadow: 5px 0px 10px #3d5180;
+    border-radius: 20px;
     margin:10px;
-    height: 60vh;
-    width: 7vw;
+    width: 8vw;
     text-align: center;
-    font-size: 1rem;
+    font-size: 12pt;
 }
 
 a{
@@ -256,4 +269,8 @@ a{
 
 #home > .fa {
     padding-top:30px;
+}
+
+.entries{
+    border-style:solid;
 }

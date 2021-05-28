@@ -44,10 +44,7 @@ function getLogInfoAsJSON (cb) {
     store.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
       if (cursor) {
-        // JSON as per the schema.json file
-        console.log(cursor.value.properties.collections)
-        // cb(cursor.value)
-        // cursor.continue()
+        return cb(cursor.value)
       }
     }
   })
