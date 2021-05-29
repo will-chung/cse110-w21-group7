@@ -16,12 +16,13 @@ const noteRadio = document.getElementById('input4')
 const radioContainer = document.getElementsByClassName('container')[0]
 const realSavBtn = document.getElementById('save')
 
-// saveBtn.addEventListener('click', () => {
-//   realSavBtn.click()
-// })
-// cancelBtn.addEventListener('click', () => {
-//   realCanBtn.click()
-// })
+saveBtn.addEventListener('click', () => {
+  realSavBtn.click()
+})
+cancelBtn.addEventListener('click', () => {
+  // TODO: implement hide functionality
+  hideEverything()
+})
 
 /*
  * This onclick toggles the display style of the quote to none
@@ -158,6 +159,15 @@ function newElement () {
   li.appendChild(logItem)
   document.getElementById('myUL').appendChild(li)
   document.getElementById('input-area').value = ''
+}
+
+function hideEverything () {
+  date.type = 'hidden'
+  text.value = ''
+  // saveBtn.style.display = 'none'
+  // cancelBtn.style.display = 'none'
+  text.type = 'hidden'
+  time.type = 'hidden'
 }
 
 /**
