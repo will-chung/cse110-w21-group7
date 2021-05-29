@@ -1,26 +1,16 @@
 import { CollectionItem } from './components/CollectionItem.js'
 import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 
-const addBtn = document.getElementById('add')
+const RealAddButton = document.getElementById('add')
+const CustAddButton = document.getElementsByClassName('custAdd')
 
-addBtn.addEventListener('click', () => {
-  location.pathname = '/source/html/collection-edit.html'
+CustAddButton.addEventListener('click', () => {
+  RealAddButton.click()
 })
 
-// function getLogInfoAsJSON (cb) {
-//   // TODO replace this with indexedDB transaction
-//   const request = new XMLHttpRequest()
-//   request.onreadystatechange = (event) => {
-//     cb.bind(this)
-//     if (request.status === 200 && request.readyState === XMLHttpRequest.DONE) {
-//       const response = event.target.response
-//       cb(response)
-//     }
-//   }
-
-//   request.open('GET', '/source/models/schema.json')
-//   request.send()
-// }
+RealAddButton.addEventListener('click', () => {
+  location.pathname = '/source/html/collection-edit.html'
+})
 
 /**
  * the daily log information corresponding to the given date.
