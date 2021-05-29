@@ -20,7 +20,8 @@ saveBtn.addEventListener('click', () => {
   realSavBtn.click()
 })
 cancelBtn.addEventListener('click', () => {
-  realCanBtn.click()
+  //TODO: implement hide functionality
+  hideEverything()
 })
 
 /*
@@ -158,6 +159,15 @@ function newElement () {
   li.appendChild(logItem)
   document.getElementById('myUL').appendChild(li)
   document.getElementById('input-area').value = ''
+}
+
+function hideEverything(){
+  date.type = 'hidden'
+  text.value = ''
+  // saveBtn.style.display = 'none'
+  // cancelBtn.style.display = 'none'
+  text.type = 'hidden'
+  time.type = 'hidden'
 }
 
 /**
