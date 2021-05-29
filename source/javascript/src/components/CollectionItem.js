@@ -70,10 +70,6 @@ class CollectionItem extends HTMLElement {
                                         <h1><a href="/source/html/collection-edit.html">${this.getCollectionName()}</a></h1>
                                     </div>`
     this.shadowRoot.querySelector('span[class="icon-trash trash-button-icon"]').addEventListener('click', (event) => {
-      /**
-       * onClick remove from page and from database
-       */
-
       // Get clicked collection-item
       const collectionItem = event.target.getRootNode().host
       // Get name of clicked collection
@@ -85,7 +81,6 @@ class CollectionItem extends HTMLElement {
       // Open a transaction and objectStore to 'currentLogStore'
       wrapper.transaction((event) => {
         const db = event.target.result
-
         const transaction = db.transaction(['currentLogStore'], 'readwrite')
         const objectStore = transaction.objectStore('currentLogStore')
         objectStore.openCursor().onsuccess = function (event) {
@@ -98,36 +93,53 @@ class CollectionItem extends HTMLElement {
 
             // Get JSON
             const json = cursor.value
-
             // Get collections array
             const collectionsArray = json.properties.collections
             // index of collection to remove
             let index
-
-            // Search for collection to remove
+            // Search for collection and remove
             collectionsArray.forEach(collection => {
               if (collection.name === name) {
                 index = collectionsArray.indexOf(collection)
               }
             })
-
-            // Remove collection
             collectionsArray.splice(index, 1)
+            // Save changes
+            const requestUpdate = cursor.update(json)
+          }
+        }
+      })
+      event.target.parentElement.remove()
+    })
+
+    this.dataset.name = this._entry.name
+    this.shadowRoot.querySelector('a').addEventListener('click', (event) => {
+      event.preventDefault()
+      const that = this
+      const wrapper = new IndexedDBWrapper('experimentalDB', 1)
+
+      wrapper.transaction((event) => {
+        const db = event.target.result
+
+        const transaction = db.transaction(['currentLogStore'], 'readwrite')
+        const objectStore = transaction.objectStore('currentLogStore')
+        objectStore.openCursor().onsuccess = function (event) {
+          const cursor = event.target.result
+          if (cursor) {
+            // Get JSON
+            const json = cursor.value
+
+            // Set current_collection field
+            json.current_collection = that.dataset.name
 
             // Save changes
             const requestUpdate = cursor.update(json)
-            requestUpdate.onerror = function (event) {
-              // Do something with the error
-            }
-            requestUpdate.onsuccess = function (event) {
-              // Success - the data is updated!
-              console.log('successfully removed "' + name + '"')
-            }
           }
         }
       })
 
-      event.target.parentElement.remove()
+      // unsuspend navigation
+      window.location.href = '/source/html/collection-edit.html'
     })
   }
 
