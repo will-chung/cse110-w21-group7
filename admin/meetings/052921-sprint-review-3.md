@@ -21,4 +21,5 @@
 1. Final Retro Time
 2. Last week
 3. Next week is the final sprint
-4. Create thourough issues
+4. Every member talk about their experience so far.
+5. Create thourough issues
