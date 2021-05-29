@@ -62,15 +62,29 @@ class LogItem extends HTMLElement {
                                         <span class="icon trash-button-icon"></span>
                                         </button>
                                     </span>`
-    this.shadowRoot.querySelector('button').addEventListener('click', (event) => {
-      this.parentElement.remove()
-    })
 
-    // When dealing with log of type task, we must update the task status when it is clicked.
-    if (this._itemEntry.logType === 'task') {
-      this.shadowRoot.querySelector('i').addEventListener('click', (event) => {
-        this._itemEntry.finished = !this._itemEntry.finished
-        this.render()
+    const editable = this._itemEntry.editable
+    /*
+     * FIXME: I don't think this block of code works
+     * I added code in WeeklyViewItem.js to hide the trashcan buttons
+     */
+    if (!editable) {
+      // console.log('toggling display...')
+      // console.log(this.shadowRoot.querySelector('button'));
+      this.shadowRoot.querySelector('button').style.visibility = 'hidden'
+      // console.log("not editable")
+    } else {
+      // console.log("editable")
+      // When dealing with log of type task, we must update the task status when it is clicked.
+      if (this._itemEntry.logType === 'task') {
+        this.shadowRoot.querySelector('i').addEventListener('click', (event) => {
+          this._itemEntry.finished = !this._itemEntry.finished
+          this.render()
+        })
+      }
+
+      this.shadowRoot.querySelector('button').addEventListener('click', (event) => {
+        this.parentElement.remove()
       })
     }
   }
@@ -89,6 +103,7 @@ class LogItem extends HTMLElement {
       entry.date = new Date(Number(entry.time))
       delete entry.time
     }
+    entry.editable = true
     this._itemEntry = entry
     this.render()
   }

@@ -2,18 +2,27 @@ import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 import { DateConverter } from './utils/DateConverter.js'
 
 const collapse = document.getElementById('collapse')
-const right = document.getElementById('right')
 const quote = document.getElementById('reflection')
 const text = document.getElementById('input-area')
 const date = document.getElementById('date-input')
 const time = document.getElementById('time-input')
-const saveBtn = document.getElementById('save')
-const cancelBtn = document.getElementById('cancel')
+const saveBtn = document.getElementById('cb1')
+const realCanBtn = document.getElementById('cancel')
+const cancelBtn = document.getElementById('cb2')
 const refRadio = document.getElementById('input1')
 const eventRadio = document.getElementById('input2')
 const taskRadio = document.getElementById('input3')
 const noteRadio = document.getElementById('input4')
 const radioContainer = document.getElementsByClassName('container')[0]
+const realSavBtn = document.getElementById('save')
+
+saveBtn.addEventListener('click', () => {
+  realSavBtn.click()
+})
+cancelBtn.addEventListener('click', () => {
+  // TODO: implement hide functionality
+  hideEverything()
+})
 
 /*
  * This onclick toggles the display style of the quote to none
@@ -75,7 +84,7 @@ radioContainer.addEventListener('change', () => {
       cancelBtn.style.visibility = 'visible'
     })
   } else if (noteRadio.checked) {
-    date.value = ''
+    date.type = 'hidden'
     text.value = ''
     saveBtn.style.visibility = 'hidden'
     cancelBtn.style.visibility = 'hidden'
@@ -97,14 +106,12 @@ collapse.addEventListener('click', () => {
     const downArrow = document.createElement('i')
     downArrow.className = 'fa fa-chevron-up fa-lg'
     collapse.appendChild(downArrow)
-    right.style.visibility = 'visible'
     quote.style.display = 'block'
   } else {
     collapse.removeChild(collapse.childNodes[0])
     const upArrow = document.createElement('i')
     upArrow.className = 'fa fa-chevron-down fa-lg'
     collapse.appendChild(upArrow)
-    right.style.visibility = 'hidden'
     quote.style.display = 'none'
   }
 })
@@ -154,6 +161,15 @@ function newElement () {
   document.getElementById('input-area').value = ''
 }
 
+function hideEverything () {
+  date.type = 'hidden'
+  text.value = ''
+  // saveBtn.style.display = 'none'
+  // cancelBtn.style.display = 'none'
+  text.type = 'hidden'
+  time.type = 'hidden'
+}
+
 /**
  * Performs an AJAX call for JSON type response containing
  * the daily log information corresponding to the given date.
@@ -178,6 +194,7 @@ function getLogInfoAsJSON (cb) {
       const cursor = event.target.result
       if (cursor) {
         const dateConverter = new DateConverter(Number(cursor.value.current_log))
+        console.log(cursor.value)
         cursor.value.$defs['daily-logs'].forEach((log, index) => {
           if (dateConverter.equals(Number(log.properties.date.time))) {
             cb.bind(this)
@@ -203,7 +220,7 @@ function setEntries (log) {
     entries.forEach((entry, index) => {
       const li = document.createElement('li')
       const logItem = document.createElement('log-item')
-
+      entry.editable = true
       logItem.itemEntry = entry
 
       li.appendChild(logItem)
@@ -279,4 +296,11 @@ function sendLogInfoAsJSON () {
 
 document.addEventListener('DOMContentLoaded', (event) => {
   getLogInfoAsJSON(populateDailyLog)
+})
+
+const zoom = document.getElementById('pretty')
+const custZoom = document.getElementById('button1')
+
+custZoom.addEventListener('click', function () {
+  zoom.click()
 })
