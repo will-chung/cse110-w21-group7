@@ -1,16 +1,16 @@
 import { CollectionItem } from './components/CollectionItem.js'
 import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 
-const RealAddButton = document.getElementById('add')
-const CustAddButton = document.getElementsByClassName('custAdd')
+// const RealAddButton = document.getElementById('add')
+// const CustAddButton = document.getElementsByClassName('custAdd')
 
-CustAddButton.addEventListener('click', () => {
-  RealAddButton.click()
-})
+// CustAddButton.addEventListener('click', () => {
+//   RealAddButton.click()
+// })
 
-RealAddButton.addEventListener('click', () => {
-  location.pathname = '/source/html/collection-edit.html'
-})
+// RealAddButton.addEventListener('click', () => {
+//   location.pathname = '/source/html/collection-edit.html'
+// })
 
 /**
  * the daily log information corresponding to the given date.

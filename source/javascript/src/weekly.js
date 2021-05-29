@@ -61,6 +61,19 @@ function getLogInfoAsJSON (cb) {
           const timestamp = log.properties.date.time
           return current.timestampsInSameWeek(Number(timestamp))
         })
+        /**
+         * Mo Tues Wed Thurs Fri Sat Sun
+         *  *        *     *      X
+         * Mo Tues Wed Thurs Fri Sat Sun
+         *                            *
+         */
+        // const results_sorted = result.sort((logOne, logTwo) => {
+        //   return Number(logOne.properties.date.time) - Number(logTwo.properties.date.time)
+        // })
+        // results_sorted.forEach((log, index) => {
+
+        // })
+
         console.log(result)
         cb(result)
       }
@@ -69,13 +82,20 @@ function getLogInfoAsJSON (cb) {
 }
 
 function populateWeeklyView (entryArr) {
-  // TODO: fix the index, right now it's just populating the first few
-  let i = 6
   const week = document.getElementById('weekly-div')
+  // create a DateConverter object
+  const current = new DateConverter(Date.now())
+  // Use a new instance of Date to fetch the day of the week of today
+  const today = new Date()
+  const todayDays = today.getDay()
   entryArr.forEach((entry) => {
+    // calculate the offset between today's day and the entry's day
+    const offSet = current.getDaysFromTimeStamp(Date.now()) - current.getDaysFromTimeStamp(entry.properties.date.time)
+    // apply the offset to get the index
+    const index = todayDays - offSet
     const weeklyItem = document.createElement('weekly-view-item')
     weeklyItem.entry = entry
-    week.children[i--].appendChild(weeklyItem)
+    week.children[index].appendChild(weeklyItem)
   })
 }
 
@@ -117,6 +137,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
   //         finished: true
   //       },
   //       {
+  //         description: 'Study for final',
+  //         logType: 'task',
+  //         finished: false
+  //       },
+  //       {
+  //         description: 'Study',
+  //         logType: 'task',
+  //         finished: true
+  //       },
+  //       {
   //         description: 'Weeknight meal prep',
   //         logType: 'task',
   //         finished: false
@@ -144,7 +174,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   //     }
   //   }
   // }
-  // saturday.appendChild(weeklyItem)
+  // tuesday.appendChild(weeklyItem)
 })
 
 function appendDate (dayNum, date, month, year) {
