@@ -63,7 +63,7 @@ function getLogInfoAsJSON (cb) {
         })
         /**
          * Mo Tues Wed Thurs Fri Sat Sun
-         *  *        *     *      X 
+         *  *        *     *      X
          * Mo Tues Wed Thurs Fri Sat Sun
          *                            *
          */
@@ -83,16 +83,16 @@ function getLogInfoAsJSON (cb) {
 
 function populateWeeklyView (entryArr) {
   const week = document.getElementById('weekly-div')
-  //create a DateConverter object
+  // create a DateConverter object
   const current = new DateConverter(Date.now())
-  //Use a new instance of Date to fetch the day of the week of today
-  const today = new Date();
-  const todayDays =  today.getDay();
+  // Use a new instance of Date to fetch the day of the week of today
+  const today = new Date()
+  const todayDays = today.getDay()
   entryArr.forEach((entry) => {
-    //calculate the offset between today's day and the entry's day
-    let offSet = current.getDaysFromTimeStamp(Date.now()) - current.getDaysFromTimeStamp(entry.properties.date.time);
-    //apply the offset to get the index
-    let index = todayDays - offSet
+    // calculate the offset between today's day and the entry's day
+    const offSet = current.getDaysFromTimeStamp(Date.now()) - current.getDaysFromTimeStamp(entry.properties.date.time)
+    // apply the offset to get the index
+    const index = todayDays - offSet
     const weeklyItem = document.createElement('weekly-view-item')
     weeklyItem.entry = entry
     week.children[index].appendChild(weeklyItem)
