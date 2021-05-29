@@ -260,10 +260,10 @@ a:link {
 .content {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     margin:auto;
     margin-top: 3vh;
-    margin-left: 8vw;
+    margin-left: 12vw;
 
 }
 
@@ -274,7 +274,7 @@ a:link {
     box-shadow: 5px 0px 10px #3d5180;
     border-radius: 20px;
     margin:10px;
-    width: 8vw;
+    width: 7vw;
     text-align: center;
     font-size: 12pt;
 }
