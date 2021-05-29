@@ -32,12 +32,15 @@ class CollectionItem extends HTMLElement {
                                           margin:auto;
                                       }
                                       .icon-trash {
+                                        visibility: hidden;
                                         background-size: contain;
                                         width:2em;
                                         height:2em;
+                                        transition: transform 0.25s;
                                       }
                                       .icon-trash:hover{
                                         cursor: pointer;
+                                        transform: scale(1.2);
                                       }
                                       .trash-button-icon {
                                         background: url(../images/log-item_icons/trash-solid.svg) no-repeat center center;
@@ -55,8 +58,12 @@ class CollectionItem extends HTMLElement {
                                         width:400px;
                                         margin: 10px;
                                       }
+                                      .icon-collection {
+                                        transition: transform 0.25s;
+                                      }
                                       .icon-collection:hover {
                                         cursor: pointer;
+                                        transform: scale(1.1);
                                       }
                                       h1 {
                                         font-family: 'Pattaya', sans-serif;
@@ -77,6 +84,11 @@ class CollectionItem extends HTMLElement {
                                         <img src="/source/images/icon-collection.svg" class="icon-collection">
                                         <h1>${this.getCollectionName()}</h1>
                                     </div>`
+    this.setClickListeners();
+    this.setHoverListeners();
+  }
+
+  setClickListeners() {
     this.shadowRoot.querySelector('span[class="icon-trash trash-button-icon"]').addEventListener('click', (event) => {
       /**
        * onClick remove from page and from database
@@ -184,6 +196,18 @@ class CollectionItem extends HTMLElement {
         const collectionName = textInput.value
         collection.entry = { name: collectionName }
       })
+    }) 
+  }
+
+  setHoverListeners() {
+    const trashIcon = this.shadowRoot.querySelector('.icon-trash')
+
+    this.addEventListener('mouseenter', () => {
+      trashIcon.style.visibility = 'visible'
+    })
+
+    this.addEventListener('mouseleave', () => {
+      trashIcon.style.visibility = 'hidden' 
     })
   }
 

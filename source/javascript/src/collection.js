@@ -1,11 +1,7 @@
-import { CollectionItem } from './components/CollectionItem.js'
-import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
-import { wrapper } from './components/CollectionItem.js'
+import { CollectionItem, wrapper } from './components/CollectionItem.js'
 
-const RealAddButton = document.getElementById('add')
-const CustAddButton = document.getElementsByClassName('custAdd')
+const addBtn = document.getElementById('add')
 
-<<<<<<< HEAD
 addBtn.addEventListener('click', () => {
   // location.pathname = '/source/html/collection-edit.html'
   const collectionName = window.prompt("Please enter the name of your new collection:", "")
@@ -19,7 +15,7 @@ addBtn.addEventListener('click', () => {
  */
 function addCollection(collectionName) {
   // if user presses 'Cancel' on prompt
-  if (name === null)
+  if (collectionName === null)
     return;
 
   const newCollection = new CollectionItem();
@@ -80,15 +76,6 @@ function addCollection(collectionName) {
 //   request.open('GET', '/source/models/schema.json')
 //   request.send()
 // }
-=======
-CustAddButton.addEventListener('click', () => {
-  RealAddButton.click()
-})
-
-RealAddButton.addEventListener('click', () => {
-  location.pathname = '/source/html/collection-edit.html'
-})
->>>>>>> ec56133bc1d0fdfdd78a580d55f5efa48b64cb61
 
 /**
  * the daily log information corresponding to the given date.
