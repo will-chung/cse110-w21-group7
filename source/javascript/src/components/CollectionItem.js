@@ -130,11 +130,9 @@ class CollectionItem extends HTMLElement {
     })
 
     this.dataset.name = this._entry.name
-    this.shadowRoot.querySelector('a').addEventListener('click', (event) => {
-      event.preventDefault()
+    this.shadowRoot.querySelector('img[class="icon-collection"]').addEventListener('click', (event) => {
       const that = this
-      const wrapper = new IndexedDBWrapper('experimentalDB', 1)
-
+      
       wrapper.transaction((event) => {
         const db = event.target.result
 
@@ -155,17 +153,11 @@ class CollectionItem extends HTMLElement {
         }
       })
 
-      // unsuspend navigation
+      // navigate 
       window.location.href = '/source/html/collection-edit.html'
     })
 
-
-    // onclick load collection-edit page
-    this.shadowRoot.querySelector('img[class="icon-collection"]').addEventListener('click', () => {
-      window.location.href = '/source/html/collection-edit.html'
-    })
-
-    // ondblclick allow editing of collection name 
+    // onclick allow editing of collection name 
     this.shadowRoot.querySelector('h1').addEventListener('click', (event) => {
       // get shadow root
       const collection = event.target.getRootNode().host

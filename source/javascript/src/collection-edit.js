@@ -5,6 +5,7 @@ const collapse = document.getElementById('collapse')
 const imageBox = document.getElementById('image-collection')
 const videoBox = document.getElementById('video-collection')
 const gallery = document.getElementById('media-gallery')
+const addBtn = document.querySelector('.addBtn')
 const imageButton = document.getElementById('add-image-btn')
 const videoButton = document.getElementById('add-video-btn')
 /*
@@ -25,6 +26,11 @@ collapse.addEventListener('click', () => {
     gallery.style.visibility = 'hidden'
   }
 })
+
+addBtn.addEventListener('click', () => {
+  newElement()
+})
+
 function newElement () {
   const span = document.createElement('select')
   span.className = 'dropdown'
@@ -72,12 +78,16 @@ function populateTasks (collection) {
   }
   const tasks = collection.tasks
   const taskList = document.getElementById('myUL')
-  tasks.forEach((task, index) => {
-    const logItem = createLogItem(task)
-    const li = document.createElement('li')
-    li.appendChild(logItem)
-    taskList.appendChild(li)
-  })
+  try {
+    tasks.forEach((task, index) => {
+      const logItem = createLogItem(task)
+      const li = document.createElement('li')
+      li.appendChild(logItem)
+      taskList.appendChild(li)
+    })
+  } catch (err) {
+    console.log('collection has no tasks')
+  }
 }
 
 /**
@@ -114,10 +124,14 @@ function populateMedia (collection, mediaType = MEDIA_TYPE.IMAGE) {
     target = collection.videos
     mediaCollection = document.getElementById('video-collection')
   }
-  target.forEach((media, index) => {
-    const mediaItem = createMediaItem(media)
-    mediaCollection.appendChild(mediaItem)
-  })
+  try {
+    target.forEach((media, index) => {
+      const mediaItem = createMediaItem(media)
+      mediaCollection.appendChild(mediaItem)
+    })
+  } catch (err) {
+    console.log('collection has no media')
+  }
 }
 
 /**
@@ -197,6 +211,7 @@ function insertMedia (event, media = MEDIA_TYPE.IMAGE) {
   mediaItem.file = selectedFile
   mediaItem.media = media
   updateLogInfo((collection) => {
+    console.log('collection', collection)
     const target = (media === MEDIA_TYPE.IMAGE) ? collection.images : collection.videos
     target.push({
       type: 'string',

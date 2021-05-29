@@ -1,6 +1,5 @@
 import { CollectionItem, wrapper } from './components/CollectionItem.js'
 
-<<<<<<< HEAD
 const addBtn = document.getElementById('add')
 
 addBtn.addEventListener('click', () => {
@@ -37,13 +36,12 @@ function addCollection(collectionName) {
         const newCollectionObj = {
           "type": "array",
           "name": collectionName,
-          "items": [
-            {
-              "type": "string",
-              "images": "image",
-              "videos": "video"
-            }
-          ]
+          "tasks": [
+          ],
+          "images": [
+          ],
+          "videos": [
+          ],
         }
         collections.push(newCollectionObj)
 
@@ -77,18 +75,6 @@ function addCollection(collectionName) {
 //   request.open('GET', '/source/models/schema.json')
 //   request.send()
 // }
-=======
-// const RealAddButton = document.getElementById('add')
-// const CustAddButton = document.getElementsByClassName('custAdd')
-
-// CustAddButton.addEventListener('click', () => {
-//   RealAddButton.click()
-// })
-
-// RealAddButton.addEventListener('click', () => {
-//   location.pathname = '/source/html/collection-edit.html'
-// })
->>>>>>> 6c1484644b0230110452765ed69ec947c7004767
 
 /**
  * the daily log information corresponding to the given date.
