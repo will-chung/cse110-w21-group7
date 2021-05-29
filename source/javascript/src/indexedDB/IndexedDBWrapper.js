@@ -20,8 +20,6 @@ class IndexedDBWrapper {
   constructor (dbName, version) {
     this._dbName = dbName
     this._version = version
-    this._EMPTY_SCHEMA = '/source/models/schema_empty.json'
-    this._MOCK_LOG = '/source/models/schema.json'
     console.log('initialized indexedDBWrapper')
   }
 
@@ -128,13 +126,11 @@ class IndexedDBWrapper {
      */
   transaction (successCb = (event) => {}, upgradeCb = this.init, synthetic = true) {
     const request = window.indexedDB.open(this._dbName, this._version)
+    const that = this
     request.onupgradeneeded = function (event) {
-      upgradeCb.bind(this)
-      upgradeCb(event, synthetic ? '/source/models/schema.json' : '/source/models/schema_empty.json')
+      upgradeCb(event, synthetic ? '/source/models/mock_data.json' : '/source/models/schema_empty.json')
     }
-
     request.onsuccess = function (event) {
-      successCb.bind(this)
       successCb(event)
     }
   }
