@@ -4,8 +4,8 @@ const addBtn = document.getElementById('add')
 
 addBtn.addEventListener('click', () => {
   // location.pathname = '/source/html/collection-edit.html'
-  const collectionName = window.prompt("Please enter the name of your new collection:", "")
-  addCollection(collectionName);
+  const collectionName = window.prompt('Please enter the name of your new collection:')
+  addCollection(collectionName)
 })
 
 /**
@@ -13,12 +13,13 @@ addBtn.addEventListener('click', () => {
  * @author William Chung <wchung@ucsd.edu>
  * @param name Name to be given to new collection.
  */
-function addCollection(collectionName) {
+function addCollection (collectionName) {
   // if user presses 'Cancel' on prompt
-  if (collectionName === null)
-    return;
+  if (collectionName === null) {
+    return
+  }
 
-  const newCollection = new CollectionItem();
+  const newCollection = new CollectionItem()
   newCollection.entry = { name: collectionName }
 
   wrapper.transaction((event) => {
@@ -30,18 +31,18 @@ function addCollection(collectionName) {
       const cursor = event.target.result
       if (cursor) {
         const json = cursor.value
-        
+
         const collections = json.properties.collections
 
         const newCollectionObj = {
-          "type": "array",
-          "name": collectionName,
-          "tasks": [
+          type: 'array',
+          name: collectionName,
+          tasks: [
           ],
-          "images": [
+          images: [
           ],
-          "videos": [
-          ],
+          videos: [
+          ]
         }
         collections.push(newCollectionObj)
 

@@ -153,7 +153,6 @@ function getLogInfoAsJSON (cb) {
     store.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
       if (cursor) {
-        console.log(cursor.value)
         const collectionName = cursor.value.current_collection
         const collection = cursor.value.properties.collections.find((element) => {
           return element.name === collectionName
