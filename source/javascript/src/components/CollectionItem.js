@@ -84,11 +84,11 @@ class CollectionItem extends HTMLElement {
                                         <img src="/source/images/icon-collection.svg" class="icon-collection">
                                         <h1>${this.getCollectionName()}</h1>
                                     </div>`
-    this.setClickListeners();
-    this.setHoverListeners();
+    this.setClickListeners()
+    this.setHoverListeners()
   }
 
-  setClickListeners() {
+  setClickListeners () {
     this.shadowRoot.querySelector('span[class="icon-trash trash-button-icon"]').addEventListener('click', (event) => {
       // Get clicked collection-item
       const collectionItem = event.target.getRootNode().host
@@ -132,7 +132,7 @@ class CollectionItem extends HTMLElement {
     this.dataset.name = this._entry.name
     this.shadowRoot.querySelector('img[class="icon-collection"]').addEventListener('click', (event) => {
       const that = this
-      
+
       wrapper.transaction((event) => {
         const db = event.target.result
 
@@ -153,11 +153,11 @@ class CollectionItem extends HTMLElement {
         }
       })
 
-      // navigate 
+      // navigate
       window.location.href = '/source/html/collection-edit.html'
     })
 
-    // onclick allow editing of collection name 
+    // onclick allow editing of collection name
     this.shadowRoot.querySelector('h1').addEventListener('click', (event) => {
       // get shadow root
       const collection = event.target.getRootNode().host
@@ -170,13 +170,13 @@ class CollectionItem extends HTMLElement {
        */
       const form = document.createElement('form')
       form.style.margin = 'auto'
-      
+
       const textInput = document.createElement('input')
       textInput.setAttribute('type', 'text')
       textInput.style.height = '40px'
       textInput.style.fontSize = '32px'
       textInput.style.fontWeight = 'bold'
-      textInput.style.fontFamily = '"Pattaya", sans-serif';
+      textInput.style.fontFamily = '"Pattaya", sans-serif'
       textInput.style.textAlign = 'center'
       textInput.style.background = 'transparent'
       textInput.value = name.textContent
@@ -200,10 +200,10 @@ class CollectionItem extends HTMLElement {
         const collectionName = textInput.value
         collection.entry = { name: collectionName }
       })
-    }) 
+    })
   }
 
-  setHoverListeners() {
+  setHoverListeners () {
     const trashIcon = this.shadowRoot.querySelector('.icon-trash')
 
     this.addEventListener('mouseenter', () => {
@@ -211,7 +211,7 @@ class CollectionItem extends HTMLElement {
     })
 
     this.addEventListener('mouseleave', () => {
-      trashIcon.style.visibility = 'hidden' 
+      trashIcon.style.visibility = 'hidden'
     })
   }
 
@@ -253,7 +253,7 @@ class CollectionItem extends HTMLElement {
  * @param prevName Name of the collection to be udpated.
  * @param newName New name of the collection .
  */
-function updateCollectionName(prevName, newName) {
+function updateCollectionName (prevName, newName) {
   wrapper.transaction((event) => {
     const db = event.target.result
 
@@ -263,12 +263,13 @@ function updateCollectionName(prevName, newName) {
       const cursor = event.target.result
       if (cursor) {
         const json = cursor.value
-        
+
         const collections = json.properties.collections
 
         collections.forEach(collection => {
-          if (collection.name === prevName)
+          if (collection.name === prevName) {
             collection.name = newName
+          }
         })
 
         // Save changes
