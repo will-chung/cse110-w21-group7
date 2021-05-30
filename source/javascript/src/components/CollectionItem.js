@@ -124,6 +124,11 @@ class CollectionItem extends HTMLElement {
               }
             })
             collectionsArray.splice(index, 1)
+
+            if (collectionsArray.length == 0) {
+              document.getElementById('add').textContent = 'Add First Collection'
+            }
+
             // Save changes
             const requestUpdate = cursor.update(json)
           }
