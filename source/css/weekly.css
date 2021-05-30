@@ -279,6 +279,16 @@ a:link {
     font-size: 12pt;
 }
 
+.weekday > a{
+  font-size: 28px;
+  font-family: Pattaya, sans-serif;
+  color:#293241
+}
+
+.weekday > a:hover{
+  color:#EE6C4D;
+}
+
 a {
   text-decoration: none;
 }

@@ -69,6 +69,7 @@
                 "logType": "note"
               }
           ],
+
             "mood": {
               "type": "number",
               "multipleOf": 1,
