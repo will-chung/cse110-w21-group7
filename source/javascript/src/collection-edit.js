@@ -75,6 +75,7 @@ function newElement () {
  * surfaced from indexedDB
  */
 function populateTasks (collection) {
+  // console.log(collection.items)
   function createLogItem (task) {
     const logItem = document.createElement('log-item')
     logItem.itemEntry = task
@@ -97,7 +98,7 @@ function populateTasks (collection) {
  * surfaced from indexedDB
  */
 function populateCollectionName () {
-  let name = window.location.hash.replace(/%20/g, " ");
+  let name = window.location.hash.replace(/%20/g, ' ')
   name = name.slice(1)
   const title = document.querySelector('#title > h1')
   title.textContent = name
@@ -151,8 +152,8 @@ function getLogInfoAsJSON (cb) {
       const cursor = event.target.result
       if (cursor) {
         let name = window.location.hash.slice(1)
-        name = name.replace(/%20/g, " ")
-        //const collectionName = cursor.value.current_collection
+        name = name.replace(/%20/g, ' ')
+        // const collectionName = cursor.value.current_collection
         const collection = cursor.value.properties.collections.find((element) => {
           return element.name === name
         })
@@ -231,7 +232,7 @@ function insertMedia (event, media = MEDIA_TYPE.IMAGE) {
  * collection data for the collection to view
  */
 function populatePage (response) {
-  populateTasks(response)
+  // populateTasks(response)
   populateCollectionName(response)
   populateMedia(response, MEDIA_TYPE.IMAGE)
   populateMedia(response, MEDIA_TYPE.VIDEO)
