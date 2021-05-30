@@ -96,8 +96,9 @@ function populateTasks (collection) {
  * @param {Object} JSON object containing the collection
  * surfaced from indexedDB
  */
-function populateCollectionName (collection) {
-  const name = collection.name
+function populateCollectionName () {
+  let name = window.location.hash.replace(/%20/g, " ");
+  name = name.slice(1)
   const title = document.querySelector('#title > h1')
   title.textContent = name
 }
@@ -149,9 +150,11 @@ function getLogInfoAsJSON (cb) {
     store.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
       if (cursor) {
-        const collectionName = cursor.value.current_collection
+        let name = window.location.hash.slice(1)
+        name = name.replace(/%20/g, " ")
+        //const collectionName = cursor.value.current_collection
         const collection = cursor.value.properties.collections.find((element) => {
-          return element.name === collectionName
+          return element.name === name
         })
         console.log(collection)
         cb.bind(this)
