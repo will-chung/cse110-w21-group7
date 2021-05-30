@@ -88,6 +88,9 @@ class CollectionItem extends HTMLElement {
     this.setHoverListeners()
   }
 
+  /*
+   * Adds event listeners for all click events on the collection item
+   */
   setClickListeners () {
     this.shadowRoot.querySelector('span[class="icon-trash trash-button-icon"]').addEventListener('click', (event) => {
       // Get clicked collection-item
@@ -129,6 +132,7 @@ class CollectionItem extends HTMLElement {
       event.target.parentElement.remove()
     })
 
+    // update current_collection when a collection is clicked
     this.dataset.name = this._entry.name
     this.shadowRoot.querySelector('img[class="icon-collection"]').addEventListener('click', (event) => {
       const that = this
@@ -153,7 +157,7 @@ class CollectionItem extends HTMLElement {
         }
       })
 
-      // navigate
+      // navigate to collection-edit page
       window.location.href = '/source/html/collection-edit.html'
     })
 
@@ -203,9 +207,13 @@ class CollectionItem extends HTMLElement {
     })
   }
 
+  /*
+   * Adds event listeners for all hover events on the collection item
+   */
   setHoverListeners () {
     const trashIcon = this.shadowRoot.querySelector('.icon-trash')
 
+    // toggles visiblity of trash icon when mouse hovers
     this.addEventListener('mouseenter', () => {
       trashIcon.style.visibility = 'visible'
     })
