@@ -63,11 +63,25 @@ class DateConverter extends Date {
     const that = this
     const timestampDateConverter = new DateConverter(timestamp)
     if (Math.abs(timestampDateConverter.getDaysFromTimeStamp(timestamp) - that.getDaysFromTimeStamp()) < 7) {
-      if (((that.getDay() - 1) % 7) - ((timestampDateConverter.getDay() - 1) % 7) >= 0) {
+      if (((that.getDay() + 6) % 7) - ((timestampDateConverter.getDay() + 6) % 7) >= 0) {
         return true
       }
     }
     return false
+  }
+
+  /**
+   * Get a UNIX timestamp for Monday of the current week.
+   * Note that this UNIX timestamp is unique up to the number
+   * of days since 12:00AM January 1, 1970 GMT.
+   * @returns {Number} UNIX timestamp representing the date for
+   * Monday of the current week
+   */
+  getBeginningOfWeek () {
+    const dayOfWeek = (this.getDay() + 6) % 7
+    const offsetMillis = (dayOfWeek * 24 * 60 * 60 * 1000)
+    const stamp = this.getTime() - offsetMillis
+    return stamp
   }
 
   /**

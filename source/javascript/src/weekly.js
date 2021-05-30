@@ -26,18 +26,6 @@ function getLogInfoAsJSON (cb) {
   // Do we need to open a new db?
   const wrapper = new IndexedDBWrapper('experimentalDB', 1)
 
-  // wrapper.transaction((event) => {
-  //   const db = event.target.result
-  //   const transaction = db.transaction(['currentLogStore'], 'readwrite')
-  //   const store = transaction.objectStore('currentLogStore')
-  //   //experiemental log not the actual json
-  //   let log = {
-  //     type: 'note',
-  //     content: 'sample note'
-  //   };
-  //   store.add(log);
-  // })
-
   wrapper.transaction((event) => {
     const db = event.target.result
     const transaction = db.transaction(['currentLogStore'], 'readonly') // mode should be readonly
@@ -47,9 +35,7 @@ function getLogInfoAsJSON (cb) {
 
     getReq.onsuccess = (event) => {
       const allEntries = getReq.result
-      // populateWeeklyView(allEntries)
     }
-
     store.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
       // this cursor hold on to the event, we have fetched the data in the db
@@ -61,18 +47,6 @@ function getLogInfoAsJSON (cb) {
           const timestamp = log.properties.date.time
           return current.timestampsInSameWeek(Number(timestamp))
         })
-        /**
-         * Mo Tues Wed Thurs Fri Sat Sun
-         *  *        *     *      X
-         * Mo Tues Wed Thurs Fri Sat Sun
-         *                            *
-         */
-        // const results_sorted = result.sort((logOne, logTwo) => {
-        //   return Number(logOne.properties.date.time) - Number(logTwo.properties.date.time)
-        // })
-        // results_sorted.forEach((log, index) => {
-
-        // })
 
         console.log(result)
         cb(result)
@@ -81,170 +55,92 @@ function getLogInfoAsJSON (cb) {
   })
 }
 
-function populateWeeklyView (entryArr) {
+function populateWeeklyView (weeklyItems) {
+  addColumnDates()
+  populateDayColumns(weeklyItems)
+}
+
+function populateDayColumns (weeklyItems) {
   const week = document.getElementById('weekly-div')
   // create a DateConverter object
   const current = new DateConverter(Date.now())
   // Use a new instance of Date to fetch the day of the week of today
-  const today = new Date()
+  const today = new DateConverter()
   const todayDays = today.getDay()
-  entryArr.forEach((entry) => {
+  weeklyItems.forEach((entry) => {
     // calculate the offset between today's day and the entry's day
     const offSet = current.getDaysFromTimeStamp(Date.now()) - current.getDaysFromTimeStamp(entry.properties.date.time)
+    const currentDay = new DateConverter(Number(entry.properties.date.time))
     // apply the offset to get the index
-    const index = todayDays - offSet
+    const index = todayDays + 6 - offSet
     const weeklyItem = document.createElement('weekly-view-item')
     weeklyItem.entry = entry
-    week.children[index].appendChild(weeklyItem)
+    const childDiv = week.children[index]
+    // business logic for appending the navigation link to each column
+    appendNavLinks(childDiv, currentDay)
+    childDiv.appendChild(weeklyItem)
   })
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
   getLogInfoAsJSON(populateWeeklyView)
-  const today = new Date()
-  const month = today.getMonth() + 1
-  const dayNum = today.getDay()
-  const date = today.getDate()
-  const year = today.getFullYear()
-  appendDate(dayNum, date, month, year)
-
-  // const weeklyItem = document.createElement('weekly-view-item')
-  // weeklyItem.entry = {
-  //   type: 'object',
-  //   required: ['date', 'description'],
-  //   properties: {
-  //     date: {
-  //       type: 'string',
-  //       time: '1621553378082',
-  //       description: 'The date of the event.'
-  //     },
-  //     events: [
-  //       {
-  //         description: 'This is an event from last week',
-  //         logType: 'event',
-  //         time: '1621718384658'
-  //       },
-  //       {
-  //         description: 'I walked my dog last week',
-  //         logType: 'event',
-  //         time: '1621729208633'
-  //       }
-  //     ],
-  //     tasks: [
-  //       {
-  //         description: 'Study for midterm',
-  //         logType: 'task',
-  //         finished: true
-  //       },
-  //       {
-  //         description: 'Study for final',
-  //         logType: 'task',
-  //         finished: false
-  //       },
-  //       {
-  //         description: 'Study',
-  //         logType: 'task',
-  //         finished: true
-  //       },
-  //       {
-  //         description: 'Weeknight meal prep',
-  //         logType: 'task',
-  //         finished: false
-  //       }
-  //     ],
-  //     notes: [
-  //       {
-  //         description: "I should send a card for Jordan's birthday.",
-  //         logType: 'note'
-  //       }
-  //     ],
-  //     reflection: [
-  //       {
-  //         description: 'Today was a good day. I got a lot of work done.',
-  //         logType: 'reflection'
-  //       }
-  //     ],
-  //     mood: {
-  //       type: 'number',
-  //       multipleOf: 1,
-  //       minimum: 0,
-  //       exclusiveMaximum: 100,
-  //       value: 20,
-  //       description: 'Daily mood on a range of 0-99.'
-  //     }
-  //   }
-  // }
-  // tuesday.appendChild(weeklyItem)
 })
 
-function appendDate (dayNum, date, month, year) {
-  for (let i = 1; i <= dayNum; i++) {
-    // days before today
-    let tempDate = date - (dayNum - i)
-    let tempMonth = month
-    if (tempDate <= 0) {
-      tempMonth -= 1
-      switch (month) {
-        case 1:
-          tempMonth = 12
-          break
-        case 3:
-          if (year % 4 === 0) {
-            // leap year
-            tempDate += 29
-          } else {
-            tempDate += 28
-          }
-          break
-        case 5:
-        case 7:
-        case 10:
-        case 12:
-          tempDate += 30
-          break
-        default:
-          tempDate += 31
+/**
+ * @author Katherine Baker <klbaker@ucsd.edu> and Yuzi Lyu <>
+ * @param {HTMLElement} targetElement div element that is a direct
+ * child of the div with identifier #weekly-div. From this element, we
+ * are able to
+ * @param {Date} date Date reference containing the date to append to
+ * the header for the current column on the monthly/weekly view.
+ */
+function appendNavLinks (targetElement, date) {
+  const anchor = targetElement.querySelector('a')
+  anchor.dataset.unixTimestamp = date.getTime()
+  anchor.href = '/source/html/daily.html'
+  // adjusts current_log in DB
+  anchor.onclick = function (event) {
+    event.preventDefault()
+    const wrapper = new IndexedDBWrapper('experimentalDB', 1)
+    const that = event
+
+    wrapper.transaction((event) => {
+      const db = event.target.result
+      const store = db.transaction(['currentLogStore'], 'readwrite').objectStore('currentLogStore')
+
+      const req = store.openCursor()
+      req.onsuccess = (e) => {
+        const cursor = e.target.result
+        if (cursor) {
+          cursor.value.current_log = that.target.dataset.unixTimestamp
+          cursor.update(cursor.value)
+        }
+        console.log(cursor.value)
       }
-    }
-    const tempElem = document.createElement('p')
-    tempElem.innerText = tempMonth + '.' + tempDate
-    weekly.children[i - 1].insertBefore(tempElem, weekly.children[i - 1].children[1])
+    })
+    window.location.href = '/source/html/daily.html'
   }
-  for (let i = dayNum + 1; i <= 7; i++) {
-    // days after today
-    let tempDate = date + (i - dayNum)
-    let tempMonth = month
-    switch (month) {
-      case 2:
-        if (year % 4 === 0) {
-          if (tempDate > 29) {
-            tempMonth++
-            tempDate -= 29
-          }
-        } else {
-          if (tempDate > 28) {
-            tempMonth++
-            tempDate -= 28
-          }
-        }
-        break
-      case 4:
-      case 6:
-      case 9:
-      case 11:
-        if (tempDate > 30) {
-          tempMonth++
-          tempDate -= 30
-        }
-        break
-      default:
-        if (tempDate > 31) {
-          tempMonth++
-          tempDate -= 31
-        }
-    }
-    const tempElem = document.createElement('p')
-    tempElem.innerText = tempMonth + '.' + tempDate
-    weekly.children[i - 1].insertBefore(tempElem, weekly.children[i - 1].children[1])
+}
+
+/**
+ * Business logic subroutine that adds the date to each
+ * column in the weekly view.
+ */
+function addColumnDates () {
+  const currentDate = new DateConverter()
+
+  // DateConverter object with timestamp of Monday of same week
+  const mondayOfCurrentDate = currentDate.getBeginningOfWeek()
+  const columns = document.getElementById('weekly-div').getElementsByTagName('div')
+  for (let i = 0; i < columns.length; i++) {
+    const column = columns[i]
+    const anchor = column.querySelector('a')
+    // get day offset in milliseconds
+    const offsetInMillis = i * (24 * 60 * 60 * 1000)
+    const currentTimestamp = mondayOfCurrentDate + offsetInMillis
+    // console.log('index ' + i + " timestamp: " + currentTimestamp)
+    const currentDate = new DateConverter(currentTimestamp)
+    const anchorString = `(${currentDate.getMonth() + 1}.${currentDate.getDate()})`
+    anchor.textContent = `${anchor.textContent} ${anchorString}`
   }
 }

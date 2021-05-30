@@ -5,8 +5,10 @@ const collapse = document.getElementById('collapse')
 const imageBox = document.getElementById('image-collection')
 const videoBox = document.getElementById('video-collection')
 const gallery = document.getElementById('media-gallery')
+const addBtn = document.querySelector('.addBtn')
 const imageButton = document.getElementById('add-image-btn')
 const videoButton = document.getElementById('add-video-btn')
+
 /*
  * This onclick toggles the display style of the media gallery
  * TODO: When onclick, the size of the media gallery should be changed
@@ -25,6 +27,14 @@ collapse.addEventListener('click', () => {
     gallery.style.visibility = 'hidden'
   }
 })
+
+addBtn.addEventListener('click', () => {
+  newElement()
+})
+
+/*
+ * Creates new element to append to task list
+ */
 function newElement () {
   const span = document.createElement('select')
   span.className = 'dropdown'
@@ -65,6 +75,7 @@ function newElement () {
  * surfaced from indexedDB
  */
 function populateTasks (collection) {
+  // console.log(collection.items)
   function createLogItem (task) {
     const logItem = document.createElement('log-item')
     logItem.itemEntry = task
@@ -86,8 +97,9 @@ function populateTasks (collection) {
  * @param {Object} JSON object containing the collection
  * surfaced from indexedDB
  */
-function populateCollectionName (collection) {
-  const name = collection.name
+function populateCollectionName () {
+  let name = window.location.hash.replace(/%20/g, ' ')
+  name = name.slice(1)
   const title = document.querySelector('#title > h1')
   title.textContent = name
 }
@@ -139,10 +151,11 @@ function getLogInfoAsJSON (cb) {
     store.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
       if (cursor) {
-        console.log(cursor.value)
-        const collectionName = cursor.value.current_collection
+        let name = window.location.hash.slice(1)
+        name = name.replace(/%20/g, ' ')
+        // const collectionName = cursor.value.current_collection
         const collection = cursor.value.properties.collections.find((element) => {
-          return element.name === collectionName
+          return element.name === name
         })
         console.log(collection)
         cb.bind(this)
