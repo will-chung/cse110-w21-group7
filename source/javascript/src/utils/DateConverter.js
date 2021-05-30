@@ -71,6 +71,20 @@ class DateConverter extends Date {
   }
 
   /**
+   * Get a UNIX timestamp for Monday of the current week.
+   * Note that this UNIX timestamp is unique up to the number
+   * of days since 12:00AM January 1, 1970 GMT.
+   * @returns {Number} UNIX timestamp representing the date for
+   * Monday of the current week
+   */
+  getBeginningOfWeek() {
+    let dayOfWeek = (this.getDay() - 1) % 7
+    let offsetMillis = (dayOfWeek * 24 * 60 * 60 * 1000)
+    let stamp = this.getTime() - offsetMillis
+    return stamp
+  }
+
+  /**
      * Checks if the given UNIX timestamp is correct up to the
      * number of days.
      * @param {Number} timestamp UNIX timestamp to check for

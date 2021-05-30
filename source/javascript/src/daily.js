@@ -16,13 +16,16 @@ const noteRadio = document.getElementById('input4')
 const radioContainer = document.getElementsByClassName('container')[0]
 const realSavBtn = document.getElementById('save')
 
-saveBtn.addEventListener('click', () => {
-  realSavBtn.click()
-})
-cancelBtn.addEventListener('click', () => {
-  // TODO: implement hide functionality
-  hideEverything()
-})
+// cancelBtn.addEventListener('click', () => {
+//   // TODO: implement hide functionality
+//   hideEverything()
+// })
+// saveBtn.addEventListener('click', () => {
+//   realSavBtn.click()
+// })
+// cancelBtn.addEventListener('click', () => {
+//   realCanBtn.click()
+// })
 
 /*
  * This onclick toggles the display style of the quote to none
@@ -30,17 +33,17 @@ cancelBtn.addEventListener('click', () => {
  * Resource: https://codepen.io/Mdade89/pen/JKkYGq
  * the link above provides a collapsible text box
  */
-document.addEventListener('DOMContentLoaded', () => {
-  saveBtn.style.visibility = 'hidden'
-  saveBtn.addEventListener('click', (event) => {
-    event.preventDefault()
-    newElement()
-  })
-  cancelBtn.style.visibility = 'hidden'
-  text.type = 'hidden'
-  date.type = 'hidden'
-  time.type = 'hidden'
-})
+// document.addEventListener('DOMContentLoaded', () => {
+//   saveBtn.style.visibility = 'hidden'
+//   saveBtn.addEventListener('click', (event) => {
+//     event.preventDefault()
+//     newElement()
+//   })
+//   cancelBtn.style.visibility = 'hidden'
+//   text.type = 'hidden'
+//   date.type = 'hidden'
+//   time.type = 'hidden'
+// })
 
 radioContainer.addEventListener('change', () => {
   if (refRadio.checked) {
@@ -288,10 +291,6 @@ function populateDailyLog (response) {
  */
 function getDateFromUNIXTimestamp (timestamp) {
   return new Date(timestamp)
-}
-
-function sendLogInfoAsJSON () {
-  // @TODO
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
