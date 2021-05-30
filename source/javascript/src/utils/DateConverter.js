@@ -62,8 +62,9 @@ class DateConverter extends Date {
     // get the days correspond to _timestamp
     const that = this
     const timestampDateConverter = new DateConverter(timestamp)
+    console.log(timestampDateConverter)
     if (Math.abs(timestampDateConverter.getDaysFromTimeStamp(timestamp) - that.getDaysFromTimeStamp()) < 7) {
-      if (((that.getDay() - 1) % 7) - ((timestampDateConverter.getDay() - 1) % 7) >= 0) {
+      if (((that.getDay() + 6) % 7) - ((timestampDateConverter.getDay() + 6) % 7) >= 0) {
         return true
       }
     }
@@ -78,7 +79,7 @@ class DateConverter extends Date {
    * Monday of the current week
    */
   getBeginningOfWeek () {
-    const dayOfWeek = (this.getDay() - 1) % 7
+    const dayOfWeek = (this.getDay() + 6) % 7
     const offsetMillis = (dayOfWeek * 24 * 60 * 60 * 1000)
     const stamp = this.getTime() - offsetMillis
     return stamp

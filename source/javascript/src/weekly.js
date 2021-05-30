@@ -72,7 +72,7 @@ function populateDayColumns (weeklyItems) {
     const offSet = current.getDaysFromTimeStamp(Date.now()) - current.getDaysFromTimeStamp(entry.properties.date.time)
     const currentDay = new DateConverter(Number(entry.properties.date.time))
     // apply the offset to get the index
-    const index = todayDays - offSet
+    const index = todayDays + 6 - offSet
     const weeklyItem = document.createElement('weekly-view-item')
     weeklyItem.entry = entry
     const childDiv = week.children[index]
@@ -138,6 +138,7 @@ function addColumnDates () {
     // get day offset in milliseconds
     const offsetInMillis = i * (24 * 60 * 60 * 1000)
     const currentTimestamp = mondayOfCurrentDate + offsetInMillis
+    // console.log('index ' + i + " timestamp: " + currentTimestamp)
     const currentDate = new DateConverter(currentTimestamp)
     const anchorString = `(${currentDate.getMonth() + 1}.${currentDate.getDate()})`
     anchor.textContent = `${anchor.textContent} ${anchorString}`
