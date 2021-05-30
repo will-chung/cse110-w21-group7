@@ -62,7 +62,6 @@ class DateConverter extends Date {
     // get the days correspond to _timestamp
     const that = this
     const timestampDateConverter = new DateConverter(timestamp)
-    console.log(timestampDateConverter)
     if (Math.abs(timestampDateConverter.getDaysFromTimeStamp(timestamp) - that.getDaysFromTimeStamp()) < 7) {
       if (((that.getDay() + 6) % 7) - ((timestampDateConverter.getDay() + 6) % 7) >= 0) {
         return true

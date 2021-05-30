@@ -232,7 +232,7 @@ function insertMedia (event, media = MEDIA_TYPE.IMAGE) {
  * collection data for the collection to view
  */
 function populatePage (response) {
-  // populateTasks(response)
+  populateTasks(response)
   populateCollectionName(response)
   populateMedia(response, MEDIA_TYPE.IMAGE)
   populateMedia(response, MEDIA_TYPE.VIDEO)

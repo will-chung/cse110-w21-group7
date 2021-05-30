@@ -200,7 +200,7 @@ class CollectionItem extends HTMLElement {
       })
 
       // when user presses enter, update collection name
-      form.addEventListener('submit', (event) => {
+      form.addEventListener('change', (event) => {
         // FIXME: a small bug here, if user doesn't hit enter, the name won't get updated
         // and that's because we are using the submit, maybe we should have a check mark or save button
         // which makes the name changing process more explicit
