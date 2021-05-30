@@ -11,7 +11,7 @@ addBtn.addEventListener('click', () => {
 /**
  * Add new collection to database with given name.
  * @author William Chung <wchung@ucsd.edu>
- * @param name Name to be given to new collection.
+ * @param collectionName Name to be given to new collection.
  */
 function addCollection (collectionName) {
   // if user presses 'Cancel' on prompt
@@ -61,21 +61,6 @@ function addCollection (collectionName) {
 
   document.querySelector('.collection-area').append(newCollection)
 }
-
-// function getLogInfoAsJSON (cb) {
-//   // TODO replace this with indexedDB transaction
-//   const request = new XMLHttpRequest()
-//   request.onreadystatechange = (event) => {
-//     cb.bind(this)
-//     if (request.status === 200 && request.readyState === XMLHttpRequest.DONE) {
-//       const response = event.target.response
-//       cb(response)
-//     }
-//   }
-
-//   request.open('GET', '/source/models/schema.json')
-//   request.send()
-// }
 
 /**
  * the daily log information corresponding to the given date.
