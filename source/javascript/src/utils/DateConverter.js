@@ -77,10 +77,10 @@ class DateConverter extends Date {
    * @returns {Number} UNIX timestamp representing the date for
    * Monday of the current week
    */
-  getBeginningOfWeek() {
-    let dayOfWeek = (this.getDay() - 1) % 7
-    let offsetMillis = (dayOfWeek * 24 * 60 * 60 * 1000)
-    let stamp = this.getTime() - offsetMillis
+  getBeginningOfWeek () {
+    const dayOfWeek = (this.getDay() - 1) % 7
+    const offsetMillis = (dayOfWeek * 24 * 60 * 60 * 1000)
+    const stamp = this.getTime() - offsetMillis
     return stamp
   }
 

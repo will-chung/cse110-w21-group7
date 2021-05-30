@@ -60,7 +60,7 @@ function populateWeeklyView (weeklyItems) {
   populateDayColumns(weeklyItems)
 }
 
-function populateDayColumns(weeklyItems) {
+function populateDayColumns (weeklyItems) {
   const week = document.getElementById('weekly-div')
   // create a DateConverter object
   const current = new DateConverter(Date.now())
@@ -70,12 +70,12 @@ function populateDayColumns(weeklyItems) {
   weeklyItems.forEach((entry) => {
     // calculate the offset between today's day and the entry's day
     const offSet = current.getDaysFromTimeStamp(Date.now()) - current.getDaysFromTimeStamp(entry.properties.date.time)
-    let currentDay = new DateConverter(Number(entry.properties.date.time))
+    const currentDay = new DateConverter(Number(entry.properties.date.time))
     // apply the offset to get the index
     const index = todayDays - offSet
     const weeklyItem = document.createElement('weekly-view-item')
     weeklyItem.entry = entry
-    let childDiv = week.children[index]
+    const childDiv = week.children[index]
     // business logic for appending the navigation link to each column
     appendNavLinks(childDiv, currentDay)
     childDiv.appendChild(weeklyItem)
@@ -86,62 +86,60 @@ document.addEventListener('DOMContentLoaded', (event) => {
   getLogInfoAsJSON(populateWeeklyView)
 })
 
-
 /**
  * @author Katherine Baker <klbaker@ucsd.edu> and Yuzi Lyu <>
  * @param {HTMLElement} targetElement div element that is a direct
  * child of the div with identifier #weekly-div. From this element, we
- * are able to  
+ * are able to
  * @param {Date} date Date reference containing the date to append to
  * the header for the current column on the monthly/weekly view.
  */
 function appendNavLinks (targetElement, date) {
-    const anchor = targetElement.querySelector('a')
-    anchor.dataset.unixTimestamp = date.getTime()
-    anchor.href = '/source/html/daily.html'
-    //adjusts current_log in DB
-    anchor.onclick = function(event) {
-      event.preventDefault()
-      const wrapper = new IndexedDBWrapper('experimentalDB', 1)
-      let that = event
+  const anchor = targetElement.querySelector('a')
+  anchor.dataset.unixTimestamp = date.getTime()
+  anchor.href = '/source/html/daily.html'
+  // adjusts current_log in DB
+  anchor.onclick = function (event) {
+    event.preventDefault()
+    const wrapper = new IndexedDBWrapper('experimentalDB', 1)
+    const that = event
 
-      wrapper.transaction((event) => {
-        const db = event.target.result
-        const store = db.transaction(['currentLogStore'], 'readwrite').objectStore('currentLogStore')
-        
-        let req = store.openCursor()
-        req.onsuccess = (e) => {
-          const cursor = e.target.result
-          if(cursor) {
-            cursor.value.current_log = that.target.dataset.unixTimestamp
-            cursor.update(cursor.value)
-          }
-          console.log(cursor.value)
+    wrapper.transaction((event) => {
+      const db = event.target.result
+      const store = db.transaction(['currentLogStore'], 'readwrite').objectStore('currentLogStore')
+
+      const req = store.openCursor()
+      req.onsuccess = (e) => {
+        const cursor = e.target.result
+        if (cursor) {
+          cursor.value.current_log = that.target.dataset.unixTimestamp
+          cursor.update(cursor.value)
         }
-        
-      })
-      window.location.href = '/source/html/daily.html'
-    }
+        console.log(cursor.value)
+      }
+    })
+    window.location.href = '/source/html/daily.html'
+  }
 }
 
 /**
  * Business logic subroutine that adds the date to each
  * column in the weekly view.
  */
-function addColumnDates() {
-  let currentDate = new DateConverter()
-  
+function addColumnDates () {
+  const currentDate = new DateConverter()
+
   // DateConverter object with timestamp of Monday of same week
-  let mondayOfCurrentDate = currentDate.getBeginningOfWeek()
+  const mondayOfCurrentDate = currentDate.getBeginningOfWeek()
   const columns = document.getElementById('weekly-div').getElementsByTagName('div')
   for (let i = 0; i < columns.length; i++) {
-    let column = columns[i]
-    let anchor = column.querySelector('a')
+    const column = columns[i]
+    const anchor = column.querySelector('a')
     // get day offset in milliseconds
     const offsetInMillis = i * (24 * 60 * 60 * 1000)
     const currentTimestamp = mondayOfCurrentDate + offsetInMillis
     const currentDate = new DateConverter(currentTimestamp)
-    const anchorString = `(${currentDate.getMonth()+1}.${currentDate.getDate()})`
+    const anchorString = `(${currentDate.getMonth() + 1}.${currentDate.getDate()})`
     anchor.textContent = `${anchor.textContent} ${anchorString}`
   }
 }
