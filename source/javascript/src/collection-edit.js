@@ -83,10 +83,10 @@ function populateTasks (collection) {
   const tasks = collection.tasks
   const taskList = document.getElementById('myUL')
   tasks.forEach((task, index) => {
-      const logItem = createLogItem(task)
-      const li = document.createElement('li')
-      li.appendChild(logItem)
-      taskList.appendChild(li)
+    const logItem = createLogItem(task)
+    const li = document.createElement('li')
+    li.appendChild(logItem)
+    taskList.appendChild(li)
   })
 }
 
@@ -125,8 +125,8 @@ function populateMedia (collection, mediaType = MEDIA_TYPE.IMAGE) {
     mediaCollection = document.getElementById('video-collection')
   }
   target.forEach((media, index) => {
-      const mediaItem = createMediaItem(media)
-      mediaCollection.appendChild(mediaItem)
+    const mediaItem = createMediaItem(media)
+    mediaCollection.appendChild(mediaItem)
   })
 }
 
