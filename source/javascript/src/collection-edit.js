@@ -5,8 +5,10 @@ const collapse = document.getElementById('collapse')
 const imageBox = document.getElementById('image-collection')
 const videoBox = document.getElementById('video-collection')
 const gallery = document.getElementById('media-gallery')
+const addBtn = document.querySelector('.addBtn')
 const imageButton = document.getElementById('add-image-btn')
 const videoButton = document.getElementById('add-video-btn')
+
 /*
  * This onclick toggles the display style of the media gallery
  * TODO: When onclick, the size of the media gallery should be changed
@@ -25,6 +27,14 @@ collapse.addEventListener('click', () => {
     gallery.style.visibility = 'hidden'
   }
 })
+
+addBtn.addEventListener('click', () => {
+  newElement()
+})
+
+/*
+ * Creates new element to append to task list
+ */
 function newElement () {
   const span = document.createElement('select')
   span.className = 'dropdown'
@@ -139,7 +149,6 @@ function getLogInfoAsJSON (cb) {
     store.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
       if (cursor) {
-        console.log(cursor.value)
         const collectionName = cursor.value.current_collection
         const collection = cursor.value.properties.collections.find((element) => {
           return element.name === collectionName
