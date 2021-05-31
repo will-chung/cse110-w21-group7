@@ -135,7 +135,8 @@ class MediaItem extends HTMLElement {
     this.addEventListener('mouseleave', () => {
       trashIcon.style.visibility = 'hidden'
     })
-    }
+  }
+
   /**
        * Setter for the file used to render the media item.
        * Setting the file triggers a re-render of this

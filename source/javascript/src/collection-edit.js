@@ -15,7 +15,7 @@ const videoButton = document.getElementById('add-video-btn')
  *
  */
 collapse.addEventListener('click', () => {
-  //console.log(collapse.innerHTML)
+  // console.log(collapse.innerHTML)
   if (collapse.innerHTML === '<i class="fa fa-chevron-up fa-2x"></i>') {
     gallery.style.display = 'none'
     collapse.innerHTML = '<i class="fa fa-chevron-down fa-2x"></i>'
@@ -219,7 +219,7 @@ function insertMedia (event, media = MEDIA_TYPE.IMAGE) {
     return collection
   })
   if (media === MEDIA_TYPE.IMAGE) {
-    let input = document.getElementById('add-image-btn')
+    const input = document.getElementById('add-image-btn')
     console.log(input)
     imageBox.insertBefore(mediaItem, input)
   } else {

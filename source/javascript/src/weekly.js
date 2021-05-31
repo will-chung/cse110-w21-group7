@@ -72,7 +72,7 @@ function populateDayColumns (weeklyItems) {
     const offSet = current.getDaysFromTimeStamp(Date.now()) - current.getDaysFromTimeStamp(entry.properties.date.time)
     const currentDay = new DateConverter(Number(entry.properties.date.time))
     // apply the offset to get the index
-    if(todayDays === 0){
+    if (todayDays === 0) {
       todayDays = 7
     }
     const index = todayDays - offSet
