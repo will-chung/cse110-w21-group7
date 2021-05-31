@@ -1,3 +1,5 @@
+import { IndexedDBWrapper } from '../indexedDB/IndexedDBWrapper.js'
+
 const myTemplate = document.createElement('template')
 
 myTemplate.innerHTML = `
@@ -43,14 +45,64 @@ class Shelf extends HTMLElement {
   constructor () {
     super()
 
-    this.booksArray = []
-
     // create a shadow root for this web component
     this.attachShadow({ mode: 'open' })
     // attach cloned content of template to shadow DOM
     this.shadowRoot.appendChild(myTemplate.content.cloneNode(true))
-
     this.books = this.createBooks()
+
+    const that = this
+    const wrapper = new IndexedDBWrapper('experimentalDB', 1)
+
+    wrapper.transaction((event) => {
+      const db = event.target.result
+      const transaction = db.transaction(['currentLogStore'], 'readonly') // mode should be readonly
+      const store = transaction.objectStore('currentLogStore')
+      // this gets all entries and store them as an array, pass in a key, what's the key?
+      const getReq = store.getAll()
+
+      getReq.onsuccess = (event) => {
+        const allEntries = getReq.result
+      }
+      store.openCursor().onsuccess = function (event) {
+        const cursor = event.target.result
+        // this cursor hold on to the event, we have fetched the data in the db
+        if (cursor) {
+          // current date
+          const dailyLogs = cursor.value.$defs['daily-logs']
+
+          that._books.forEach((book, monthIndex) => {
+            if (!that.hasEntryForYearMonth(dailyLogs, monthIndex)) {
+              book.color = 'grey'
+            } else {
+              book.makeClickable()
+            }
+          })
+        }
+      }
+    })
+  }
+
+  /**
+   * Subroutine used in order to determine whether there exists
+   * daily logs with the given month and year.
+   * @param {Object[]} dailyLogs Array of JSON objects containing the
+   * daily log entries to check.
+   * @param {Number} month Number containing the month (indexed from 1 to 12 inclusive)
+   * with which to compare the date of each daily log
+   * @return {Boolean} boolean value that determines whether there exists
+   * a daily log with the given month and year
+   */
+  hasEntryForYearMonth (dailyLogs, month) {
+    const year = Number(this.label)
+    // finds if a daily log with the given year and month exists
+    const result = dailyLogs.find((log) => {
+      const timestamp = Number(log.properties.date.time)
+      const date = new Date(timestamp)
+      return (date.getFullYear() === year) && (date.getMonth() === month)
+    })
+
+    return !(result === undefined)
   }
 
   get label () {
@@ -65,7 +117,7 @@ class Shelf extends HTMLElement {
   }
 
   get books () {
-    return this.booksArray
+    return this._books
   }
 
   set books (books) {
@@ -76,7 +128,7 @@ class Shelf extends HTMLElement {
       book.title = i + 1
       book.shelf = this.label
     }
-    this.booksArray = books
+    this._books = books
   }
 
   createBooks () {
@@ -97,3 +149,5 @@ class Shelf extends HTMLElement {
 }
 
 customElements.define('book-shelf', Shelf)
+
+export { Shelf }
