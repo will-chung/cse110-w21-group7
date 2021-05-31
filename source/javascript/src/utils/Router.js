@@ -52,7 +52,7 @@ class Router {
      * @return {String} String representation of the Router object
      */
     toString() {
-        return `${this._url.origin}${this._url.pathname}?${this._url.search}`
+        return `${this._url.origin}${this._url.pathname}${this._url.search}`
     }
 }
 
