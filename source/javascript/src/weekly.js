@@ -105,12 +105,17 @@ function populateDayColumns (weeklyItems, dateToCompare) {
   // create a DateConverter object
   // Use a new instance of Date to fetch the day of the week of today
   const compareDay = (dateToCompare.getDay() + 6) % 7
+  const today = new DateConverter()
+  let todayDays = today.getDay()
   weeklyItems.forEach((entry) => {
     // calculate the offset between today's day and the entry's day
     const offSet = dateToCompare.getDaysFromTimeStamp() - dateToCompare.getDaysFromTimeStamp(entry.properties.date.time)
     const currentDay = new DateConverter(Number(entry.properties.date.time))
     // apply the offset to get the index
-    const index = compareDay - offSet
+    if (todayDays === 0) {
+      todayDays = 7
+    }
+    const index = todayDays - offSet
     const weeklyItem = document.createElement('weekly-view-item')
     weeklyItem.entry = entry
     const childDiv = week.children[index]

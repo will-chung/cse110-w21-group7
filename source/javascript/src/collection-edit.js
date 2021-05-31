@@ -15,16 +15,13 @@ const videoButton = document.getElementById('add-video-btn')
  *
  */
 collapse.addEventListener('click', () => {
-  if (collapse.innerHTML === 'expand') {
-    collapse.innerHTML = 'collapse'
-    imageBox.style.visibility = 'visible'
-    videoBox.style.display = 'block'
-    gallery.style.visibility = 'visible'
+  // console.log(collapse.innerHTML)
+  if (collapse.innerHTML === '<i class="fa fa-chevron-up fa-2x"></i>') {
+    gallery.style.display = 'none'
+    collapse.innerHTML = '<i class="fa fa-chevron-down fa-2x"></i>'
   } else {
-    collapse.innerHTML = 'expand'
-    imageBox.style.visibility = 'hidden'
-    videoBox.style.display = 'none'
-    gallery.style.visibility = 'hidden'
+    gallery.style.display = 'flex'
+    collapse.innerHTML = '<i class="fa fa-chevron-up fa-2x"></i>'
   }
 })
 
@@ -119,16 +116,19 @@ function populateMedia (collection, mediaType = MEDIA_TYPE.IMAGE) {
   }
   let target
   let mediaCollection
+  let inputField
   if (mediaType === MEDIA_TYPE.IMAGE) {
     target = collection.images
+    inputField = document.getElementById('add-image-btn')
     mediaCollection = document.getElementById('image-collection')
   } else {
     target = collection.videos
+    inputField = document.getElementById('add-video-btn')
     mediaCollection = document.getElementById('video-collection')
   }
   target.forEach((media, index) => {
     const mediaItem = createMediaItem(media)
-    mediaCollection.appendChild(mediaItem)
+    mediaCollection.insertBefore(mediaItem, inputField)
   })
 }
 
@@ -219,7 +219,9 @@ function insertMedia (event, media = MEDIA_TYPE.IMAGE) {
     return collection
   })
   if (media === MEDIA_TYPE.IMAGE) {
-    document.getElementById('image-collection').appendChild(mediaItem)
+    const input = document.getElementById('add-image-btn')
+    console.log(input)
+    imageBox.insertBefore(mediaItem, input)
   } else {
     document.getElementById('video-collection').appendChild(mediaItem)
   }
@@ -240,7 +242,6 @@ function populatePage (response) {
 
 document.addEventListener('DOMContentLoaded', (event) => {
   getLogInfoAsJSON(populatePage)
-
   imageButton.addEventListener('input', (event) => {
     insertMedia.bind(event)
     insertMedia(event, MEDIA_TYPE.IMAGE)
