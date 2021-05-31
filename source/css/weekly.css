@@ -137,22 +137,23 @@ border-color:#98c1d9; */
 }
 
 #bujo-header{
-    text-align: center;
-    vertical-align: center;
-    font-family: 'Pattaya', sans-serif;
-    /* color:#EE6C4D; */
+  text-align: center;
+  vertical-align: center;
+  font-family: "Pattaya", sans-serif;
+  font-size: 70px;
+  margin: 0;
+  line-height: 120px;
 }
 #title{
-    border-style:solid;
-    border-color:#98c1d9;
-    border-width:5px;
+    border-style: solid;
+    border-color: #98c1d9;
+    border-width: 5px;
     width: 25vw;
-    margin:auto;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    box-shadow: 20px 0px 40px #3d5180;
+    margin: auto;
+    box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
     border-radius: 20px;
-    color:#293241;
+    color: #293241;
+    margin-bottom: 8vh;
 }
 body {
   background-image: radial-gradient(
