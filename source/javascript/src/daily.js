@@ -198,12 +198,17 @@ function getLogInfoAsJSON (cb) {
       if (cursor) {
         const dateConverter = new DateConverter(Number(cursor.value.current_log))
         console.log(cursor.value)
+        let match = false
         cursor.value.$defs['daily-logs'].forEach((log, index) => {
           if (dateConverter.equals(Number(log.properties.date.time))) {
+            match = true
             cb.bind(this)
             cb(cursor.value.$defs['daily-logs'][index])
           }
         })
+        if(!match){
+          //TODO: creating new log
+        }
       }
     }
   })

@@ -6,7 +6,7 @@
 font-size: 2em;
 }
 .fa {
-color: #293241;
+color:white;
 position: relative;
 display: table-cell;
 width: 60px;
@@ -26,7 +26,7 @@ overflow:hidden;
 #main-menu {
 /* background:#3D5A80; */
 /* background:rgb(228,228,228); */
-border-right:5px solid black;/*#98c1d9;*/ 
+border-right:5px solid #e0fbfc;/*#98c1d9;*/ 
 position: absolute;
 top:0;
 bottom:0;
@@ -71,9 +71,7 @@ height: 106px;
 }
 
 #current{
-    background:radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 100%);
-    border-radius: 30px;
-    border-color:black;
+    background:#EE6C4D
 }
 
 #main-menu .nav-text {
@@ -81,9 +79,9 @@ position:relative;
 display:table-cell;
 vertical-align:middle;
 width:200px;
-font-family: 'Pattaya', sans-serif;
+font-family: 'Montserrat', sans-serif;
 font-size: 35px;
-color: black;
+color: white;
 }
 
 .no-touch .scrollable.hover {
@@ -123,7 +121,8 @@ border-color:#98c1d9; */
 }
 
 body {
-    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(234,249,249,0.67) 0.1%, rgba(239,249,251,0.63) 90.1% );
+  background: rgb(21,159,247);
+  background: linear-gradient(90deg, rgba(21,159,247,1) 0%, rgba(61,90,128,1) 0%, rgba(41,50,65,1) 90%);
 }
 
 .header{
@@ -184,15 +183,15 @@ li > a, a:link {
   margin: auto;
   box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   border-radius: 20px;
-  color: #293241;
+  color: white;
   margin-bottom: 8vh;
 }
 
 #title > h1 {
   text-align: center;
   vertical-align: center;
-  font-family: "Pattaya", sans-serif;
-  font-size: 70px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 60px;
   margin: 0;
   line-height: 120px;
 }
@@ -234,7 +233,7 @@ li > a, a:link {
 #collapse {
   position: relative;
   z-index: 1;
-  left: 45%; 
+  left: 48%; 
 }
 
 #collapse > i{
@@ -291,9 +290,11 @@ li > a, a:link {
     padding: 12px 8px 12px 40px;
     list-style-type: none;
     background: #eee;
-    font-size: 18px;
+    font-family:'Montserrat', sans-serif;
+    font-size: 20px;
     transition: 0.2s;
-    
+    border-radius: 10px;
+    box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
     /* make the list items unselectable */
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -303,7 +304,16 @@ li > a, a:link {
   
   /* Set all odd list items to a different color (zebra-stripes) */
   #myUL li:nth-child(odd) {
-    background: #f9f9f9;
+    background: white;
+    border-bottom-style:solid;
+    border-bottom-width:2px;
+    border-bottom-color:#98c1d9
+  }
+  #myUL li:nth-child(even) {
+    background: white;
+    border-bottom-style:solid;
+    border-bottom-width:2px;
+    border-bottom-color:#98c1d9
   }
   
   /* Darker background-color on hover */
@@ -347,7 +357,9 @@ li > a, a:link {
   
   /* Style the header */
   .header {
-    background-color: #f44336;
+    background-color: #EE6C4D;
+    box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    border-radius:20px;
     padding: 30px 40px;
     color: white;
     text-align: center;
@@ -398,13 +410,13 @@ li > a, a:link {
   #image-collection{
     border: 8px solid #e0fbfc;
     border-radius: 30px;
-    background-color: white;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     flex-basis: 38vw;
     align-items: center;
     margin-top: 20px;
+    box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   }
 
   #image-collection > img {
@@ -416,22 +428,22 @@ li > a, a:link {
   }
   
   h2 {
-    font-family: Pattaya, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size:50px;
     margin:0;
+    color: white;
 }
 
   #video-collection{
     border: 8px solid #E0fbfc;
     margin-top:20px;
-    background-color: white;
     border-radius: 30px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     flex-basis: 38vw;
     align-items: center;
-    width:500px;
+    box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   }
 
   #video-collection > video {

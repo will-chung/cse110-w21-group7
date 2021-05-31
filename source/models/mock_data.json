@@ -34,6 +34,49 @@
           "properties": {
             "date": {
               "type": "string",
+              "time": "1622333178822",
+              "description": "The date of the event."
+            },
+            "tasks": [
+                {
+                  "description": "Testing task",
+                  "logType": "task",
+                  "finished": true
+                },
+                {
+                  "description": "Weeknight meal prep",
+                  "logType": "task",
+                  "finished": false
+                }
+            ],
+            "notes": [
+              {
+                "description": "testing testing.",
+                "logType": "note"
+            }
+          ],
+          "reflection": [
+            {
+              "description": "Today was a good day. I got a lot of work done.",
+              "logType": "reflection"
+            }
+          ],
+            "mood": {
+              "type": "number",
+              "multipleOf": 1,
+              "minimum": 0,
+              "exclusiveMaximum": 100,
+              "value": 20,
+              "description": "Daily mood on a range of 0-99."
+            }
+          }
+      },
+        {
+          "type": "object",
+          "required": [ "date", "description" ],
+          "properties": {
+            "date": {
+              "type": "string",
               "time": "1622332078822",
               "description": "The date of the event."
             },

@@ -47,16 +47,17 @@ class CollectionItem extends HTMLElement {
                                       }
                                       .folder {
                                         margin-right: 1vw;
-                                        border-bottom-style:solid;
-                                        border-width:7px;
-                                        border-radius: 10px;
+                                        margin-top:1vh;
+                                        margin-bottom: 1vh;
+                                        border-width:2px;
+                                        border-radius: 20px;
                                         display:flex;
                                         flex-direction: column;
                                         align-items: flex-start;
                                         /*TODO: change the width*/
                                         justify-content: center;
                                         width:400px;
-                                        margin: 10px;
+                                        color: #e0fbfc;
                                       }
                                       .icon-collection {
                                         transition: transform 0.25s;
@@ -77,6 +78,9 @@ class CollectionItem extends HTMLElement {
                                           border:0;
                                           padding:0;
                                           font-size: inherit;
+                                      }
+                                      .icon-trash {
+                                        color: white;
                                       }
                                       </style>
                                     <div class="folder">
@@ -216,13 +220,15 @@ class CollectionItem extends HTMLElement {
    */
   setHoverListeners () {
     const trashIcon = this.shadowRoot.querySelector('.icon-trash')
-
+    const border = this.shadowRoot.querySelector('div')
     // toggles visiblity of trash icon when mouse hovers
     this.addEventListener('mouseenter', () => {
+      border.style.borderBottomStyle = 'solid'
       trashIcon.style.visibility = 'visible'
     })
 
     this.addEventListener('mouseleave', () => {
+      border.style.borderBottomStyle = 'none'
       trashIcon.style.visibility = 'hidden'
     })
   }
