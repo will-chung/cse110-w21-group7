@@ -107,7 +107,7 @@ collapse.addEventListener('click', () => {
 })
 
 /**
- * Adds tasks, notes, and events to the daily log. If the entry is evmpty,
+ * Adds tasks, notes, and events to the daily log. If the entry is empty,
  * then the bullet journal alerts the user that they must write something
  * for that task/note/event.
  *
@@ -157,21 +157,41 @@ function newElement () {
  * These changes should be saved and reflected the next time
  * the user opens the daily log.
  * 
- * @param entry The associated entry to edit/delete/toggle tasks
+ * @param logType The associated log specified
+ * @param update What needs to be updated
+ * @param key Key of the log (only used if deleted)
  */
-function updateElement (entry) {
+function updateElement (logType, update, key) {
   const wrapper = new IndexedDBWrapper('DB', 2)
-
+  
+  // Created when the IDB makes a transaction
   wrapper.transaction((event) => {
+    // Create transaction for the updated log store
     const db = event.target.result
-
     const transaction = db.transaction(['updateLogStore'], 'readwrite')
+    const store = transaction.objectStore('updateLogStore')
 
-    // Should there be an edit button that toggles the delete buttons on the entries and editing them?
-  }
+    const itemEntry = {}
+    // Check if log type is task
+    if (logType === 'task') {
+      itemEntry.logType = logType
+      itemEntry.finished = update
+      // put() method will update the record in the db if it exists
+      store.put(itemEntry)
+    }
 
+    // Check if we instead just want to delete the task/note/event
+    if (update === 'delete') {
+      store.delete(key)
+    }
 
+    // Get task/note/event from the parameter entry
+    // Create transaction to delete 
+    // Delete transaction
+    // TODO: add onclick events that will call the updateElement function
+  })
 }
+
 /**
  * Performs an AJAX call for JSON type response containing
  * the daily log information corresponding to the given date.
