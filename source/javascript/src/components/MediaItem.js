@@ -35,6 +35,16 @@ class MediaItem extends HTMLElement {
                                     }
                                     .media-wrapper > img {
                                         border-style: solid;
+                                        border-color: #e0fbfc;
+                                        border-width: 5px;
+                                        border-radius: 20px;
+                                        box-shadow: 20px 20px 5px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+                                        height: auto;
+                                        width: 100%;
+                                        display:inline-block;
+                                    }
+                                    .media-wrapper > video {
+                                        border-color: #e0fbfc;
                                         border-width: 5px;
                                         border-radius: 20px;
                                         box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
@@ -42,15 +52,11 @@ class MediaItem extends HTMLElement {
                                         width: 100%;
                                         display:inline-block;
                                     }
-                                    .media-wrapper > video {
-                                        height: auto;
-                                        width: 100%;
-                                        display:inline-block;
-                                    }
                                     button {
-                                        background-color: rgba(0, 0, 0, 0);
+                                        background-color:white;
                                         border-radius: 200px;
                                         border-style: solid;
+                                        border-color:#EE6C4D;
                                         padding:0;
                                         font-size: inherit;
                                         width: 3rem;

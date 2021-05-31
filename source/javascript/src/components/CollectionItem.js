@@ -31,6 +31,10 @@ class CollectionItem extends HTMLElement {
                                           height:50%;
                                           margin:auto;
                                       }
+                                      img {
+                                        background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 100%);
+                                        border-radius: 20px;
+                                      }
                                       .icon-trash {
                                         visibility: hidden;
                                         background-size: contain;
@@ -67,8 +71,10 @@ class CollectionItem extends HTMLElement {
                                         transform: scale(1.1);
                                       }
                                       h1 {
-                                        font-family: 'Pattaya', sans-serif;
+                                        font-family: 'Montserrat', sans-serif;
+                                        color: white;
                                         margin:auto;
+                                        margin-top: 20px;
                                       }
                                       h1:hover {
                                         cursor: pointer;
@@ -78,9 +84,6 @@ class CollectionItem extends HTMLElement {
                                           border:0;
                                           padding:0;
                                           font-size: inherit;
-                                      }
-                                      .icon-trash {
-                                        color: white;
                                       }
                                       </style>
                                     <div class="folder">
