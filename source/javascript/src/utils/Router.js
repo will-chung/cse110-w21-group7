@@ -5,58 +5,54 @@
  */
 class Router {
     /**
-     * @param {URL} baseURL URL reference containing the
-     * base URL to use for navigation. baseURL is intended to be
-     * a relative path.
-     * @param {URLSearchParams} URLSearchParams object containing the relevant
-     * query parameters to use for navigating to the page given by
-     * baseURL.
+     * Constructor used to create a URL from the current page location.
+     * @param {Object[]} params Rest parameter reference containing information
+     * for creating the relevant route. If no argument is provided, we initialize
+     * the corresponding URL with the href of the current page. Otherwise,
+     * we assume the first argument is a URL reference containing the
+     * URL to use for navigation.
      */
-    constructor(baseURL, queryParams) {
-        this._baseURL = baseURL
-        this._queryParams = queryParams
+    constructor(...params) {
+        switch(params.length) {
+            case 0:
+                this._url = new URL(window.location.href)
+                break;
+            case 1:
+                this._url = params[0]
+                break;
+        }
     }
+
     /**
-     * Sets the baseURL for the Router.
-     * @param {URL} baseURL URL object containing the
-     * base URL to use for navigation. baseURL is intended to be
-     * a relative path
+     * Sets the URL to use for navigation or parameter parsing.
+     * @param {URL} url URL object containing the
+     * URL to use for navigation.
      */
-    set baseURL(baseURL) {
-        this._baseURL = baseURL
+    set url(url) {
+        this._url = url
     }
     
     /**
      * @returns {URL} URL object containing the
-     * base URL to use for navigation. baseURL is intended to be
-     * a relative path.
+     * URL to use for navigation.
      */
-    get baseURL() {
-        return this._baseURL
-    }
-    
-    /**
-     * @param {URLSearchParams} URLSearchParams object containing the relevant
-     * query parameters to use for navigating to the page given by
-     * baseURL.
-     */
-    set queryParams(queryParams) {
-        this._queryParams = queryParams
+    get url() {
+        return this._url
     }
 
     /**
-     * @returns {URLSearchParams} URLSearchParams object containing
-     * the key/value mappings for our query parameters.
+     * Subroutine of Router which changes the page's href
+     * to the value of the field url
      */
-    get queryParams() {
-        return this._queryParams
+    navigate() {
+        window.location.href = this.toString()
     }
 
     /**
      * @return {String} String representation of the Router object
      */
     toString() {
-        return `${this._baseURL}?${this._queryParams}`
+        return `${this._url.origin}${this._url.pathname}?${this._url.search}`
     }
 }
 
