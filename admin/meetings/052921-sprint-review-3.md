@@ -19,6 +19,7 @@
 
 ## Agenda:
 1. Final Retro Time
+   - Sunday, June 5th, 1pm
 2. Last week
 3. Next week is the final sprint
 4. Every member talk about their experience so far.

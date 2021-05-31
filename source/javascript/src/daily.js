@@ -16,6 +16,10 @@ const noteRadio = document.getElementById('input4')
 const radioContainer = document.getElementsByClassName('container')[0]
 const realSavBtn = document.getElementById('save')
 
+// cancelBtn.addEventListener('click', () => {
+//   // TODO: implement hide functionality
+//   hideEverything()
+// })
 // saveBtn.addEventListener('click', () => {
 //   realSavBtn.click()
 // })
@@ -29,17 +33,17 @@ const realSavBtn = document.getElementById('save')
  * Resource: https://codepen.io/Mdade89/pen/JKkYGq
  * the link above provides a collapsible text box
  */
-document.addEventListener('DOMContentLoaded', () => {
-  saveBtn.style.visibility = 'hidden'
-  saveBtn.addEventListener('click', (event) => {
-    event.preventDefault()
-    newElement()
-  })
-  cancelBtn.style.visibility = 'hidden'
-  text.type = 'hidden'
-  date.type = 'hidden'
-  time.type = 'hidden'
-})
+// document.addEventListener('DOMContentLoaded', () => {
+//   saveBtn.style.visibility = 'hidden'
+//   saveBtn.addEventListener('click', (event) => {
+//     event.preventDefault()
+//     newElement()
+//   })
+//   cancelBtn.style.visibility = 'hidden'
+//   text.type = 'hidden'
+//   date.type = 'hidden'
+//   time.type = 'hidden'
+// })
 
 radioContainer.addEventListener('change', () => {
   if (refRadio.checked) {
@@ -160,6 +164,15 @@ function newElement () {
   document.getElementById('input-area').value = ''
 }
 
+function hideEverything () {
+  date.type = 'hidden'
+  text.value = ''
+  // saveBtn.style.display = 'none'
+  // cancelBtn.style.display = 'none'
+  text.type = 'hidden'
+  time.type = 'hidden'
+}
+
 /**
  * Performs an AJAX call for JSON type response containing
  * the daily log information corresponding to the given date.
@@ -278,10 +291,6 @@ function populateDailyLog (response) {
  */
 function getDateFromUNIXTimestamp (timestamp) {
   return new Date(timestamp)
-}
-
-function sendLogInfoAsJSON () {
-  // @TODO
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {

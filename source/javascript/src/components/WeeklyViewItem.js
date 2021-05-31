@@ -32,17 +32,30 @@ class WeeklyViewItem extends HTMLElement {
 
                                     }
                                     #single-weekday p:nth-child(odd) {
-                                      background: #f9f9f9;
+                                      background: #E0FBFC;
+                                      border-radius:10px;
+                                    }
+                                    #single-weekday p:nth-child(even) {
+                                      background: #98c1d9;
+                                      border-radius:10px;
+                                    }
+                                    #single-weekday p:nth-child(1) {
+                                      border-top-style:solid;
+                                      border-radius:10px;
+                                    }
+                                    #single-weekday p:last-child {
+                                      border-bottom-style:solid;
+                                      border-radius:10px;
                                     }
                                     #single-weekday p:hover {
-                                      background: grey;
+                                      background: #ee6c4d;
                                     }
                                     .weekday-entries {
-                                        border-style: solid;
-                                        border-left-style: none;
-                                        border-right-style:none;
-                                        border-width: 2px;
-                                        border-radius: 5px;
+                                        // border-style: solid;
+                                        // border-left-style: none;
+                                        // border-right-style:none;
+                                        // border-width: 2px;
+                                        // border-radius: 5px;
                                         margin:auto;
                                         text-align:left;
                                     }

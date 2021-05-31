@@ -217,9 +217,11 @@ a:link {
 
 #reflection {
   border-style: solid;
-  border-color: blue;
+  border-width:5px;
+  border-radius: 20px;
+  border-color: #EE6C4D;
   width: 80vw;
-  height: 40vh;
+  height: 30vh;
   margin-left: 10px;
 }
 
@@ -418,8 +420,10 @@ input {
     "dropdown date-time date-time date-time date-time date-time"
     "dropdown text-input text-input text-input text-input text-input"
     ". . . . . .";
-    border-style:dashed;
-    border-color:gold;
+    border-style:solid;
+    border-width: 5px;
+    border-radius: 20px;
+    border-color:#EE6C4D;
   } 
   
   #textbox > div {
@@ -498,6 +502,7 @@ input:focus {
 #input-area {
   flex: 100%;
   margin-top: 20px;
+  padding-top:0;
 }
 
 #bullet-type {
@@ -522,15 +527,17 @@ input:focus {
   position: absolute;
 }
 .containerOuter {
+  margin-left: 10px;
   background: white;
   border-radius: 20px;
-  height:240px;
+  height:270px;
   box-shadow: 4px 12px 40px 4px rgba(10,10,120,0.15);
 }
 .container {
   position: relative;
   margin-top: 10px;
   margin-bottom: 10px;
+  padding-bottom:20px;
   overflow: hidden;
   width: 160px;
   height: 240px;
@@ -577,10 +584,13 @@ input:focus {
   padding-left: 40px;
   user-select: none;
   -moz-user-select: none;
+  font-size: 29px;
+  font-family: Pattaya, sans-serif;
 }
 .entry-prompt {
   margin-top: 10px;
   margin-left: 10px;
+  font-size:24px;
 }
 .overlay {
   background: #fff;
@@ -668,24 +678,26 @@ input:focus {
 }
 
 #cb1 {
+  text-align: center;
   font-size: 15px;
   width: 40px;
-  height: 15px;
-  right: 150px;
+  height: 10px;
+  right: 20px;
 }
 
 #cb2 {
   font-size: 15px;
   width: 65px;
-  height: 15px;
-  right: 20px;
+  height: 10px;
+  right: 150px;
 }
 
 .customBtn {
-  position: fixed;
+  position: relative;
   display: inline-block;
+  margin-top:50px;
   padding: 15px 30px;
-  color: #2196f3;
+  color: #293241;
   text-transform: uppercase;
   letter-spacing: 2px;
   text-decoration: none;
@@ -697,10 +709,11 @@ input:focus {
 }
 
 .customBtn:hover {
-  color: #dcdcdc;
+  color: #293241;
   background-color: #98c1d9;
   box-shadow: 0 0 10px #98c1d9, 0 0 40px #98c1d9, 0 0 80px #98c1d9;
-  transition-delay: 1s;
+  transition: 1s;
+  transition-delay: 0.4s;
 }
 
 .customBtn span {
@@ -722,6 +735,7 @@ input:focus {
   width: 100%;
   height: 2px;
   transition: 1s;
+  transition-delay: 0.25s;
 }
 
 .customBtn span:nth-child(2) {
@@ -735,7 +749,7 @@ input:focus {
 .customBtn:hover span:nth-child(2) {
   right: 100%;
   transition: 1s;
-  transition-delay: 0.5s;
+  transition-delay: 0.25s;
 }
 
 .customBtn span:nth-child(3) {
@@ -763,5 +777,5 @@ input:focus {
 .customBtn:hover span:nth-child(4) {
   bottom: 100%;
   transition: 1s;
-  transition-delay: 0.75s;
+  transition-delay: 0.25s;
 }

@@ -20,8 +20,7 @@
       <div id="journal-content">
         <div id="title">
           <div class="date">
-            <!-- TODO: this needs to fetch today's date-->
-            <h1 class="date">May 24th</h1>
+            <h1 class="date"></h1>
           </div>
           <div id="tag">
             <!-- TODO: this will be a dropdown for all possible tags-->
@@ -29,7 +28,6 @@
           </div>
         </div>
         <div id="entry-area">
-            <div id="entry-area">
 
                 <ul id="myUL">
                     
@@ -59,24 +57,36 @@
                     </div>
                     <div id='text-input'>
                         <input type="text" id="input-area" name="todo" placeholder="Input your todo here">
-                        <button id="save" type="submit">Save</button>
-                        <button id="cancel">Cancel</button>
+                        <a href="#" id="cb2" class="customBtn">
+                          <span id="span1"></span>
+                          <span id="span2"></span>
+                          <span id="span3"></span>
+                          <span id="span4"></span>
+                          Cancel
+                        </a>
+                        <a href="#" id="cb1" class="customBtn">
+                          <span id="span1"></span>
+                          <span id="span2"></span>
+                          <span id="span3"></span>
+                          <span id="span4"></span>
+                          Save
+                        </a>
+                        <button id="save" hidden="hidden">Save</button>
+                        <button id="cancel" hidden="hidden">Cancel</button>
                     </div>
                     
                 </form>
-                <form>
+                <!-- <form>
                   <button type="submit">Submit</button>
-                </form>
+                </form> -->
         </div>
         <div id="mid-section">
-          <a href="#" id="yesterday"
-            ><i class="fa fa-chevron-left fa-lg"></i
-          ></a>
+          <a href="#" id="yesterday">
+            <i class="fa fa-chevron-left fa-lg"></i>
+          </a>
           <!-- <button id="collapse">Collapse</button> -->
           <a href="#" id="collapse"><i class="fa fa-chevron-up fa-lg"></i></a>
-          <a href="#" id="tomorrow"
-            ><i class="fa fa-chyevron-right fa-lg"></i
-          ></a>
+          <a href="#" id="tomorrow"><i class="fa fa-chevron-right fa-lg"></i></a>
         </div>
         <div id="reflection">
           <reflection-item></reflection-item>

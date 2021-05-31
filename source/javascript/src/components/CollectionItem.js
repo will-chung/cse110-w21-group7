@@ -1,5 +1,8 @@
 import { IndexedDBWrapper } from '../indexedDB/IndexedDBWrapper.js'
 
+// Create IndexedDB wrapper
+const wrapper = new IndexedDBWrapper('experimentalDB', 1)
+
 /**
  * Component class for individual collections on 'collections.html'
  * @author Noah Teshima <nteshima@ucsd.edu>
@@ -29,9 +32,15 @@ class CollectionItem extends HTMLElement {
                                           margin:auto;
                                       }
                                       .icon-trash {
+                                        visibility: hidden;
                                         background-size: contain;
                                         width:2em;
                                         height:2em;
+                                        transition: transform 0.25s;
+                                      }
+                                      .icon-trash:hover{
+                                        cursor: pointer;
+                                        transform: scale(1.2);
                                       }
                                       .trash-button-icon {
                                         background: url(../images/log-item_icons/trash-solid.svg) no-repeat center center;
@@ -49,13 +58,19 @@ class CollectionItem extends HTMLElement {
                                         width:400px;
                                         margin: 10px;
                                       }
-                                      a {
-                                        text-decoration:none;
-                                        color:rgba(0,0,0,1);
+                                      .icon-collection {
+                                        transition: transform 0.25s;
+                                      }
+                                      .icon-collection:hover {
+                                        cursor: pointer;
+                                        transform: scale(1.1);
                                       }
                                       h1 {
                                         font-family: 'Pattaya', sans-serif;
                                         margin:auto;
+                                      }
+                                      h1:hover {
+                                        cursor: pointer;
                                       }
                                       button {
                                           background-color: rgba(0,0,0,0);
@@ -67,16 +82,21 @@ class CollectionItem extends HTMLElement {
                                     <div class="folder">
                                         <span class="icon-trash trash-button-icon"></span>
                                         <img src="/source/images/icon-collection.svg" class="icon-collection">
-                                        <h1><a href="/source/html/collection-edit.html">${this.getCollectionName()}</a></h1>
+                                        <h1>${this.getCollectionName()}</h1>
                                     </div>`
+    this.setClickListeners()
+    this.setHoverListeners()
+  }
+
+  /*
+   * Adds event listeners for all click events on the collection item
+   */
+  setClickListeners () {
     this.shadowRoot.querySelector('span[class="icon-trash trash-button-icon"]').addEventListener('click', (event) => {
       // Get clicked collection-item
       const collectionItem = event.target.getRootNode().host
       // Get name of clicked collection
       const name = collectionItem.getCollectionName()
-
-      // Create indexedDBWrapper
-      const wrapper = new IndexedDBWrapper('experimentalDB', 1)
 
       // Open a transaction and objectStore to 'currentLogStore'
       wrapper.transaction((event) => {
@@ -112,11 +132,10 @@ class CollectionItem extends HTMLElement {
       event.target.parentElement.remove()
     })
 
+    // update current_collection when a collection is clicked
     this.dataset.name = this._entry.name
-    this.shadowRoot.querySelector('a').addEventListener('click', (event) => {
-      event.preventDefault()
+    this.shadowRoot.querySelector('img[class="icon-collection"]').addEventListener('click', (event) => {
       const that = this
-      const wrapper = new IndexedDBWrapper('experimentalDB', 1)
 
       wrapper.transaction((event) => {
         const db = event.target.result
@@ -138,8 +157,73 @@ class CollectionItem extends HTMLElement {
         }
       })
 
-      // unsuspend navigation
-      window.location.href = '/source/html/collection-edit.html'
+      // navigate to collection-edit page
+      const url = '/source/html/collection-edit.html' + '#' + this.dataset.name
+      window.location.href = url
+    })
+
+    // onclick allow editing of collection name
+    this.shadowRoot.querySelector('h1').addEventListener('click', (event) => {
+      // get shadow root
+      const collection = event.target.getRootNode().host
+      // get h1 element containing name
+      const name = event.target
+      name.style.display = 'none'
+
+      /*
+       * Insert text input for in-place editing
+       */
+      const form = document.createElement('form')
+      form.style.margin = 'auto'
+
+      const textInput = document.createElement('input')
+      textInput.setAttribute('type', 'text')
+      textInput.style.height = '40px'
+      textInput.style.fontSize = '32px'
+      textInput.style.fontWeight = 'bold'
+      textInput.style.fontFamily = '"Pattaya", sans-serif'
+      textInput.style.textAlign = 'center'
+      textInput.style.background = 'transparent'
+      textInput.value = name.textContent
+
+      form.append(textInput)
+
+      event.target.parentElement.append(form)
+
+      // set focus on text input (cursor ready to type)
+      textInput.focus()
+
+      // when focus shifts from text input, cancel edit
+      textInput.addEventListener('blur', () => {
+        textInput.remove()
+        name.style.display = 'block'
+      })
+
+      // when user presses enter, update collection name
+      form.addEventListener('change', (event) => {
+        // FIXME: a small bug here, if user doesn't hit enter, the name won't get updated
+        // and that's because we are using the submit, maybe we should have a check mark or save button
+        // which makes the name changing process more explicit
+        event.preventDefault()
+        const collectionName = textInput.value
+        collection.entry = { name: collectionName }
+      })
+    })
+  }
+
+  /*
+   * Adds event listeners for all hover events on the collection item
+   */
+  setHoverListeners () {
+    const trashIcon = this.shadowRoot.querySelector('.icon-trash')
+
+    // toggles visiblity of trash icon when mouse hovers
+    this.addEventListener('mouseenter', () => {
+      trashIcon.style.visibility = 'visible'
+    })
+
+    this.addEventListener('mouseleave', () => {
+      trashIcon.style.visibility = 'hidden'
     })
   }
 
@@ -159,6 +243,7 @@ class CollectionItem extends HTMLElement {
        * new fields for our log item.
        */
   set entry (entry) {
+    updateCollectionName(this._entry.name, entry.name)
     this._entry = entry
     this.render()
   }
@@ -174,6 +259,45 @@ class CollectionItem extends HTMLElement {
   }
 }
 
+/**
+ * Update given collection to have given name.
+ * @author William Chung <wchung@ucsd.edu>
+ * @param prevName Name of the collection to be udpated.
+ * @param newName New name of the collection .
+ */
+function updateCollectionName (prevName, newName) {
+  wrapper.transaction((event) => {
+    const db = event.target.result
+
+    const transaction = db.transaction(['currentLogStore'], 'readwrite')
+    const objectStore = transaction.objectStore('currentLogStore')
+    objectStore.openCursor().onsuccess = function (event) {
+      const cursor = event.target.result
+      if (cursor) {
+        const json = cursor.value
+
+        const collections = json.properties.collections
+
+        collections.forEach(collection => {
+          if (collection.name === prevName) {
+            collection.name = newName
+          }
+        })
+
+        // Save changes
+        const requestUpdate = cursor.update(json)
+        requestUpdate.onerror = function (event) {
+          // Do something with the error
+        }
+        requestUpdate.onsuccess = function (event) {
+          // Success - the data is updated!
+          console.log('successfully updated "' + prevName + '" to "' + newName + '"')
+        }
+      }
+    }
+  })
+}
+
 customElements.define('collection-item', CollectionItem)
 
-export { CollectionItem }
+export { CollectionItem, wrapper }
