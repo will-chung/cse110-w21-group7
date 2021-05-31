@@ -271,15 +271,18 @@ a:link {
     font-size: 12pt;
 }
 
+.weekday:hover {
+  background-color:#EE6C4D;
+}
 .weekday > a{
   font-size: 25px;
   font-family: 'Montserrat', sans-serif;
   color:white;
 }
 
-.weekday > a:hover{
+/* .weekday > a:hover{
   color:#EE6C4D;
-}
+} */
 
 a {
   text-decoration: none;
