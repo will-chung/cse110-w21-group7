@@ -80,7 +80,7 @@ class DateConverter extends Date {
    * as the current date.
    *
    **/
-   oldTimestampInSameWeek (timestamp) {
+  oldTimestampInSameWeek (timestamp) {
     // compare to this._timestamp
     // get the days correspond to _timestamp
 

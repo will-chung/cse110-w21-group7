@@ -56,11 +56,11 @@ function getLogInfoAsJSON (cb) {
         if (searchParams.has('displayFirstOfMonth')) {
           // gets all daily logs with the requested month and year
           result = dailyLogs.filter((log) => {
-            const timestamp = Number(log.properties.date.time) //UNIX timestamp
+            const timestamp = Number(log.properties.date.time) // UNIX timestamp
             const date = new Date(timestamp)
             return (date.getFullYear() === year) && (date.getMonth() === month)
           })
-          let timestampArr = []
+          const timestampArr = []
           result.forEach(log => {
             const timestamp = Number(log.properties.date.time)
             timestampArr.push(timestamp)
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 function appendNavLinks (targetElement, date) {
   const anchor = targetElement.querySelector('a')
   anchor.dataset.unixTimestamp = date.getTime()
-  anchor.href = '/source/html/daily.html' //@TODO refactor with routing
+  anchor.href = '/source/html/daily.html' // @TODO refactor with routing
   // adjusts current_log in DB
   anchor.onclick = function (event) {
     event.preventDefault()
@@ -166,7 +166,6 @@ function appendNavLinks (targetElement, date) {
  * date with respect to which we will add dates to each column.
  */
 function addColumnDates (dateToCompare) {
-
   // DateConverter object with timestamp of Monday of same week
   const mondayOfCurrentDate = dateToCompare.getBeginningOfWeek()
   const columns = document.getElementById('weekly-div').getElementsByTagName('div')

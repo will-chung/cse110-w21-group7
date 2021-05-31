@@ -51,7 +51,7 @@ class Shelf extends HTMLElement {
     this.shadowRoot.appendChild(myTemplate.content.cloneNode(true))
     this.books = this.createBooks()
 
-    let that = this
+    const that = this
     const wrapper = new IndexedDBWrapper('experimentalDB', 1)
 
     wrapper.transaction((event) => {
@@ -72,10 +72,8 @@ class Shelf extends HTMLElement {
           const dailyLogs = cursor.value.$defs['daily-logs']
 
           that._books.forEach((book, monthIndex) => {
-            console.log('for each entered')
             if (!that.hasEntryForYearMonth(dailyLogs, monthIndex)) {
               book.color = 'grey'
-              console.log(book.color)
             } else {
               book.makeClickable()
             }
@@ -95,12 +93,12 @@ class Shelf extends HTMLElement {
    * @return {Boolean} boolean value that determines whether there exists
    * a daily log with the given month and year
    */
-  hasEntryForYearMonth(dailyLogs, month) {
+  hasEntryForYearMonth (dailyLogs, month) {
     const year = Number(this.label)
     // finds if a daily log with the given year and month exists
     const result = dailyLogs.find((log) => {
-      let timestamp = new Number(log.properties.date.time)
-      let date = new Date(timestamp)
+      const timestamp = Number(log.properties.date.time)
+      const date = new Date(timestamp)
       return (date.getFullYear() === year) && (date.getMonth() === month)
     })
 
@@ -151,6 +149,5 @@ class Shelf extends HTMLElement {
 }
 
 customElements.define('book-shelf', Shelf)
-
 
 export { Shelf }

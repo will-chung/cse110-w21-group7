@@ -80,7 +80,7 @@ class Book extends HTMLElement {
     this.shadowRoot.appendChild(template.content.cloneNode(true))
   }
 
-  makeClickable() {
+  makeClickable () {
     this.addEventListener('click', () => {
       console.log('book clicked')
       /**
@@ -93,15 +93,16 @@ class Book extends HTMLElement {
       const month = this.title
       const year = this.shelf
 
-      let params = new URLSearchParams()
+      const params = new URLSearchParams()
       params.append('year', year)
       params.append('month', month)
       params.append('displayFirstOfMonth', true)
-      let url = new URL(ROUTES.weekly, 'http://127.0.0.1:5501')
+      const url = new URL(ROUTES.weekly, 'http://127.0.0.1:5501')
       url.search = params
       new Router(url).navigate()
     })
   }
+
   /**
    * Getter used to determine what color is being used for the book componemt.
    * @returns {String} String reference containing the color being used for
@@ -110,7 +111,7 @@ class Book extends HTMLElement {
   get color () {
     return this.getAttribute('color')
   }
-  
+
   /**
    * Setter used to define the color that should be used for the book's background.
    * @param {String} color String reference containing the color that
@@ -121,7 +122,7 @@ class Book extends HTMLElement {
     const bookColor = this.shadowRoot.querySelector('.book-color')
     bookColor.style = 'background: ' + color
   }
-  
+
   /**
    * Gets the title of a book (the month that a book represents).
    * @returns {String} String reference containing the title of the book.
@@ -129,7 +130,7 @@ class Book extends HTMLElement {
   get title () {
     return this.getAttribute('title')
   }
-  
+
   /**
    * Sets the the title of a book (the month that a book represents).
    * @param {Number} month The month that will serve as the title of a book
@@ -141,7 +142,7 @@ class Book extends HTMLElement {
     bookTitle.textContent = title
     this.offset(month)
   }
-  
+
   /**
    * Gets the shelf that book belongs to.
    * @returns {String} String reference containing the label of the shelf the book belongs to.
@@ -149,10 +150,10 @@ class Book extends HTMLElement {
   get shelf () {
     return this.getAttribute('shelf')
   }
-  
+
   /**
    * Sets the shelf that a book belongs to.
-   * @param {String} shelf The label of the shelf 
+   * @param {String} shelf The label of the shelf
    */
   set shelf (shelf) {
     this.setAttribute('shelf', shelf)
@@ -168,7 +169,7 @@ class Book extends HTMLElement {
     const offset = 50
     this.style.left = offset * (month - 1) + 'px'
   }
-  
+
   /**
    * Getter used to return the corresponding month for
    * this book.
