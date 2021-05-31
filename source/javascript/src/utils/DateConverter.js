@@ -71,6 +71,27 @@ class DateConverter extends Date {
   }
 
   /**
+   * Determines whether the given UNIX timestamp meets the following criteria:
+   * 1. The date of the corresponding timestamp is in the same week as the
+   * curren timestamp.
+   *
+   * @param {Number} timestamp UNIX timestamp for comparison
+   * @returns {Boolean} Whether the given UNIX timestamp is within the same week
+   * as the current date.
+   *
+   **/
+   oldTimestampInSameWeek (timestamp) {
+    // compare to this._timestamp
+    // get the days correspond to _timestamp
+
+    const dateToCompare = new DateConverter(timestamp)
+    const lowerBound = this.getDaysFromTimeStamp() - ((this.getDay() + 6) % 7)
+    const upperBound = lowerBound + 6
+
+    return (lowerBound <= dateToCompare.getDaysFromTimeStamp() && dateToCompare.getDaysFromTimeStamp() <= upperBound)
+  }
+
+  /**
    * Get a UNIX timestamp for Monday of the current week.
    * Note that this UNIX timestamp is unique up to the number
    * of days since 12:00AM January 1, 1970 GMT.
