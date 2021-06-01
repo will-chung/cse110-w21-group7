@@ -49,6 +49,10 @@
               "time": "1621985417521",
               "description": "The date of the event."
             },
+            "collection-tags": [
+              "collection tag one",
+              "collection tag two"
+            ],
             "events": [
               {
                 "description": "Get groceries",
