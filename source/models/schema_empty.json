@@ -3,38 +3,11 @@
     "type": "object",
     "name": "string",
     "current_log": "",
+    "current_collection": "",
     "properties": {
-      "collections": {
-        "type": "array",
-        "items": [
-          {
-            "type": "string",
-            "images": "image",
-            "videos": "video"
-          }
-        ]
-      }
+      "collections": []
     },
     "$defs": {
-      "daily-logs": [
-        {
-          "type": "object",
-          "required": [ "date", "description" ],
-          "properties": {
-            "date": {
-              "type": "string",
-              "time": "UNIX timestamp",
-              "description": "The date of the event."
-            },
-            "events": [
-            ],
-            "tasks": [
-            ],
-            "notes": [
-          ],
-            "mood": {
-            }
-          }
-      }]
+      "daily-logs": []
     }
 }

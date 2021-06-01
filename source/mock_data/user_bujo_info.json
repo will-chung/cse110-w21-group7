@@ -5,16 +5,24 @@
     "name": "string",
     "current_log": "UNIX timestamp",
     "properties": {
-      "collections": {
-        "type": "array",
+      "collections": [
+        {
+        "type": "object",
         "items": [
           {
             "type": "string",
             "images": "image",
             "videos": "video"
           }
+        ],
+        "tasks": [
+          {
+            "type": "str",
+            "description": "Description of task"
+          }
         ]
       }
+      ] 
     },
     "$defs": {
       "daily-logs": [
@@ -61,11 +69,13 @@
                 "logType": "note"
               }
           ],
+
             "mood": {
               "type": "number",
               "multipleOf": 1,
               "minimum": 0,
               "exclusiveMaximum": 100,
+              "mood-value": "0",
               "description": "Daily mood on a range of 0-99."
             }
           }

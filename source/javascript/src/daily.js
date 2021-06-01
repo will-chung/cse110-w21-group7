@@ -2,18 +2,30 @@ import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 import { DateConverter } from './utils/DateConverter.js'
 
 const collapse = document.getElementById('collapse')
-const right = document.getElementById('right')
 const quote = document.getElementById('reflection')
 const text = document.getElementById('input-area')
 const date = document.getElementById('date-input')
 const time = document.getElementById('time-input')
-const saveBtn = document.getElementById('save')
-const cancelBtn = document.getElementById('cancel')
+const saveBtn = document.getElementById('cb1')
+const realCanBtn = document.getElementById('cancel')
+const cancelBtn = document.getElementById('cb2')
 const refRadio = document.getElementById('input1')
 const eventRadio = document.getElementById('input2')
 const taskRadio = document.getElementById('input3')
 const noteRadio = document.getElementById('input4')
 const radioContainer = document.getElementsByClassName('container')[0]
+const realSavBtn = document.getElementById('save')
+
+// cancelBtn.addEventListener('click', () => {
+//   // TODO: implement hide functionality
+//   hideEverything()
+// })
+// saveBtn.addEventListener('click', () => {
+//   realSavBtn.click()
+// })
+// cancelBtn.addEventListener('click', () => {
+//   realCanBtn.click()
+// })
 
 /*
  * This onclick toggles the display style of the quote to none
@@ -21,13 +33,17 @@ const radioContainer = document.getElementsByClassName('container')[0]
  * Resource: https://codepen.io/Mdade89/pen/JKkYGq
  * the link above provides a collapsible text box
  */
-document.addEventListener('DOMContentLoaded', () => {
-  saveBtn.style.visibility = 'hidden'
-  cancelBtn.style.visibility = 'hidden'
-  text.type = 'hidden'
-  date.type = 'hidden'
-  time.type = 'hidden'
-})
+// document.addEventListener('DOMContentLoaded', () => {
+//   saveBtn.style.visibility = 'hidden'
+//   saveBtn.addEventListener('click', (event) => {
+//     event.preventDefault()
+//     newElement()
+//   })
+//   cancelBtn.style.visibility = 'hidden'
+//   text.type = 'hidden'
+//   date.type = 'hidden'
+//   time.type = 'hidden'
+// })
 
 radioContainer.addEventListener('change', () => {
   if (refRadio.checked) {
@@ -71,7 +87,7 @@ radioContainer.addEventListener('change', () => {
       cancelBtn.style.visibility = 'visible'
     })
   } else if (noteRadio.checked) {
-    date.value = ''
+    date.type = 'hidden'
     text.value = ''
     saveBtn.style.visibility = 'hidden'
     cancelBtn.style.visibility = 'hidden'
@@ -93,53 +109,68 @@ collapse.addEventListener('click', () => {
     const downArrow = document.createElement('i')
     downArrow.className = 'fa fa-chevron-up fa-lg'
     collapse.appendChild(downArrow)
-    right.style.visibility = 'visible'
     quote.style.display = 'block'
   } else {
     collapse.removeChild(collapse.childNodes[0])
     const upArrow = document.createElement('i')
     upArrow.className = 'fa fa-chevron-down fa-lg'
     collapse.appendChild(upArrow)
-    right.style.visibility = 'hidden'
     quote.style.display = 'none'
   }
 })
 
 /**
- * Adds tasks, notes, and events to the daily log. If the entr is evmpty,
+ * Adds tasks, notes, and events to the daily log. If the entry is evmpty,
  * then the bullet journal alerts the user that they must write something
  * for that task/note/event.
  *
  */
 function newElement () {
-  const span = document.createElement('select')
-  span.className = 'dropdown'
-  const txt = document.createElement('option')
-  const close = document.createElement('option')
-  const complete = document.createElement('option')
-  close.text = 'delete'
-  close.value = 'close'
-  close.className = 'close'
-  complete.text = 'complete'
-  complete.value = 'complete'
-  complete.className = 'complete'
-  txt.text = 'options'
-  txt.value = 'value'
-  span.appendChild(txt)
-  span.appendChild(close)
-  span.appendChild(complete)
-  const li = document.createElement('li')
-  const inputValue = document.getElementById('myInput').value
-  const t = document.createTextNode(inputValue)
-  li.appendChild(span)
-  li.appendChild(t)
-  if (inputValue === '') {
+  const inputValue = document.getElementById('input-area').value
+  if (inputValue.length === 0) {
     alert('You must write something!')
-  } else {
-    // span.appendChild(li);
-    document.getElementById('myUL').appendChild(li)
+    return
   }
-  document.getElementById('myInput').value = ''
+  const li = document.createElement('li')
+  const logItem = document.createElement('log-item')
+  const itemEntry = {}
+  if (taskRadio.checked) {
+    itemEntry.logType = 'task'
+    itemEntry.finished = false
+  } else if (noteRadio.checked) {
+    itemEntry.logType = 'note'
+  } else if (eventRadio.checked) {
+    itemEntry.logType = 'event'
+    // parse the number of hours
+    const hours = Number(time.value.substring(0, 2))
+    // parse the number of minutes
+    const minutes = Number(time.value.substring(3))
+    // update UNIX timestamp with hours and minutes
+    const timestamp = Date.parse(date.value) +
+                (hours * 60 * 60 * 1000) +
+                (minutes * 60 * 1000)
+    const dateConverter = new DateConverter(timestamp)
+
+    // @TODO
+    itemEntry.time = dateConverter.timestamp
+  } else {
+    itemEntry.logType = 'reflection'
+  }
+  itemEntry.description = inputValue
+
+  logItem.itemEntry = itemEntry
+  li.appendChild(logItem)
+  document.getElementById('myUL').appendChild(li)
+  document.getElementById('input-area').value = ''
+}
+
+function hideEverything () {
+  date.type = 'hidden'
+  text.value = ''
+  // saveBtn.style.display = 'none'
+  // cancelBtn.style.display = 'none'
+  text.type = 'hidden'
+  time.type = 'hidden'
 }
 
 /**
@@ -155,10 +186,6 @@ function newElement () {
  * initialize the daily log.
  */
 function getLogInfoAsJSON (cb) {
-  // if (!(date instanceof Number) || (date === null)) {
-  //   throw Error('date reference must be an instance of Number.')
-  // }
-
   const wrapper = new IndexedDBWrapper('experimentalDB', 1)
 
   wrapper.transaction((event) => {
@@ -170,10 +197,10 @@ function getLogInfoAsJSON (cb) {
       const cursor = event.target.result
       if (cursor) {
         const dateConverter = new DateConverter(Number(cursor.value.current_log))
+        console.log(cursor.value)
         cursor.value.$defs['daily-logs'].forEach((log, index) => {
           if (dateConverter.equals(Number(log.properties.date.time))) {
             cb.bind(this)
-            console.log(cursor.value)
             cb(cursor.value.$defs['daily-logs'][index])
           }
         })
@@ -196,7 +223,7 @@ function setEntries (log) {
     entries.forEach((entry, index) => {
       const li = document.createElement('li')
       const logItem = document.createElement('log-item')
-
+      entry.editable = true
       logItem.itemEntry = entry
 
       li.appendChild(logItem)
@@ -249,8 +276,6 @@ function populateDailyLog (response) {
   (see https://github.com/cse110-w21-group7/cse110-SP21-group7/issues/161
     and https://github.com/cse110-w21-group7/cse110-SP21-group7/issues/162)
   */
-  // const response = JSON.parse(this.responseText)
-  // const log = response.$defs['daily-logs'][0]
   setDate(response)
   setEntries(response)
   setReflection(response)
@@ -268,10 +293,13 @@ function getDateFromUNIXTimestamp (timestamp) {
   return new Date(timestamp)
 }
 
-function sendLogInfoAsJSON () {
-  // @TODO
-}
-
 document.addEventListener('DOMContentLoaded', (event) => {
   getLogInfoAsJSON(populateDailyLog)
+})
+
+const zoom = document.getElementById('pretty')
+const custZoom = document.getElementById('button1')
+
+custZoom.addEventListener('click', function () {
+  zoom.click()
 })
