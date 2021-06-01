@@ -217,9 +217,9 @@ a:link {
 
 #reflection {
   border-style: solid;
-  border-width:5px;
+  border-width: 5px;
   border-radius: 20px;
-  border-color: #EE6C4D;
+  border-color: #ee6c4d;
   width: 80vw;
   height: 30vh;
   margin-left: 10px;
@@ -420,30 +420,31 @@ input {
     "dropdown date-time date-time date-time date-time date-time"
     "dropdown text-input text-input text-input text-input text-input"
     ". . . . . .";
-    border-style:solid;
-    border-width: 5px;
-    border-radius: 20px;
-    border-color:#EE6C4D;
-  } 
-  
-  #textbox > div {
-    height: 100px
-  }
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 20px;
+  border-color: #ee6c4d;
+}
 
-  #save, #cancel {
-    width: 60px;
-    height: 30px;
-  }
+#textbox > div {
+  height: 100px;
+}
 
-  #save:hover {
-    background-color: grey;
-    cursor: pointer;
-  }
+#save,
+#cancel {
+  width: 60px;
+  height: 30px;
+}
 
-  #cancel:hover {
-    background-color: grey;
-    cursor: pointer;
-  }
+#save:hover {
+  background-color: grey;
+  cursor: pointer;
+}
+
+#cancel:hover {
+  background-color: grey;
+  cursor: pointer;
+}
 
 #save:hover {
   background-color: grey;
@@ -502,7 +503,7 @@ input:focus {
 #input-area {
   flex: 100%;
   margin-top: 20px;
-  padding-top:0;
+  padding-top: 0;
 }
 
 #bullet-type {
@@ -530,14 +531,14 @@ input:focus {
   margin-left: 10px;
   background: white;
   border-radius: 20px;
-  height:270px;
-  box-shadow: 4px 12px 40px 4px rgba(10,10,120,0.15);
+  height: 270px;
+  box-shadow: 4px 12px 40px 4px rgba(10, 10, 120, 0.15);
 }
 .container {
   position: relative;
   margin-top: 10px;
   margin-bottom: 10px;
-  padding-bottom:20px;
+  padding-bottom: 20px;
   overflow: hidden;
   width: 160px;
   height: 240px;
@@ -590,7 +591,7 @@ input:focus {
 .entry-prompt {
   margin-top: 10px;
   margin-left: 10px;
-  font-size:24px;
+  font-size: 24px;
 }
 .overlay {
   background: #fff;
@@ -635,7 +636,7 @@ input:focus {
   border-color: #4d98ef;
 }
 .hidden:nth-child(8):checked + .entry .circle {
-  border-color: #4D98EF;
+  border-color: #4d98ef;
 }
 .check:checked ~ .containerOuter .overlay {
   background: #ecf0f4;
@@ -695,7 +696,7 @@ input:focus {
 .customBtn {
   position: relative;
   display: inline-block;
-  margin-top:50px;
+  margin-top: 50px;
   padding: 15px 30px;
   color: #293241;
   text-transform: uppercase;
