@@ -4,10 +4,11 @@
  * @author Katherine Baker <klbaker@ucsd.edu>
  */
 
-const DateConverter = require('../src/utils/DateConverter.js')
+// const DateConverter = require('../src/utils/DateConverter.js')
+import { DateConverter } from '../src/utils/DateConverter.js'
 const should = require('chai').should()
 
-const testConverter = new DateConverter(Date.UTC('2021','03','24','22','35','30'))
+const testConverter = new DateConverter()//Date.UTC('2021','03','24','22','35','30'))
 
 // tester is the UNIX timestamp for  May 23, 2021 at 22:35:30
 const testDate = new Date(Date.UTC('2021','03','24','22','35','30'))
