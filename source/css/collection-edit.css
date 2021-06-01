@@ -2,6 +2,13 @@
 
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
 
+h3 {
+  font-family: "Montserrat", sans-serif;
+  margin:0;
+  font-size: 30px;
+  border-style: solid;
+}
+
 .fa-2x {
 font-size: 2em;
 }
@@ -285,9 +292,9 @@ li > a, a:link {
 }
 
 #myUL li {
-    cursor: pointer;
     position: relative;
-    padding: 12px 8px 12px 40px;
+    display: table;
+    padding: 12px 8px 12px 10px;
     list-style-type: none;
     background: #eee;
     font-family:'Montserrat', sans-serif;
@@ -318,7 +325,9 @@ li > a, a:link {
   
   /* Darker background-color on hover */
   #myUL li:hover {
-    background: #ddd;
+    background: #e0fbfc;
+    /* we might have to change the cursor */
+    cursor:default;
   }
   
   /* When clicked on, add a background color and strike out text */
@@ -360,9 +369,10 @@ li > a, a:link {
     background-color: #EE6C4D;
     box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
     border-radius:20px;
-    padding: 30px 40px;
+    padding: 20px 30px;
     color: white;
     text-align: center;
+    margin-top: 40px;
   }
   
   /* Clear floats after the header */
@@ -380,26 +390,32 @@ li > a, a:link {
     width: 75%;
     padding: 10px;
     float: left;
-    font-size: 16px;
+    font-size: 24px;
+    font-family: "Montserrat", sans-serif;
   }
   
   /* Style the "Add" button */
   .addBtn {
-    padding: 10px;
-    width: 25%;
-    background: #d9d9d9;
-    color: #555;
+    width: 10%;
+    padding-top: 15px;
+    background: #98c1d9;
+    border-style:solid;
+    border-color:white;
+    font-family: "Montserrat", sans-serif;
+    color: #EE6C4D;
     float: left;
     text-align: center;
-    font-size: 16px;
+    font-size: 35px;
     cursor: pointer;
     transition: 0.3s;
     border-radius: 0;
     vertical-align: middle;
+    justify-content: center;
+    align-items: center;
   }
   
   .addBtn:hover {
-    background-color: #bbb;
+    background-color: #e0fbfc;
   }
   
   #myDIV {
@@ -436,7 +452,7 @@ li > a, a:link {
 }
 
   #video-collection{
-    border: 8px solid #293241;
+    border: 8px solid #3d5A80;
     margin-top:20px;
     border-radius: 30px;
     display: flex;
@@ -477,6 +493,7 @@ li > a, a:link {
   border-width: 2px;
   background-color: #EE6C4D;
   width:250px;
+  font-size: 18px;
 }
 
 #add-image-btn {
@@ -488,4 +505,5 @@ li > a, a:link {
   border-width: 2px;
   background-color: #EE6C4D;
   width:250px;
+  font-size: 18px;
 }

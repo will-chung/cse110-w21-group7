@@ -207,7 +207,30 @@ function getLogInfoAsJSON (cb) {
           }
         })
         if(!match){
-          //TODO: creating new log
+          //TODO: creating new 
+          // {
+          //   "type": "object",
+          //   "required": [ "date", "description" ],
+          //   "properties": {
+          //     "date": {
+          //       "type": "string",
+          //       "time": "",
+          //       "description": "The date of the event."
+          //     },
+          //     "events": [],
+          //     "tasks": [],
+          //     "notes": [],
+          //   "reflection": [],
+          //     "mood": {
+          //       "type": "number",
+          //       "multipleOf": 1,
+          //       "minimum": 0,
+          //       "exclusiveMaximum": 100,
+          //       "value": 50,
+          //       "description": "Daily mood on a range of 0-99."
+          //     }
+          //   }
+          // }
         }
       }
     }

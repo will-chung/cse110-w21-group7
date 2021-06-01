@@ -29,39 +29,28 @@ addBtn.addEventListener('click', () => {
   newElement()
 })
 
-/*
- * Creates new element to append to task list
+/**
+ * Adds tasks, notes, and events to the daily log. If the entry is evmpty,
+ * then the bullet journal alerts the user that they must write something
+ * for that task/note/event.
+ *
  */
-function newElement () {
-  const span = document.createElement('select')
-  span.className = 'dropdown'
-  const txt = document.createElement('option')
-  const close = document.createElement('option')
-  const complete = document.createElement('option')
-  close.text = 'delete'
-  close.value = 'close'
-  close.className = 'close'
-  complete.text = 'complete'
-  complete.value = 'complete'
-  complete.className = 'complete'
-  txt.text = 'options'
-  txt.value = 'value'
-  // span.className = 'select';
-  span.appendChild(txt)
-  span.appendChild(close)
-  span.appendChild(complete)
-  const li = document.createElement('li')
+ function newElement () {
   const inputValue = document.getElementById('myInput').value
-  const t = document.createTextNode(inputValue)
-  li.appendChild(span)
-  li.appendChild(t)
-  if (inputValue === '') {
+  if (inputValue.length === 0) {
     alert('You must write something!')
-  } else {
-    // span.appendChild(li);
-    // document.getElementById('myUL').appendChild(span);
-    document.getElementById('myUL').appendChild(li)
+    return
   }
+  const li = document.createElement('li')
+  const logItem = document.createElement('log-item')
+  const itemEntry = {}
+  itemEntry.logType = 'task'
+  logItem.finished = false
+  itemEntry.description = inputValue
+
+  li.appendChild(logItem)
+  logItem.itemEntry = itemEntry
+  document.getElementById('myUL').appendChild(li)
   document.getElementById('myInput').value = ''
 }
 
@@ -85,8 +74,10 @@ function populateTasks (collection) {
     const li = document.createElement('li')
     li.appendChild(logItem)
     taskList.appendChild(li)
+    logItem.setHoverListeners()
   })
 }
+
 
 /**
  * Business logic subroutine used to add the collection
@@ -235,18 +226,17 @@ function insertMedia (event, media = MEDIA_TYPE.IMAGE) {
  */
 function populatePage (response) {
   populateTasks(response)
-  populateCollectionName(response)
   populateMedia(response, MEDIA_TYPE.IMAGE)
   populateMedia(response, MEDIA_TYPE.VIDEO)
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
+  populateCollectionName()
   getLogInfoAsJSON(populatePage)
   imageButton.addEventListener('input', (event) => {
     insertMedia.bind(event)
     insertMedia(event, MEDIA_TYPE.IMAGE)
   })
-
   videoButton.addEventListener('input', (event) => {
     insertMedia.bind(event)
     insertMedia(event, MEDIA_TYPE.VIDEO)
