@@ -206,8 +206,8 @@ function getLogInfoAsJSON (cb) {
             cb(cursor.value.$defs['daily-logs'][index])
           }
         })
-        if(!match){
-          //TODO: creating new 
+        if (!match) {
+          // TODO: creating new
           // {
           //   "type": "object",
           //   "required": [ "date", "description" ],

@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
  * the header for the current column on the monthly/weekly view.
  */
 function appendNavLinks (targetElement, date) {
-  //FIXME
+  // FIXME
   const anchor = targetElement.querySelector('a')
   anchor.dataset.unixTimestamp = date.getTime()
   anchor.href = '/source/html/daily.html' // @TODO refactor with routing

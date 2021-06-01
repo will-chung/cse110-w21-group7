@@ -100,7 +100,7 @@ class LogItem extends HTMLElement {
       this.shadowRoot.querySelector('button').addEventListener('click', (event) => {
         this.parentElement.remove()
       })
-      //this.setHoverListeners()
+      // this.setHoverListeners()
     }
   }
 
@@ -110,7 +110,7 @@ class LogItem extends HTMLElement {
   setHoverListeners () {
     const singleEntry = this.shadowRoot.getElementById('single-entry')
     const trashBtn = this.shadowRoot.querySelector('button')
-    
+
     // toggles visiblity of trash icon when mouse hovers
     this.parentElement.addEventListener('mouseenter', () => {
       trashBtn.style.visibility = 'visible'

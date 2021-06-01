@@ -35,7 +35,7 @@ addBtn.addEventListener('click', () => {
  * for that task/note/event.
  *
  */
- function newElement () {
+function newElement () {
   const inputValue = document.getElementById('myInput').value
   if (inputValue.length === 0) {
     alert('You must write something!')
@@ -77,7 +77,6 @@ function populateTasks (collection) {
     logItem.setHoverListeners()
   })
 }
-
 
 /**
  * Business logic subroutine used to add the collection
