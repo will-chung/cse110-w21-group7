@@ -1,5 +1,7 @@
 import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 import { DateConverter } from './utils/DateConverter.js'
+//import { LogItem } from './components/LogItem.js'
+// having issues using LogItem - I think there's no export in the js
 
 const collapse = document.getElementById('collapse')
 const quote = document.getElementById('reflection')
@@ -33,17 +35,17 @@ const realSavBtn = document.getElementById('save')
  * Resource: https://codepen.io/Mdade89/pen/JKkYGq
  * the link above provides a collapsible text box
  */
-// document.addEventListener('DOMContentLoaded', () => {
-//   saveBtn.style.visibility = 'hidden'
-//   saveBtn.addEventListener('click', (event) => {
-//     event.preventDefault()
-//     newElement()
-//   })
-//   cancelBtn.style.visibility = 'hidden'
-//   text.type = 'hidden'
-//   date.type = 'hidden'
-//   time.type = 'hidden'
-// })
+document.addEventListener('DOMContentLoaded', () => {
+  saveBtn.style.visibility = 'hidden'
+  saveBtn.addEventListener('click', (event) => {
+    event.preventDefault()
+    newElement()
+  })
+  cancelBtn.style.visibility = 'hidden'
+  text.type = 'hidden'
+  date.type = 'hidden'
+  time.type = 'hidden'
+})
 
 radioContainer.addEventListener('change', () => {
   if (refRadio.checked) {
@@ -133,14 +135,25 @@ function newElement () {
   }
   const li = document.createElement('li')
   const logItem = document.createElement('log-item')
-  const itemEntry = {}
+  var itemEntry = {}
+  // entry specifies what log entry is falls under (for data purposes)
+  var entry
+
+  // Update log type according to which item was checked
   if (taskRadio.checked) {
     itemEntry.logType = 'task'
     itemEntry.finished = false
+    entry = "tasks"
+
   } else if (noteRadio.checked) {
     itemEntry.logType = 'note'
+
+    entry = "notes"
+
   } else if (eventRadio.checked) {
     itemEntry.logType = 'event'
+    entry = "events"
+
     // parse the number of hours
     const hours = Number(time.value.substring(0, 2))
     // parse the number of minutes
@@ -155,6 +168,7 @@ function newElement () {
     itemEntry.time = dateConverter.timestamp
   } else {
     itemEntry.logType = 'reflection'
+    entry = "reflection"
   }
   itemEntry.description = inputValue
 
@@ -162,6 +176,54 @@ function newElement () {
   li.appendChild(logItem)
   document.getElementById('myUL').appendChild(li)
   document.getElementById('input-area').value = ''
+
+  /* experimental */
+  const wrapper = new IndexedDBWrapper('DB', 2)
+  console.log("Made exDB")
+
+  // Created when the IDB makes a transaction
+  wrapper.transaction((event) => {
+    console.log("in transaction")
+    // Create transaction for the updated log store
+    const db = event.target.result
+    const transaction = db.transaction(['currentLogStore'], 'readwrite')
+    const store = transaction.objectStore('currentLogStore')
+
+    // Open the object store
+    store.openCursor().onsuccess = function (event) {
+      const cursor = event.target.result
+      console.log(cursor)
+      if (cursor) {
+        console.log("in cursor")
+        // Get the cursor value and push the log item entry onto the file
+        const json = cursor.value
+        const dailyLog = json.$defs["daily-logs"][0].properties[entry]
+        dailyLog.push(itemEntry) 
+        const updated = cursor.update(cursor.value)
+
+        // Error of adding data
+        updated.onerror = function (event) {
+          console.log("ERROR: unable to add data")
+        }
+
+        // Data got successfully added
+        updated.onsuccess = function (event) {
+          console.log("Successfully added data")
+          console.log("What's inside daily-logs " + dailyLog)
+          console.log(json.$defs["daily-logs"])
+        }
+      }
+    }
+  })
+
+  // Call updateElement to save the new tasks
+
+  // updateElement((logEntry) =>{
+  //   const target = 
+  //   target.push(itemEntry)
+  //   console.log("Pushed log entry")
+  //   return logEntry
+  // })
 }
 
 function hideEverything () {
@@ -179,33 +241,44 @@ function hideEverything () {
  * These changes should be saved and reflected the next time
  * the user opens the daily log.
  * 
- * @param logType The associated log specified
- * @param update What needs to be updated
- * @param key Key of the log (only used if deleted)
+ * @param cb
  */
-function updateElement (logType, update, key) {
-  const wrapper = new IndexedDBWrapper('DB', 2)
+function updateElement (cb) {
+  const wrapper = new IndexedDBWrapper('experimentalDB', 1)
   
   // Created when the IDB makes a transaction
   wrapper.transaction((event) => {
     // Create transaction for the updated log store
     const db = event.target.result
-    const transaction = db.transaction(['updateLogStore'], 'readwrite')
-    const store = transaction.objectStore('updateLogStore')
+    const transaction = db.transaction(['currentLogStore'], 'readwrite')
+    const store = transaction.objectStore('currentLogStore')
 
-    const itemEntry = {}
-    // Check if log type is task
-    if (logType === 'task') {
-      itemEntry.logType = logType
-      itemEntry.finished = update
-      // put() method will update the record in the db if it exists
-      store.put(itemEntry)
+    store.openCursor().onsuccess = function (event) {
+      const cursor = event.target.result
+      if (cursor) {
+        console.log("in cursor")
+        const logEntry = cursor.value.$defs[0].date
+        let log = cursor.value.$defs.find((element) => {
+          return element.properties.date === logEntry
+        })
+        log = cb(log)
+        cursor.update(cursor.value)
+      }
     }
 
-    // Check if we instead just want to delete the task/note/event
-    if (update === 'delete') {
-      store.delete(key)
-    }
+    // const itemEntry = {}
+    // // Check if log type is task
+    // if (logType === 'task') {
+    //   itemEntry.logType = logType
+    //   itemEntry.finished = update
+    //   // put() method will update the record in the db if it exists
+    //   store.put(itemEntry)
+    // }
+
+    // // Check if we instead just want to delete the task/note/event
+    // if (update === 'delete') {
+    //   store.delete(key)
+    // }
 
     // Get task/note/event from the parameter entry
     // Create transaction to delete 
