@@ -18,7 +18,6 @@ class LogItem extends HTMLElement {
     this._itemEntry = {}
     this._itemEntry.logType = 'note'
     this._itemEntry.description = ''
-    this.render()
   }
 
   render () {
@@ -28,6 +27,10 @@ class LogItem extends HTMLElement {
                                         display:inline-block;
                                         width:1em;
                                         height:1em;
+                                        margin-right: 10px;
+                                    }
+                                    .icon:hover {
+                                      cursor: pointer;
                                     }
                                     .trash-button-icon {
                                         background: url(../images/log-item_icons/trash-solid.svg) no-repeat center center;
@@ -52,12 +55,23 @@ class LogItem extends HTMLElement {
                                         border:0;
                                         padding:0;
                                         font-size: inherit;
+                                        visibility: hidden;
+                                        margin-left: 100px;
+                                    }
+                                    button:hover {
+                                      cursor: pointer;
+                                    }
+                                    #single-entry{
+                                      margin:0;
+                                    }
+                                    #tasks {
+                                      width: 90%;
                                     }
                                     </style>
-                                    <span>
+                                    <span id="single-entry">
                                         <i class="icon ${this.getFASymbolClass()}"></i>
                                         <b>${this.getMilitaryTime()}</b>
-                                        <span>${this._itemEntry.description}</span>
+                                        <span id="tasks">${this._itemEntry.description}</span>
                                         <button type="button">
                                         <span class="icon trash-button-icon"></span>
                                         </button>
@@ -86,7 +100,25 @@ class LogItem extends HTMLElement {
       this.shadowRoot.querySelector('button').addEventListener('click', (event) => {
         this.parentElement.remove()
       })
+      // this.setHoverListeners()
     }
+  }
+
+  /*
+  * Adds event listeners for all hover events on the collection item
+  */
+  setHoverListeners () {
+    const singleEntry = this.shadowRoot.getElementById('single-entry')
+    const trashBtn = this.shadowRoot.querySelector('button')
+
+    // toggles visiblity of trash icon when mouse hovers
+    this.parentElement.addEventListener('mouseenter', () => {
+      trashBtn.style.visibility = 'visible'
+    })
+
+    this.parentElement.addEventListener('mouseleave', () => {
+      trashBtn.style.visibility = 'hidden'
+    })
   }
 
   /**
