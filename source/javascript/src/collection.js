@@ -1,9 +1,9 @@
 import { CollectionItem, wrapper } from './components/CollectionItem.js'
 
-const addBtn = document.getElementById('add');
-const customAdd = document.getElementById("custom-add");
-customAdd.addEventListener("click", ()=>{
-  addBtn.click();
+const addBtn = document.getElementById('add')
+const customAdd = document.getElementById('custom-add')
+customAdd.addEventListener('click', () => {
+  addBtn.click()
 })
 
 addBtn.addEventListener('click', () => {
@@ -11,7 +11,6 @@ addBtn.addEventListener('click', () => {
   const collectionName = window.prompt('Please enter the name of your new collection:')
   addCollection(collectionName)
 })
-
 
 /**
  * Add new collection to database with given name.
