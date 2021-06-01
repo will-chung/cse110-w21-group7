@@ -6,13 +6,26 @@ const quote = document.getElementById('reflection')
 const text = document.getElementById('input-area')
 const date = document.getElementById('date-input')
 const time = document.getElementById('time-input')
-const saveBtn = document.getElementById('save')
-const cancelBtn = document.getElementById('cancel')
+const saveBtn = document.getElementById('cb1')
+const realCanBtn = document.getElementById('cancel')
+const cancelBtn = document.getElementById('cb2')
 const refRadio = document.getElementById('input1')
 const eventRadio = document.getElementById('input2')
 const taskRadio = document.getElementById('input3')
 const noteRadio = document.getElementById('input4')
 const radioContainer = document.getElementsByClassName('container')[0]
+const realSavBtn = document.getElementById('save')
+
+// cancelBtn.addEventListener('click', () => {
+//   // TODO: implement hide functionality
+//   hideEverything()
+// })
+// saveBtn.addEventListener('click', () => {
+//   realSavBtn.click()
+// })
+// cancelBtn.addEventListener('click', () => {
+//   realCanBtn.click()
+// })
 
 /*
  * This onclick toggles the display style of the quote to none
@@ -20,17 +33,17 @@ const radioContainer = document.getElementsByClassName('container')[0]
  * Resource: https://codepen.io/Mdade89/pen/JKkYGq
  * the link above provides a collapsible text box
  */
-document.addEventListener('DOMContentLoaded', () => {
-  saveBtn.style.visibility = 'hidden'
-  saveBtn.addEventListener('click', (event) => {
-    event.preventDefault()
-    newElement()
-  })
-  cancelBtn.style.visibility = 'hidden'
-  text.type = 'hidden'
-  date.type = 'hidden'
-  time.type = 'hidden'
-})
+// document.addEventListener('DOMContentLoaded', () => {
+//   saveBtn.style.visibility = 'hidden'
+//   saveBtn.addEventListener('click', (event) => {
+//     event.preventDefault()
+//     newElement()
+//   })
+//   cancelBtn.style.visibility = 'hidden'
+//   text.type = 'hidden'
+//   date.type = 'hidden'
+//   time.type = 'hidden'
+// })
 
 radioContainer.addEventListener('change', () => {
   if (refRadio.checked) {
@@ -149,6 +162,15 @@ function newElement () {
   li.appendChild(logItem)
   document.getElementById('myUL').appendChild(li)
   document.getElementById('input-area').value = ''
+}
+
+function hideEverything () {
+  date.type = 'hidden'
+  text.value = ''
+  // saveBtn.style.display = 'none'
+  // cancelBtn.style.display = 'none'
+  text.type = 'hidden'
+  time.type = 'hidden'
 }
 
 /**
@@ -312,10 +334,13 @@ function getDateFromUNIXTimestamp (timestamp) {
   return new Date(timestamp)
 }
 
-function sendLogInfoAsJSON () {
-  // @TODO
-}
-
 document.addEventListener('DOMContentLoaded', (event) => {
   getLogInfoAsJSON(populateDailyLog)
+})
+
+const zoom = document.getElementById('pretty')
+const custZoom = document.getElementById('button1')
+
+custZoom.addEventListener('click', function () {
+  zoom.click()
 })

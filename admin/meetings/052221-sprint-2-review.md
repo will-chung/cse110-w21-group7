@@ -1,6 +1,6 @@
 # RIVER team Meeting Minutes for May 15th, 2021
 
-## Topic: First Sprint Review
+## Topic: Second Sprint Review
 
 ## Members Present:
 - Yuzi Lyu

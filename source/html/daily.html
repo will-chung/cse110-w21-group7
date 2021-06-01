@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daily Log</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/daily.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<body>
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/daily.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
     <div id="content">
-        <div id="journal-content">
-            
-            <div id="title">
-                <div class="date">
-                    <!-- TODO: this needs to fetch today's date-->
-                    <h1 class="date">May 24th</h1>
-                </div>
-                <div id="tag">
-                    <!-- TODO: this will be a dropdown for all possible tags-->
-                    <p>temp tag</p>
-                </div>
-            </div>
-            <div id="entry-area">
+      <div id="journal-content">
+        <div id="title">
+          <div class="date">
+            <h1 class="date"></h1>
+          </div>
+          <div id="tag">
+            <!-- TODO: this will be a dropdown for all possible tags-->
+            <p>temp tag</p>
+          </div>
+        </div>
+        <div id="entry-area">
 
                 <ul id="myUL">
                     
@@ -54,97 +57,89 @@
                     </div>
                     <div id='text-input'>
                         <input type="text" id="input-area" name="todo" placeholder="Input your todo here">
-                        <button id="save" type="submit">Save</button>
-                        <button id="cancel">Cancel</button>
+                        <a href="#" id="cb2" class="customBtn">
+                          <span id="span1"></span>
+                          <span id="span2"></span>
+                          <span id="span3"></span>
+                          <span id="span4"></span>
+                          Cancel
+                        </a>
+                        <a href="#" id="cb1" class="customBtn">
+                          <span id="span1"></span>
+                          <span id="span2"></span>
+                          <span id="span3"></span>
+                          <span id="span4"></span>
+                          Save
+                        </a>
+                        <button id="save" hidden="hidden">Save</button>
+                        <button id="cancel" hidden="hidden">Cancel</button>
                     </div>
                     
                 </form>
-                <form>
+                <!-- <form>
                   <button type="submit">Submit</button>
-                </form>
-                <!-- List for input actions in the dropdown on the left -->
-                 <!-- <ul id="actions">
-                    <li>Change bullet type</li>
-                    <li>Edit</li>
-                    <li>Delete</li>
-                    <li>...</li>
-                </ul>  -->
-            </div>
-            <div id='mid-section'>
-                <a href="#" id = 'yesterday'><i class="fa fa-chevron-left fa-lg"></i></a>
-                <!-- <button id="collapse">Collapse</button> -->
-                <a href="#" id = 'collapse'><i class="fa fa-chevron-up fa-lg"></i></a>
-                <a href="#" id = 'tomorrow'><i class="fa fa-chyevron-right fa-lg"></i></a>
-            </div>
-            <div id="reflection">
-                
-                <!-- <div id="quote">
-                    <h1>Sample Quote</h1>
-                </div>
-                <button id="right">right</button> -->
-                <!-- <div>
-                  <input type="range" id="mood" name="mood" min="0" max="99">
-                  <label for="mood">How are you feeling today?</label>
-                </div> -->
-                <reflection-item></reflection-item>
-                
-            </div>
-            
-            <button id="pretty">zoom</button>
-            <!-- <a href="#"><i class="fa fa-chevron-left fa-lg"></i></a>
-            <a href="#"><i class="fa fa-chevron-right fa-lg"></i></a> -->
+                </form> -->
         </div>
+        <div id="mid-section">
+          <a href="#" id="yesterday">
+            <i class="fa fa-chevron-left fa-lg"></i>
+          </a>
+          <!-- <button id="collapse">Collapse</button> -->
+          <a href="#" id="collapse"><i class="fa fa-chevron-up fa-lg"></i></a>
+          <a href="#" id="tomorrow"><i class="fa fa-chevron-right fa-lg"></i></a>
+        </div>
+        <div id="reflection">
+          <reflection-item></reflection-item>
+        </div>
+
+        <button id="pretty" hidden="hidden">zoom</button>
+        <div id="button1">
+          <a href="#" class="myButton">zoom </a>
+        </div>
+      </div>
     </div>
     <nav class="main-menu">
-        <ul>
-          <li >
-            <a href="./index.html" id="home">
-              <i class="fa fa-home fa-2x"></i>
-              <span class="nav-text" >
-                Index
-              </span>
-            </a>
-    
-          </li>
-          <li class="has-subnav">
-            <a href="#" class="underline">
-              <i class="fa fa-search fa-2x"></i>
-              <span class="nav-text">
-                Search
-              </span>
-            </a>
-    
-          </li>
-          <li class="has-subnav">
-            <a href="./daily.html" class="underline"  id="current" >
-              <i class="fa fa-pencil fa-2x"></i>
-              <span class="nav-text">
-                Daily Log
-              </span>
-            </a>
-    
-          </li>
-          <li class="has-subnav">
-            <a href="./collection.html" class="underline">
-              <i class="fa fa-folder-open fa-2x"></i>
-              <span class="nav-text">
-                Collection
-              </span>
-            </a>
-    
-          </li>
-          <li class="has-subnav">
-            <a href="./weekly.html" class="underline">
-              <i class="fa fa-calendar fa-2x"></i>
-              <span class="nav-text">
-                Monthly
-              </span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <script src="../javascript/src/daily.js" type="module"></script>
-    <script src="../javascript/src/components/LogItem.js" type="module"></script>
-    <script src="../javascript/src/components/ReflectionItem.js" type="module"></script>
-</body>
+      <ul>
+        <li>
+          <a href="./index.html" id="home">
+            <i class="fa fa-home fa-2x"></i>
+            <span class="nav-text"> Index </span>
+          </a>
+        </li>
+        <li class="has-subnav">
+          <a href="#" class="underline">
+            <i class="fa fa-search fa-2x"></i>
+            <span class="nav-text"> Search </span>
+          </a>
+        </li>
+        <li class="has-subnav">
+          <a href="./daily.html" class="underline" id="current">
+            <i class="fa fa-pencil fa-2x"></i>
+            <span class="nav-text"> Daily Log </span>
+          </a>
+        </li>
+        <li class="has-subnav">
+          <a href="./collection.html" class="underline">
+            <i class="fa fa-folder-open fa-2x"></i>
+            <span class="nav-text"> Collection </span>
+          </a>
+        </li>
+        <li class="has-subnav">
+          <a href="./weekly.html" class="underline">
+            <i class="fa fa-calendar fa-2x"></i>
+            <span class="nav-text"> Monthly </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <script src="../javascript/src/daily.js" type="module"></script>
+    <script
+      src="../javascript/src/components/LogItem.js"
+      type="module"
+    ></script>
+    <script
+      src="../javascript/src/components/ReflectionItem.js"
+      type="module"
+    ></script>
+  </body>
 </html>

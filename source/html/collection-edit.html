@@ -58,79 +58,41 @@
           </li>
         </ul>
       </nav>
+      <div id="title">
+        <h1>User's ______ Collection</h1>
+      </div>
     <div id="content">
+      
         <div id="journal-content">
-            
-            <div id="title">
-                <h1>User's ______ Collection</h1>
-            </div>
-
             <div id="entry">
                 <ul id="myUL">
                 </ul>
                 <div id="myDIV" class="header">
-                  <h2 style="margin:5px">Enter new tasks</h2>
+                  <h3 style="margin:5px">Enter new tasks</h2>
                   <input type="text" id="myInput" placeholder="Title...">
-                  <span onclick="newElement()" class="addBtn">Add</span>
+                  <span class="addBtn">Add</span>
                 </div>
 
-                <!--<form id="textbox">
-                    <input type="text" id="text-input" name="todo" placeholder="Input your todo here" size="70" >            
-                    <button id="cancel">Cancel</button>
-                    <button id="save" type="submit">Save</button>
-                </form>-->
-                
-                <!-- List for input actions in the dropdown on the left -->
-                <!--<ul id="actions">
-                    <li>add bullet</li>
-                    <li>edit</li>
-                    <li>delete</li>
-                    <li>...</li>
-                </ul>-->
             </div>
             
-            <button id="collapse">collapse</button>  
+            
             <div id="media-gallery">
                 <div id="image-collection">
                     <h2>Image Gallery</h2>
-                    <img src="../image/Group 7 (1).png" alt="placeholder">
-                    <input type="text" placeholder = "Input your caption here" size = "5">
-                    <img src="../image/Group 7 (1).png" alt="placeholder">
-                    <input type="text" placeholder = "Input your caption here" size = "5">
-                    <input type='file' id="add-image-btn" name='imageName'></button>
+                    <input type='file' id="add-image-btn" name='imageName'></input>
                 </div>
-                <!-- <div class='media-gallary'>
-                    <div class='row'>
-                      <div class='column'>
-                        <div class='image-column'>
-                            <h2>Image Gallery</h2>
-                            <img src="../image/Group 7 (1).png" alt="placeholder">
-                            <input type="text" placeholder = "Input your caption here" size = "5">
-                            <img src="../image/Group 7 (1).png" alt="placeholder">
-                            <input type="text" placeholder = "Input your caption here" size = "5">
-                        </div>
-                      </div>
-                      <div class='column'>
-                        <div class='video-column'>
-                            <h2>Video Gallery</h2>
-                            <video src="../video/pexels-cottonbro-5473805.mp4"></video>
-                        </div>
-                      </div>
-                    </div>
-                  </div> -->
                 <div id="video-collection">
                     <h2>Video Gallery</h2>
-                    <video src="../video/pexels-cottonbro-5473805.mp4" controls></video>
                     <input type='file' id="add-video-btn" name='videoName'></input>
                 </div>
-                <!-- <div id="quote">
-                    <h1>Sample Quote</h1>
-                </div>
-                <button id="right">right</button> -->
             </div>
+            <a href="#" id="collapse"><i class="fa fa-chevron-down fa-2x"></i></a>
+            <!-- https://codepen.io/aurer/pen/jEGbA look into this link for loading animation-->
             
         </div>
     </div>
-    <script src="../javascript/src/collection-edit.js"></script>
+    <script src="../javascript/src/collection-edit.js" type="module"></script>
+    <script src="../javascript/src/components/LogItem.js"></script>
+    <script src="../javascript/src/components/MediaItem.js" type="module"></script>
 </body>
 </html>

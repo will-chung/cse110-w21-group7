@@ -1,5 +1,13 @@
 import { DateConverter } from './utils/DateConverter.js'
 import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
+import { Shelf } from './components/Shelf.js'
+import { Book } from './components/Book.js'
+
+// const realAdd = document.getElementById('rapid-log')
+// const custADD = document.getElementById('cb')
+// document.addEventListener('click', function () {
+//   realAdd.click()
+// })
 
 document.addEventListener('DOMContentLoaded', (event) => {
   const addDailyLog = document.querySelector("button[id='rapid-log'] > a")
@@ -55,7 +63,7 @@ const shelves = document.getElementsByTagName('book-shelf')
 for (let i = 0; i < shelves.length; i++) {
   const shelf = shelves[i]
   shelf.label = 2021 + i
-  const books = shelf.booksArray
+  const books = shelf.books
   for (let j = 0; j < books.length; j++) {
     books[j].title = j + 1
     books[j].shelf = shelf.label
