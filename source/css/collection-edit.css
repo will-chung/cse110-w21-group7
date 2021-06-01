@@ -300,7 +300,10 @@ li > a, a:link {
     font-family:'Montserrat', sans-serif;
     font-size: 20px;
     transition: 0.2s;
-    border-radius: 10px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-bottom: 5px;
     box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
     /* make the list items unselectable */
     -webkit-user-select: none;
