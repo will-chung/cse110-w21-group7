@@ -23,32 +23,35 @@ class WeeklyViewItem extends HTMLElement {
   render () {
     this.shadowRoot.innerHTML = `<style>
                                     #single-weekday {
-                                      margin:auto;
-                                      margin-bottom:10px;
+                                      padding: 5px;
                                       display: flex;
                                       flex-direction: column;
                                       flex-wrap: wrap;
                                       align-items:flex-start;
 
                                     }
+                                    #single-weekday > p {
+                                      font-family: "Montserrat", sans-serif;
+                                      padding-top: 10px;
+                                      padding-bottom: 10px;
+                                      font-size: 16px;
+                                      margin:10px;
+                                      box-shadow: 5px 10px 5px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+                                    }
                                     #single-weekday p:nth-child(odd) {
-                                      background: #E0FBFC;
-                                      border-radius:10px;
+                                      background: rgb(247,240,63);
+background: linear-gradient(335deg, rgba(247,240,63,1) 0%, rgba(254,255,156,1) 100%);
+                                      border-bottom-right-radius:10px;
+                                      border-bottom-left-radius:10px;
                                     }
                                     #single-weekday p:nth-child(even) {
-                                      background: #98c1d9;
-                                      border-radius:10px;
-                                    }
-                                    #single-weekday p:nth-child(1) {
-                                      border-top-style:solid;
-                                      border-radius:10px;
-                                    }
-                                    #single-weekday p:last-child {
-                                      border-bottom-style:solid;
-                                      border-radius:10px;
+                                      background: rgb(247,240,63);
+background: linear-gradient(335deg, rgba(247,240,63,1) 0%, rgba(254,255,156,1) 100%);
+                                      border-bottom-right-radius:10px;
+                                      border-bottom-left-radius:10px;
                                     }
                                     #single-weekday p:hover {
-                                      background: #ee6c4d;
+                                      background: white;
                                     }
                                     .weekday-entries {
                                         // border-style: solid;
@@ -80,19 +83,19 @@ class WeeklyViewItem extends HTMLElement {
 
     tasks.forEach((task, index) => {
       const taskItem = this.getEntryToWeeklyView(task)
-      taskItem.shadowRoot.querySelector('button').style.visibility = 'hidden'
+      taskItem.shadowRoot.querySelector('button').style.display = 'none'
       const row = this.makeRow(taskItem)
       weekdayCol.appendChild(row)
     })
     notes.forEach((notes, index) => {
       const noteItem = this.getEntryToWeeklyView(notes)
-      noteItem.shadowRoot.querySelector('button').style.visibility = 'hidden'
+      noteItem.shadowRoot.querySelector('button').style.display = 'none'
       const row = this.makeRow(noteItem)
       weekdayCol.appendChild(row)
     })
     events.forEach((event, index) => {
       const eventItem = this.getEntryToWeeklyView(event)
-      eventItem.shadowRoot.querySelector('button').style.visibility = 'hidden'
+      eventItem.shadowRoot.querySelector('button').style.display = 'none'
       // li.appendChild(eventItem)
       const row = this.makeRow(eventItem)
       weekdayCol.appendChild(row)
@@ -100,7 +103,7 @@ class WeeklyViewItem extends HTMLElement {
     reflection.forEach((reflection, index) => {
       const reflectionItem = this.getEntryToWeeklyView(reflection)
       const row = this.makeRow(reflectionItem)
-      reflectionItem.shadowRoot.querySelector('button').style.visibility = 'hidden'
+      reflectionItem.shadowRoot.querySelector('button').style.display = 'none'
       // li.appendChild(reflectionItem)
       weekdayCol.appendChild(row)
     })
