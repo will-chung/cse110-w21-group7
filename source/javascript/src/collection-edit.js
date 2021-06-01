@@ -1,5 +1,6 @@
 import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 import { MediaItem, MEDIA_TYPE } from './components/MediaItem.js'
+import { PAGES } from './components/LogItem.js'
 
 const collapse = document.getElementById('collapse')
 const imageBox = document.getElementById('image-collection')
@@ -76,6 +77,7 @@ function populateTasks (collection) {
   function createLogItem (task) {
     const logItem = document.createElement('log-item')
     logItem.itemEntry = task
+    logItem.page = PAGES['collection-edit']
     return logItem
   }
   const tasks = collection.tasks
