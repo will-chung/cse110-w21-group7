@@ -155,13 +155,10 @@ body {
   border-width: 5px;
   width: 25vw;
   margin: auto;
-  margin-top: 2vh;
-  box-shadow: 20px 0px 40px #3d5180;
+  box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   border-radius: 20px;
-  height: 17vh;
   color: #293241;
-  text-align: center;
-  vertical-align: center;
+  margin-bottom: 8vh;
 }
 
 h1 {
@@ -278,6 +275,8 @@ a:link {
   vertical-align: center;
   font-family: "Pattaya", sans-serif;
   font-size: 70px;
+  margin: 0;
+  line-height: 120px;
 }
 
 .custAdd {

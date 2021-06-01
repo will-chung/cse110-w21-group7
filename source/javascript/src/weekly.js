@@ -1,5 +1,6 @@
 import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 import { DateConverter } from './utils/DateConverter.js'
+import { Router } from './utils/Router.js'
 
 const weekly = document.getElementById('weekly-div')
 const monday = document.getElementById('Monday')
@@ -41,37 +42,79 @@ function getLogInfoAsJSON (cb) {
       // this cursor hold on to the event, we have fetched the data in the db
       if (cursor) {
         // current date
-        const current = new DateConverter(Date.now())
-        const dailyLogs = cursor.value.$defs['daily-logs']
-        const result = dailyLogs.filter((log) => {
-          const timestamp = log.properties.date.time
-          return current.timestampsInSameWeek(Number(timestamp))
-        })
+        const router = new Router()
+        const searchParams = router.url.searchParams
+        const year = Number(searchParams.get('year'))
+        const month = Number(searchParams.get('month')) - 1
+        const displayFirstOfMonth = searchParams.get('displayFirstOfMonth')
 
-        console.log(result)
-        cb(result)
+        // dateConverter object, determining the week for the weekly view to show
+        let dateToCompare
+        let result
+        const dailyLogs = cursor.value.$defs['daily-logs']
+        let dailyLogResult
+        if (searchParams.has('displayFirstOfMonth')) {
+          // gets all daily logs with the requested month and year
+          result = dailyLogs.filter((log) => {
+            const timestamp = Number(log.properties.date.time) // UNIX timestamp
+            const date = new Date(timestamp)
+            return (date.getFullYear() === year) && (date.getMonth() === month)
+          })
+          const timestampArr = []
+          result.forEach(log => {
+            const timestamp = Number(log.properties.date.time)
+            timestampArr.push(timestamp)
+          })
+          const minTimestamp = Math.min(...timestampArr)
+          dateToCompare = new DateConverter(minTimestamp)
+          dailyLogResult = dailyLogs.filter((log) => {
+            const timestamp = log.properties.date.time
+            return dateToCompare.oldTimestampInSameWeek(Number(timestamp))
+          })
+        } else {
+          // @TODO get results for navigating from menu
+          dateToCompare = new DateConverter(Date.now())
+          dailyLogResult = dailyLogs.filter((log) => {
+            const timestamp = log.properties.date.time
+            return dateToCompare.timestampsInSameWeek(Number(timestamp))
+          })
+        }
+        cb(dailyLogResult, dateToCompare)
       }
     }
   })
 }
 
-function populateWeeklyView (weeklyItems) {
-  addColumnDates()
-  populateDayColumns(weeklyItems)
+/**
+ * Business/presentation logic routine used to display the columns of the weekly
+ * view with the correct anchor tags and entries for each daily log.
+ * @param {Object[]} weeklyItems JSON object array containing all the daily
+ * logs that should be populated on the weekly view.
+ * @param {DateConverter} dateToCompare DateConverter reference containing the
+ * date with respect to which we will show the weekly view. For the
+ * timestamp of the given DateConverter, we will show the correct date in the anchor
+ * tag on each column of the weekly view.
+ */
+function populateWeeklyView (weeklyItems, dateToCompare) {
+  addColumnDates(dateToCompare)
+  populateDayColumns(weeklyItems, dateToCompare)
 }
 
-function populateDayColumns (weeklyItems) {
+function populateDayColumns (weeklyItems, dateToCompare) {
   const week = document.getElementById('weekly-div')
   // create a DateConverter object
-  const current = new DateConverter(Date.now())
   // Use a new instance of Date to fetch the day of the week of today
+  const compareDay = (dateToCompare.getDay() + 6) % 7
   const today = new DateConverter()
-  const todayDays = today.getDay()
+  let todayDays = today.getDay()
   weeklyItems.forEach((entry) => {
     // calculate the offset between today's day and the entry's day
-    const offSet = current.getDaysFromTimeStamp(Date.now()) - current.getDaysFromTimeStamp(entry.properties.date.time)
+    const offSet = dateToCompare.getDaysFromTimeStamp() - dateToCompare.getDaysFromTimeStamp(entry.properties.date.time)
     const currentDay = new DateConverter(Number(entry.properties.date.time))
     // apply the offset to get the index
+    if (todayDays === 0) {
+      todayDays = 7
+    }
     const index = todayDays - offSet
     const weeklyItem = document.createElement('weekly-view-item')
     weeklyItem.entry = entry
@@ -97,7 +140,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 function appendNavLinks (targetElement, date) {
   const anchor = targetElement.querySelector('a')
   anchor.dataset.unixTimestamp = date.getTime()
-  anchor.href = '/source/html/daily.html'
+  anchor.href = '/source/html/daily.html' // @TODO refactor with routing
   // adjusts current_log in DB
   anchor.onclick = function (event) {
     event.preventDefault()
@@ -115,7 +158,6 @@ function appendNavLinks (targetElement, date) {
           cursor.value.current_log = that.target.dataset.unixTimestamp
           cursor.update(cursor.value)
         }
-        console.log(cursor.value)
       }
     })
     window.location.href = '/source/html/daily.html'
@@ -125,12 +167,12 @@ function appendNavLinks (targetElement, date) {
 /**
  * Business logic subroutine that adds the date to each
  * column in the weekly view.
+ * @param {DateConverter} dateToCompare DateConverter reference containing the
+ * date with respect to which we will add dates to each column.
  */
-function addColumnDates () {
-  const currentDate = new DateConverter()
-
+function addColumnDates (dateToCompare) {
   // DateConverter object with timestamp of Monday of same week
-  const mondayOfCurrentDate = currentDate.getBeginningOfWeek()
+  const mondayOfCurrentDate = dateToCompare.getBeginningOfWeek()
   const columns = document.getElementById('weekly-div').getElementsByTagName('div')
   for (let i = 0; i < columns.length; i++) {
     const column = columns[i]
