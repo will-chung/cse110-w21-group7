@@ -89,12 +89,45 @@ class LogItem extends HTMLElement {
       if (this._itemEntry.logType === 'task') {
         this.shadowRoot.querySelector('i').addEventListener('click', (event) => {
           this._itemEntry.finished = !this._itemEntry.finished
-          // @TODO indexedDB transactions for check/uncheck tasks
-
-          
           this.render()
+          // @TODO indexedDB transactions for check/uncheck tasks
+          const wrapper = new IndexedDBWrapper('experimentalDB', 1)
+
+          wrapper.transaction((event) => {
+            const db = event.target.result
+        
+            const transaction = db.transaction(['currentLogStore'], 'readwrite')
+            const store = transaction.objectStore('currentLogStore')
+            store.openCursor().onsuccess = function (event) {
+              const cursor = event.target.result
+              if (cursor) {
+                switch(that._page) {
+                  case PAGES['daily-log']:
+                    // @TODO
+                    break;
+                  case PAGES['weekly-view']:
+                    // @TODO
+                    break;
+                  case PAGES['collection-edit']:
+                    // find the collection with the same name
+                    const collectionName = cursor.value.current_collection
+                    let collection = cursor.value.properties.collections.find((element) => {
+                      return element.name === collectionName
+                    })
+                    // find the task with the same name as the log item
+                    // delete the task when found 
+                    currTask = collection.tasks.find((task) => {
+                      return task.description === that._itemEntry.description
+                    })
+                    currTask.finished = this._itemEntry.finished
+                }
+                cursor.update(cursor.value)
+              }
+            }
+          })
         })
       }
+  
 
       let that = this
       // click event for the trash (delete) icon
