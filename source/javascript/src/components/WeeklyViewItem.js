@@ -141,8 +141,8 @@ background: linear-gradient(335deg, rgba(247,240,63,1) 0%, rgba(254,255,156,1) 1
    */
   getEntryToWeeklyView (entry) {
     const logItem = document.createElement('log-item')
-    entry.editable = false
     logItem.itemEntry = entry // this is not working
+    logItem.itemEntry.editable = false
     return logItem
   }
 
