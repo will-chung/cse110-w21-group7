@@ -112,6 +112,7 @@ function populateMedia (collection, mediaType = MEDIA_TYPE.IMAGE) {
     inputField = document.getElementById('add-image-btn')
     mediaCollection = document.getElementById('image-collection')
   } else {
+    //this is for populating videos
     target = collection.videos
     inputField = document.getElementById('add-video-btn')
     mediaCollection = document.getElementById('video-collection')
@@ -210,10 +211,11 @@ function insertMedia (event, media = MEDIA_TYPE.IMAGE) {
   })
   if (media === MEDIA_TYPE.IMAGE) {
     const input = document.getElementById('add-image-btn')
-    console.log(input)
     imageBox.insertBefore(mediaItem, input)
   } else {
+    const input = document.getElementById('add-video-btn')
     document.getElementById('video-collection').appendChild(mediaItem)
+    videoBox.insertBefore(mediaItem, input)
   }
 }
 
@@ -230,8 +232,13 @@ function populatePage (response) {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
+  console.log("dom content loaded")
+  console.time()
   populateCollectionName()
   getLogInfoAsJSON(populatePage)
+  console.timeEnd()
+  
+
   imageButton.addEventListener('input', (event) => {
     insertMedia.bind(event)
     insertMedia(event, MEDIA_TYPE.IMAGE)
@@ -240,4 +247,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
     insertMedia.bind(event)
     insertMedia(event, MEDIA_TYPE.VIDEO)
   })
-})
+  // const vid = document.querySelector('media-item')
+  // console.log(vid)
+  // vid.addEventListener('loadeddata', function() {
+
+  // if(vid.readyState <= 3) {
+  //   console.log("loading")
+  //   document.getElementById("loading").style.visibility = "visible"
+  //   document.getElementById("collapse").style.visibility = "hidden"
+  // }
+
+});
+

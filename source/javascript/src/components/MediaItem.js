@@ -34,7 +34,7 @@ class MediaItem extends HTMLElement {
                                         // align-self: stretch;
                                     }
                                     .media-wrapper > img {
-                                        border-style: solid;
+                                        
                                         border-color: #e0fbfc;
                                         border-width: 5px;
                                         border-radius: 20px;
@@ -44,6 +44,7 @@ class MediaItem extends HTMLElement {
                                         display:inline-block;
                                     }
                                     .media-wrapper > video {
+                                      
                                         border-color: #e0fbfc;
                                         border-width: 5px;
                                         border-radius: 20px;
@@ -198,6 +199,17 @@ class MediaItem extends HTMLElement {
       media = document.createElement('img')
     } else {
       media = document.createElement('video')
+      media.onloadstart = function() {
+        console.timeEnd()
+        console.log("Starting to load video");
+        console.time()
+      };
+      media.onloadeddata = function() {
+        console.log("Browser has loaded the current frame");
+        console.timeEnd()
+        console.log("loading next video...")
+        console.time()
+      };
       media.controls = true
     }
     media.file = this._file
