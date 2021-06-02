@@ -119,7 +119,7 @@ function populateDayColumns (weeklyItems, dateToCompare) {
     const weeklyItem = document.createElement('weekly-view-item')
     weeklyItem.entry = entry
     const childDiv = week.children[index]
-    //console.log(week.children[index])
+    // console.log(week.children[index])
     // business logic for appending the navigation link to each column
     appendNavLinks(childDiv, currentDay)
     childDiv.appendChild(weeklyItem)

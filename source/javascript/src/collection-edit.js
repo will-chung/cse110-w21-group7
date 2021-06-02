@@ -112,7 +112,7 @@ function populateMedia (collection, mediaType = MEDIA_TYPE.IMAGE) {
     inputField = document.getElementById('add-image-btn')
     mediaCollection = document.getElementById('image-collection')
   } else {
-    //this is for populating videos
+    // this is for populating videos
     target = collection.videos
     inputField = document.getElementById('add-video-btn')
     mediaCollection = document.getElementById('video-collection')
@@ -232,12 +232,11 @@ function populatePage (response) {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-  console.log("dom content loaded")
+  console.log('dom content loaded')
   console.time()
   populateCollectionName()
   getLogInfoAsJSON(populatePage)
   console.timeEnd()
-  
 
   imageButton.addEventListener('input', (event) => {
     insertMedia.bind(event)
@@ -256,6 +255,4 @@ document.addEventListener('DOMContentLoaded', (event) => {
   //   document.getElementById("loading").style.visibility = "visible"
   //   document.getElementById("collapse").style.visibility = "hidden"
   // }
-
-});
-
+})

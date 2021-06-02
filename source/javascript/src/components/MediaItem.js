@@ -199,17 +199,17 @@ class MediaItem extends HTMLElement {
       media = document.createElement('img')
     } else {
       media = document.createElement('video')
-      media.onloadstart = function() {
+      media.onloadstart = function () {
         console.timeEnd()
-        console.log("Starting to load video");
+        console.log('Starting to load video')
         console.time()
-      };
-      media.onloadeddata = function() {
-        console.log("Browser has loaded the current frame");
+      }
+      media.onloadeddata = function () {
+        console.log('Browser has loaded the current frame')
         console.timeEnd()
-        console.log("loading next video...")
+        console.log('loading next video...')
         console.time()
-      };
+      }
       media.controls = true
     }
     media.file = this._file
