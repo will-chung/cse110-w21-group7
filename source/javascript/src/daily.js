@@ -342,9 +342,11 @@ function setEntries (log) {
 
       li.appendChild(logItem)
       document.getElementById('myUL').appendChild(li)
+      console.log("Adding entries for " + logItem.itemEntry)
     })
   }
 
+  console.log("hello")
   /* make tasks */
   populateTypeOfEntry(log.properties.tasks)
   populateTypeOfEntry(log.properties.notes)
