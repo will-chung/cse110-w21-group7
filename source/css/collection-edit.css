@@ -2,19 +2,26 @@
 
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
 
+h3 {
+  font-family: "Montserrat", sans-serif;
+  margin:0;
+  font-size: 30px;
+  border-style: solid;
+}
+
 .fa-2x {
   font-size: 2em;
 }
 .fa {
-  color: #293241;
-  position: relative;
-  display: table-cell;
-  width: 60px;
-  height: 36px;
-  text-align: center;
-  vertical-align: middle;
-  padding-top: 10px;
-  font-size: 20px;
+color:white;
+position: relative;
+display: table-cell;
+width: 60px;
+height: 36px;
+text-align: center;
+vertical-align: middle;
+padding-top:10px;
+font-size:20px;
 }
 
 #myInput {
@@ -29,24 +36,24 @@ nav.main-menu.expanded {
 }
 
 #main-menu {
-  /* background:#3D5A80; */
-  /* background:rgb(228,228,228); */
-  border-right: 5px solid black; /*#98c1d9;*/
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  height: 100%;
-  left: 0;
-  width: 60px;
-  overflow: hidden;
-  -webkit-transition: width 0.05s linear;
-  transition: width 0.1s linear;
-  -webkit-transform: translateZ(0) scale(1, 1);
-  z-index: 1000;
+background:#3D5A80;
+/* background:rgb(228,228,228); */
+border-right:5px solid #e0fbfc;/*#98c1d9;*/ 
+position: absolute;
+top:0;
+bottom:0;
+height:100%;
+left:0;
+width:60px;
+overflow:hidden;
+-webkit-transition:width .05s linear;
+transition:width .1s linear;
+-webkit-transform:translateZ(0) scale(1,1);
+z-index:1000;
 }
 
-#main-menu > ul {
-  margin: 7px 0;
+#main-menu>ul {
+margin:7px 0;
 }
 
 #main-menu li {
@@ -75,24 +82,19 @@ nav.main-menu.expanded {
   padding-top: 30px;
 }
 
-#current {
-  background: radial-gradient(
-    circle,
-    rgba(224, 251, 252, 1) 0%,
-    rgba(152, 193, 217, 1) 100%
-  );
-  border-radius: 30px;
-  border-color: black;
+
+#current{
+    background:#EE6C4D
 }
 
 #main-menu .nav-text {
-  position: relative;
-  display: table-cell;
-  vertical-align: middle;
-  width: 200px;
-  font-family: "Pattaya", sans-serif;
-  font-size: 35px;
-  color: black;
+position:relative;
+display:table-cell;
+vertical-align:middle;
+width:200px;
+font-family: 'Montserrat', sans-serif;
+font-size: 35px;
+color: white;
 }
 
 .no-touch .scrollable.hover {
@@ -141,11 +143,8 @@ border-color:#98c1d9; */
 }
 
 body {
-  background-image: radial-gradient(
-    circle farthest-corner at 10% 20%,
-    rgba(234, 249, 249, 0.67) 0.1%,
-    rgba(239, 249, 251, 0.63) 90.1%
-  );
+  background: rgb(21,159,247);
+  background: linear-gradient(90deg, rgba(21,159,247,1) 0%, rgba(61,90,128,1) 0%, rgba(41,50,65,1) 90%);
 }
 
 .header {
@@ -207,15 +206,15 @@ a:link {
   margin: auto;
   box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   border-radius: 20px;
-  color: #293241;
+  color: white;
   margin-bottom: 8vh;
 }
 
 #title > h1 {
   text-align: center;
   vertical-align: center;
-  font-family: "Pattaya", sans-serif;
-  font-size: 70px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 60px;
   margin: 0;
   line-height: 120px;
 }
@@ -258,7 +257,7 @@ a:link {
 #collapse {
   position: relative;
   z-index: 1;
-  left: 45%;
+  left: 48%; 
 }
 
 #collapse > i {
@@ -309,137 +308,179 @@ a:link {
 }
 
 #myUL li {
-  cursor: pointer;
-  position: relative;
-  padding: 12px 8px 12px 40px;
-  list-style-type: none;
-  background: #eee;
-  font-size: 18px;
-  transition: 0.2s;
-  margin-right: 110px;
-  /* make the list items unselectable */
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  font-size: 40px;
+    position: relative;
+    display: table;
+    padding: 12px 8px 12px 10px;
+    list-style-type: none;
+    background: #eee;
+    font-family:'Montserrat', sans-serif;
+    font-size: 20px;
+    transition: 0.2s;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-bottom: 5px;
+    box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    /* make the list items unselectable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Set all odd list items to a different color (zebra-stripes) */
+  #myUL li:nth-child(odd) {
+    background: white;
+    border-bottom-style:solid;
+    border-bottom-width:2px;
+    border-bottom-color:#98c1d9
+  }
+  #myUL li:nth-child(even) {
+    background: white;
+    border-bottom-style:solid;
+    border-bottom-width:2px;
+    border-bottom-color:#98c1d9
+  }
+  
+  /* Darker background-color on hover */
+  #myUL li:hover {
+    background: #e0fbfc;
+    /* we might have to change the cursor */
+    cursor:default;
+  }
+  
+  /* When clicked on, add a background color and strike out text */
+  #myUL li.checked {
+    background: #888;
+    color: #fff;
+    text-decoration: line-through;
+  }
+  
+  /* Add a "checked" mark when clicked on */
+  #myUL li.checked::before {
+    content: '';
+    position: absolute;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    top: 10px;
+    left: 16px;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 7px;
+  }
+  
+  /* Style the close button */
+  .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 12px 16px 12px 16px;
+  }
+  
+  .close:hover {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  /* Style the header */
+  .header {
+    background-color: #EE6C4D;
+    box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    border-radius:20px;
+    padding: 20px 30px;
+    color: white;
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  /* Clear floats after the header */
+  .header:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Style the input */
+  input {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    width: 75%;
+    padding: 10px;
+    float: left;
+    font-size: 24px;
+    font-family: "Montserrat", sans-serif;
+  }
+  
+  /* Style the "Add" button */
+  .addBtn {
+    width: 10%;
+    padding-top: 15px;
+    background: #98c1d9;
+    border-style:solid;
+    border-color:white;
+    font-family: "Montserrat", sans-serif;
+    color: #EE6C4D;
+    float: left;
+    text-align: center;
+    font-size: 35px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+    vertical-align: middle;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .addBtn:hover {
+    background-color: #e0fbfc;
+  }
+  
+  #myDIV {
+      display:flex;
+      flex-direction: row;
+  }
+  
+  #image-collection{
+    border: 8px solid #293241;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-basis: 38vw;
+    align-items: center;
+    margin-top: 20px;
+    box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  }
+
+  #image-collection > img {
+      border:5px dashed black;
+      width:400px;
+      margin: 10px;
+      margin-top:30px;
+      margin-bottom:0;
+  }
+  
+  h2 {
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 20px;
+    margin-bottom: 0;
+    font-size:50px;
+    color: white;
 }
 
-/* Set all odd list items to a different color (zebra-stripes) */
-#myUL li:nth-child(odd) {
-  background: #f9f9f9;
-}
-
-/* Darker background-color on hover */
-#myUL li:hover {
-  background: #ddd;
-}
-
-/* When clicked on, add a background color and strike out text */
-#myUL li.checked {
-  background: #888;
-  color: #fff;
-  text-decoration: line-through;
-}
-
-/* Add a "checked" mark when clicked on */
-#myUL li.checked::before {
-  content: "";
-  position: absolute;
-  border-color: #fff;
-  border-style: solid;
-  border-width: 0 2px 2px 0;
-  top: 10px;
-  left: 16px;
-  transform: rotate(45deg);
-  height: 15px;
-  width: 7px;
-}
-
-/* Style the close button */
-.close {
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 12px 16px 12px 16px;
-}
-
-.close:hover {
-  background-color: #f44336;
-  color: white;
-}
-
-/* Style the header */
-.header {
-  background-color: transparent;
-  padding: 30px 40px;
-  color: white;
-  text-align: center;
-  /* justify-content: space-between; */
-}
-
-/* Clear floats after the header */
-.header:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Style the input */
-input {
-  margin: 0;
-  border: none;
-  border-radius: 0;
-  width: 75%;
-  padding: 10px;
-  float: left;
-  font-size: 16px;
-}
-
-/* Style the "Add" button */
-.addBtn {
-  padding: 10px;
-  width: 15%;
-  background: lightcoral;
-  color: rgb(216, 213, 8);
-  float: left;
-  text-align: center;
-  font-size: 30px;
-  cursor: pointer;
-  transition: 0.3s;
-  border-radius: 0;
-  vertical-align: middle;
-}
-
-.addBtn:hover {
-  background-color: rgb(130, 253, 243);
-  color: lightcoral;
-}
-
-#myDIV {
-  display: flex;
-  flex-direction: row;
-}
-
-#image-collection {
-  border: 8px solid #e0fbfc;
-  border-radius: 30px;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  flex-basis: 38vw;
-  align-items: center;
-  margin-top: 20px;
-}
-
-#image-collection > img {
-  border: 5px dashed black;
-  width: 400px;
-  margin: 10px;
-  margin-top: 30px;
-  margin-bottom: 0;
-}
+  #video-collection{
+    border: 8px solid #3d5A80;
+    margin-top:20px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-basis: 38vw;
+    align-items: center;
+    box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  }
 
 h2 {
   font-family: Pattaya, sans-serif;
@@ -483,20 +524,22 @@ h2 {
   margin-top: 40px;
   margin-bottom: 40px;
   border-radius: 200px;
-  border-color: #ee6c4d;
+  border-color:#e0fbfc;
   border-style: solid;
   border-width: 2px;
-  background-color: #e0fbfc;
-  width: 250px;
+  background-color: #EE6C4D;
+  width:250px;
+  font-size: 18px;
 }
 
 #add-image-btn {
   margin-top: 40px;
   margin-bottom: 40px;
   border-radius: 200px;
-  border-color: #ee6c4d;
+  border-color:#e0fbfc;
   border-style: solid;
   border-width: 2px;
-  background-color: #e0fbfc;
-  width: 250px;
+  background-color: #EE6C4D;
+  width:250px;
+  font-size: 18px;
 }
