@@ -199,17 +199,6 @@ class MediaItem extends HTMLElement {
       media = document.createElement('img')
     } else {
       media = document.createElement('video')
-      media.onloadstart = function () {
-        console.timeEnd()
-        console.log('Starting to load video')
-        console.time()
-      }
-      media.onloadeddata = function () {
-        console.log('Browser has loaded the current frame')
-        console.timeEnd()
-        console.log('loading next video...')
-        console.time()
-      }
       media.controls = true
     }
     media.file = this._file
@@ -218,6 +207,19 @@ class MediaItem extends HTMLElement {
     reader.onload = (event) => {
       media.src = event.target.result
     }
+    // media.onloadstart = function () {
+    //   //document.getElementById('loading').style.display = 'flex'
+    //   console.timeEnd()
+    //   console.log('Starting to load video')
+    //   console.time()
+    // }
+    // media.onloadeddata = function () {
+    //   console.log('Browser has loaded the current frame')
+    //   //document.getElementById('loading').style.display = 'none'
+    //   console.timeEnd()
+    //   console.log('loading next video...')
+    //   console.time()
+    // }
     reader.readAsDataURL(this._file)
     return media
   }

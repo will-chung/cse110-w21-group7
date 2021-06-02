@@ -54,12 +54,14 @@ function addCollection (collectionName) {
         requestUpdate.onsuccess = function (event) {
           // Success - the data is updated!
           console.log('successfully added "' + collectionName + '"')
+          //I think the code below should be added here... Yuzi
+          //document.querySelector('.collection-area').append(newCollection)
         }
       }
     }
   })
 
-  document.querySelector('.collection-area').append(newCollection)
+   document.querySelector('.collection-area').append(newCollection)
 }
 
 /**

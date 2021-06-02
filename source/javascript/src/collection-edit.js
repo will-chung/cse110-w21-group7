@@ -97,7 +97,7 @@ function populateCollectionName () {
  * @param {Object} collection JSON object containing the
  * collection images and videos to display
  */
-function populateMedia (collection, mediaType = MEDIA_TYPE.IMAGE) {
+function populateMedia (collection, mediaType = MEDIA_TYPE.IMAGE, hasVideo) {
   function createMediaItem (media) {
     const mediaItem = document.createElement('media-item')
     mediaItem.file = media.file
@@ -107,18 +107,30 @@ function populateMedia (collection, mediaType = MEDIA_TYPE.IMAGE) {
   let target
   let mediaCollection
   let inputField
+  let type
   if (mediaType === MEDIA_TYPE.IMAGE) {
     target = collection.images
     inputField = document.getElementById('add-image-btn')
     mediaCollection = document.getElementById('image-collection')
   } else {
     // this is for populating videos
+    type = 'video'
     target = collection.videos
     inputField = document.getElementById('add-video-btn')
     mediaCollection = document.getElementById('video-collection')
   }
+  // console.log(target.length)
   target.forEach((media, index) => {
     const mediaItem = createMediaItem(media)
+    const vid = mediaItem.shadowRoot.querySelector('video')
+    if (hasVideo && index === 0) {
+      // @TODO Currently this only works for video
+      // we might need to also consider image
+      console.log(index)
+      vid.addEventListener('canplaythrough', () => {
+        document.getElementById('loading').style.display = 'none'
+      })
+    }
     mediaCollection.insertBefore(mediaItem, inputField)
   })
 }
@@ -226,9 +238,14 @@ function insertMedia (event, media = MEDIA_TYPE.IMAGE) {
  * collection data for the collection to view
  */
 function populatePage (response) {
+  console.log(response.videos)
   populateTasks(response)
-  populateMedia(response, MEDIA_TYPE.IMAGE)
-  populateMedia(response, MEDIA_TYPE.VIDEO)
+  populateMedia(response, MEDIA_TYPE.IMAGE, false)
+  if (response.videos.length !== 0) {
+    populateMedia(response, MEDIA_TYPE.VIDEO, true)
+  } else {
+    document.getElementById('loading').style.display = 'none'
+  }
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
