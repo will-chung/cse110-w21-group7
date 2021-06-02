@@ -180,8 +180,8 @@ function hideEverything () {
  * a new daily log is created if the date is the present day.
  * @author Noah Teshima <nteshima@ucsd.edu>
  * @throws Error object if date reference is null, undefined. Otherwise,
- * an error is thrown if the given date is not the present day and failed
- * to retrieve log info for given day.
+ * an error is thrown if
+ * to retrieve log info for given day. the given date is not the present day and failed
  * @returns JSON type response, containing the information needed to
  * initialize the daily log.
  */
@@ -199,38 +199,42 @@ function getLogInfoAsJSON (cb) {
         const dateConverter = new DateConverter(Number(cursor.value.current_log))
         console.log(cursor.value)
         let match = false
+        let lenArr = 0
         cursor.value.$defs['daily-logs'].forEach((log, index) => {
           if (dateConverter.equals(Number(log.properties.date.time))) {
             match = true
             cb.bind(this)
             cb(cursor.value.$defs['daily-logs'][index])
           }
+          lenArr = index
         })
         if (!match) {
-          // TODO: creating new
-          // {
-          //   "type": "object",
-          //   "required": [ "date", "description" ],
-          //   "properties": {
-          //     "date": {
-          //       "type": "string",
-          //       "time": "",
-          //       "description": "The date of the event."
-          //     },
-          //     "events": [],
-          //     "tasks": [],
-          //     "notes": [],
-          //   "reflection": [],
-          //     "mood": {
-          //       "type": "number",
-          //       "multipleOf": 1,
-          //       "minimum": 0,
-          //       "exclusiveMaximum": 100,
-          //       "value": 50,
-          //       "description": "Daily mood on a range of 0-99."
-          //     }
-          //   }
-          // }
+          var appendObj = {
+            "type": "object",
+            "required": [ "date", "description" ],
+            "properties": {
+              "date": {
+                "type": "string",
+                "time": cursor.value.current_log,
+                "description": "The date of the event."
+              },
+              "events": [],
+              "tasks": [],
+              "notes": [],
+            "reflection": [],
+              "mood": {
+                "type": "number",
+                "multipleOf": 1,
+                "minimum": 0,
+                "exclusiveMaximum": 100,
+                "value": 50,
+                "description": "Daily mood on a range of 0-99."
+              }
+            }
+          }
+          cursor.value.$defs['daily-logs'].push(appendObj)
+          cb.bind(this)
+          cb(cursor.value.$defs['daily-logs'][lenArr+1])
         }
       }
     }
