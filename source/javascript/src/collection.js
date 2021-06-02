@@ -1,6 +1,6 @@
 import { CollectionItem, wrapper } from './components/CollectionItem.js'
 
-const addBtn = document.getElementById('add')
+const addBtn = document.getElementById('cb')
 
 addBtn.addEventListener('click', () => {
   // location.pathname = '/source/html/collection-edit.html'
