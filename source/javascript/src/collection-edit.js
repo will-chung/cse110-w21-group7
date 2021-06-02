@@ -43,13 +43,13 @@ function newElement () {
   }
   const li = document.createElement('li')
   const logItem = document.createElement('log-item')
+  logItem.finished = false
   const itemEntry = {}
   itemEntry.logType = 'task'
-  logItem.finished = false
   itemEntry.description = inputValue
-
   li.appendChild(logItem)
   logItem.itemEntry = itemEntry
+  logItem.setHoverListeners()
   document.getElementById('myUL').appendChild(li)
   document.getElementById('myInput').value = ''
 }
