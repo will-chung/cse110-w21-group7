@@ -16,7 +16,6 @@
       rel="stylesheet"
     />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;1,700&display=swap" rel="stylesheet">
-    <script src="../javascript/src/index.js" type="module"></script>
   </head>
   <body>
     <div class="header">
@@ -27,7 +26,7 @@
     <nav class="main-menu">
       <ul>
         <li>
-          <a href="./index.html" >
+          <a href="./index.html" id="home" >
             <i class="fa fa-home fa-2x"></i>
             <span class="nav-text"> Index </span>
           </a>
@@ -74,12 +73,13 @@
       </div>
         <div id='text-input'>
           <input type="text" id="input-area" name="keyword" placeholder="Type here to search">
-          <button type="button" id="search">Search</button>
+          <button type="button" id="search"><i class="fa fa-search fa-lg"></i></button>
         </div>
         
     </form>
     <div>
         <ul id="search-results">
+          <!-- <li><search-item></search-item></li>  -->
         </ul>
     </div>
 

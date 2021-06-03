@@ -120,6 +120,59 @@ const inputField = document.getElementById('input-area')
 const radioDailyLog = document.getElementById('input1')
 const radioCollection = document.getElementById('input2')
 document.addEventListener('DOMContentLoaded', (event) => {
+  const searchItem = document.createElement('search-item')
+  const li = document.createElement('li')
+  const searchItem2 = document.createElement('search-item')
+  const li2 = document.createElement('li')
+  searchItem.entry = {
+    time: Date.now(),
+    tasks: [{
+      "item": {
+        "description": "I have a midterm coming up",
+        "logType": "task",
+        "finished": true
+      }
+    }],
+    notes: [{
+      "item": {
+        "description": "I did good on the midterm",
+        "logType": "note"
+      }
+    }],
+    events: [],
+    reflection: [],
+    type: 'daily-log'
+  }
+  searchItem2.entry = {
+    time: Date.now(),
+    tasks: [{
+      "item": {
+        "description": "The midterm yesterday was really difficult tbh",
+        "logType": "task",
+        "finished": true
+      }
+    },
+    {
+      "item": {
+        "description": "Study for that midterm",
+        "logType": "task",
+        "finished": false
+      }
+    }],
+    notes: [{
+      "item": {
+        "description": "Enough about midterm",
+        "logType": "note"
+      }
+    }],
+    events: [],
+    reflection: [],
+    type: 'daily-log'
+  }
+  li.appendChild(searchItem)
+  searchResults.appendChild(li)
+  li2.appendChild(searchItem2)
+  searchResults.appendChild(li2)
   searchButton.addEventListener('click', (event) => {
     searchResults.innerHTML = ''
     getLogInfoAsJSON(inputField.value, radioDailyLog.checked ? 'daily-logs' : 'collections')
