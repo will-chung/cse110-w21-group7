@@ -127,16 +127,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
   searchItem.entry = {
     time: Date.now(),
     tasks: [{
-      "item": {
-        "description": "I have a midterm coming up",
-        "logType": "task",
-        "finished": true
+      item: {
+        description: 'I have a midterm coming up',
+        logType: 'task',
+        finished: true
       }
     }],
     notes: [{
-      "item": {
-        "description": "I did good on the midterm",
-        "logType": "note"
+      item: {
+        description: 'I did good on the midterm',
+        logType: 'note'
       }
     }],
     events: [],
@@ -146,23 +146,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
   searchItem2.entry = {
     time: Date.now(),
     tasks: [{
-      "item": {
-        "description": "The midterm yesterday was really difficult tbh",
-        "logType": "task",
-        "finished": true
+      item: {
+        description: 'The midterm yesterday was really difficult tbh',
+        logType: 'task',
+        finished: true
       }
     },
     {
-      "item": {
-        "description": "Study for that midterm",
-        "logType": "task",
-        "finished": false
+      item: {
+        description: 'Study for that midterm',
+        logType: 'task',
+        finished: false
       }
     }],
     notes: [{
-      "item": {
-        "description": "Enough about midterm",
-        "logType": "note"
+      item: {
+        description: 'Enough about midterm',
+        logType: 'note'
       }
     }],
     events: [],
