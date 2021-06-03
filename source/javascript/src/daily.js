@@ -135,9 +135,9 @@ function newElement () {
   }
   const li = document.createElement('li')
   const logItem = document.createElement('log-item')
-  var itemEntry = {}
+  let itemEntry = {}
   // entry specifies what log entry is falls under (for data purposes)
-  var entry
+  let entry
 
   // Update log type according to which item was checked
   if (taskRadio.checked) {
@@ -178,52 +178,9 @@ function newElement () {
   document.getElementById('input-area').value = ''
 
   /* experimental */
-  const wrapper = new IndexedDBWrapper('DB', 2)
-  console.log("Made exDB")
-
-  // Created when the IDB makes a transaction
-  wrapper.transaction((event) => {
-    console.log("in transaction")
-    // Create transaction for the updated log store
-    const db = event.target.result
-    const transaction = db.transaction(['currentLogStore'], 'readwrite')
-    const store = transaction.objectStore('currentLogStore')
-
-    // Open the object store
-    store.openCursor().onsuccess = function (event) {
-      const cursor = event.target.result
-      console.log(cursor)
-      if (cursor) {
-        console.log("in cursor")
-        // Get the cursor value and push the log item entry onto the file
-        const json = cursor.value
-        const dailyLog = json.$defs["daily-logs"][0].properties[entry]
-        dailyLog.push(itemEntry) 
-        const updated = cursor.update(cursor.value)
-
-        // Error of adding data
-        updated.onerror = function (event) {
-          console.log("ERROR: unable to add data")
-        }
-
-        // Data got successfully added
-        updated.onsuccess = function (event) {
-          console.log("Successfully added data")
-          console.log("What's inside daily-logs " + dailyLog)
-          console.log(json.$defs["daily-logs"])
-        }
-      }
-    }
-  })
 
   // Call updateElement to save the new tasks
-
-  // updateElement((logEntry) =>{
-  //   const target = 
-  //   target.push(itemEntry)
-  //   console.log("Pushed log entry")
-  //   return logEntry
-  // })
+  updateElement(itemEntry, entry)
 }
 
 function hideEverything () {
@@ -241,11 +198,12 @@ function hideEverything () {
  * These changes should be saved and reflected the next time
  * the user opens the daily log.
  * 
- * @param cb
+ * @param logEntry
+ * @param entry
  */
-function updateElement (cb) {
+function updateElement (logEntry, entry) {
   const wrapper = new IndexedDBWrapper('experimentalDB', 1)
-  
+
   // Created when the IDB makes a transaction
   wrapper.transaction((event) => {
     // Create transaction for the updated log store
@@ -253,18 +211,31 @@ function updateElement (cb) {
     const transaction = db.transaction(['currentLogStore'], 'readwrite')
     const store = transaction.objectStore('currentLogStore')
 
+    // Open the object store
     store.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
       if (cursor) {
         console.log("in cursor")
-        const logEntry = cursor.value.$defs[0].date
-        let log = cursor.value.$defs.find((element) => {
-          return element.properties.date === logEntry
-        })
-        log = cb(log)
-        cursor.update(cursor.value)
+        // Get the cursor value and push the log item entry onto the file
+        const json = cursor.value
+        const dailyLog = json.$defs["daily-logs"][0].properties[entry]
+        dailyLog.push(logEntry) 
+        const updated = cursor.update(cursor.value)
+
+        // Error of adding data
+        updated.onerror = function (event) {
+          console.log("ERROR: unable to add data")
+        }
+
+        // Data got successfully added
+        updated.onsuccess = function (event) {
+          console.log("Successfully added data")
+          console.log("What's inside daily-logs " + dailyLog)
+          console.log(json.$defs["daily-logs"])
+        }
       }
-    }
+   }
+  })
 
     // const itemEntry = {}
     // // Check if log type is task
@@ -283,8 +254,6 @@ function updateElement (cb) {
     // Get task/note/event from the parameter entry
     // Create transaction to delete 
     // Delete transaction
-    // TODO: add onclick events that will call the updateElement function
-  })
 }
 
 /**
@@ -344,9 +313,9 @@ function setEntries (log) {
       document.getElementById('myUL').appendChild(li)
       console.log("Adding entries for " + logItem.itemEntry)
     })
+
   }
 
-  console.log("hello")
   /* make tasks */
   populateTypeOfEntry(log.properties.tasks)
   populateTypeOfEntry(log.properties.notes)

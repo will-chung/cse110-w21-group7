@@ -2,7 +2,7 @@
     "description": "A user's information for their bullet journal",
     "type": "object",
     "name": "string",
-    "current_log": "UNIX timestamp",
+    "current_log": "1622752964489",
     "current_collection": "Collection one",
     "properties": {
       "collections": [{
@@ -34,7 +34,7 @@
           "properties": {
             "date": {
               "type": "string",
-              "time": "1622332078822",
+              "time": "1622752964489",
               "description": "The date of the event."
             },
             "events": [
