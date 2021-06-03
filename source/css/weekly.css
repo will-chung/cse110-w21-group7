@@ -140,21 +140,32 @@ border-color:#98c1d9; */
   text-align: center;
   vertical-align: center;
   font-family: "Pattaya", sans-serif;
-  font-size: 70px;
-  margin: 0;
-  line-height: 120px;
+  padding:1px;
+  font-size:5vmin;
+  line-height: 80px;
+
+  border-style: solid;
+  border-color: #98c1d9;
+  background-color: #98c1d9;
+  border-width: 5px;
+  border-radius: 10px;
+  width: 5cm;
+  margin:auto;
 }
-#title{
-    border-style: solid;
-    border-color: #98c1d9;
-    border-width: 5px;
-    width: 25vw;
-    margin: auto;
-    box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-    border-radius: 20px;
-    color: #293241;
-    margin-bottom: 8vh;
+
+#header{
+  border-style: solid;
+  border-color: #98c1d9;
+  border-width: 5px;
+  width: 20vmin;
+  height: 7vmin;
+  margin: auto;
+  box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  border-radius: 10px;
+  color: #293241;
+  margin-bottom: 4vh;
 }
+
 body {
   background-image: radial-gradient(
     circle farthest-corner at 10% 20%,
@@ -232,30 +243,30 @@ a:link {
 #calendar {
     border-style:solid;
     border-color:#98c1d9;
-    border-width:5px;
-    box-shadow: 10px 0px 10px #98c1d9;
-    border-radius: 5px;
-    width: 400px;
-    height: 605px;
+    border-width:4px;
+    border-radius:5px;
+    width: 22.5vw;
+    height: 50vh;
+    overflow: hidden;
 }
 
 .weekly {
   border-style: dashed;
   border-color: green;
+  border-radius: 5px;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   vertical-align: top;
   align-content: space-between;
-  margin-left: 30px;
+  margin-left: 4px;
 }
 
 #weekly-div {
     border-style:solid;
     border-color:#98c1d9;
-    border-width:5px;
-    box-shadow: 20px 0px 10px #98c1d9;
-    border-radius: 20px;
+    border-width:2px;
+    /*box-shadow: 20px 0px 10px #98c1d9;*/
 }
 
 .content {
@@ -264,7 +275,7 @@ a:link {
     align-items: flex-start;
     margin:auto;
     margin-top: 3vh;
-    margin-left: 12vw;
+    margin-left: 64px;
 
 }
 
@@ -272,16 +283,13 @@ a:link {
     border-style:solid;
     border-color:#98c1d9;
     border-width:2px;
-    box-shadow: 5px 0px 10px #3d5180;
-    border-radius: 20px;
-    margin:10px;
-    width: 7vw;
+    width: 9.8vw;
     text-align: center;
-    font-size: 12pt;
+    font-size: 10pt;
 }
 
 .weekday > a{
-  font-size: 28px;
+  font-size: 14pt;
   font-family: Pattaya, sans-serif;
   color:#293241
 }
