@@ -65,6 +65,15 @@ class ReflectionItem extends HTMLElement {
                                     margin:auto;
                                     width: 75vw;
                                   }
+                                  label {
+                                    font-family: 'Montserrat', sans-serif;
+                                    color: #e0fbfc;
+                                    margin-bottom: 30px;
+                                  }
+                                  .icon {
+                                    color: white;
+                                    margin-top: 20px;
+                                  }
                                  </style> 
                                       
                                         <div id="mood-slider">
@@ -150,20 +159,27 @@ class ReflectionItem extends HTMLElement {
      * to our log item.
      */
   getFASymbolClass () {
+    let returnClass
     switch (this.getMoodWord()) {
       case 'angry':
-        return 'angry-icon'
+        returnClass = 'angry-icon'
+        break
       case 'sad':
-        return 'sad-icon'
+        returnClass = 'sad-icon'
+        break
       case 'okay':
-        return 'okay-icon'
+        returnClass = 'okay-icon'
+        break
       case 'happy':
-        return 'happy-icon'
+        returnClass = 'happy-icon'
+        break
       case 'great':
-        return 'great-icon'
+        returnClass = 'great-icon'
+        break
       default:
-        return ''
+        returnClass = ''
     }
+    return returnClass
   }
 }
 

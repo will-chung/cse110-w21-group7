@@ -31,21 +31,43 @@ class MediaItem extends HTMLElement {
                                         height: auto;
                                     }
                                     .media-wrapper {
-                                        align-self: stretch;
+                                        // align-self: stretch;
                                     }
                                     .media-wrapper > img {
+                                        
+                                        border-color: #e0fbfc;
+                                        border-width: 5px;
+                                        border-radius: 20px;
+                                        box-shadow: 20px 20px 5px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+                                        height: auto;
+                                        width: 100%;
+                                        display:inline-block;
+                                    }
+                                    .media-wrapper > video {
+                                      
+                                        border-color: #e0fbfc;
+                                        border-width: 5px;
+                                        border-radius: 20px;
+                                        box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
                                         height: auto;
                                         width: 100%;
                                         display:inline-block;
                                     }
                                     button {
-                                        background-color: rgba(0, 0, 0, 0);
-                                        border:0;
+                                        background-color:white;
+                                        border-radius: 200px;
+                                        border-style: solid;
+                                        border-color:#EE6C4D;
                                         padding:0;
                                         font-size: inherit;
-                                        width: 5rem;
-                                        height: 5rem;
+                                        width: 3rem;
+                                        height: 3rem;
                                         margin: auto;
+                                        visibility: hidden
+                                    }
+                                    button:hover {
+                                      visibility: visible;
+                                      cursor: pointer;
                                     }
                                     .icon {
                                         background-size: contain;
@@ -103,6 +125,22 @@ class MediaItem extends HTMLElement {
         }
       })
       event.target.parentElement.parentElement.remove()
+    })
+    this.setHoverListeners()
+  }
+
+  /*
+  * Adds event listeners for all hover events on the collection item
+  */
+  setHoverListeners () {
+    const trashIcon = this.shadowRoot.querySelector('button')
+    // toggles visiblity of trash icon when mouse hovers
+    this.addEventListener('mouseenter', () => {
+      trashIcon.style.visibility = 'visible'
+    })
+
+    this.addEventListener('mouseleave', () => {
+      trashIcon.style.visibility = 'hidden'
     })
   }
 
@@ -169,6 +207,19 @@ class MediaItem extends HTMLElement {
     reader.onload = (event) => {
       media.src = event.target.result
     }
+    // media.onloadstart = function () {
+    //   //document.getElementById('loading').style.display = 'flex'
+    //   console.timeEnd()
+    //   console.log('Starting to load video')
+    //   console.time()
+    // }
+    // media.onloadeddata = function () {
+    //   console.log('Browser has loaded the current frame')
+    //   //document.getElementById('loading').style.display = 'none'
+    //   console.timeEnd()
+    //   console.log('loading next video...')
+    //   console.time()
+    // }
     reader.readAsDataURL(this._file)
     return media
   }
