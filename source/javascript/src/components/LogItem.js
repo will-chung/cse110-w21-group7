@@ -18,7 +18,6 @@ class LogItem extends HTMLElement {
     this._itemEntry = {}
     this._itemEntry.logType = 'note'
     this._itemEntry.description = ''
-    this.render()
   }
 
   render () {
@@ -28,6 +27,10 @@ class LogItem extends HTMLElement {
                                         display:inline-block;
                                         width:1em;
                                         height:1em;
+                                        margin-right: 10px;
+                                    }
+                                    .icon:hover {
+                                      cursor: pointer;
                                     }
                                     .trash-button-icon {
                                         background: url(../images/log-item_icons/trash-solid.svg) no-repeat center center;
@@ -52,12 +55,23 @@ class LogItem extends HTMLElement {
                                         border:0;
                                         padding:0;
                                         font-size: inherit;
+                                        visibility: hidden;
+                                        margin-left: 100px;
+                                    }
+                                    button:hover {
+                                      cursor: pointer;
+                                    }
+                                    #single-entry{
+                                      margin:0;
+                                    }
+                                    #tasks {
+                                      width: 90%;
                                     }
                                     </style>
-                                    <span>
+                                    <span id="single-entry">
                                         <i class="icon ${this.getFASymbolClass()}"></i>
                                         <b>${this.getMilitaryTime()}</b>
-                                        <span>${this._itemEntry.description}</span>
+                                        <span id="tasks">${this._itemEntry.description}</span>
                                         <button type="button">
                                         <span class="icon trash-button-icon"></span>
                                         </button>
@@ -65,28 +79,53 @@ class LogItem extends HTMLElement {
 
     const editable = this._itemEntry.editable
     /*
-     * FIXME: I don't think this block of code works
-     * I added code in WeeklyViewItem.js to hide the trashcan buttons
+     * If the entry is a task
+     * no matter if it's in weekly view or daily
+     * it will have the toggling enabled for now
+     * user can switch it from not finished to finished
+     */
+    if (this._itemEntry.logType === 'task') {
+      this.shadowRoot.querySelector('i').addEventListener('click', (event) => {
+        this._itemEntry.finished = !this._itemEntry.finished
+        this.render()
+      })
+    }
+    /*
+     * This block of code deals with the logic of editable
+     * By editable we actually mean deletable
+     * if editable = false, then the trash button will not show
+     * Nevertheless, the user is still able to toggle the finished status
      */
     if (!editable) {
       // console.log('toggling display...')
       // console.log(this.shadowRoot.querySelector('button'));
-      this.shadowRoot.querySelector('button').style.visibility = 'hidden'
+      this.shadowRoot.querySelector('button').style.display = 'none'
       // console.log("not editable")
     } else {
       // console.log("editable")
       // When dealing with log of type task, we must update the task status when it is clicked.
-      if (this._itemEntry.logType === 'task') {
-        this.shadowRoot.querySelector('i').addEventListener('click', (event) => {
-          this._itemEntry.finished = !this._itemEntry.finished
-          this.render()
-        })
-      }
-
       this.shadowRoot.querySelector('button').addEventListener('click', (event) => {
         this.parentElement.remove()
       })
+      // this.setHoverListeners()
     }
+  }
+
+  /*
+  * Adds event listeners for all hover events on the collection item
+  */
+  setHoverListeners () {
+    const singleEntry = this.shadowRoot.getElementById('single-entry')
+    const trashBtn = this.shadowRoot.querySelector('button')
+
+    // toggles visiblity of trash icon when mouse hovers
+    this.parentElement.addEventListener('mouseenter', () => {
+      trashBtn.style.visibility = 'visible'
+    })
+
+    this.parentElement.addEventListener('mouseleave', () => {
+      trashBtn.style.visibility = 'hidden'
+    })
   }
 
   /**

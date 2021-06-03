@@ -1,10 +1,9 @@
+import { Router, ROUTES } from '../utils/Router.js'
+
 const template = document.createElement('template')
 
 const NUM_BOOKS = 12
 const BOOK_WIDTH = 350
-
-const colors = []
-colors.push()
 
 template.innerHTML = `
   <style>
@@ -29,7 +28,7 @@ template.innerHTML = `
     }
 
     .book-color {
-      background: red;
+      background: grey;
       width: 100%;
       height: 10%;
       border-radius: 4px 4px 0px 0px;
@@ -55,8 +54,20 @@ template.innerHTML = `
     <span class="book-title"></span>
   </div>
 `
-
+/**
+ * Component class used to create a new book containing
+ * the month of a given year. This component is clickable,
+ * and allows the user to navigate to the weekly view and
+ * see daily log entries for the given month.
+ * @author William Chung <wchung@ucsd.edu>
+ */
 class Book extends HTMLElement {
+  /**
+   * Constructor for creating a new book component. Note
+   * that initializing a book does not set the title of the
+   * book itself. The title of the book can be set using
+   * the setter for the field 'title'
+   */
   constructor () {
     super()
 
@@ -66,20 +77,61 @@ class Book extends HTMLElement {
     this.shadowRoot.appendChild(template.content.cloneNode(true))
   }
 
+  makeClickable () {
+    this.addEventListener('click', () => {
+      console.log('book clicked')
+      /**
+       * we need the month
+       * we need the year
+       * [RELATIVE URL]?displayFirstOfMonth=true
+       */
+
+      // Get month and year of the clicked book
+      const month = this.title
+      const year = this.shelf
+
+      const params = new URLSearchParams()
+      params.append('year', year)
+      params.append('month', month)
+      params.append('displayFirstOfMonth', true)
+      const url = new URL(ROUTES.weekly, location.origin)
+      url.search = params
+      new Router(url).navigate()
+    })
+  }
+
+  /**
+   * Getter used to determine what color is being used for the book componemt.
+   * @returns {String} String reference containing the color being used for
+   * the book.
+   */
   get color () {
     return this.getAttribute('color')
   }
 
+  /**
+   * Setter used to define the color that should be used for the book's background.
+   * @param {String} color String reference containing the color that
+   * should be used for the book.
+   */
   set color (color) {
     this.setAttribute('color', color)
     const bookColor = this.shadowRoot.querySelector('.book-color')
     bookColor.style = 'background: ' + color
   }
 
+  /**
+   * Gets the title of a book (the month that a book represents).
+   * @returns {String} String reference containing the title of the book.
+   */
   get title () {
     return this.getAttribute('title')
   }
 
+  /**
+   * Sets the the title of a book (the month that a book represents).
+   * @param {Number} month The month that will serve as the title of a book
+   */
   set title (month) {
     const title = this.getTitle(month)
     this.setAttribute('title', month)
@@ -88,22 +140,42 @@ class Book extends HTMLElement {
     this.offset(month)
   }
 
+  /**
+   * Gets the shelf that book belongs to.
+   * @returns {String} String reference containing the label of the shelf the book belongs to.
+   */
   get shelf () {
     return this.getAttribute('shelf')
   }
 
+  /**
+   * Sets the shelf that a book belongs to.
+   * @param {String} shelf The label of the shelf
+   */
   set shelf (shelf) {
     this.setAttribute('shelf', shelf)
   }
 
+  /**
+   * Helper method to offset each book from beginning based on the book's month.
+   * @param {Number} month The month of the book to offset
+   */
   offset (month) {
     const parentWidth = this.parentElement.scrollWidth - BOOK_WIDTH
     // const offset = parentWidth / (NUM_BOOKS-1)
     const offset = 50
     this.style.left = offset * (month - 1) + 'px'
-    this.style.zIndex = 12 - month
   }
 
+  /**
+   * Getter used to return the corresponding month for
+   * this book.
+   * @param {Number} month Integer containing the month
+   * corresponding to the month that should be returned.
+   * Months are indexed from 1-12 inclusive,
+   * @returns {String} String containing the month that
+   * should be displayed on the book.
+   */
   getTitle (month) {
     switch (month) {
       case 1:
@@ -135,3 +207,5 @@ class Book extends HTMLElement {
 }
 
 customElements.define('book-item', Book)
+
+export { Book }

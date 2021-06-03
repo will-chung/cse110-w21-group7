@@ -63,11 +63,46 @@ class DateConverter extends Date {
     const that = this
     const timestampDateConverter = new DateConverter(timestamp)
     if (Math.abs(timestampDateConverter.getDaysFromTimeStamp(timestamp) - that.getDaysFromTimeStamp()) < 7) {
-      if (((that.getDay() - 1) % 7) - ((timestampDateConverter.getDay() - 1) % 7) >= 0) {
+      if (((that.getDay() + 6) % 7) - ((timestampDateConverter.getDay() + 6) % 7) >= 0) {
         return true
       }
     }
     return false
+  }
+
+  /**
+   * Determines whether the given UNIX timestamp meets the following criteria:
+   * 1. The date of the corresponding timestamp is in the same week as the
+   * curren timestamp.
+   *
+   * @param {Number} timestamp UNIX timestamp for comparison
+   * @returns {Boolean} Whether the given UNIX timestamp is within the same week
+   * as the current date.
+   *
+   **/
+  oldTimestampInSameWeek (timestamp) {
+    // compare to this._timestamp
+    // get the days correspond to _timestamp
+
+    const dateToCompare = new DateConverter(timestamp)
+    const lowerBound = this.getDaysFromTimeStamp() - ((this.getDay() + 6) % 7)
+    const upperBound = lowerBound + 6
+
+    return (lowerBound <= dateToCompare.getDaysFromTimeStamp() && dateToCompare.getDaysFromTimeStamp() <= upperBound)
+  }
+
+  /**
+   * Get a UNIX timestamp for Monday of the current week.
+   * Note that this UNIX timestamp is unique up to the number
+   * of days since 12:00AM January 1, 1970 GMT.
+   * @returns {Number} UNIX timestamp representing the date for
+   * Monday of the current week
+   */
+  getBeginningOfWeek () {
+    const dayOfWeek = (this.getDay() + 6) % 7
+    const offsetMillis = (dayOfWeek * 24 * 60 * 60 * 1000)
+    const stamp = this.getTime() - offsetMillis
+    return stamp
   }
 
   /**

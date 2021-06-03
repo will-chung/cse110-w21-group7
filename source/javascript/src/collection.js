@@ -1,26 +1,75 @@
-import { CollectionItem } from './components/CollectionItem.js'
-import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
+import { CollectionItem, wrapper } from './components/CollectionItem.js'
 
-const addBtn = document.getElementById('add')
+const addBtn = document.getElementById('cb')
 
 addBtn.addEventListener('click', () => {
-  location.pathname = '/source/html/collection-edit.html'
+  // location.pathname = '/source/html/collection-edit.html'
+  const collectionName = window.prompt('Please enter the name of your new collection:')
+  addCollection(collectionName)
 })
 
-// function getLogInfoAsJSON (cb) {
-//   // TODO replace this with indexedDB transaction
-//   const request = new XMLHttpRequest()
-//   request.onreadystatechange = (event) => {
-//     cb.bind(this)
-//     if (request.status === 200 && request.readyState === XMLHttpRequest.DONE) {
-//       const response = event.target.response
-//       cb(response)
-//     }
-//   }
+/**
+ * Add new collection to database with given name.
+ * @author William Chung <wchung@ucsd.edu>
+ * @param collectionName Name to be given to new collection.
+ */
+function addCollection (collectionName) {
+  // if user presses 'Cancel' on prompt
+  if (collectionName === null) {
+    return
+  }
 
-//   request.open('GET', '/source/models/schema.json')
-//   request.send()
-// }
+  const newCollection = new CollectionItem()
+  newCollection.entry = { name: collectionName }
+
+  wrapper.transaction((event) => {
+    const db = event.target.result
+
+    const transaction = db.transaction(['currentLogStore'], 'readwrite')
+    const objectStore = transaction.objectStore('currentLogStore')
+    objectStore.openCursor().onsuccess = function (event) {
+      const cursor = event.target.result
+      if (cursor) {
+        const json = cursor.value
+
+        const collections = json.properties.collections
+
+        // Change button to say 'Add' once first collection has been added
+        // if (collections.length == 0) {
+        //   addBtn.textContent = 'Add'
+        // }
+
+        const newCollectionObj = {
+          type: 'array',
+          name: collectionName,
+          logs: [
+          ],
+          tasks: [
+          ],
+          images: [
+          ],
+          videos: [
+          ]
+        }
+        collections.push(newCollectionObj)
+
+        // Save changes
+        const requestUpdate = cursor.update(json)
+        requestUpdate.onerror = function (event) {
+          // Do something with the error
+        }
+        requestUpdate.onsuccess = function (event) {
+          // Success - the data is updated!
+          console.log('successfully added "' + collectionName + '"')
+          // I think the code below should be added here... Yuzi
+          // document.querySelector('.collection-area').append(newCollection)
+        }
+      }
+    }
+  })
+
+  document.querySelector('.collection-area').append(newCollection)
+}
 
 /**
  * the daily log information corresponding to the given date.
@@ -34,8 +83,6 @@ addBtn.addEventListener('click', () => {
  * initialize the daily log.
  */
 function getLogInfoAsJSON (cb) {
-  const wrapper = new IndexedDBWrapper('experimentalDB', 1)
-
   wrapper.transaction((event) => {
     const db = event.target.result
 
@@ -44,7 +91,7 @@ function getLogInfoAsJSON (cb) {
     store.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
       if (cursor) {
-        return cb(cursor.value)
+        cb(cursor.value)
       }
     }
   })
@@ -67,6 +114,11 @@ function populateCollections (response) {
   }
 
   const collections = response.properties.collections
+
+  // if (collections.length == 0) {
+  //   addBtn.textContent = "Add First Collection"
+  // }
+
   const container = document.querySelector('.collection-area')
   collections.forEach((collection, index) => {
     const collectionItem = populateCollection(collection)

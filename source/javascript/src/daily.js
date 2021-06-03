@@ -1,18 +1,28 @@
+import { wrapper } from './components/CollectionItem.js'
 import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 import { DateConverter } from './utils/DateConverter.js'
+import { Tag } from './components/tag.js'
 
 const collapse = document.getElementById('collapse')
 const quote = document.getElementById('reflection')
 const text = document.getElementById('input-area')
 const date = document.getElementById('date-input')
 const time = document.getElementById('time-input')
-const saveBtn = document.getElementById('save')
-const cancelBtn = document.getElementById('cancel')
+const saveBtn = document.getElementById('cb1')
+const realCanBtn = document.getElementById('cancel')
+const cancelBtn = document.getElementById('cb2')
 const refRadio = document.getElementById('input1')
 const eventRadio = document.getElementById('input2')
 const taskRadio = document.getElementById('input3')
 const noteRadio = document.getElementById('input4')
 const radioContainer = document.getElementsByClassName('container')[0]
+const realSavBtn = document.getElementById('save')
+const tagOptions = document.querySelector('.tag-options')
+
+cancelBtn.addEventListener('click', () => {
+  // TODO: implement hide functionality
+  text.value = ''
+})
 
 /*
  * This onclick toggles the display style of the quote to none
@@ -20,73 +30,46 @@ const radioContainer = document.getElementsByClassName('container')[0]
  * Resource: https://codepen.io/Mdade89/pen/JKkYGq
  * the link above provides a collapsible text box
  */
-document.addEventListener('DOMContentLoaded', () => {
-  saveBtn.style.visibility = 'hidden'
-  saveBtn.addEventListener('click', (event) => {
-    event.preventDefault()
-    newElement()
-  })
-  cancelBtn.style.visibility = 'hidden'
-  text.type = 'hidden'
-  date.type = 'hidden'
-  time.type = 'hidden'
-})
+// document.addEventListener('DOMContentLoaded', () => {
+//   saveBtn.style.visibility = 'hidden'
+//   saveBtn.addEventListener('click', (event) => {
+//     event.preventDefault()
+//     newElement()
+//   })
+//   cancelBtn.style.visibility = 'hidden'
+//   text.type = 'hidden'
+//   date.type = 'hidden'
+//   time.type = 'hidden'
+// })
 
 radioContainer.addEventListener('change', () => {
+  resetEverything()
   if (refRadio.checked) {
-    text.type = 'text'
-    date.type = 'hidden'
-    time.type = 'hidden'
+    text.style.visibility = 'visible'
     saveBtn.style.visibility = 'visible'
     cancelBtn.style.visibility = 'visible'
   } else if (eventRadio.checked) {
-    // reset input field start
-    saveBtn.style.visibility = 'hidden'
-    cancelBtn.style.visibility = 'hidden'
-    text.type = 'hidden'
-    text.value = ''
-    date.value = ''
-    time.value = ''
-    // reset input field done
-    date.type = 'date'
+    date.style.visibility = 'visible'
     date.addEventListener('change', () => {
-      time.type = 'time'
+      time.style.visibility = 'visible'
     })
     time.addEventListener('change', () => {
-      text.type = 'text'
+      console.log('change event happened')
+      text.style.visibility = 'visible'
       saveBtn.style.visibility = 'visible'
       cancelBtn.style.visibility = 'visible'
     })
   } else if (taskRadio.checked) {
-    // reset input field start
-    date.value = ''
-    text.value = ''
-    saveBtn.style.visibility = 'hidden'
-    cancelBtn.style.visibility = 'hidden'
-    text.type = 'hidden'
-    time.type = 'hidden'
-    // reset input field done
-    date.type = 'date'
+    date.style.visibility = 'visible'
     date.addEventListener('change', () => {
-      text.type = 'text'
-      time.type = 'hidden'
+      text.style.visibility = 'visible'
       saveBtn.style.visibility = 'visible'
       cancelBtn.style.visibility = 'visible'
     })
   } else if (noteRadio.checked) {
-    date.type = 'hidden'
-    text.value = ''
-    saveBtn.style.visibility = 'hidden'
-    cancelBtn.style.visibility = 'hidden'
-    text.type = 'hidden'
-    time.type = 'hidden'
-    text.type = 'text'
+    text.style.visibility = 'visible'
     saveBtn.style.visibility = 'visible'
     cancelBtn.style.visibility = 'visible'
-  } else {
-    text.type = 'hidden'
-    date.type = 'hidden'
-    time.type = 'hidden'
   }
 })
 
@@ -105,6 +88,46 @@ collapse.addEventListener('click', () => {
     quote.style.display = 'none'
   }
 })
+
+tagOptions.addEventListener('click', (event) => {
+  const collectionName = event.target.textContent
+  document.querySelector('.tags').append(new Tag(collectionName))
+  addCollectionTag(collectionName)
+})
+
+function addCollectionTag (collectionName) {
+  wrapper.transaction((event) => {
+    const db = event.target.result
+
+    const transaction = db.transaction(['currentLogStore'], 'readwrite')
+    const objectStore = transaction.objectStore('currentLogStore')
+    objectStore.openCursor().onsuccess = function (event) {
+      const cursor = event.target.result
+
+      if (cursor) {
+        const json = cursor.value
+        const collections = json.properties.collections
+        const currentLog = json.current_log
+
+        collections.forEach(collection => {
+          if (collection.name === collectionName) {
+            collection.logs.push(currentLog)
+          }
+        })
+
+        cursor.update(json)
+      }
+    }
+  })
+
+  // remove tag option
+  const tagOptions = document.querySelector('.tag-options').childNodes
+  tagOptions.forEach(node => {
+    if (node.textContent === collectionName) {
+      node.remove()
+    }
+  })
+}
 
 /**
  * Adds tasks, notes, and events to the daily log. If the entry is evmpty,
@@ -144,11 +167,22 @@ function newElement () {
     itemEntry.logType = 'reflection'
   }
   itemEntry.description = inputValue
-
   logItem.itemEntry = itemEntry
   li.appendChild(logItem)
+  logItem.setHoverListeners()
   document.getElementById('myUL').appendChild(li)
   document.getElementById('input-area').value = ''
+}
+
+function resetEverything () {
+  date.style.visibility = 'hidden'
+  date.value = ''
+  text.value = ''
+  text.style.visibility = 'hidden'
+  saveBtn.style.visibility = 'hidden'
+  cancelBtn.style.visibility = 'hidden'
+  time.value = ''
+  time.style.visibility = 'hidden'
 }
 
 /**
@@ -196,13 +230,41 @@ function getLogInfoAsJSON (cb) {
       const cursor = event.target.result
       if (cursor) {
         const dateConverter = new DateConverter(Number(cursor.value.current_log))
-        console.log(cursor.value)
+        // console.log(cursor.value)
+        let match = false
         cursor.value.$defs['daily-logs'].forEach((log, index) => {
           if (dateConverter.equals(Number(log.properties.date.time))) {
+            match = true
             cb.bind(this)
-            cb(cursor.value.$defs['daily-logs'][index])
+            cb(cursor.value.$defs['daily-logs'][index], cursor.value)
           }
         })
+        if (!match) {
+          // TODO: creating new
+          // {
+          //   "type": "object",
+          //   "required": [ "date", "description" ],
+          //   "properties": {
+          //     "date": {
+          //       "type": "string",
+          //       "time": "",
+          //       "description": "The date of the event."
+          //     },
+          //     "events": [],
+          //     "tasks": [],
+          //     "notes": [],
+          //   "reflection": [],
+          //     "mood": {
+          //       "type": "number",
+          //       "multipleOf": 1,
+          //       "minimum": 0,
+          //       "exclusiveMaximum": 100,
+          //       "value": 50,
+          //       "description": "Daily mood on a range of 0-99."
+          //     }
+          //   }
+          // }
+        }
       }
     }
   })
@@ -265,19 +327,57 @@ function setDate (log) {
   dateElement.innerText = date.toLocaleDateString()
 }
 
+function setTags (json) {
+  const collections = json.properties.collections
+  const currentLog = json.current_log
+
+  collections.forEach(collection => {
+    const logs = collection.logs
+
+    // if collection has current currentLog
+    if (logs.indexOf(currentLog) !== -1) {
+      document.querySelector('.tags').append(new Tag(collection.name))
+    }
+  })
+}
+
+function setTagOptions (json) {
+  console.log(json)
+  const collections = json.properties.collections
+  const currentLog = json.current_log
+  const tagOptions = document.querySelector('.tag-options')
+
+  collections.forEach(collection => {
+    const logs = collection.logs
+
+    // only add option if daily log doesn't already belong to the collection
+    if (logs.indexOf(currentLog) === -1) {
+      const anchor = document.createElement('a')
+      anchor.setAttribute('href', '#')
+      anchor.textContent = collection.name
+      tagOptions.append(anchor)
+    }
+  })
+}
+
 /**
  * Business logic callback function containing all the needed
  * subroutines for initializing the daily log
  * @author Noah Teshima <nteshima@ucsd.edu>
+ * @param json Head of the JSON stored in database
  */
-function populateDailyLog (response) {
+function populateDailyLog (response, json) {
   /* TODO: replace response with schema for single daily log
   (see https://github.com/cse110-w21-group7/cse110-SP21-group7/issues/161
     and https://github.com/cse110-w21-group7/cse110-SP21-group7/issues/162)
   */
-  setDate(response)
-  setEntries(response)
-  setReflection(response)
+  if (response) {
+    setDate(response)
+    setEntries(response)
+    setReflection(response)
+  }
+  setTags(json)
+  setTagOptions(json)
 }
 
 /**
@@ -292,10 +392,17 @@ function getDateFromUNIXTimestamp (timestamp) {
   return new Date(timestamp)
 }
 
-function sendLogInfoAsJSON () {
-  // @TODO
-}
-
 document.addEventListener('DOMContentLoaded', (event) => {
+  saveBtn.addEventListener('click', (event) => {
+    event.preventDefault()
+    newElement()
+  })
   getLogInfoAsJSON(populateDailyLog)
 })
+
+const zoom = document.getElementById('pretty')
+const custZoom = document.getElementById('button1')
+
+// custZoom.addEventListener('click', function () {
+//   zoom.click()
+// })
