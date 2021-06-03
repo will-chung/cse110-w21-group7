@@ -1,7 +1,7 @@
 import { wrapper } from './components/CollectionItem.js'
 import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 import { DateConverter } from './utils/DateConverter.js'
-//import { LogItem } from './components/LogItem.js'
+// import { LogItem } from './components/LogItem.js'
 // having issues using LogItem - I think there's no export in the js
 import { Tag } from './components/tag.js'
 
@@ -145,25 +145,21 @@ function newElement () {
   }
   const li = document.createElement('li')
   const logItem = document.createElement('log-item')
-  let itemEntry = {}
+  const itemEntry = {}
   // entry specifies what log entry is falls under (for data purposes)
-  let entry
+  const entry
 
   // Update log type according to which item was checked
   if (taskRadio.checked) {
     itemEntry.logType = 'task'
     itemEntry.finished = false
-    entry = "tasks"
-
+    entry = 'tasks'
   } else if (noteRadio.checked) {
     itemEntry.logType = 'note'
-
-    entry = "notes"
-
+    entry = 'notes'
   } else if (eventRadio.checked) {
     itemEntry.logType = 'event'
-    entry = "events"
-
+    entry = 'events'
     // parse the number of hours
     const hours = Number(time.value.substring(0, 2))
     // parse the number of minutes
@@ -178,7 +174,7 @@ function newElement () {
     itemEntry.time = dateConverter.timestamp
   } else {
     itemEntry.logType = 'reflection'
-    entry = "reflection"
+    entry = 'reflection'
   }
   itemEntry.description = inputValue
   logItem.itemEntry = itemEntry
@@ -225,45 +221,42 @@ function updateElement (logEntry, entry) {
     store.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
       if (cursor) {
-        console.log("in cursor")
         // Get the cursor value and push the log item entry onto the file
         const json = cursor.value
-        const dailyLog = json.$defs["daily-logs"][0].properties[entry]
+        const dailyLog = json.$defs['daily-logs'][0].properties[entry]
         dailyLog.push(logEntry) 
         const updated = cursor.update(cursor.value)
 
         // Error of adding data
         updated.onerror = function (event) {
-          console.log("ERROR: unable to add data")
+          console.log('ERROR: unable to add data')
         }
 
         // Data got successfully added
         updated.onsuccess = function (event) {
-          console.log("Successfully added data")
-          console.log("What's inside daily-logs " + dailyLog)
-          console.log(json.$defs["daily-logs"])
+          console.log('Successfully added data')
         }
       }
    }
   })
 
-    // const itemEntry = {}
-    // // Check if log type is task
-    // if (logType === 'task') {
-    //   itemEntry.logType = logType
-    //   itemEntry.finished = update
-    //   // put() method will update the record in the db if it exists
-    //   store.put(itemEntry)
-    // }
+  // const itemEntry = {}
+  // // Check if log type is task
+  // if (logType === 'task') {
+  //   itemEntry.logType = logType
+  //   itemEntry.finished = update
+  //   // put() method will update the record in the db if it exists
+  //   store.put(itemEntry)
+  // }
 
-    // // Check if we instead just want to delete the task/note/event
-    // if (update === 'delete') {
-    //   store.delete(key)
-    // }
+  // // Check if we instead just want to delete the task/note/event
+  // if (update === 'delete') {
+  //   store.delete(key)
+  // }
 
-    // Get task/note/event from the parameter entry
-    // Create transaction to delete 
-    // Delete transaction
+  // Get task/note/event from the parameter entry
+  // Create transaction to delete 
+  // Delete transaction
 }
 
 /**
