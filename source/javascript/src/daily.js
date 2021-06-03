@@ -199,11 +199,11 @@ function resetEverything () {
 }
 
 /**
- * Updates tasks, notes, and events in the daily log. 
+ * Updates tasks, notes, and events in the daily log.
  * (i.e. deleting entries, editing entries, or toggling tasks)
  * These changes should be saved and reflected the next time
  * the user opens the daily log.
- * 
+ *
  * @param logEntry
  * @param entry
  */
@@ -224,7 +224,7 @@ function updateElement (logEntry, entry) {
         // Get the cursor value and push the log item entry onto the file
         const json = cursor.value
         const dailyLog = json.$defs['daily-logs'][0].properties[entry]
-        dailyLog.push(logEntry) 
+        dailyLog.push(logEntry)
         const updated = cursor.update(cursor.value)
 
         // Error of adding data
@@ -237,7 +237,7 @@ function updateElement (logEntry, entry) {
           console.log('Successfully added data')
         }
       }
-   }
+    }
   })
 
   // const itemEntry = {}
@@ -255,7 +255,7 @@ function updateElement (logEntry, entry) {
   // }
 
   // Get task/note/event from the parameter entry
-  // Create transaction to delete 
+  // Create transaction to delete
   // Delete transaction
 }
 
@@ -342,9 +342,8 @@ function setEntries (log) {
 
       li.appendChild(logItem)
       document.getElementById('myUL').appendChild(li)
-      console.log("Adding entries for " + logItem.itemEntry)
+      console.log('Adding entries for ' + logItem.itemEntry)
     })
-
   }
 
   /* make tasks */
