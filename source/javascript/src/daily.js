@@ -126,9 +126,9 @@ tagOptions.addEventListener('click', (event) => {
   const collectionName = event.target.textContent
   document.querySelector('.tags').append(new Tag(collectionName))
   addCollectionTag(collectionName)
-});
+})
 
-function addCollectionTag(collectionName) {
+function addCollectionTag (collectionName) {
   wrapper.transaction((event) => {
     const db = event.target.result
 
@@ -143,7 +143,7 @@ function addCollectionTag(collectionName) {
         const currentLog = json.current_log
 
         collections.forEach(collection => {
-          if (collection.name == collectionName) {
+          if (collection.name === collectionName) {
             collection.logs.push(currentLog)
           }
         })
@@ -152,12 +152,13 @@ function addCollectionTag(collectionName) {
       }
     }
   })
-  
+
   // remove tag option
   const tagOptions = document.querySelector('.tag-options').childNodes
   tagOptions.forEach(node => {
-    if (node.textContent == collectionName)
+    if (node.textContent === collectionName) {
       node.remove()
+    }
   })
 }
 
@@ -336,19 +337,21 @@ function setDate (log) {
   dateElement.innerText = date.toLocaleDateString()
 }
 
-function setTags(json) {
+function setTags (json) {
   const collections = json.properties.collections
   const currentLog = json.current_log
 
   collections.forEach(collection => {
     const logs = collection.logs
-    if (logs.indexOf(currentLog) != -1) {
+
+    // if collection has current currentLog
+    if (logs.indexOf(currentLog) !== -1) {
       document.querySelector('.tags').append(new Tag(collection.name))
     }
   })
 }
 
-function setTagOptions(json) {
+function setTagOptions (json) {
   console.log(json)
   const collections = json.properties.collections
   const currentLog = json.current_log
@@ -358,7 +361,7 @@ function setTagOptions(json) {
     const logs = collection.logs
 
     // only add option if daily log doesn't already belong to the collection
-    if (logs.indexOf(currentLog) == -1) {
+    if (logs.indexOf(currentLog) === -1) {
       const anchor = document.createElement('a')
       anchor.setAttribute('href', '#')
       anchor.textContent = collection.name

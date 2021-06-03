@@ -42,7 +42,7 @@ template.innerHTML = `
 `
 
 class Tag extends HTMLElement {
-  constructor(name) {
+  constructor (name) {
     super()
 
     // create a shadow root for this web component
@@ -50,12 +50,12 @@ class Tag extends HTMLElement {
     // attach cloned content of template to shadow DOM
     this.shadowRoot.appendChild(template.content.cloneNode(true))
 
-    this.name = name;
+    this.name = name
 
     this.shadowRoot.querySelector('.bi-x').addEventListener('click', () => {
       const collectionName = this.shadowRoot.querySelector('.tag-name').textContent
       this.removeCollectionTag(collectionName)
-      this.remove();
+      this.remove()
     })
   }
 
@@ -69,7 +69,7 @@ class Tag extends HTMLElement {
     shadowRoot.querySelector('.tag-name').textContent = name
   }
 
-  removeCollectionTag(collectionName) {
+  removeCollectionTag (collectionName) {
     wrapper.transaction((event) => {
       const db = event.target.result
 
@@ -84,11 +84,10 @@ class Tag extends HTMLElement {
           const currentLog = json.current_log
 
           collections.forEach(collection => {
-              if (collection.name == collectionName) {
-                const index = collection.logs.indexOf(currentLog)
-                collection.logs.splice(index, 1)
-                return
-              }
+            if (collection.name === collectionName) {
+              const index = collection.logs.indexOf(currentLog)
+              collection.logs.splice(index, 1)
+            }
           })
 
           cursor.update(json)
