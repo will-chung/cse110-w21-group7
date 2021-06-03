@@ -69,15 +69,8 @@ nav.main-menu.expanded {
   height: 106px;
 }
 
-#current > .fa {
-  padding-top: 30px;
-}
 .underline:hover {
-  background: radial-gradient(
-    circle,
-    rgb(12, 206, 212) 100%,
-    rgba(224, 251, 252, 1) 0%
-  );
+  
   border-radius: 30px;
   border-color: black;
 }
