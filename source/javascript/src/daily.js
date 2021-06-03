@@ -21,7 +21,6 @@ const tmButton = document.getElementById('tomorrow')
 const ytButton = document.getElementById('yesterday')
 const tagOptions = document.querySelector('.tag-options')
 
-
 // cancelBtn.addEventListener('click', () => {
 //   // TODO: implement hide functionality
 //   hideEverything()
@@ -419,7 +418,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 const zoom = document.getElementById('pretty')
 const custZoom = document.getElementById('button1')
 
-
 custZoom.addEventListener('click', function () {
   zoom.click()
 })
@@ -480,4 +478,3 @@ ytButton.addEventListener('click', () => {
     }
   })
 })
-
