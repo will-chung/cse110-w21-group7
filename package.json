@@ -4,28 +4,55 @@
   "description": "RIVER Bullet Journal; CSE110 Spring 2021",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --recursive --timeout=300000 ./source/javascript/tests",
+    "test": "mocha --recursive ./source/javascript/tests/.",
     "coverage": "nyc npm run test",
-    "lint_tests": "eslint source/javascript/tests/.",
-    "fix_tests": "eslint source/javascript/tests/. --fix",
-    "lint_src": "eslint source/javascript/src/.",
-    "fix_src": "eslint source/javascript/src/. --fix",
+    "lint_tests": "./node_modules/.bin/eslint source/javascript/tests/.",
+    "fix_tests": "./node_modules/.bin/eslint source/javascript/tests/. --fix",
+    "lint_src": "./node_modules/.bin/eslint source/javascript/src/.",
+    "fix_src": "./node_modules/.bin/eslint source/javascript/src/. --fix",
     "docs": "npx jsdoc source/javascript/src/. --destination specs/ci-cd/docs/"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cse110-w21-group7/cse110-SP21-group7.git"
   },
-  "author": "Noah Teshima <nteshima@ucsd.edu>",
+  "author": {
+    "name": "Noah Teshima",
+    "email": "nteshima@ucsd.edu"
+  },
   "contributors": [
-    "Yuzi Lyu <yul134@ucsd.edu>",
-    "Alvin Wang <acw011@ucsd.edu>",
-    "Brett Herbst <bherbst@ucsd.edu>",
-    "Rachel Doron <rdoron@ucsd.edu>",
-    "Zhiyuan Zhang <zhz018@ucsd.edu>",
-    "William Chung <wchung@ucsd.edu>",
-    "Thanh Tong <ttong@ucsd.edu>",
-    "Katherine Baker <klbaker@ucsd.edu>"
+    {
+      "name": "Yuzi Lyu",
+      "email": "yul134@ucsd.edu"
+    },
+    {
+      "name": "Alvin Wang",
+      "email": "acw011@ucsd.edu"
+    },
+    {
+      "name": "Brett Herbst",
+      "email": "bherbst@ucsd.edu"
+    },
+    {
+      "name": "Rachel Doron",
+      "email": "rdoron@ucsd.edu"
+    },
+    {
+      "name": "Zhiyuan Zhang",
+      "email": "zhz018@ucsd.edu"
+    },
+    {
+      "name": "William Chung",
+      "email": "wchung@ucsd.edu"
+    },
+    {
+      "name": "Thanh Tong",
+      "email": "ttong@ucsd.edu"
+    },
+    {
+      "name": "Katherine Baker",
+      "email": "klbaker@ucsd.edu"
+    }
   ],
   "license": "ISC",
   "bugs": {
@@ -33,9 +60,6 @@
   },
   "homepage": "https://github.com/cse110-w21-group7/cse110-SP21-group7#readme",
   "devDependencies": {
-    "@babel/core": "^7.14.3",
-    "@babel/preset-env": "^7.14.4",
-    "babel-jest": "^27.0.2",
     "chai": "^4.3.4",
     "eslint": "^7.26.0",
     "eslint-config-standard": "^16.0.2",
@@ -47,21 +71,11 @@
     "mocha": "^8.4.0",
     "npm": "^7.12.0",
     "nyc": "^15.1.0",
-    "puppeteer": "^9.1.1",
     "sinon": "^10.0.0"
   },
   "dependencies": {
     "fullcalendar": "^5.7.0",
-    "googleapis": "^39.2.0",
-    "chai": "^4.3.4",
-    "mocha": "^8.4.0",
-    "puppeteer": "^10.0.0"
-  },
-  "keywords": [
-    "chai",
-    "mocha",
-    "puppeteer",
-    "test",
-    "automation"
-  ]
+    "fuse.js": "^6.4.6",
+    "googleapis": "^39.2.0"
+  }
 }
