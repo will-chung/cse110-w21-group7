@@ -147,7 +147,7 @@ function newElement () {
   const logItem = document.createElement('log-item')
   const itemEntry = {}
   // entry specifies what log entry is falls under (for data purposes)
-  let entry
+  const entry = ''
 
   // Update log type according to which item was checked
   if (taskRadio.checked) {
@@ -457,6 +457,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 const zoom = document.getElementById('pretty')
 const custZoom = document.getElementById('button1')
 
-// custZoom.addEventListener('click', function () {
-//   zoom.click()
-// })
+custZoom.addEventListener('click', function () {
+  zoom.click()
+})
