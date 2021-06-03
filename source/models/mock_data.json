@@ -1,33 +1,35 @@
 {
-    "description": "A user's information for their bullet journal",
-    "type": "object",
-    "name": "string",
-    "current_log": "1622752964489",
-    "current_collection": "Collection one",
-    "properties": {
-      "collections": [{
-        "type": "array",
-        "name": "Collection one",
-        "tasks": [
-          {
-            "description": "Finished task for collection one",
-            "logType": "task",
-            "finished": true
-          },
-          {
-            "description": "Unfinished task for collection one",
-            "logType": "task",
-            "finished": false
-          }
-        ],
-        "images": [
-        ],
-        "videos": [
-        ]
-      }]
-    },
-    "$defs": {
-      "daily-logs": [
+  "description": "A user's information for their bullet journal",
+  "type": "object",
+  "name": "string",
+  "current_log": "1622752964489",
+  "current_collection": "Collection one",
+  "properties": {
+    "collections": [{
+      "type": "array",
+      "name": "Collection one",
+      "logs": [
+      ],
+      "tasks": [
+        {
+          "description": "Finished task for collection one",
+          "logType": "task",
+          "finished": true
+        },
+        {
+          "description": "Unfinished task for collection one",
+          "logType": "task",
+          "finished": false
+        }
+      ],
+      "images": [
+      ],
+      "videos": [
+      ]
+    }]
+  },
+  "$defs": {
+    "daily-logs": [
       {
         "type": "object",
         "required": [ "date", "description" ],
@@ -39,36 +41,14 @@
           },
           "events": [
             {
-              "description": "Saturday's event",
+              "description": "February 28, 2022",
               "logType": "event",
               "time": "1621718384658"
             }
           ],
-          "tasks": [
-              {
-                "description": "Study for midterm",
-                "logType": "task",
-                "finished": true
-              },
-              {
-                "description": "Weeknight meal prep",
-                "logType": "task",
-                "finished": false
-              }
-          ],
-          "notes": [
-            {
-              "description": "I should send a card for Jordan's birthday.",
-              "logType": "note"
-          }
-          ],
-          "reflection": [
-          {
-            "description": "February 28, 2022",
-            "logType": "event",
-            "time": "1621718384658"
-          }
-          ],
+          "tasks": [],
+          "notes": [],
+        "reflection": [],
           "mood": {
             "type": "number",
             "multipleOf": 1,
