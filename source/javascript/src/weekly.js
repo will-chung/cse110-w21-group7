@@ -56,7 +56,8 @@ function getLogInfoAsJSON (cb) {
         if (searchParams.has('displayFirstOfMonth')) {
           // gets all daily logs with the requested month and year
           result = dailyLogs.filter((log) => {
-            const timestamp = Number(log.properties.date.time) // UNIX timestamp
+            // timestamp of milliseconds since Jan 1. 1970 in local time
+            const timestamp = Number(log.properties.date.time)
             const date = new Date(timestamp)
             return (date.getFullYear() === year) && (date.getMonth() === month)
           })
@@ -103,24 +104,20 @@ function populateWeeklyView (weeklyItems, dateToCompare) {
 function populateDayColumns (weeklyItems, dateToCompare) {
   const week = document.getElementById('weekly-div')
   // create a DateConverter object
-  // Use a new instance of Date to fetch the day of the week of today
+  // Use a new instance of Date to fetch the day of the week of the given date
+  // we add six and mod by seven to shift the 0-index to start at Monday and end on Sunday.
   const compareDay = (dateToCompare.getDay() + 6) % 7
-  const today = new DateConverter()
-  let todayDays = today.getDay()
   weeklyItems.forEach((entry) => {
     // calculate the offset between today's day and the entry's day
-    const offSet = dateToCompare.getDaysFromTimeStamp() - dateToCompare.getDaysFromTimeStamp(entry.properties.date.time)
-    const currentDay = new DateConverter(Number(entry.properties.date.time))
-    // apply the offset to get the index
-    if (todayDays === 0) {
-      todayDays = 7
-    }
-    const index = todayDays - offSet
+    const currentDate = new DateConverter(Number(entry.properties.date.time))
+    const offSet = dateToCompare.getDaysFromTimeStamp() - currentDate.getDaysFromTimeStamp()
+    const index = compareDay - offSet
     const weeklyItem = document.createElement('weekly-view-item')
     weeklyItem.entry = entry
     const childDiv = week.children[index]
+    // console.log(week.children[index])
     // business logic for appending the navigation link to each column
-    appendNavLinks(childDiv, currentDay)
+    appendNavLinks(childDiv, currentDate)
     childDiv.appendChild(weeklyItem)
   })
 }
@@ -138,7 +135,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
  * the header for the current column on the monthly/weekly view.
  */
 function appendNavLinks (targetElement, date) {
-  // FIXME
   const anchor = targetElement.querySelector('a')
   anchor.dataset.unixTimestamp = date.getTime()
   anchor.href = '/source/html/daily.html' // @TODO refactor with routing
