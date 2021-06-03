@@ -19,7 +19,7 @@
 
 .main-menu:hover,
 nav.main-menu.expanded {
-  width: 230px;
+  width: 240px;
   overflow: hidden;
 }
 
@@ -27,7 +27,7 @@ nav.main-menu.expanded {
   background:#3D5A80;
   /* background:rgb(228,228,228); */
   border-right: 5px solid #e0fbfc; /*#98c1d9;*/
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   height: 100%;

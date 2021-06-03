@@ -19,15 +19,15 @@
 
 .main-menu:hover,
 nav.main-menu.expanded {
-  width: 230px;
+  width: 240px;
   overflow: hidden;
 }
 
 .main-menu {
-  /* background:#3D5A80; */
+  background:#3D5A80;
   /* background:rgb(228,228,228); */
   border-right: 5px solid #e0fbfc; /*#98c1d9;*/
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   height: 100%;
@@ -217,7 +217,6 @@ a:link {
   position: fixed;
   bottom: 40px;
   right: 40px;
-  width: 40px;
 }
 
 #add:hover{

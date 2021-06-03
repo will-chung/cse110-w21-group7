@@ -2,6 +2,8 @@
 
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
 
+@import '../css/font/bootstrap-icons.css';
+
 .fa-2x {
   font-size: 2em;
 }
@@ -19,15 +21,15 @@
 
 .main-menu:hover,
 nav.main-menu.expanded {
-  width: 230px;
+  width: 240px;
   overflow: hidden;
 }
 
 .main-menu {
-  /* background:#3D5A80; */
+  background:#3D5A80;
   /* background:rgb(228,228,228); */
   border-right: 5px solid #e0fbfc; /*#98c1d9;*/
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   height: 100%;
@@ -453,6 +455,7 @@ input {
   flex: 2;
   outline: none;
   color:#e0fbfc;
+  visibility: hidden;
 }
 
 ::-webkit-calendar-picker-indicator {
@@ -464,6 +467,7 @@ input {
   flex: 2;
   outline: none;
   color:#e0fbfc;
+  visibility: hidden;
 }
 input {
   background: transparent;
@@ -496,6 +500,7 @@ input:focus {
   flex-direction: row-reverse;
   flex-wrap: wrap;
   align-items: flex-start;
+  visibility: hidden;
 }
 
 textarea:focus, input:focus {
@@ -550,8 +555,9 @@ input, select, textarea{
 }
 .containerOuter {
   margin-left: 10px;
-  background: rgb(224,251,252);
-background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 100%);
+  background: whitesmoke;
+  /* background: rgb(224,251,252);
+background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 100%); */
   border-radius: 20px;
   height:270px;
   box-shadow: 4px 12px 40px 4px rgba(10,10,120,0.15);
@@ -708,6 +714,7 @@ background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 
   height: 10px;
   right: 20px;
   color:#e0fbfc;
+  visibility: hidden;
 }
 
 #cb2 {
@@ -716,6 +723,7 @@ background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 
   height: 10px;
   right: 150px;
   color:#e0fbfc;
+  visibility: hidden;
 }
 
 .customBtn {
@@ -808,4 +816,61 @@ background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 
 
 #mid-section > a > i {
   color: #e0fbfc
+}
+
+.bi-tag {
+  transition: transform 1s;
+}
+
+/* Dropdown Tags */
+.tagBtn {
+  display: flex;
+  align-items: center;
+  background: #EE6C4D;
+  color: white;
+  padding: 5px 10px 5px 10px;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 15px;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.addTags {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.tag-options {
+  display: none;
+  position: absolute;
+  background: white;
+  min-width: 160px;
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.tag-options a {
+  color: black;
+  padding: 12px 16px;
+  font-family: sans-serif;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.tag-options a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.addTags:hover .tag-options {
+  display: block;
+}
+
+.addTags:hover .bi-tag {
+  transform: rotate(135deg);
+}
+
+.tag-container {
+  width: 100%;
 }

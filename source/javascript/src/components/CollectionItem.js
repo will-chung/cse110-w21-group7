@@ -131,6 +131,7 @@ class CollectionItem extends HTMLElement {
               }
             })
             collectionsArray.splice(index, 1)
+
             // Save changes
             const requestUpdate = cursor.update(json)
           }
