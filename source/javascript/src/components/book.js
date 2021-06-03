@@ -97,7 +97,7 @@ class Book extends HTMLElement {
       params.append('year', year)
       params.append('month', month)
       params.append('displayFirstOfMonth', true)
-      const url = new URL(ROUTES.weekly, 'http://127.0.0.1:5501')
+      const url = new URL(ROUTES.weekly, location.origin)
       url.search = params
       new Router(url).navigate()
     })

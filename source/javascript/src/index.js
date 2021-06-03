@@ -10,7 +10,7 @@ import { Book } from './components/Book.js'
 // })
 
 document.addEventListener('DOMContentLoaded', (event) => {
-  const addDailyLog = document.querySelector("button[id='rapid-log'] > a")
+  const addDailyLog = document.getElementById('cb')
 
   addDailyLog.onclick = function (event) {
     // Allows us to make write transactions before navigating

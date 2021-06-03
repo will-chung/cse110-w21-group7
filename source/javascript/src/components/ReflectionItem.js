@@ -65,6 +65,15 @@ class ReflectionItem extends HTMLElement {
                                     margin:auto;
                                     width: 75vw;
                                   }
+                                  label {
+                                    font-family: 'Montserrat', sans-serif;
+                                    color: #e0fbfc;
+                                    margin-bottom: 30px;
+                                  }
+                                  .icon {
+                                    color: white;
+                                    margin-top: 20px;
+                                  }
                                  </style> 
                                       
                                         <div id="mood-slider">

@@ -4,7 +4,6 @@
   "description": "RIVER Bullet Journal; CSE110 Spring 2021",
   "main": "index.js",
   "scripts": {
-    
     "test": "./node_modules/mocha/bin/mocha --recursive --timeout=300000 ./source/javascript/tests",
     "coverage": "nyc npm run test",
     "lint_tests": "eslint source/javascript/tests/.",
