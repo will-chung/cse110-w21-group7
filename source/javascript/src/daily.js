@@ -360,7 +360,7 @@ tmButton.addEventListener('click', () => {
     req.onsuccess = function (e) {
       const cursor = e.target.result
       if (cursor) {
-        //Iterates current_log forward 1 day
+        // Iterates current_log forward 1 day
         cursor.value.current_log = (parseInt(cursor.value.current_log) + 86400000).toString()
         cursor.update(cursor.value)
       }
@@ -389,7 +389,7 @@ ytButton.addEventListener('click', () => {
     req.onsuccess = function (e) {
       const cursor = e.target.result
       if (cursor) {
-        //Iterates current_log back 1 day
+        // Iterates current_log back 1 day
         cursor.value.current_log = (parseInt(cursor.value.current_log) - 86400000).toString()
         cursor.update(cursor.value)
       }
