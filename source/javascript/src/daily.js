@@ -147,7 +147,7 @@ function newElement () {
   const logItem = document.createElement('log-item')
   const itemEntry = {}
   // entry specifies what log entry is falls under (for data purposes)
-  const entry
+  let entry
 
   // Update log type according to which item was checked
   if (taskRadio.checked) {
