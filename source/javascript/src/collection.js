@@ -42,6 +42,8 @@ function addCollection (collectionName) {
         const newCollectionObj = {
           type: 'array',
           name: collectionName,
+          logs: [
+          ],
           tasks: [
           ],
           images: [

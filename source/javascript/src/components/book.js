@@ -5,9 +5,6 @@ const template = document.createElement('template')
 const NUM_BOOKS = 12
 const BOOK_WIDTH = 350
 
-const colors = []
-colors.push()
-
 template.innerHTML = `
   <style>
     :host {

@@ -11,7 +11,7 @@
     />
     <link rel="stylesheet" href="../css/daily.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;1,700&display=swap" rel="stylesheet">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -24,9 +24,12 @@
           <div class="date">
             <h1 class="date"></h1>
           </div>
-          <div id="tag">
-            <!-- TODO: this will be a dropdown for all possible tags-->
-            <p>temp tag</p>
+          <div class="tag-container" style="display: inline-block;">
+            <div class="tags" style="display: inline-block;"></div>
+            <div class="addTags">
+              <button class="tagBtn">Add<i class="bi bi-tag" style="font-size: 24px; margin-left: 5px;"></i></button>
+              <div class="tag-options"></div>
+            </div>
           </div>
         </div>
         <div id="entry-area">
@@ -135,6 +138,7 @@
       </ul>
     </nav>
     <script src="../javascript/src/daily.js" type="module"></script>
+    <script src="../javascript/src/components/tag.js" type="module"></script>
     <script
       src="../javascript/src/components/LogItem.js"
       type="module"
