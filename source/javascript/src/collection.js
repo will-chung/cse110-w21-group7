@@ -35,9 +35,9 @@ function addCollection (collectionName) {
         const collections = json.properties.collections
 
         // Change button to say 'Add' once first collection has been added
-        if (collections.length == 0) {
-          addBtn.textContent = 'Add'
-        }
+        // if (collections.length == 0) {
+        //   addBtn.textContent = 'Add'
+        // }
 
         const newCollectionObj = {
           type: 'array',
@@ -111,9 +111,9 @@ function populateCollections (response) {
 
   const collections = response.properties.collections
 
-  if (collections.length == 0) {
-    addBtn.textContent = "Add First Collection"
-  }
+  // if (collections.length == 0) {
+  //   addBtn.textContent = "Add First Collection"
+  // }
 
   const container = document.querySelector('.collection-area')
   collections.forEach((collection, index) => {
