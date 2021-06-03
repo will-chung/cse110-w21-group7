@@ -1,5 +1,6 @@
-import '/node_modules/fuse.js/dist/fuse.js'
-import { IndexedDBWrapper } from '/source/javascript/src/indexedDB/IndexedDBWrapper.js'
+/* eslint no-undef: "off" */
+import '../../../node_modules/fuse.js/dist/fuse.js'
+import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 
 const searchResults = document.getElementById('search-results')
 
@@ -47,21 +48,21 @@ function getLogInfoAsJSON (pattern, searchBy) {
            * 1. For each daily log:
            *    a. Search by tasks, notes, events, reflection
            *    b. If any results are found:
-           *        i. Add a new SearchItem w/ daily log timestamp, relevant tasks,notes,events,reflection 
+           *        i. Add a new SearchItem w/ daily log timestamp, relevant tasks,notes,events,reflection
            */
           let taskResults,
-              noteResults,
-              eventResults,
-              reflectionResults
+            noteResults,
+            eventResults,
+            reflectionResults
           options.keys = ['description']
           cursor.value.$defs['daily-logs'].forEach((log, index) => {
             taskResults = searchByEntry(pattern, log.properties.tasks, options)
             noteResults = searchByEntry(pattern, log.properties.notes, options)
             eventResults = searchByEntry(pattern, log.properties.events, options)
             reflectionResults = searchByEntry(pattern, log.properties.reflection, options)
-            if(taskResults.length  > 0 || noteResults.length  > 0 || eventResults.length  > 0 || reflectionResults.length  > 0) {
-              let searchItem = document.createElement('search-item')
-              let li = document.createElement('li')
+            if (taskResults.length > 0 || noteResults.length > 0 || eventResults.length > 0 || reflectionResults.length > 0) {
+              const searchItem = document.createElement('search-item')
+              const li = document.createElement('li')
               searchItem.entry = {
                 time: Number(log.properties.date.time),
                 tasks: taskResults,
@@ -79,9 +80,9 @@ function getLogInfoAsJSON (pattern, searchBy) {
           let taskResults
           cursor.value.properties.collections.forEach((collection, index) => {
             taskResults = searchByEntry(pattern, collection.tasks, options)
-            if(taskResults.length > 0) {
-              let searchItem = document.createElement('search-item')
-              let li = document.createElement('li')
+            if (taskResults.length > 0) {
+              const searchItem = document.createElement('search-item')
+              const li = document.createElement('li')
               searchItem.entry = {
                 name: collection.name,
                 tasks: taskResults,
@@ -110,10 +111,9 @@ function getLogInfoAsJSON (pattern, searchBy) {
  * @returns {Object[]} Array of JSON objects containing
  * all of the relevant search results from the list target
  */
-function searchByEntry(pattern, target, options) {
+function searchByEntry (pattern, target, options) {
   return new Fuse(target, options).search(pattern)
 }
-
 
 const searchButton = document.getElementById('search')
 const inputField = document.getElementById('input-area')

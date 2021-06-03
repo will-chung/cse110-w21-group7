@@ -1,5 +1,5 @@
-import { DateConverter } from '/source/javascript/src/utils/DateConverter.js'
-import { Router, ROUTES } from '/source/javascript/src/utils/Router.js'
+import { DateConverter } from '../utils/DateConverter.js'
+import { Router, ROUTES } from '../utils/Router.js'
 
 /**
  * Component class used to list daily-logs on
@@ -36,7 +36,7 @@ class SearchItem extends HTMLElement {
                                           <ul id="log-entries">
                                           </ul>
                                       </span>`
-    let that = this
+    const that = this
     // If we are displaying results for daily logs
     if (this._entry.type === 'daily-log') {
       // this.populateLogEntries()
@@ -67,7 +67,7 @@ class SearchItem extends HTMLElement {
    * events, and reflection data in the contained daily log as
    * list items.
    */
-  populateLogEntries() {
+  populateLogEntries () {
     this.addAsListItems(this._entry.tasks)
     this.addAsListItems(this._entry.notes)
     this.addAsListItems(this._entry.events)
@@ -78,7 +78,7 @@ class SearchItem extends HTMLElement {
    * Subroutine used in order to show the relevant tasks
    * in the contained collection as list items.
    */
-  populateCollectionTasks() {
+  populateCollectionTasks () {
     this.addAsListItems(this._entry.tasks)
   }
 
@@ -88,11 +88,11 @@ class SearchItem extends HTMLElement {
    * @param {Object[]} list Array of JSON objects with which to create
    * list entries
    */
-  addAsListItems(list) {
-    let that = this
+  addAsListItems (list) {
+    const that = this
     list.forEach((item) => {
-      let li = document.createElement('li')
-      li.textContent = item['item'].description
+      const li = document.createElement('li')
+      li.textContent = item.item.description
       that.shadowRoot.getElementById('log-entries').appendChild(li)
     })
   }
@@ -101,13 +101,11 @@ class SearchItem extends HTMLElement {
    * Subroutine used in order to show the date of the
    * entry being shown
    */
-  getDate() {
-    let timestamp = this._entry.time
+  getDate () {
+    const timestamp = this._entry.time
     const date = new DateConverter(timestamp)
     return date.toLocaleDateString()
   }
-
-
 
   /**
        * Setter for private field entry, containing
