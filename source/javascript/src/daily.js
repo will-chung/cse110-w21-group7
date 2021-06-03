@@ -19,16 +19,10 @@ const radioContainer = document.getElementsByClassName('container')[0]
 const realSavBtn = document.getElementById('save')
 const tagOptions = document.querySelector('.tag-options')
 
-// cancelBtn.addEventListener('click', () => {
-//   // TODO: implement hide functionality
-//   hideEverything()
-// })
-// saveBtn.addEventListener('click', () => {
-//   realSavBtn.click()
-// })
-// cancelBtn.addEventListener('click', () => {
-//   realCanBtn.click()
-// })
+cancelBtn.addEventListener('click', () => {
+  // TODO: implement hide functionality
+  text.value = ''
+})
 
 /*
  * This onclick toggles the display style of the quote to none
@@ -49,60 +43,33 @@ const tagOptions = document.querySelector('.tag-options')
 // })
 
 radioContainer.addEventListener('change', () => {
+  resetEverything()
   if (refRadio.checked) {
-    text.type = 'text'
-    date.type = 'hidden'
-    time.type = 'hidden'
+    text.style.visibility = 'visible'
     saveBtn.style.visibility = 'visible'
     cancelBtn.style.visibility = 'visible'
   } else if (eventRadio.checked) {
-    // reset input field start
-    saveBtn.style.visibility = 'hidden'
-    cancelBtn.style.visibility = 'hidden'
-    text.type = 'hidden'
-    text.value = ''
-    date.value = ''
-    time.value = ''
-    // reset input field done
-    date.type = 'date'
+    date.style.visibility = 'visible'
     date.addEventListener('change', () => {
-      time.type = 'time'
+      time.style.visibility = 'visible'
     })
     time.addEventListener('change', () => {
-      text.type = 'text'
+      console.log('change event happened')
+      text.style.visibility = 'visible'
       saveBtn.style.visibility = 'visible'
       cancelBtn.style.visibility = 'visible'
     })
   } else if (taskRadio.checked) {
-    // reset input field start
-    date.value = ''
-    text.value = ''
-    saveBtn.style.visibility = 'hidden'
-    cancelBtn.style.visibility = 'hidden'
-    text.type = 'hidden'
-    time.type = 'hidden'
-    // reset input field done
-    date.type = 'date'
+    date.style.visibility = 'visible'
     date.addEventListener('change', () => {
-      text.type = 'text'
-      time.type = 'hidden'
+      text.style.visibility = 'visible'
       saveBtn.style.visibility = 'visible'
       cancelBtn.style.visibility = 'visible'
     })
   } else if (noteRadio.checked) {
-    date.type = 'hidden'
-    text.value = ''
-    saveBtn.style.visibility = 'hidden'
-    cancelBtn.style.visibility = 'hidden'
-    text.type = 'hidden'
-    time.type = 'hidden'
-    text.type = 'text'
+    text.style.visibility = 'visible'
     saveBtn.style.visibility = 'visible'
     cancelBtn.style.visibility = 'visible'
-  } else {
-    text.type = 'hidden'
-    date.type = 'hidden'
-    time.type = 'hidden'
   }
 })
 
@@ -200,20 +167,22 @@ function newElement () {
     itemEntry.logType = 'reflection'
   }
   itemEntry.description = inputValue
-
   logItem.itemEntry = itemEntry
   li.appendChild(logItem)
+  logItem.setHoverListeners()
   document.getElementById('myUL').appendChild(li)
   document.getElementById('input-area').value = ''
 }
 
-function hideEverything () {
-  date.type = 'hidden'
+function resetEverything () {
+  date.style.visibility = 'hidden'
+  date.value = ''
   text.value = ''
-  // saveBtn.style.display = 'none'
-  // cancelBtn.style.display = 'none'
-  text.type = 'hidden'
-  time.type = 'hidden'
+  text.style.visibility = 'hidden'
+  saveBtn.style.visibility = 'hidden'
+  cancelBtn.style.visibility = 'hidden'
+  time.value = ''
+  time.style.visibility = 'hidden'
 }
 
 /**
@@ -403,6 +372,10 @@ function getDateFromUNIXTimestamp (timestamp) {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
+  saveBtn.addEventListener('click', (event) => {
+    event.preventDefault()
+    newElement()
+  })
   getLogInfoAsJSON(populateDailyLog)
 })
 

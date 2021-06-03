@@ -21,15 +21,15 @@
 
 .main-menu:hover,
 nav.main-menu.expanded {
-  width: 230px;
+  width: 240px;
   overflow: hidden;
 }
 
 .main-menu {
-  /* background:#3D5A80; */
+  background:#3D5A80;
   /* background:rgb(228,228,228); */
   border-right: 5px solid #e0fbfc; /*#98c1d9;*/
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   height: 100%;
@@ -455,6 +455,7 @@ input {
   flex: 2;
   outline: none;
   color:#e0fbfc;
+  visibility: hidden;
 }
 
 ::-webkit-calendar-picker-indicator {
@@ -466,6 +467,7 @@ input {
   flex: 2;
   outline: none;
   color:#e0fbfc;
+  visibility: hidden;
 }
 input {
   background: transparent;
@@ -498,6 +500,7 @@ input:focus {
   flex-direction: row-reverse;
   flex-wrap: wrap;
   align-items: flex-start;
+  visibility: hidden;
 }
 
 textarea:focus, input:focus {
@@ -552,8 +555,9 @@ input, select, textarea{
 }
 .containerOuter {
   margin-left: 10px;
-  background: rgb(224,251,252);
-background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 100%);
+  background: whitesmoke;
+  /* background: rgb(224,251,252);
+background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 100%); */
   border-radius: 20px;
   height:270px;
   box-shadow: 4px 12px 40px 4px rgba(10,10,120,0.15);
@@ -710,6 +714,7 @@ background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 
   height: 10px;
   right: 20px;
   color:#e0fbfc;
+  visibility: hidden;
 }
 
 #cb2 {
@@ -718,6 +723,7 @@ background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 
   height: 10px;
   right: 150px;
   color:#e0fbfc;
+  visibility: hidden;
 }
 
 .customBtn {
