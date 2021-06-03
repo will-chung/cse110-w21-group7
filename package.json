@@ -75,6 +75,7 @@
   },
   "dependencies": {
     "fullcalendar": "^5.7.0",
+    "fuse.js": "^6.4.6",
     "googleapis": "^39.2.0"
   }
 }

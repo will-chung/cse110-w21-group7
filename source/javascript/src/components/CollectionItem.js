@@ -31,6 +31,10 @@ class CollectionItem extends HTMLElement {
                                           height:50%;
                                           margin:auto;
                                       }
+                                      img {
+                                        background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 100%);
+                                        border-radius: 20px;
+                                      }
                                       .icon-trash {
                                         visibility: hidden;
                                         background-size: contain;
@@ -47,16 +51,17 @@ class CollectionItem extends HTMLElement {
                                       }
                                       .folder {
                                         margin-right: 1vw;
-                                        border-bottom-style:solid;
-                                        border-width:7px;
-                                        border-radius: 10px;
+                                        margin-top:1vh;
+                                        margin-bottom: 1vh;
+                                        border-width:2px;
+                                        border-radius: 20px;
                                         display:flex;
                                         flex-direction: column;
                                         align-items: flex-start;
                                         /*TODO: change the width*/
                                         justify-content: center;
                                         width:400px;
-                                        margin: 10px;
+                                        color: #e0fbfc;
                                       }
                                       .icon-collection {
                                         transition: transform 0.25s;
@@ -66,8 +71,10 @@ class CollectionItem extends HTMLElement {
                                         transform: scale(1.1);
                                       }
                                       h1 {
-                                        font-family: 'Pattaya', sans-serif;
+                                        font-family: 'Montserrat', sans-serif;
+                                        color: white;
                                         margin:auto;
+                                        margin-top: 20px;
                                       }
                                       h1:hover {
                                         cursor: pointer;
@@ -124,6 +131,7 @@ class CollectionItem extends HTMLElement {
               }
             })
             collectionsArray.splice(index, 1)
+
             // Save changes
             const requestUpdate = cursor.update(json)
           }
@@ -216,13 +224,15 @@ class CollectionItem extends HTMLElement {
    */
   setHoverListeners () {
     const trashIcon = this.shadowRoot.querySelector('.icon-trash')
-
+    const border = this.shadowRoot.querySelector('div')
     // toggles visiblity of trash icon when mouse hovers
     this.addEventListener('mouseenter', () => {
+      border.style.borderBottomStyle = 'solid'
       trashIcon.style.visibility = 'visible'
     })
 
     this.addEventListener('mouseleave', () => {
+      border.style.borderBottomStyle = 'none'
       trashIcon.style.visibility = 'hidden'
     })
   }
