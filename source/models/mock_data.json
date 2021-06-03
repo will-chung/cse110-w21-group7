@@ -8,6 +8,8 @@
     "collections": [{
       "type": "array",
       "name": "Collection one",
+      "logs": [
+      ],
       "tasks": [
         {
           "description": "Finished task for collection one",
