@@ -15,6 +15,8 @@ const taskRadio = document.getElementById('input3')
 const noteRadio = document.getElementById('input4')
 const radioContainer = document.getElementsByClassName('container')[0]
 const realSavBtn = document.getElementById('save')
+const tmButton = document.getElementById('tomorrow')
+const ytButton = document.getElementById('yesterday')
 
 // cancelBtn.addEventListener('click', () => {
 //   // TODO: implement hide functionality
@@ -179,6 +181,7 @@ function hideEverything () {
  * If there is no daily log information for the given date,
  * a new daily log is created if the date is the present day.
  * @author Noah Teshima <nteshima@ucsd.edu>
+ * @author Brett Herbst <bherbst@ucsd.edu>
  * @throws Error object if date reference is null, undefined. Otherwise,
  * an error is thrown if
  * to retrieve log info for given day. the given date is not the present day and failed
@@ -191,7 +194,7 @@ function getLogInfoAsJSON (cb) {
   wrapper.transaction((event) => {
     const db = event.target.result
 
-    const store = db.transaction(['currentLogStore'], 'readonly')
+    const store = db.transaction(['currentLogStore'], 'readwrite')
       .objectStore('currentLogStore')
     store.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
@@ -209,6 +212,7 @@ function getLogInfoAsJSON (cb) {
           lenArr = index
         })
         if (!match) {
+          const dlLength = cursor.value.$defs['daily-logs']
           const appendObj = {
             type: 'object',
             required: ['date', 'description'],
@@ -235,6 +239,7 @@ function getLogInfoAsJSON (cb) {
           cursor.value.$defs['daily-logs'].push(appendObj)
           cb.bind(this)
           cb(cursor.value.$defs['daily-logs'][lenArr + 1])
+          cursor.update(cursor.value)
         }
       }
     }
@@ -332,6 +337,66 @@ document.addEventListener('DOMContentLoaded', (event) => {
 const zoom = document.getElementById('pretty')
 const custZoom = document.getElementById('button1')
 
-custZoom.addEventListener('click', function () {
-  zoom.click()
+// custZoom.addEventListener('click', function () {
+//   zoom.click()
+// })
+
+/**
+ * Business logic for tommorow Button
+ * @author Brett Herbst <bherbst@ucsd.edu>
+ * Modeled after index.js Rapid Log button
+ */
+tmButton.addEventListener('click', () => {
+  const wrapper = new IndexedDBWrapper('experimentalDB', 1)
+  wrapper.transaction((event) => {
+    const db = event.target.result
+
+    const transaction = db.transaction(['currentLogStore'], 'readwrite')
+
+    const store = transaction.objectStore('currentLogStore')
+
+    const req = store.openCursor()
+    // Fires when cursor is successfully opened.
+    req.onsuccess = function (e) {
+      const cursor = e.target.result
+      if (cursor) {
+        cursor.value.current_log = (parseInt(cursor.value.current_log) + 86400000).toString()
+        cursor.update(cursor.value)
+      }
+      // Unsuspend navigation
+      getLogInfoAsJSON(populateDailyLog)
+      // window.location.href = 'daily.html'
+    }
+  })
+})
+
+/**
+ * Business logic for yesterday Button
+ * @author Brett Herbst <bherbst@ucsd.edu>
+ * Modeled after index.js Rapid Log button
+ */
+ytButton.addEventListener('click', () => {
+  const wrapper = new IndexedDBWrapper('experimentalDB', 1)
+  wrapper.transaction((event) => {
+    const db = event.target.result
+
+    const transaction = db.transaction(['currentLogStore'], 'readwrite')
+    // Event triggered when transaction is successfully opened
+
+    const store = transaction.objectStore('currentLogStore')
+
+    const req = store.openCursor()
+    // Fires when cursor is successfully opened.
+    req.onsuccess = function (e) {
+      const cursor = e.target.result
+      if (cursor) {
+        cursor.value.current_log = (parseInt(cursor.value.current_log) - 86400000).toString()
+        cursor.update(cursor.value)
+      }
+      // Unsuspend navigation
+      // getLogInfoAsJSON(populateDailyLog)
+      getLogInfoAsJSON(populateDailyLog)
+      // window.location.href = 'daily.html'
+    }
+  })
 })
