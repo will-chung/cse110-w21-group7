@@ -72,10 +72,10 @@ class Shelf extends HTMLElement {
           const dailyLogs = cursor.value.$defs['daily-logs']
 
           that._books.forEach((book, monthIndex) => {
-            if (!that.hasEntryForYearMonth(dailyLogs, monthIndex)) {
-              book.color = 'grey'
-            } else {
+            if (that.hasEntryForYearMonth(dailyLogs, monthIndex)) {
+              book.color = '#ee6c4d'
               book.makeClickable()
+              console.log('not found')
             }
           })
         }
