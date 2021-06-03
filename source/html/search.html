@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Search</title>
     <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="stylesheet" href="../css/search.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap"
       rel="stylesheet"
@@ -16,26 +21,65 @@
   <body>
     <div class="header">
       <div id="title">
-        <h1>Search</h1>
+        <h1 id="bujo-header">Search</h1>
       </div>
     </div>
+    <nav class="main-menu">
+      <ul>
+        <li>
+          <a href="./index.html" >
+            <i class="fa fa-home fa-2x"></i>
+            <span class="nav-text"> Index </span>
+          </a>
+        </li>
+        <li class="has-subnav">
+          <a href="./search.html" id="current">
+            <i class="fa fa-search fa-2x"></i>
+            <span class="nav-text"> Search </span>
+          </a>
+        </li>
+        <li class="has-subnav">
+          <a href="./daily.html">
+            <i class="fa fa-pencil fa-2x"></i>
+            <span class="nav-text"> Daily Log </span>
+          </a>
+        </li>
+        <li class="has-subnav">
+          <a href="./collection.html">
+            <i class="fa fa-folder-open fa-2x"></i>
+            <span class="nav-text"> Collection </span>
+          </a>
+        </li>
+        <li class="has-subnav">
+          <a href="./weekly.html">
+            <i class="fa fa-calendar fa-2x"></i>
+            <span class="nav-text"> Weekly </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
 
     <form id="textbox">
+      <div class="containerOuter">
         <div class="container">
-            <label class="entry"><div class="entry-prompt">Search by:</div></label>
-            <label class="entry" for="input1"><div class="circle"></div><div class="entry-label">Daily logs</div></label>
-            <input type="radio" class="hidden" id="input1" name="inputs" checked>
-            <label class="entry" for="input2"><div class="circle"></div><div class="entry-label">Collections</div></label>
-            <input type="radio" class="hidden" id="input2" name="inputs">
+          <label class="entry"><div class="entry-prompt">Where is it?</div></label>
+          <input type="radio" class="hidden" id="input1" name="inputs">
+          <label class="entry" for="input1"><div class="circle"></div><div class="entry-label">Daily Logs</div></label>
+          <input type="radio" class="hidden" id="input2" name="inputs">
+          <label class="entry" for="input2"><div class="circle"></div><div class="entry-label">Collection</div></label>
+          <input type="radio" class="hidden" id="input3" name="inputs">
+          <div class="highlight"></div>
+          <!-- <div class="overlay"></div> -->
         </div>
+      </div>
         <div id='text-input'>
-            <input type="text" id="input-area" name="todo" placeholder="Input search here">
-            <input id="search" type="button" value="Search">
+          <input type="text" id="input-area" name="keyword" placeholder="Type here to search">
+          <button id="search">Search</button>
         </div>
         
     </form>
     <div>
-        <ul>
+        <ul id="search-result">
             <search-item></search-item>
             <search-item></search-item>
             <search-item></search-item>
