@@ -337,9 +337,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 const zoom = document.getElementById('pretty')
 const custZoom = document.getElementById('button1')
 
-// custZoom.addEventListener('click', function () {
-//   zoom.click()
-// })
+custZoom.addEventListener('click', function () {
+  zoom.click()
+})
 
 /**
  * Business logic for tommorow Button
@@ -360,12 +360,11 @@ tmButton.addEventListener('click', () => {
     req.onsuccess = function (e) {
       const cursor = e.target.result
       if (cursor) {
+        //Iterates current_log forward 1 day
         cursor.value.current_log = (parseInt(cursor.value.current_log) + 86400000).toString()
         cursor.update(cursor.value)
       }
-      // Unsuspend navigation
       getLogInfoAsJSON(populateDailyLog)
-      // window.location.href = 'daily.html'
     }
   })
 })
@@ -390,13 +389,11 @@ ytButton.addEventListener('click', () => {
     req.onsuccess = function (e) {
       const cursor = e.target.result
       if (cursor) {
+        //Iterates current_log back 1 day
         cursor.value.current_log = (parseInt(cursor.value.current_log) - 86400000).toString()
         cursor.update(cursor.value)
       }
-      // Unsuspend navigation
-      // getLogInfoAsJSON(populateDailyLog)
       getLogInfoAsJSON(populateDailyLog)
-      // window.location.href = 'daily.html'
     }
   })
 })
