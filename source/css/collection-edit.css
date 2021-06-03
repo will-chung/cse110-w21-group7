@@ -8,6 +8,17 @@ h3 {
   font-size: 30px;
   border-style: solid;
 }
+#myDiv > h3 {
+  width: 20%;
+}
+
+.addBtn > h3 {
+  text-align: center;
+  vertical-align: center;
+  font-size: 30px;
+  border-style: none;
+  padding-top: 20px;;
+}
 
 .fa-2x {
 font-size: 2em;
@@ -398,9 +409,8 @@ li > a, a:link {
   
   /* Style the "Add" button */
   .addBtn {
-    width: 10%;
-    padding-top: 15px;
     background: #98c1d9;
+    width:10%;
     border-style:solid;
     border-color:white;
     font-family: "Montserrat", sans-serif;
@@ -423,6 +433,7 @@ li > a, a:link {
   #myDIV {
       display:flex;
       flex-direction: row;
+      text-align: center;
   }
   
   #image-collection{
