@@ -89,6 +89,7 @@ function populateCollectionName () {
   name = name.slice(1)
   const title = document.querySelector('#title > h1')
   title.textContent = name
+  return name
 }
 
 /**
@@ -123,7 +124,7 @@ function populateMedia (collection, mediaType = MEDIA_TYPE.IMAGE, hasVideo) {
   target.forEach((media, index) => {
     const mediaItem = createMediaItem(media)
     const vid = mediaItem.shadowRoot.querySelector('video')
-    if (hasVideo && index === 0) {
+    if (hasVideo && index === (target.length - 1)) {
       // @TODO Currently this only works for video
       // we might need to also consider image
       console.log(index)
@@ -175,7 +176,7 @@ function getLogInfoAsJSON (cb) {
  * @param {Function} cb Callback function which takes collection data as JSON
  * and returns the modified collection to write to indexedDb
  */
-function updateLogInfo (cb) {
+function updateLogInfo (collectionName, cb) {
   const wrapper = new IndexedDBWrapper('experimentalDB', 1)
 
   wrapper.transaction((event) => {
@@ -186,9 +187,9 @@ function updateLogInfo (cb) {
     store.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
       if (cursor) {
-        const collectionName = cursor.value.current_collection
+        const name = collectionName
         let collection = cursor.value.properties.collections.find((element) => {
-          return element.name === collectionName
+          return element.name === name
         })
         collection = cb(collection)
         cursor.update(cursor.value)
@@ -207,12 +208,12 @@ function updateLogInfo (cb) {
  * @param {Number} media Enum value denoting whether an
  * image or video is being created.
  */
-function insertMedia (event, media = MEDIA_TYPE.IMAGE) {
+function insertMedia (collectionName, event, media = MEDIA_TYPE.IMAGE) {
   const selectedFile = event.target.files[0]
   const mediaItem = document.createElement('media-item')
   mediaItem.file = selectedFile
   mediaItem.media = media
-  updateLogInfo((collection) => {
+  updateLogInfo(collectionName, (collection) => {
     const target = (media === MEDIA_TYPE.IMAGE) ? collection.images : collection.videos
     target.push({
       type: 'string',
@@ -251,17 +252,17 @@ function populatePage (response) {
 document.addEventListener('DOMContentLoaded', (event) => {
   console.log('dom content loaded')
   console.time()
-  populateCollectionName()
+  const collectionName = populateCollectionName()
   getLogInfoAsJSON(populatePage)
   console.timeEnd()
 
   imageButton.addEventListener('input', (event) => {
     insertMedia.bind(event)
-    insertMedia(event, MEDIA_TYPE.IMAGE)
+    insertMedia(collectionName, event, MEDIA_TYPE.IMAGE)
   })
   videoButton.addEventListener('input', (event) => {
     insertMedia.bind(event)
-    insertMedia(event, MEDIA_TYPE.VIDEO)
+    insertMedia(collectionName, event, MEDIA_TYPE.VIDEO)
   })
   // const vid = document.querySelector('media-item')
   // console.log(vid)
