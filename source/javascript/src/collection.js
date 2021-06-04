@@ -1,12 +1,8 @@
 import { CollectionItem, wrapper } from './components/CollectionItem.js'
 
-const addBtn = document.getElementById('add')
-const customAdd = document.getElementById('custom-add')
-customAdd.addEventListener('click', () => {
-  addBtn.click()
-})
+const customAdd = document.getElementById('cb')
 
-addBtn.addEventListener('click', () => {
+customAdd.addEventListener('click', () => {
   // location.pathname = '/source/html/collection-edit.html'
   const collectionName = window.prompt('Please enter the name of your new collection:')
   addCollection(collectionName)
