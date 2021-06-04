@@ -88,6 +88,7 @@ class LogItem extends HTMLElement {
       this.shadowRoot.querySelector('i').addEventListener('click', (event) => {
         this._itemEntry.finished = !this._itemEntry.finished
         this.render()
+        this.setHoverListeners()
       })
     }
     /*
