@@ -10,6 +10,39 @@ const addBtn = document.querySelector('.addBtn')
 const imageButton = document.getElementById('add-image-btn')
 const videoButton = document.getElementById('add-video-btn')
 
+const addTaskBtn = document.getElementById('addTaskBtn')
+
+
+addTaskBtn.addEventListener('click', () => {
+  const task = document.getElementById('myInput').value
+  addTask(task)
+})
+
+/**
+ * Add new task to collection in database.
+ */
+ function addTask (task) {
+  if (task === null) {
+    return
+  }
+  const wrapper = new IndexedDBWrapper('experimentalDB', 1)
+  wrapper.transaction((event) => {
+    const db = event.target.result
+
+    const transaction = db.transaction(['currentLogStore'], 'readwrite')
+    const objectStore = transaction.objectStore('currentLogStore')
+    objectStore.openCursor().onsuccess = function (event) {
+      const cursor = event.target.result
+      if (cursor) {
+        const json = cursor.value
+        const tasks = json.properties.collections[0].tasks
+        tasks.push(task)
+        cursor.update(json)
+      }
+    }
+  })
+}
+
 /*
  * This onclick toggles the display style of the media gallery
  * TODO: When onclick, the size of the media gallery should be changed

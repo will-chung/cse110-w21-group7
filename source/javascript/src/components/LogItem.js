@@ -129,8 +129,6 @@ class LogItem extends HTMLElement {
                     let collection = cursor.value.properties.collections.find((element) => {
                       return element.name === collectionName
                     })
-                    // find the task with the same name as the log item
-                    // delete the task when found 
                     currTask = collection.tasks.find((task) => {
                       return task.description === that._itemEntry.description
                     })
