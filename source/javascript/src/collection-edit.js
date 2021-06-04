@@ -77,13 +77,13 @@ function newElement () {
   }
   const li = document.createElement('li')
   const logItem = document.createElement('log-item')
+  logItem.finished = false
   const itemEntry = {}
   itemEntry.logType = 'task'
-  logItem.finished = false
   itemEntry.description = inputValue
-
   li.appendChild(logItem)
   logItem.itemEntry = itemEntry
+  logItem.setHoverListeners()
   document.getElementById('myUL').appendChild(li)
   document.getElementById('myInput').value = ''
 }
@@ -124,6 +124,7 @@ function populateCollectionName () {
   name = name.slice(1)
   const title = document.querySelector('#title > h1')
   title.textContent = name
+  return name
 }
 
 /**
@@ -132,7 +133,7 @@ function populateCollectionName () {
  * @param {Object} collection JSON object containing the
  * collection images and videos to display
  */
-function populateMedia (collection, mediaType = MEDIA_TYPE.IMAGE) {
+function populateMedia (collection, mediaType = MEDIA_TYPE.IMAGE, hasVideo) {
   function createMediaItem (media) {
     const mediaItem = document.createElement('media-item')
     mediaItem.file = media.file
@@ -142,17 +143,30 @@ function populateMedia (collection, mediaType = MEDIA_TYPE.IMAGE) {
   let target
   let mediaCollection
   let inputField
+  let type
   if (mediaType === MEDIA_TYPE.IMAGE) {
     target = collection.images
     inputField = document.getElementById('add-image-btn')
     mediaCollection = document.getElementById('image-collection')
   } else {
+    // this is for populating videos
+    type = 'video'
     target = collection.videos
     inputField = document.getElementById('add-video-btn')
     mediaCollection = document.getElementById('video-collection')
   }
+  // console.log(target.length)
   target.forEach((media, index) => {
     const mediaItem = createMediaItem(media)
+    const vid = mediaItem.shadowRoot.querySelector('video')
+    if (hasVideo && index === (target.length - 1)) {
+      // @TODO Currently this only works for video
+      // we might need to also consider image
+      console.log(index)
+      vid.addEventListener('canplaythrough', () => {
+        document.getElementById('loading').style.display = 'none'
+      })
+    }
     mediaCollection.insertBefore(mediaItem, inputField)
   })
 }
@@ -197,7 +211,7 @@ function getLogInfoAsJSON (cb) {
  * @param {Function} cb Callback function which takes collection data as JSON
  * and returns the modified collection to write to indexedDb
  */
-function updateLogInfo (cb) {
+function updateLogInfo (collectionName, cb) {
   const wrapper = new IndexedDBWrapper('experimentalDB', 1)
 
   wrapper.transaction((event) => {
@@ -208,9 +222,9 @@ function updateLogInfo (cb) {
     store.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
       if (cursor) {
-        const collectionName = cursor.value.current_collection
+        const name = collectionName
         let collection = cursor.value.properties.collections.find((element) => {
-          return element.name === collectionName
+          return element.name === name
         })
         collection = cb(collection)
         cursor.update(cursor.value)
@@ -229,12 +243,12 @@ function updateLogInfo (cb) {
  * @param {Number} media Enum value denoting whether an
  * image or video is being created.
  */
-function insertMedia (event, media = MEDIA_TYPE.IMAGE) {
+function insertMedia (collectionName, event, media = MEDIA_TYPE.IMAGE) {
   const selectedFile = event.target.files[0]
   const mediaItem = document.createElement('media-item')
   mediaItem.file = selectedFile
   mediaItem.media = media
-  updateLogInfo((collection) => {
+  updateLogInfo(collectionName, (collection) => {
     const target = (media === MEDIA_TYPE.IMAGE) ? collection.images : collection.videos
     target.push({
       type: 'string',
@@ -245,10 +259,11 @@ function insertMedia (event, media = MEDIA_TYPE.IMAGE) {
   })
   if (media === MEDIA_TYPE.IMAGE) {
     const input = document.getElementById('add-image-btn')
-    console.log(input)
     imageBox.insertBefore(mediaItem, input)
   } else {
+    const input = document.getElementById('add-video-btn')
     document.getElementById('video-collection').appendChild(mediaItem)
+    videoBox.insertBefore(mediaItem, input)
   }
 }
 
@@ -259,20 +274,38 @@ function insertMedia (event, media = MEDIA_TYPE.IMAGE) {
  * collection data for the collection to view
  */
 function populatePage (response) {
+  console.log(response.videos)
   populateTasks(response)
-  populateMedia(response, MEDIA_TYPE.IMAGE)
-  populateMedia(response, MEDIA_TYPE.VIDEO)
+  populateMedia(response, MEDIA_TYPE.IMAGE, false)
+  if (response.videos.length !== 0) {
+    populateMedia(response, MEDIA_TYPE.VIDEO, true)
+  } else {
+    document.getElementById('loading').style.display = 'none'
+  }
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-  populateCollectionName()
+  console.log('dom content loaded')
+  console.time()
+  const collectionName = populateCollectionName()
   getLogInfoAsJSON(populatePage)
+  console.timeEnd()
+
   imageButton.addEventListener('input', (event) => {
     insertMedia.bind(event)
-    insertMedia(event, MEDIA_TYPE.IMAGE)
+    insertMedia(collectionName, event, MEDIA_TYPE.IMAGE)
   })
   videoButton.addEventListener('input', (event) => {
     insertMedia.bind(event)
-    insertMedia(event, MEDIA_TYPE.VIDEO)
+    insertMedia(collectionName, event, MEDIA_TYPE.VIDEO)
   })
+  // const vid = document.querySelector('media-item')
+  // console.log(vid)
+  // vid.addEventListener('loadeddata', function() {
+
+  // if(vid.readyState <= 3) {
+  //   console.log("loading")
+  //   document.getElementById("loading").style.visibility = "visible"
+  //   document.getElementById("collapse").style.visibility = "hidden"
+  // }
 })

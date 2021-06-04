@@ -90,13 +90,27 @@ class LogItem extends HTMLElement {
 
     const editable = this._itemEntry.editable
     /*
-     * FIXME: I don't think this block of code works
-     * I added code in WeeklyViewItem.js to hide the trashcan buttons
+     * If the entry is a task
+     * no matter if it's in weekly view or daily
+     * it will have the toggling enabled for now
+     * user can switch it from not finished to finished
+     */
+    if (this._itemEntry.logType === 'task') {
+      this.shadowRoot.querySelector('i').addEventListener('click', (event) => {
+        this._itemEntry.finished = !this._itemEntry.finished
+        this.render()
+      })
+    }
+    /*
+     * This block of code deals with the logic of editable
+     * By editable we actually mean deletable
+     * if editable = false, then the trash button will not show
+     * Nevertheless, the user is still able to toggle the finished status
      */
     if (!editable) {
       // console.log('toggling display...')
       // console.log(this.shadowRoot.querySelector('button'));
-      this.shadowRoot.querySelector('button').style.visibility = 'hidden'
+      this.shadowRoot.querySelector('button').style.display = 'none'
       // console.log("not editable")
     } else {
       // console.log("editable")

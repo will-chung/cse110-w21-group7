@@ -19,15 +19,15 @@
 
 .main-menu:hover,
 nav.main-menu.expanded {
-  width: 230px;
+  width: 240px;
   overflow: hidden;
 }
 
 .main-menu {
-  /* background:#3D5A80; */
+  background:#3D5A80;
   /* background:rgb(228,228,228); */
   border-right: 5px solid #e0fbfc; /*#98c1d9;*/
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   height: 100%;
@@ -147,7 +147,7 @@ body {
   border-width: 5px;
   width: 25vw;
   margin: auto;
-  box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   border-radius: 20px;
   color: #293241;
   margin-bottom: 8vh;
@@ -217,11 +217,25 @@ a:link {
   position: fixed;
   bottom: 40px;
   right: 40px;
+}
+#custom-add {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
   width: 40px;
+  font-size: 50px;
 }
 
-#add:hover{
-    cursor: pointer;
+#custom-collection {
+  color: rgb(233, 162, 162);
+}
+
+#custom-collection:hover {
+  color: lightcoral;
+}
+
+#add:hover {
+  cursor: pointer;
 }
 
 .folder {

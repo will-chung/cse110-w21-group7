@@ -34,7 +34,7 @@ class MediaItem extends HTMLElement {
                                         // align-self: stretch;
                                     }
                                     .media-wrapper > img {
-                                        border-style: solid;
+                                        
                                         border-color: #e0fbfc;
                                         border-width: 5px;
                                         border-radius: 20px;
@@ -44,6 +44,7 @@ class MediaItem extends HTMLElement {
                                         display:inline-block;
                                     }
                                     .media-wrapper > video {
+                                      
                                         border-color: #e0fbfc;
                                         border-width: 5px;
                                         border-radius: 20px;
@@ -206,6 +207,19 @@ class MediaItem extends HTMLElement {
     reader.onload = (event) => {
       media.src = event.target.result
     }
+    // media.onloadstart = function () {
+    //   //document.getElementById('loading').style.display = 'flex'
+    //   console.timeEnd()
+    //   console.log('Starting to load video')
+    //   console.time()
+    // }
+    // media.onloadeddata = function () {
+    //   console.log('Browser has loaded the current frame')
+    //   //document.getElementById('loading').style.display = 'none'
+    //   console.timeEnd()
+    //   console.log('loading next video...')
+    //   console.time()
+    // }
     reader.readAsDataURL(this._file)
     return media
   }

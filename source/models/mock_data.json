@@ -8,6 +8,8 @@
     "collections": [{
       "type": "array",
       "name": "Collection one",
+      "logs": [
+      ],
       "tasks": [
         {
           "description": "Finished task for collection one",
@@ -34,40 +36,19 @@
         "properties": {
           "date": {
             "type": "string",
-            "time": "1646093520000",
+            "time": "1646078400000",
             "description": "The date of the event."
           },
           "events": [
             {
-              "description": "Saturday's event",
+              "description": "February 28, 2022",
               "logType": "event",
               "time": "1621718384658"
             }
           ],
-          "tasks": [
-              {
-                "description": "Study for midterm",
-                "logType": "task",
-                "finished": true
-              },
-              {
-                "description": "Weeknight meal prep",
-                "logType": "task",
-                "finished": false
-              }
-          ],
-          "notes": [
-            {
-              "description": "I should send a card for Jordan's birthday.",
-              "logType": "note"
-          }
-        ],
-        "reflection": [
-          {
-            "description": "Today was a good day. I got a lot of work done.",
-            "logType": "reflection"
-          }
-        ],
+          "tasks": [],
+          "notes": [],
+        "reflection": [],
           "mood": {
             "type": "number",
             "multipleOf": 1,
@@ -84,40 +65,19 @@
         "properties": {
           "date": {
             "type": "string",
-            "time": "1646266320000",
+            "time": "1646251200000",
             "description": "The date of the event."
           },
           "events": [
             {
-              "description": "Saturday's event",
+              "description": "March 2, 2022",
               "logType": "event",
               "time": "1621718384658"
             }
           ],
-          "tasks": [
-              {
-                "description": "Study for midterm",
-                "logType": "task",
-                "finished": true
-              },
-              {
-                "description": "Weeknight meal prep",
-                "logType": "task",
-                "finished": false
-              }
-          ],
-          "notes": [
-            {
-              "description": "I should send a card for Jordan's birthday.",
-              "logType": "note"
-          }
-        ],
-        "reflection": [
-          {
-            "description": "Today was a good day. I got a lot of work done.",
-            "logType": "reflection"
-          }
-        ],
+          "tasks": [],
+          "notes": [],
+        "reflection": [],
           "mood": {
             "type": "number",
             "multipleOf": 1,
@@ -134,290 +94,19 @@
         "properties": {
           "date": {
             "type": "string",
-            "time": "1646611920000",
+            "time": "1646510400000",
             "description": "The date of the event."
           },
           "events": [
             {
-              "description": "Saturday's event",
+              "description": "March 5, 2022",
               "logType": "event",
               "time": "1621718384658"
             }
           ],
-          "tasks": [
-              {
-                "description": "Study for midterm",
-                "logType": "task",
-                "finished": true
-              },
-              {
-                "description": "Weeknight meal prep",
-                "logType": "task",
-                "finished": false
-              }
-          ],
-          "notes": [
-            {
-              "description": "I should send a card for Jordan's birthday.",
-              "logType": "note"
-          }
-        ],
-        "reflection": [
-          {
-            "description": "Today was a good day. I got a lot of work done.",
-            "logType": "reflection"
-          }
-        ],
-          "mood": {
-            "type": "number",
-            "multipleOf": 1,
-            "minimum": 0,
-            "exclusiveMaximum": 100,
-            "value": 20,
-            "description": "Daily mood on a range of 0-99."
-          }
-        }
-      },
-      {
-        "type": "object",
-        "required": [ "date", "description" ],
-        "properties": {
-          "date": {
-            "type": "string",
-            "time": "1647043920000",
-            "description": "The date of the event."
-          },
-          "events": [
-            {
-              "description": "Saturday's event",
-              "logType": "event",
-              "time": "1621718384658"
-            }
-          ],
-          "tasks": [
-              {
-                "description": "Study for midterm",
-                "logType": "task",
-                "finished": true
-              },
-              {
-                "description": "Weeknight meal prep",
-                "logType": "task",
-                "finished": false
-              }
-          ],
-          "notes": [
-            {
-              "description": "I should send a card for Jordan's birthday.",
-              "logType": "note"
-          }
-        ],
-        "reflection": [
-          {
-            "description": "Today was a good day. I got a lot of work done.",
-            "logType": "reflection"
-          }
-        ],
-          "mood": {
-            "type": "number",
-            "multipleOf": 1,
-            "minimum": 0,
-            "exclusiveMaximum": 100,
-            "value": 20,
-            "description": "Daily mood on a range of 0-99."
-          }
-        }
-      },
-      {
-        "type": "object",
-        "required": [ "date", "description" ],
-        "properties": {
-          "date": {
-            "type": "string",
-            "time": "1648167120000",
-            "description": "The date of the event."
-          },
-          "events": [
-            {
-              "description": "Saturday's event",
-              "logType": "event",
-              "time": "1621718384658"
-            }
-          ],
-          "tasks": [
-              {
-                "description": "Study for midterm",
-                "logType": "task",
-                "finished": true
-              },
-              {
-                "description": "Weeknight meal prep",
-                "logType": "task",
-                "finished": false
-              }
-          ],
-          "notes": [
-            {
-              "description": "I should send a card for Jordan's birthday.",
-              "logType": "note"
-          }
-        ],
-        "reflection": [
-          {
-            "description": "Today was a good day. I got a lot of work done.",
-            "logType": "reflection"
-          }
-        ],
-          "mood": {
-            "type": "number",
-            "multipleOf": 1,
-            "minimum": 0,
-            "exclusiveMaximum": 100,
-            "value": 20,
-            "description": "Daily mood on a range of 0-99."
-          }
-        }
-      },
-      {
-        "type": "object",
-        "required": [ "date", "description" ],
-        "properties": {
-          "date": {
-            "type": "string",
-            "time": "1652573520000",
-            "description": "The date of the event."
-          },
-          "events": [
-            {
-              "description": "Saturday's event",
-              "logType": "event",
-              "time": "1621718384658"
-            }
-          ],
-          "tasks": [
-              {
-                "description": "Study for midterm",
-                "logType": "task",
-                "finished": true
-              },
-              {
-                "description": "Weeknight meal prep",
-                "logType": "task",
-                "finished": false
-              }
-          ],
-          "notes": [
-            {
-              "description": "I should send a card for Jordan's birthday.",
-              "logType": "note"
-          }
-        ],
-        "reflection": [
-          {
-            "description": "Today was a good day. I got a lot of work done.",
-            "logType": "reflection"
-          }
-        ],
-          "mood": {
-            "type": "number",
-            "multipleOf": 1,
-            "minimum": 0,
-            "exclusiveMaximum": 100,
-            "value": 20,
-            "description": "Daily mood on a range of 0-99."
-          }
-        }
-      },
-      {
-        "type": "object",
-        "required": [ "date", "description" ],
-        "properties": {
-          "date": {
-            "type": "string",
-            "time": "1652832720000",
-            "description": "The date of the event."
-          },
-          "events": [
-            {
-              "description": "Saturday's event",
-              "logType": "event",
-              "time": "1621718384658"
-            }
-          ],
-          "tasks": [
-              {
-                "description": "Study for midterm",
-                "logType": "task",
-                "finished": true
-              },
-              {
-                "description": "Weeknight meal prep",
-                "logType": "task",
-                "finished": false
-              }
-          ],
-          "notes": [
-            {
-              "description": "I should send a card for Jordan's birthday.",
-              "logType": "note"
-          }
-        ],
-        "reflection": [
-          {
-            "description": "Today was a good day. I got a lot of work done.",
-            "logType": "reflection"
-          }
-        ],
-          "mood": {
-            "type": "number",
-            "multipleOf": 1,
-            "minimum": 0,
-            "exclusiveMaximum": 100,
-            "value": 20,
-            "description": "Daily mood on a range of 0-99."
-          }
-        }
-      },
-      {
-        "type": "object",
-        "required": [ "date", "description" ],
-        "properties": {
-          "date": {
-            "type": "string",
-            "time": "1653091920000",
-            "description": "The date of the event."
-          },
-          "events": [
-            {
-              "description": "Saturday's event",
-              "logType": "event",
-              "time": "1621718384658"
-            }
-          ],
-          "tasks": [
-              {
-                "description": "Study for midterm",
-                "logType": "task",
-                "finished": true
-              },
-              {
-                "description": "Weeknight meal prep",
-                "logType": "task",
-                "finished": false
-              }
-          ],
-          "notes": [
-            {
-              "description": "I should send a card for Jordan's birthday.",
-              "logType": "note"
-          }
-        ],
-        "reflection": [
-          {
-            "description": "Today was a good day. I got a lot of work done.",
-            "logType": "reflection"
-          }
-        ],
+          "tasks": [],
+          "notes": [],
+        "reflection": [],
           "mood": {
             "type": "number",
             "multipleOf": 1,
