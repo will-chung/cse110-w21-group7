@@ -32,17 +32,17 @@ cancelBtn.addEventListener('click', () => {
  * Resource: https://codepen.io/Mdade89/pen/JKkYGq
  * the link above provides a collapsible text box
  */
-document.addEventListener('DOMContentLoaded', () => {
-  saveBtn.style.visibility = 'hidden'
-  saveBtn.addEventListener('click', (event) => {
-    event.preventDefault()
-    newElement()
-  })
-  cancelBtn.style.visibility = 'hidden'
-  text.type = 'hidden'
-  date.type = 'hidden'
-  time.type = 'hidden'
-})
+// document.addEventListener('DOMContentLoaded', () => {
+//   saveBtn.style.visibility = 'hidden'
+//   saveBtn.addEventListener('click', (event) => {
+//     event.preventDefault()
+//     newElement()
+//   })
+//   cancelBtn.style.visibility = 'hidden'
+//   text.type = 'hidden'
+//   date.type = 'hidden'
+//   time.type = 'hidden'
+// })
 
 radioContainer.addEventListener('change', () => {
   resetEverything()
@@ -147,7 +147,7 @@ function newElement () {
   const logItem = document.createElement('log-item')
   const itemEntry = {}
   // entry specifies what log entry is falls under (for data purposes)
-  const entry = ''
+  var entry = ''
 
   // Update log type according to which item was checked
   if (taskRadio.checked) {

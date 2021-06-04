@@ -69,15 +69,8 @@ nav.main-menu.expanded {
   height: 106px;
 }
 
-#current > .fa {
-  padding-top: 30px;
-}
 .underline:hover {
-  background: radial-gradient(
-    circle,
-    rgb(12, 206, 212) 100%,
-    rgba(224, 251, 252, 1) 0%
-  );
+  
   border-radius: 30px;
   border-color: black;
 }
@@ -301,14 +294,19 @@ a:link {
 }
 
 #myUL li {
-  cursor: pointer;
   position: relative;
-  padding: 12px 8px 12px 40px;
+  display: table;
+  padding: 12px 8px 12px 10px;
   list-style-type: none;
   background: #eee;
-  font-size: 18px;
+  font-family:'Montserrat', sans-serif;
+  font-size: 20px;
   transition: 0.2s;
-
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  margin-bottom: 5px;
+  box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   /* make the list items unselectable */
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -318,13 +316,25 @@ a:link {
 
 /* Set all odd list items to a different color (zebra-stripes) */
 #myUL li:nth-child(odd) {
-  background: #f9f9f9;
+  background: white;
+  border-bottom-style:solid;
+  border-bottom-width:2px;
+  border-bottom-color:#98c1d9
+}
+#myUL li:nth-child(even) {
+  background: white;
+  border-bottom-style:solid;
+  border-bottom-width:2px;
+  border-bottom-color:#98c1d9
 }
 
 /* Darker background-color on hover */
 #myUL li:hover {
-  background: #ddd;
+  background: #e0fbfc;
+  /* we might have to change the cursor */
+  cursor:default;
 }
+
 
 /* When clicked on, add a background color and strike out text */
 #myUL li.checked {
@@ -766,7 +776,7 @@ background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 
   position: absolute;
   bottom: 0;
 }
-                                                                                                                                                                                                                                    <<<<<< ivan
+
 #cb1:hover {
   color: #003a1e;
   background-color: #ccffd8;
