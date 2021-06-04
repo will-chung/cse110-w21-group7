@@ -37,7 +37,7 @@ font-size:20px;
 
 #myInput {
   font-size: 20px;
-  border: 5px solid lightcoral;
+  border: 5px solid white;
 }
 
 #main-menu:hover,
@@ -480,36 +480,24 @@ a:link {
     color: white;
 }
 
-  #video-collection{
-    border: 8px solid #3d5A80;
-    margin-top:20px;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    flex-basis: 38vw;
-    align-items: center;
-    box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-  }
-
-h2 {
-  font-family: Pattaya, sans-serif;
-  font-size: 50px;
-  margin: 0;
-}
-
-#video-collection {
-  border: 8px solid #e0fbfc;
-  margin-top: 20px;
-  background-color: white;
+#video-collection{
+  border: 8px solid #3d5A80;
+  margin-top:20px;
   border-radius: 30px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   flex-basis: 38vw;
   align-items: center;
-  width: 500px;
+  box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
+
+h2 {
+  font-family: 'Pattaya', sans-serif;
+  font-size: 50px;
+  margin-top: 30px;
+}
+
 
 #video-collection > video {
   border: 5px dashed black;
