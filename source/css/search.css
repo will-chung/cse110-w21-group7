@@ -17,6 +17,9 @@
   font-size: 20px;
 }
 
+#home > .fa {
+  padding-top:30px;
+}
 .main-menu:hover,
 nav.main-menu.expanded {
   width: 230px;
@@ -201,7 +204,7 @@ body{
     padding-bottom:20px;
     overflow: hidden;
     width: 240px;
-    height: 240px;
+    height: 170px;
     flex-direction: column;
     justify-content: center;
   }
@@ -305,127 +308,186 @@ form {
     color:#e0fbfc;
   }
   
-  #cb2 {
-    font-size: 15px;
-    width: 65px;
-    height: 10px;
-    right: 150px;
-    color:#e0fbfc;
-  }
-  
-  .customBtn {
-    position: relative;
-    display: inline-block;
-    margin-top:50px;
-    padding: 15px 30px;
-    color: #293241;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-decoration: none;
-    /* font-size: 24px; */
-    overflow: hidden;
-    transition: 0.2s;
-  }
-  
-  .customBtn:hover {
-    color: #293241;
-    background-color: #EE6C4D;
-    box-shadow: 0 0 10px #EE6C4D, 0 0 40px #EE6C4D, 0 0 80px #EE6C4D;
-    transition: 1s;
-    transition-delay: 0.4s;
-  }
-  
-  .customBtn span {
-    position: absolute;
-    display: block;
-  }
-  
-  .customBtn span:nth-child(1) {
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #EE6C4D);
-  }
-  
-  .customBtn:hover span:nth-child(1) {
-    top: 0;
-    left: 100%;
-    width: 100%;
-    height: 2px;
-    transition: 1s;
-    transition-delay: 0.25s;
-  }
-  
-  .customBtn span:nth-child(2) {
-    bottom: 0;
-    right: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(270deg, transparent, #EE6C4D);
-  }
-  
-  .customBtn:hover span:nth-child(2) {
-    right: 100%;
-    transition: 1s;
-    transition-delay: 0.25s;
-  }
-  
-  .customBtn span:nth-child(3) {
-    top: -100%;
-    right: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg, transparent, #EE6C4D);
-  }
-  
-  .customBtn:hover span:nth-child(3) {
-    top: 100%;
-    transition: 1s;
-    transition-delay: 0.25s;
-  }
-  
-  .customBtn span:nth-child(4) {
-    bottom: -100%;
-    left: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(360deg, transparent, #EE6C4D);
-  }
-  
-  .customBtn:hover span:nth-child(4) {
-    bottom: 100%;
-    transition: 1s;
-    transition-delay: 0.25s;
-  }
+#cb2 {
+  font-size: 15px;
+  width: 65px;
+  height: 10px;
+  right: 150px;
+  color:#e0fbfc;
+}
 
-  #text-input {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: no-wrap;
-    align-items: center;
-  }
+.customBtn {
+  position: relative;
+  display: inline-block;
+  margin-top:50px;
+  padding: 15px 30px;
+  color: #293241;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: none;
+  /* font-size: 24px; */
+  overflow: hidden;
+  transition: 0.2s;
+}
 
-  #input-area{
-      font-family: Montserrat, sans-serif;
-      font-size: 30px;
-      margin-right: 30px;
+.customBtn:hover {
+  color: #293241;
+  background-color: #EE6C4D;
+  box-shadow: 0 0 10px #EE6C4D, 0 0 40px #EE6C4D, 0 0 80px #EE6C4D;
+  transition: 1s;
+  transition-delay: 0.4s;
+}
 
-  }
+.customBtn span {
+  position: absolute;
+  display: block;
+}
 
-  #search {
-      font-size: 30px;
-  }
+.customBtn span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #EE6C4D);
+}
 
-  #search:hover {
-      cursor: pointer;
-  }
+.customBtn:hover span:nth-child(1) {
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 2px;
+  transition: 1s;
+  transition-delay: 0.25s;
+}
 
-  #search-result {
+.customBtn span:nth-child(2) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #EE6C4D);
+}
+
+.customBtn:hover span:nth-child(2) {
+  right: 100%;
+  transition: 1s;
+  transition-delay: 0.25s;
+}
+
+.customBtn span:nth-child(3) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #EE6C4D);
+}
+
+.customBtn:hover span:nth-child(3) {
+  top: 100%;
+  transition: 1s;
+  transition-delay: 0.25s;
+}
+
+.customBtn span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #EE6C4D);
+}
+
+.customBtn:hover span:nth-child(4) {
+  bottom: 100%;
+  transition: 1s;
+  transition-delay: 0.25s;
+}
+
+#text-input {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: no-wrap;
+  align-items: center;
+}
+
+#input-area{
+    font-family: Montserrat, sans-serif;
+    font-size: 30px;
+    margin-right: 30px;
+    box-shadow: 10px 10px 5px rgba(0,0,0,0.30), 0 10px 12px rgba(0,0,0,0.22);
+    border-radius: 10px;
+    border-color: #98c1d9;
+    border-width: 5px;
     border-style: solid;
-    border-width:5px;
+}
+
+#search {
+    font-size: 30px;
+    background-color: #ee6c4d;
+    border-style:none;
+    box-shadow: 10px 10px 5px rgba(0,0,0,0.30), 0 10px 12px rgba(0,0,0,0.22);
     border-radius: 20px;
-    border-color: #e0fbfc;
-    height: 30vh;
-    margin:auto;
-  }
+    transition:0.5s;
+}
+
+#search:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+#search-results {
+  border-style: solid;
+  border-width:5px;
+  border-radius: 20px;
+  border-color: #e0fbfc;
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  margin:auto;
+  padding-left:0;
+}
+
+#search-results > li {
+  position: relative;
+  display: table;
+  padding: 12px 12px 0px 10px;
+  list-style-type: none;
+  background: #eee;
+  font-family:'Montserrat', sans-serif;
+  font-size: 20px;
+  transition: 0.2s;
+  margin: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  margin-bottom: 5px;
+  box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+#search-results li:nth-child(odd) {
+  background: white;
+  border-bottom-style:solid;
+  border-bottom-width:2px;
+  border-bottom-color:#98c1d9
+}
+#search-results li:nth-child(even) {
+  background: white;
+  border-bottom-style:solid;
+  border-bottom-width:2px;
+  border-bottom-color:#98c1d9
+}
+
+#search-results li:last-child {
+  margin-bottom: 40px;
+}
+/* Darker background-color on hover */
+#search-results li:hover {
+  background: #e0fbfc;
+  /* we might have to change the cursor */
+  cursor:default;
+}
