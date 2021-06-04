@@ -330,10 +330,10 @@ function setTags (json) {
 }
 
 function setTagOptions (json) {
-  console.log(json)
   const collections = json.properties.collections
   const currentLog = json.current_log
   const tagOptions = document.querySelector('.tag-options')
+  tagOptions.innerHTML = ''
 
   collections.forEach(collection => {
     const logs = collection.logs
