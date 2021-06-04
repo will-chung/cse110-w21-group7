@@ -21,18 +21,19 @@
 
 .main-menu:hover,
 nav.main-menu.expanded {
-  width: 230px;
+  width: 240px;
   overflow: hidden;
 }
 
 .main-menu {
-  /* background:#3D5A80; */
+  background:#3D5A80;
+  position: fixed;
   /* background:rgb(228,228,228); */
   border-right: 5px solid #e0fbfc; /*#98c1d9;*/
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
-  height: 100%;
+  height: 120vh;
   left: 0;
   width: 60px;
   overflow: hidden;
@@ -68,10 +69,11 @@ nav.main-menu.expanded {
   height: 106px;
 }
 
-#current > .fa {
-  padding-top: 30px;
+.underline:hover {
+  
+  border-radius: 30px;
+  border-color: black;
 }
-
 #current {
   background: #EE6C4D;
 
@@ -124,10 +126,15 @@ nav.main-menu li.active > a,
 .dropdown-menu > .active > a:focus,
 .no-touch .dashboard-page nav.dashboard-menu ul li:hover a,
 .dashboard-page nav.dashboard-menu ul li.active a {
-  /* color:#EE6C4D;
-background-color:white; */
+  /* color: #ee6c4d; */
+  background-color: radial-gradient(
+    circle,
+    rgb(12, 206, 212) 0%,
+    rgb(173, 203, 221) 100%
+  );
   height: 140px;
   vertical-align: center;
+  color: red;
   /* border-style:solid;
 border-color:#98c1d9; */
 }
@@ -212,7 +219,7 @@ a:link {
 
 #reflection {
   border-style: solid;
-  border-width:5px;
+  border-width: 5px;
   border-radius: 20px;
   border-color: #e0fbfc;
   width: 80vw;
@@ -271,6 +278,7 @@ a:link {
   height: 49px;
   left: 41px;
   top: 29px;
+  margin-right: 25px;
 
   font-family: Pattaya;
   font-style: normal;
@@ -287,14 +295,19 @@ a:link {
 }
 
 #myUL li {
-  cursor: pointer;
   position: relative;
-  padding: 12px 8px 12px 40px;
+  display: table;
+  padding: 12px 8px 12px 10px;
   list-style-type: none;
   background: #eee;
-  font-size: 18px;
+  font-family:'Montserrat', sans-serif;
+  font-size: 20px;
   transition: 0.2s;
-
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  margin-bottom: 5px;
+  box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   /* make the list items unselectable */
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -304,13 +317,25 @@ a:link {
 
 /* Set all odd list items to a different color (zebra-stripes) */
 #myUL li:nth-child(odd) {
-  background: #f9f9f9;
+  background: white;
+  border-bottom-style:solid;
+  border-bottom-width:2px;
+  border-bottom-color:#98c1d9
+}
+#myUL li:nth-child(even) {
+  background: white;
+  border-bottom-style:solid;
+  border-bottom-width:2px;
+  border-bottom-color:#98c1d9
 }
 
 /* Darker background-color on hover */
 #myUL li:hover {
-  background: #ddd;
+  background: #e0fbfc;
+  /* we might have to change the cursor */
+  cursor:default;
 }
+
 
 /* When clicked on, add a background color and strike out text */
 #myUL li.checked {
@@ -440,6 +465,7 @@ input {
     cursor: pointer;
   }
 
+
 #save:hover {
   background-color: grey;
   cursor: pointer;
@@ -455,6 +481,7 @@ input {
   flex: 2;
   outline: none;
   color:#e0fbfc;
+  visibility: hidden;
 }
 
 ::-webkit-calendar-picker-indicator {
@@ -466,6 +493,7 @@ input {
   flex: 2;
   outline: none;
   color:#e0fbfc;
+  visibility: hidden;
 }
 input {
   background: transparent;
@@ -498,6 +526,7 @@ input:focus {
   flex-direction: row-reverse;
   flex-wrap: wrap;
   align-items: flex-start;
+  visibility: hidden;
 }
 
 textarea:focus, input:focus {
@@ -513,7 +542,7 @@ input, select, textarea{
 #input-area {
   flex: 100%;
   margin-top: 20px;
-  padding-top:0;
+  padding-top: 0;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -552,11 +581,12 @@ input, select, textarea{
 }
 .containerOuter {
   margin-left: 10px;
-  background: rgb(224,251,252);
-background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 100%);
+  background: whitesmoke;
+  /* background: rgb(224,251,252);
+background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 100%); */
   border-radius: 20px;
-  height:270px;
-  box-shadow: 4px 12px 40px 4px rgba(10,10,120,0.15);
+  height: 270px;
+  box-shadow: 4px 12px 40px 4px rgba(10, 10, 120, 0.15);
 }
 .container {
   position: relative;
@@ -616,7 +646,7 @@ background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 
 .entry-prompt {
   margin-top: 10px;
   margin-left: 10px;
-  font-size:24px;
+  font-size: 24px;
 }
 .overlay {
   background: #fff;
@@ -667,22 +697,29 @@ background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 
   background: #ecf0f4;
 }
 
+#icon {
+  color: rgb(17, 180, 240);
+}
+#icon:hover {
+  color: brown;
+}
 .myButton {
-  box-shadow: inset 0px 1px 0px 0px #bee2f9;
-  background: linear-gradient(to bottom, #63b8ee 5%, #468ccf 100%);
+  /* box-shadow: inset 0px 1px 0px 0px #bee2f9; */
+  /* background: linear-gradient(to bottom, #63b8ee 5%, #468ccf 100%);
   background-color: #63b8ee;
   border-radius: 6px;
-  border: 1px solid #3866a3;
+  border: 1px solid #3866a3; */
   display: inline-block;
   cursor: pointer;
-  color: #cdcdcd;
-  font-weight: bold;
+  /* color: lightblue; */
+  /* font-weight: bold; */
   padding: 6px 6px;
   text-decoration: none;
-  text-shadow: 0px 1px 0px #4d98ef;
-  font-size: 24px;
-  text-align: center;
+  /* text-shadow: 0px 1px 0px #4d98ef; */
+  /* font-size: 24px;
+  text-align: center; */
 
+  font-size: 50px;
   position: fixed;
   width: 50px;
   height: 30px;
@@ -690,8 +727,9 @@ background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 
   bottom: 5vh;
 }
 .myButton:hover {
-  background: linear-gradient(to bottom, #468ccf 5%, #63b8ee 100%);
-  background-color: #468ccf;
+  /* background: linear-gradient(to bottom, #468ccf 5%, #63b8ee 100%);
+  background-color: #468ccf; */
+  color: red;
 }
 .myButton:active {
   position: relative;
@@ -706,26 +744,117 @@ background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 
 #cb1 {
   text-align: center;
   font-size: 15px;
-  width: 40px;
+  width: 60px;
   height: 10px;
   right: 20px;
-  color:#e0fbfc;
+  border: 1px solid green;
+  color: green;
+  letter-spacing: 2px;
 }
 
 #cb2 {
+  text-align: center;
   font-size: 15px;
-  width: 65px;
+  width: 60px;
   height: 10px;
   right: 150px;
-  color:#e0fbfc;
+  border: 1px solid red;
+  color: red;
+  letter-spacing: 2px;
 }
 
-.customBtn {
+#cb1 {
   position: relative;
   display: inline-block;
-  margin-top:50px;
+  margin-top: 50px;
   padding: 15px 30px;
-  color: #293241;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: none;
+  /* font-size: 24px; */
+  overflow: hidden;
+  transition: 0.2s;
+  position: absolute;
+  bottom: 0;
+}
+                                                                                                                                                                                                                                    <<<<<< ivan
+#cb1:hover {
+  color: #003a1e;
+  background-color: #ccffd8;
+  box-shadow: 0 0 10px #ccffd8, 0 0 40px #ccffd8, 0 0 80px #ccffd8;
+  transition: 1s;
+  transition-delay: 0.4s;
+}
+
+#cb1 span {
+  position: absolute;
+  display: block;
+}
+
+#cb1 span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ccffd8);
+}
+
+#cb1:hover span:nth-child(1) {
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 2px;
+  transition: 1s;
+  transition-delay: 0.25s;
+}
+
+#cb1 span:nth-child(2) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #ccffd8);
+}
+
+#cb1 span:nth-child(2) {
+  right: 100%;
+  transition: 1s;
+  transition-delay: 0.25s;
+}
+
+#cb1 span:nth-child(3) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #ccffd8);
+}
+
+#cb1:hover span:nth-child(3) {
+  top: 100%;
+  transition: 1s;
+  transition-delay: 0.25s;
+}
+
+#cb1 span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #ccffd8);
+}
+
+#cb1:hover span:nth-child(4) {
+  bottom: 100%;
+  transition: 1s;
+  transition-delay: 0.25s;
+}
+
+#cb2 {
+  position: relative;
+  display: inline-block;
+  margin-top: 50px;
+  padding: 15px 30px;
   text-transform: uppercase;
   letter-spacing: 2px;
   text-decoration: none;
@@ -736,28 +865,28 @@ background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 
   bottom: 0;
 }
 
-.customBtn:hover {
-  color: #293241;
-  background-color: #EE6C4D;
-  box-shadow: 0 0 10px #EE6C4D, 0 0 40px #EE6C4D, 0 0 80px #EE6C4D;
+#cb2:hover {
+  color: white;
+  background-color: #f53353;
+  box-shadow: 0 0 10px #f53353;
   transition: 1s;
   transition-delay: 0.4s;
 }
 
-.customBtn span {
+#cb2 span {
   position: absolute;
   display: block;
 }
 
-.customBtn span:nth-child(1) {
+#cb2 span:nth-child(1) {
   top: 0;
   left: -100%;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #EE6C4D);
+  background: linear-gradient(90deg, transparent, #f53353);
 }
 
-.customBtn:hover span:nth-child(1) {
+#cb2:hover span:nth-child(1) {
   top: 0;
   left: 100%;
   width: 100%;
@@ -766,43 +895,44 @@ background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 
   transition-delay: 0.25s;
 }
 
-.customBtn span:nth-child(2) {
+#cb2 span:nth-child(2) {
   bottom: 0;
   right: -100%;
   width: 100%;
   height: 2px;
-  background: linear-gradient(270deg, transparent, #EE6C4D);
+  background: linear-gradient(270deg, transparent, #f53353);
 }
 
-.customBtn:hover span:nth-child(2) {
+#cb2 span:nth-child(2) {
   right: 100%;
   transition: 1s;
   transition-delay: 0.25s;
 }
 
-.customBtn span:nth-child(3) {
+#cb2 span:nth-child(3) {
   top: -100%;
   right: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(180deg, transparent, #EE6C4D);
+  background: linear-gradient(180deg, transparent, #f53353);
 }
 
-.customBtn:hover span:nth-child(3) {
+#cb2:hover span:nth-child(3) {
   top: 100%;
   transition: 1s;
   transition-delay: 0.25s;
 }
 
-.customBtn span:nth-child(4) {
+#cb2 span:nth-child(4) {
   bottom: -100%;
   left: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(360deg, transparent, #EE6C4D);
+  background: linear-gradient(360deg, transparent, #f53353);
+
 }
 
-.customBtn:hover span:nth-child(4) {
+#cb2:hover span:nth-child(4) {
   bottom: 100%;
   transition: 1s;
   transition-delay: 0.25s;
