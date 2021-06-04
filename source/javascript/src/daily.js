@@ -52,11 +52,8 @@ radioContainer.addEventListener('change', () => {
     cancelBtn.style.visibility = 'visible'
   } else if (eventRadio.checked) {
     date.style.visibility = 'visible'
-    date.addEventListener('change', () => {
-      time.style.visibility = 'visible'
-    })
+    time.style.visibility = 'visible'
     time.addEventListener('change', () => {
-      console.log('change event happened')
       text.style.visibility = 'visible'
       saveBtn.style.visibility = 'visible'
       cancelBtn.style.visibility = 'visible'
@@ -276,6 +273,7 @@ function setEntries (log) {
       logItem.itemEntry = entry
 
       li.appendChild(logItem)
+      logItem.setHoverListeners()
       document.getElementById('myUL').appendChild(li)
     })
   }

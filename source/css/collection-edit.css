@@ -37,6 +37,7 @@ font-size:20px;
 
 #myInput {
   font-size: 20px;
+  width:85%;
   border: 5px solid white;
 }
 
@@ -251,6 +252,8 @@ a:link {
   /* border-style: solid; */
   border-radius: 20px;
   margin-top: 30px;
+  margin-left:4vw;
+  margin-right:4vw;
   align-items: flex-start;
   /* border-color: blue; */
   display: none;
@@ -426,7 +429,7 @@ a:link {
   /* Style the "Add" button */
   .addBtn {
     background: #98c1d9;
-    width:10%;
+    width:15%;
     border-style:solid;
     border-color:white;
     font-family: "Montserrat", sans-serif;
@@ -458,20 +461,13 @@ a:link {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    flex-basis: 38vw;
+    flex-basis: 34vw;
     align-items: center;
     margin-top: 20px;
     box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   }
 
-  #image-collection > img {
-      border:5px dashed black;
-      width:400px;
-      margin: 10px;
-      margin-top:30px;
-      margin-bottom:0;
-  }
-  
+ 
   h2 {
     font-family: 'Montserrat', sans-serif;
     margin-top: 20px;
@@ -487,7 +483,7 @@ a:link {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  flex-basis: 38vw;
+  flex-basis: 34vw;
   align-items: center;
   box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
