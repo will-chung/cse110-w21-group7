@@ -386,7 +386,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
   getLogInfoAsJSON(populateDailyLog)
 })
 
-
 /**
  * Business logic for tommorow Button
  * @author Brett Herbst <bherbst@ucsd.edu>
