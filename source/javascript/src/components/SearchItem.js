@@ -30,6 +30,17 @@ class SearchItem extends HTMLElement {
 
   render () {
     this.shadowRoot.innerHTML = `<style>
+                                    #single-entry {
+                                      width: 50vw;
+                                    }
+                                    #log-entries {
+                                      display: flex;
+                                      flex-direction: column;
+                                      flex-wrap: wrap;
+                                    }
+                                    .result {
+                                      color: #ee6c4d;
+                                    }
                                       </style>
                                       <span id="single-entry">
                                           <a href="#" class="result" target="_blank">${this.getDate()}</a>
