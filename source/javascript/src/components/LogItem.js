@@ -103,8 +103,8 @@ class LogItem extends HTMLElement {
     } else {
       // console.log("editable")
       // When dealing with log of type task, we must update the task status when it is clicked.
+      const that = this
       if (this._itemEntry.logType === 'task') {
-        let that = this
         this.shadowRoot.querySelector('i').addEventListener('click', (event) => {
           this._itemEntry.finished = !this._itemEntry.finished
           // @TODO indexedDB transactions for check/uncheck tasks
@@ -112,27 +112,30 @@ class LogItem extends HTMLElement {
 
           wrapper.transaction((event) => {
             const db = event.target.result
-        
+
             const transaction = db.transaction(['currentLogStore'], 'readwrite')
             const store = transaction.objectStore('currentLogStore')
             store.openCursor().onsuccess = function (event) {
               const cursor = event.target.result
+              let collectionName,
+                collection,
+                currTask
               if (cursor) {
                 // @TODO check route to make this decision
-                switch(that._page) {
+                switch (that._page) {
                   case PAGES['daily-log']:
                     // @TODO
-                    break;
+                    break
                   case PAGES['weekly-view']:
                     // @TODO
-                    break;
+                    break
                   case PAGES['collection-edit']:
                     // find the collection with the same name
-                    const collectionName = cursor.value.current_collection
-                    let collection = cursor.value.properties.collections.find((element) => {
+                    collectionName = cursor.value.current_collection
+                    collection = cursor.value.properties.collections.find((element) => {
                       return element.name === collectionName
                     })
-                    let currTask = collection.tasks.find((task) => {
+                    currTask = collection.tasks.find((task) => {
                       return task.description === that._itemEntry.description
                     })
                     currTask.finished = that._itemEntry.finished
@@ -153,39 +156,41 @@ class LogItem extends HTMLElement {
 
         wrapper.transaction((event) => {
           const db = event.target.result
-      
+
           const transaction = db.transaction(['currentLogStore'], 'readwrite')
           const store = transaction.objectStore('currentLogStore')
           store.openCursor().onsuccess = function (event) {
             const cursor = event.target.result
+            let collectionName,
+              collection
             if (cursor) {
-              switch(that._page) {
+              switch (that._page) {
                 case PAGES['daily-log']:
                   // @TODO
-                  break;
+                  break
                 case PAGES['weekly-view']:
                   // @TODO
-                  break;
+                  break
                 case PAGES['collection-edit']:
                   // find the collection with the same name
-                  const collectionName = cursor.value.current_collection
-                  let collection = cursor.value.properties.collections.find((element) => {
+                  collectionName = cursor.value.current_collection
+                  collection = cursor.value.properties.collections.find((element) => {
                     return element.name === collectionName
                   })
                   // find the task with the same name as the log item
-                  // delete the task when found 
+                  // delete the task when found
                   collection.tasks = collection.tasks.filter((task) => {
                     return !(task.description === that._itemEntry.description)
                   })
-                  break;
+                  break
               }
               cursor.update(cursor.value)
             }
           }
         })
         // call transaction, with one argument that is a callback function
-          // callback function should have a parameter event
-        
+        // callback function should have a parameter event
+
         this.parentElement.remove()
       })
       // this.setHoverListeners()
@@ -234,7 +239,7 @@ class LogItem extends HTMLElement {
    * @returns {Number} Number corresponding to
    * the key/value mappings from PAGES
    */
-  get page() {
+  get page () {
     return this._page
   }
 
@@ -244,10 +249,10 @@ class LogItem extends HTMLElement {
    * @param {Number} page corresponding to
    * the key/value mappings from PAGES
    */
-  set page(page) {
+  set page (page) {
     this._page = page
   }
-  
+
   /**
      * Getter for private field itemEntry, containing
      * the logType, description, and date of our entry.

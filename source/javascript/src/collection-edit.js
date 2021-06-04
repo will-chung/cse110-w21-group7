@@ -12,7 +12,6 @@ const videoButton = document.getElementById('add-video-btn')
 
 const addTaskBtn = document.getElementById('addTaskBtn')
 
-
 addTaskBtn.addEventListener('click', () => {
   const task = document.getElementById('myInput').value
   addTask(task)
@@ -21,7 +20,7 @@ addTaskBtn.addEventListener('click', () => {
 /**
  * Add new task to collection in database.
  */
- function addTask (task) {
+function addTask (task) {
   if (task === null) {
     return
   }
@@ -36,12 +35,12 @@ addTaskBtn.addEventListener('click', () => {
       if (cursor) {
         const json = cursor.value
         const tasks = json.properties.collections[0].tasks
-        const task_json = {
-          "description": task,
-          "logType": "task",
-          "finished": false
+        const taskJson = {
+          description: task,
+          logType: 'task',
+          finished: false
         }
-        tasks.push(task_json)
+        tasks.push(taskJson)
         cursor.update(json)
       }
     }
