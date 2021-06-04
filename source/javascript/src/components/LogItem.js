@@ -90,18 +90,6 @@ class LogItem extends HTMLElement {
 
     const editable = this._itemEntry.editable
     /*
-     * If the entry is a task
-     * no matter if it's in weekly view or daily
-     * it will have the toggling enabled for now
-     * user can switch it from not finished to finished
-     */
-    if (this._itemEntry.logType === 'task') {
-      this.shadowRoot.querySelector('i').addEventListener('click', (event) => {
-        this._itemEntry.finished = !this._itemEntry.finished
-        this.render()
-      })
-    }
-    /*
      * This block of code deals with the logic of editable
      * By editable we actually mean deletable
      * if editable = false, then the trash button will not show
@@ -116,9 +104,9 @@ class LogItem extends HTMLElement {
       // console.log("editable")
       // When dealing with log of type task, we must update the task status when it is clicked.
       if (this._itemEntry.logType === 'task') {
+        let that = this
         this.shadowRoot.querySelector('i').addEventListener('click', (event) => {
           this._itemEntry.finished = !this._itemEntry.finished
-          this.render()
           // @TODO indexedDB transactions for check/uncheck tasks
           const wrapper = new IndexedDBWrapper('experimentalDB', 1)
 
@@ -130,6 +118,7 @@ class LogItem extends HTMLElement {
             store.openCursor().onsuccess = function (event) {
               const cursor = event.target.result
               if (cursor) {
+                // @TODO check route to make this decision
                 switch(that._page) {
                   case PAGES['daily-log']:
                     // @TODO
@@ -143,20 +132,19 @@ class LogItem extends HTMLElement {
                     let collection = cursor.value.properties.collections.find((element) => {
                       return element.name === collectionName
                     })
-                    currTask = collection.tasks.find((task) => {
+                    let currTask = collection.tasks.find((task) => {
                       return task.description === that._itemEntry.description
                     })
-                    currTask.finished = this._itemEntry.finished
+                    currTask.finished = that._itemEntry.finished
                 }
                 cursor.update(cursor.value)
               }
             }
           })
+          this.render()
         })
       }
-  
 
-      let that = this
       // click event for the trash (delete) icon
       this.shadowRoot.querySelector('button').addEventListener('click', (event) => {
         // transaction to indexedDB to remove the corresponding task
@@ -240,6 +228,26 @@ class LogItem extends HTMLElement {
     this.render()
   }
 
+  /**
+   * Getter for field page, which denotes the
+   * page in which the task is being created
+   * @returns {Number} Number corresponding to
+   * the key/value mappings from PAGES
+   */
+  get page() {
+    return this._page
+  }
+
+  /**
+   * Setter for field page, which denotes the
+   * page in which the task is being created
+   * @param {Number} page corresponding to
+   * the key/value mappings from PAGES
+   */
+  set page(page) {
+    this._page = page
+  }
+  
   /**
      * Getter for private field itemEntry, containing
      * the logType, description, and date of our entry.

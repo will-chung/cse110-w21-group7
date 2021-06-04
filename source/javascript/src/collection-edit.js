@@ -36,7 +36,12 @@ addTaskBtn.addEventListener('click', () => {
       if (cursor) {
         const json = cursor.value
         const tasks = json.properties.collections[0].tasks
-        tasks.push(task)
+        const task_json = {
+          "description": task,
+          "logType": "task",
+          "finished": false
+        }
+        tasks.push(task_json)
         cursor.update(json)
       }
     }
