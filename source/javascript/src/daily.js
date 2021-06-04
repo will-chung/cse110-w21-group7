@@ -250,7 +250,7 @@ function getLogInfoAsJSON (cb) {
           }
           cursor.value.$defs['daily-logs'].push(appendObj)
           cb.bind(this)
-          cb(cursor.value.$defs['daily-logs'][lenArr + 1])
+          cb(cursor.value.$defs['daily-logs'][lenArr + 1], cursor.value)
           cursor.update(cursor.value)
         }
       }
@@ -386,13 +386,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     newElement()
   })
   getLogInfoAsJSON(populateDailyLog)
-})
-
-const zoom = document.getElementById('pretty')
-const custZoom = document.getElementById('button1')
-
-custZoom.addEventListener('click', function () {
-  zoom.click()
 })
 
 /**
