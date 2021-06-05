@@ -32,8 +32,7 @@ class WeeklyViewItem extends HTMLElement {
                                     }
                                     #single-weekday > p {
                                       font-family: "Montserrat", sans-serif;
-                                      padding-top: 10px;
-                                      padding-bottom: 10px;
+                                      padding:10px;
                                       font-size: 16px;
                                       margin:10px;
                                       box-shadow: 5px 10px 5px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
