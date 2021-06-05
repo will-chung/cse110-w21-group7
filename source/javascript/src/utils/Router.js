@@ -61,6 +61,7 @@ class Router {
  */
 const ROUTES = {
   index: '/source/html/index.html',
+  search: '/source/html/search.html',
   collections: '/source/html/collection.html',
   'collection-edit': '/source/html/collection-edit.html',
   daily: '/source/html/daily.html',

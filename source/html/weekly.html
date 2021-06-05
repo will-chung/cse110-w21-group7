@@ -21,6 +21,8 @@
     <script src="../javascript/src/weekly.js" type="module"></script>
     <script src="../javascript/src/components/WeeklyViewItem.js" type="module"></script>
     <script src="../javascript/src/components/LogItem.js" type="module"></script>
+    <script src="../javascript/src/navBar.js" type="module"></script>
+
 </head>
 <body>
     <div class="header">
@@ -32,31 +34,31 @@
     <nav class="main-menu">
       <ul>
         <li>
-          <a href="./index.html" id="home">
+          <a href="./index.html" id="home" class="nav-index">
             <i class="fa fa-home fa-2x"></i>
             <span class="nav-text"> Index </span>
           </a>
         </li>
         <li class="has-subnav">
-          <a href="./search.html" class="underline">
+          <a href="./search.html" class="underline nav-search">
             <i class="fa fa-search fa-2x"></i>
             <span class="nav-text"> Search </span>
           </a>
         </li>
         <li class="has-subnav">
-          <a href="./daily.html" class="underline">
+          <a href="./daily.html" class="underline nav-daily">
             <i class="fa fa-pencil fa-2x"></i>
             <span class="nav-text"> Daily Log </span>
           </a>
         </li>
         <li class="has-subnav">
-          <a href="./collection.html" class="underline">
+          <a href="./collection.html" class="underline nav-collection">
             <i class="fa fa-folder-open fa-2x"></i>
             <span class="nav-text"> Collection </span>
           </a>
         </li>
         <li class="has-subnav">
-          <a href="./weekly.html" class="underline" id="current">
+          <a href="./weekly.html" class="underline nav-weekly" id="current">
             <i class="fa fa-calendar fa-2x"></i>
             <span class="nav-text"> Weekly </span>
           </a>

@@ -1,3 +1,5 @@
+import { DateConverter } from '../utils/DateConverter.js'
+import { Router } from '../utils/Router.js'
 import { wrapper } from './CollectionItem.js'
 
 const template = document.createElement('template')
@@ -72,24 +74,32 @@ class Tag extends HTMLElement {
   removeCollectionTag (collectionName) {
     wrapper.transaction((event) => {
       const db = event.target.result
-
       const transaction = db.transaction(['currentLogStore'], 'readwrite')
       const objectStore = transaction.objectStore('currentLogStore')
       objectStore.openCursor().onsuccess = function (event) {
         const cursor = event.target.result
-
+        
         if (cursor) {
           const json = cursor.value
           const collections = json.properties.collections
-          const currentLog = json.current_log
-
+          const router = new Router()
+          const params = router.url.searchParams
+          const dateConverter = new DateConverter(Number(params.get('timestamp')))
+          const currentLog = dateConverter.timestamp
+          let findLog = (collection) => {
+            return collection.find((log) => {
+              return dateConverter.equals(new DateConverter(log))
+            })
+          }
+          
           collections.forEach(collection => {
             if (collection.name === collectionName) {
-              const index = collection.logs.indexOf(currentLog)
-              collection.logs.splice(index, 1)
+              const index = findLog(collection.log)
+              if(!(index === undefined)) {
+                collection.logs.splice(index, 1)
+              }
             }
           })
-
           cursor.update(json)
         }
       }
