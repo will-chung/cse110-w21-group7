@@ -9,6 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap"
       rel="stylesheet"
     />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../css/daily.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;1,700&display=swap" rel="stylesheet">
@@ -22,7 +23,8 @@
       <div id="journal-content">
         <div id="title">
           <div class="date">
-            <h1 class="date"></h1>
+            <h1></h1>
+
           </div>
           <div class="tag-container" style="display: inline-block;">
             <div class="tags" style="display: inline-block;"></div>
@@ -98,22 +100,20 @@
                 name="todo"
                 placeholder="Input your todo here"
               />
-              <a href="#" id="cb2" class="customBtn">
-                <span id="span1"></span>
-                <span id="span2"></span>
-                <span id="span3"></span>
-                <span id="span4"></span>
-                Cancel
-              </a>
               <a href="#" id="cb1" class="customBtn">
                 <span id="span1"></span>
                 <span id="span2"></span>
                 <span id="span3"></span>
                 <span id="span4"></span>
-                Save
+                <p>Save</p>
               </a>
-              <button id="save" hidden="hidden">Save</button>
-              <button id="cancel" hidden="hidden">Cancel</button>
+              <a href="#" id="cb2" class="customBtn">
+                <span id="span1"></span>
+                <span id="span2"></span>
+                <span id="span3"></span>
+                <span id="span4"></span>
+                <p>Cancel</p>
+              </a>
             </div>
           </form>
           <!-- <form>
@@ -121,9 +121,7 @@
                 </form> -->
         </div>
         <div id="mid-section">
-          <a href="#" id="yesterday">
-            <i class="fa fa-chevron-left fa-lg"></i>
-          </a>
+          <a href="#" id="yesterday"><i class="fa fa-chevron-left fa-lg"></i></a>
           <!-- <button id="collapse">Collapse</button> -->
           <a href="#" id="collapse"><i class="fa fa-chevron-up fa-lg"></i></a>
           <a href="#" id="tomorrow"
@@ -132,16 +130,6 @@
         </div>
         <div id="reflection">
           <reflection-item></reflection-item>
-        </div>
-
-        <!-- <button id="pretty" hidden="hidden">zoom</button>
-        <div id="button1">
-          <a href="#" class="myButton">zoom </a>
-        </div> -->
-        <div>
-          <a href="#" class="myButton">
-            <i class="fa fa-search-plus" id="icon"></i>
-          </a>
         </div>
       </div>
     </div>

@@ -19,6 +19,8 @@ const taskRadio = document.getElementById('input3')
 const noteRadio = document.getElementById('input4')
 const radioContainer = document.getElementsByClassName('container')[0]
 const realSavBtn = document.getElementById('save')
+const tmButton = document.getElementById('tomorrow')
+const ytButton = document.getElementById('yesterday')
 const tagOptions = document.querySelector('.tag-options')
 
 cancelBtn.addEventListener('click', () => {
@@ -52,11 +54,8 @@ radioContainer.addEventListener('change', () => {
     cancelBtn.style.visibility = 'visible'
   } else if (eventRadio.checked) {
     date.style.visibility = 'visible'
-    date.addEventListener('change', () => {
-      time.style.visibility = 'visible'
-    })
+    time.style.visibility = 'visible'
     time.addEventListener('change', () => {
-      console.log('change event happened')
       text.style.visibility = 'visible'
       saveBtn.style.visibility = 'visible'
       cancelBtn.style.visibility = 'visible'
@@ -265,9 +264,10 @@ function updateElement (logEntry, entry) {
  * If there is no daily log information for the given date,
  * a new daily log is created if the date is the present day.
  * @author Noah Teshima <nteshima@ucsd.edu>
+ * @author Brett Herbst <bherbst@ucsd.edu>
  * @throws Error object if date reference is null, undefined. Otherwise,
- * an error is thrown if the given date is not the present day and failed
- * to retrieve log info for given day.
+ * an error is thrown if
+ * to retrieve log info for given day. the given date is not the present day and failed
  * @returns JSON type response, containing the information needed to
  * initialize the daily log.
  */
@@ -277,7 +277,7 @@ function getLogInfoAsJSON (cb) {
   wrapper.transaction((event) => {
     const db = event.target.result
 
-    const store = db.transaction(['currentLogStore'], 'readonly')
+    const store = db.transaction(['currentLogStore'], 'readwrite')
       .objectStore('currentLogStore')
     store.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
@@ -285,38 +285,44 @@ function getLogInfoAsJSON (cb) {
         const dateConverter = new DateConverter(Number(cursor.value.current_log))
         // console.log(cursor.value)
         let match = false
+        let lenArr = 0
         cursor.value.$defs['daily-logs'].forEach((log, index) => {
           if (dateConverter.equals(Number(log.properties.date.time))) {
             match = true
             cb.bind(this)
             cb(cursor.value.$defs['daily-logs'][index], cursor.value)
           }
+          lenArr = index
         })
         if (!match) {
-          // TODO: creating new
-          // {
-          //   "type": "object",
-          //   "required": [ "date", "description" ],
-          //   "properties": {
-          //     "date": {
-          //       "type": "string",
-          //       "time": "",
-          //       "description": "The date of the event."
-          //     },
-          //     "events": [],
-          //     "tasks": [],
-          //     "notes": [],
-          //   "reflection": [],
-          //     "mood": {
-          //       "type": "number",
-          //       "multipleOf": 1,
-          //       "minimum": 0,
-          //       "exclusiveMaximum": 100,
-          //       "value": 50,
-          //       "description": "Daily mood on a range of 0-99."
-          //     }
-          //   }
-          // }
+          const dlLength = cursor.value.$defs['daily-logs']
+          const appendObj = {
+            type: 'object',
+            required: ['date', 'description'],
+            properties: {
+              date: {
+                type: 'string',
+                time: cursor.value.current_log,
+                description: 'The date of the event.'
+              },
+              events: [],
+              tasks: [],
+              notes: [],
+              reflection: [],
+              mood: {
+                type: 'number',
+                multipleOf: 1,
+                minimum: 0,
+                exclusiveMaximum: 100,
+                value: 50,
+                description: 'Daily mood on a range of 0-99.'
+              }
+            }
+          }
+          cursor.value.$defs['daily-logs'].push(appendObj)
+          cb.bind(this)
+          cb(cursor.value.$defs['daily-logs'][lenArr + 1], cursor.value)
+          cursor.update(cursor.value)
         }
       }
     }
@@ -341,6 +347,7 @@ function setEntries (log) {
       logItem.itemEntry = entry
 
       li.appendChild(logItem)
+      logItem.setHoverListeners()
       document.getElementById('myUL').appendChild(li)
       console.log('Adding entries for ' + logItem.itemEntry)
     })
@@ -454,9 +461,58 @@ document.addEventListener('DOMContentLoaded', (event) => {
   getLogInfoAsJSON(populateDailyLog)
 })
 
-const zoom = document.getElementById('pretty')
-const custZoom = document.getElementById('button1')
+/**
+ * Business logic for tommorow Button
+ * @author Brett Herbst <bherbst@ucsd.edu>
+ * Modeled after index.js Rapid Log button
+ */
+tmButton.addEventListener('click', () => {
+  const wrapper = new IndexedDBWrapper('experimentalDB', 1)
+  wrapper.transaction((event) => {
+    const db = event.target.result
 
-custZoom.addEventListener('click', function () {
-  zoom.click()
+    const transaction = db.transaction(['currentLogStore'], 'readwrite')
+
+    const store = transaction.objectStore('currentLogStore')
+    const req = store.openCursor()
+    // Fires when cursor is successfully opened.
+    req.onsuccess = function (e) {
+      const cursor = e.target.result
+      if (cursor) {
+        // Iterates current_log forward 1 day
+        cursor.value.current_log = (parseInt(cursor.value.current_log) + 86400000).toString()
+        cursor.update(cursor.value)
+      }
+      getLogInfoAsJSON(populateDailyLog)
+    }
+  })
+})
+
+/**
+ * Business logic for yesterday Button
+ * @author Brett Herbst <bherbst@ucsd.edu>
+ * Modeled after index.js Rapid Log button
+ */
+ytButton.addEventListener('click', () => {
+  const wrapper = new IndexedDBWrapper('experimentalDB', 1)
+  wrapper.transaction((event) => {
+    const db = event.target.result
+
+    const transaction = db.transaction(['currentLogStore'], 'readwrite')
+    // Event triggered when transaction is successfully opened
+
+    const store = transaction.objectStore('currentLogStore')
+
+    const req = store.openCursor()
+    // Fires when cursor is successfully opened.
+    req.onsuccess = function (e) {
+      const cursor = e.target.result
+      if (cursor) {
+        // Iterates current_log back 1 day
+        cursor.value.current_log = (parseInt(cursor.value.current_log) - 86400000).toString()
+        cursor.update(cursor.value)
+      }
+      getLogInfoAsJSON(populateDailyLog)
+    }
+  })
 })
