@@ -357,6 +357,7 @@ function setEntries (log) {
   populateTypeOfEntry(log.properties.tasks)
   populateTypeOfEntry(log.properties.notes)
   populateTypeOfEntry(log.properties.events)
+  populateTypeOfEntry(log.properties.reflection)
 }
 
 /**
