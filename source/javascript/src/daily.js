@@ -146,7 +146,7 @@ function newElement () {
   const logItem = document.createElement('log-item')
   const itemEntry = {}
   // entry specifies what log entry is falls under (for data purposes)
-  var entry = ''
+  let entry = ''
 
   // Update log type according to which item was checked
   if (taskRadio.checked) {
@@ -403,10 +403,10 @@ function setTags (json) {
 }
 
 function setTagOptions (json) {
-  console.log(json)
   const collections = json.properties.collections
   const currentLog = json.current_log
   const tagOptions = document.querySelector('.tag-options')
+  tagOptions.innerHTML = ''
 
   collections.forEach(collection => {
     const logs = collection.logs
