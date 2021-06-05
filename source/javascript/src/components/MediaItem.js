@@ -27,7 +27,7 @@ class MediaItem extends HTMLElement {
     this.shadowRoot.innerHTML = `<style>
                                     .container {
                                         display: flex;
-                                        width: 400px;
+                                        width: 300px;
                                         height: auto;
                                     }
                                     .media-wrapper {
