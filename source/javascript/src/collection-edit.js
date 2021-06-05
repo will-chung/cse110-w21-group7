@@ -1,5 +1,6 @@
 import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 import { MediaItem, MEDIA_TYPE } from './components/MediaItem.js'
+import { PAGES } from './components/LogItem.js'
 
 const collapse = document.getElementById('collapse')
 const imageBox = document.getElementById('image-collection')
@@ -8,6 +9,43 @@ const gallery = document.getElementById('media-gallery')
 const addBtn = document.querySelector('.addBtn')
 const imageButton = document.getElementById('add-image-btn')
 const videoButton = document.getElementById('add-video-btn')
+
+const addTaskBtn = document.getElementById('addTaskBtn')
+
+addTaskBtn.addEventListener('click', () => {
+  const task = document.getElementById('myInput').value
+  addTask(task)
+})
+
+/**
+ * Add new task to collection in database.
+ */
+function addTask (task) {
+  if (task === null) {
+    return
+  }
+  const wrapper = new IndexedDBWrapper('experimentalDB', 1)
+  wrapper.transaction((event) => {
+    const db = event.target.result
+
+    const transaction = db.transaction(['currentLogStore'], 'readwrite')
+    const objectStore = transaction.objectStore('currentLogStore')
+    objectStore.openCursor().onsuccess = function (event) {
+      const cursor = event.target.result
+      if (cursor) {
+        const json = cursor.value
+        const tasks = json.properties.collections[0].tasks
+        const taskJson = {
+          description: task,
+          logType: 'task',
+          finished: false
+        }
+        tasks.push(taskJson)
+        cursor.update(json)
+      }
+    }
+  })
+}
 
 /*
  * This onclick toggles the display style of the media gallery
@@ -65,6 +103,7 @@ function populateTasks (collection) {
   function createLogItem (task) {
     const logItem = document.createElement('log-item')
     logItem.itemEntry = task
+    logItem.page = PAGES['collection-edit']
     return logItem
   }
   const tasks = collection.tasks
