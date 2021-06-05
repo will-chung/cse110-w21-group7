@@ -222,7 +222,7 @@ function updateElement (logEntry, entry) {
       if (cursor) {
         // Get the cursor value and push the log item entry onto the file
         const json = cursor.value
-        const dailyLog = json.$defs['daily-logs'][0].properties[entry]
+        const dailyLog = json.$defs['daily-logs'][3].properties[entry]
         dailyLog.push(logEntry)
         const updated = cursor.update(cursor.value)
 
