@@ -1,3 +1,5 @@
+import { IndexedDBWrapper } from '../indexedDB/IndexedDBWrapper.js'
+
 /**
  * Component class used in order to add individual
  * tasks, notes, and events to the daily logging page
@@ -16,8 +18,17 @@ class LogItem extends HTMLElement {
     // Unfortunately this cannot be made a private field, since ESLint does not properly
     // lint private fields.
     this._itemEntry = {}
+    /**
+     * {
+            "description": "Unfinished task for collection one",
+            "logType": "task",
+            "finished": false
+        }
+     */
     this._itemEntry.logType = 'note'
     this._itemEntry.description = ''
+    this._page = 'daily'
+    this.render()
   }
 
   render () {
@@ -105,7 +116,94 @@ class LogItem extends HTMLElement {
     } else {
       // console.log("editable")
       // When dealing with log of type task, we must update the task status when it is clicked.
+      const that = this
+      if (this._itemEntry.logType === 'task') {
+        this.shadowRoot.querySelector('i').addEventListener('click', (event) => {
+          this._itemEntry.finished = !this._itemEntry.finished
+          // @TODO indexedDB transactions for check/uncheck tasks
+          const wrapper = new IndexedDBWrapper('experimentalDB', 1)
+
+          wrapper.transaction((event) => {
+            const db = event.target.result
+
+            const transaction = db.transaction(['currentLogStore'], 'readwrite')
+            const store = transaction.objectStore('currentLogStore')
+            store.openCursor().onsuccess = function (event) {
+              const cursor = event.target.result
+              let collectionName,
+                collection,
+                currTask
+              if (cursor) {
+                // @TODO check route to make this decision
+                switch (that._page) {
+                  case PAGES['daily-log']:
+                    // @TODO
+                    break
+                  case PAGES['weekly-view']:
+                    // @TODO
+                    break
+                  case PAGES['collection-edit']:
+                    // find the collection with the same name
+                    collectionName = cursor.value.current_collection
+                    collection = cursor.value.properties.collections.find((element) => {
+                      return element.name === collectionName
+                    })
+                    currTask = collection.tasks.find((task) => {
+                      return task.description === that._itemEntry.description
+                    })
+                    currTask.finished = that._itemEntry.finished
+                }
+                cursor.update(cursor.value)
+              }
+            }
+          })
+          this.render()
+        })
+      }
+
+      // click event for the trash (delete) icon
       this.shadowRoot.querySelector('button').addEventListener('click', (event) => {
+        // transaction to indexedDB to remove the corresponding task
+        // create an instance of IndexedDBWrapper
+        const wrapper = new IndexedDBWrapper('experimentalDB', 1)
+
+        wrapper.transaction((event) => {
+          const db = event.target.result
+
+          const transaction = db.transaction(['currentLogStore'], 'readwrite')
+          const store = transaction.objectStore('currentLogStore')
+          store.openCursor().onsuccess = function (event) {
+            const cursor = event.target.result
+            let collectionName,
+              collection
+            if (cursor) {
+              switch (that._page) {
+                case PAGES['daily-log']:
+                  // @TODO
+                  break
+                case PAGES['weekly-view']:
+                  // @TODO
+                  break
+                case PAGES['collection-edit']:
+                  // find the collection with the same name
+                  collectionName = cursor.value.current_collection
+                  collection = cursor.value.properties.collections.find((element) => {
+                    return element.name === collectionName
+                  })
+                  // find the task with the same name as the log item
+                  // delete the task when found
+                  collection.tasks = collection.tasks.filter((task) => {
+                    return !(task.description === that._itemEntry.description)
+                  })
+                  break
+              }
+              cursor.update(cursor.value)
+            }
+          }
+        })
+        // call transaction, with one argument that is a callback function
+        // callback function should have a parameter event
+
         this.parentElement.remove()
       })
       // this.setHoverListeners()
@@ -146,6 +244,26 @@ class LogItem extends HTMLElement {
     entry.editable = true
     this._itemEntry = entry
     this.render()
+  }
+
+  /**
+   * Getter for field page, which denotes the
+   * page in which the task is being created
+   * @returns {Number} Number corresponding to
+   * the key/value mappings from PAGES
+   */
+  get page () {
+    return this._page
+  }
+
+  /**
+   * Setter for field page, which denotes the
+   * page in which the task is being created
+   * @param {Number} page corresponding to
+   * the key/value mappings from PAGES
+   */
+  set page (page) {
+    this._page = page
   }
 
   /**
@@ -191,4 +309,12 @@ class LogItem extends HTMLElement {
   }
 }
 
+const PAGES = {
+  'daily-log': 0,
+  'weekly-view': 1,
+  'collection-edit': 2
+}
+
 customElements.define('log-item', LogItem)
+
+export { LogItem, PAGES }
