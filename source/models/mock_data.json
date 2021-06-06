@@ -1,0 +1,121 @@
+{
+  "description": "A user's information for their bullet journal",
+  "type": "object",
+  "name": "string",
+  "current_log": "1622752964489",
+  "current_collection": "Collection one",
+  "properties": {
+    "collections": [{
+      "type": "array",
+      "name": "Collection one",
+      "logs": [
+      ],
+      "tasks": [
+        {
+          "description": "Finished task for collection one",
+          "logType": "task",
+          "finished": true
+        },
+        {
+          "description": "Unfinished task for collection one",
+          "logType": "task",
+          "finished": false
+        }
+      ],
+      "images": [
+      ],
+      "videos": [
+      ]
+    }]
+  },
+  "$defs": {
+    "daily-logs": [
+      {
+        "type": "object",
+        "required": [ "date", "description" ],
+        "properties": {
+          "date": {
+            "type": "string",
+            "time": "1622752964489",
+            "description": "The date of the event."
+          },
+          "events": [
+            {
+              "description": "February 28, 2022",
+              "logType": "event",
+              "time": "1621718384658"
+            }
+          ],
+          "tasks": [],
+          "notes": [],
+        "reflection": [],
+          "mood": {
+            "type": "number",
+            "multipleOf": 1,
+            "minimum": 0,
+            "exclusiveMaximum": 100,
+            "value": 20,
+            "description": "Daily mood on a range of 0-99."
+          }
+        }
+      },
+      {
+        "type": "object",
+        "required": [ "date", "description" ],
+        "properties": {
+          "date": {
+            "type": "string",
+            "time": "1646251200000",
+            "description": "The date of the event."
+          },
+          "events": [
+            {
+              "description": "March 2, 2022",
+              "logType": "event",
+              "time": "1621718384658"
+            }
+          ],
+          "tasks": [],
+          "notes": [],
+        "reflection": [],
+          "mood": {
+            "type": "number",
+            "multipleOf": 1,
+            "minimum": 0,
+            "exclusiveMaximum": 100,
+            "value": 20,
+            "description": "Daily mood on a range of 0-99."
+          }
+        }
+      },
+      {
+        "type": "object",
+        "required": [ "date", "description" ],
+        "properties": {
+          "date": {
+            "type": "string",
+            "time": "1646510400000",
+            "description": "The date of the event."
+          },
+          "events": [
+            {
+              "description": "March 5, 2022",
+              "logType": "event",
+              "time": "1621718384658"
+            }
+          ],
+          "tasks": [],
+          "notes": [],
+        "reflection": [],
+          "mood": {
+            "type": "number",
+            "multipleOf": 1,
+            "minimum": 0,
+            "exclusiveMaximum": 100,
+            "value": 20,
+            "description": "Daily mood on a range of 0-99."
+          }
+        }
+      }
+  ]}
+}

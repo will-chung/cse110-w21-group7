@@ -6,7 +6,7 @@ what we plan to include for the next iteration. It should be noted that the flow
 what we envision as the final iteration.
 
 ## Diagram
-Below is a flowchart illustrating our CI pipeline:
+Below is a flowchart illustrating our CI pipeline for phase 1:
 ![CI pipeline](phase1.png)
 
 ## Current CI progress
@@ -21,10 +21,11 @@ The current process is explained as follows:
    - The third status check is for code quality. We decided to use CodeClimate for benchmarking code quality. For our setup, we permitted CodeClimate to make comments directly onto pull requests to provide a summary of any associated code smells, complexity, etc.
    - The fourth status check is for documentation generation. This status check verifies that we are still able to generate documentation for our project under the `./source/javascript/src/.` subdirectory to the target subdirectory `./specs/ci-cd/docs/.`. Consequently, this status check fails in the instance where source files are misplaced or if our build process with Node is outdated. In order to remove the bloat associated with commits for pull requests, it should be noted that we included `./specs/ci-cd/docs/.` in our `.gitignore` file. This documentation can still be accessed locally.
 
-## Planned CI progress
-Included below is a list of what we plan to include for the next iteration of our CI pipeline.
-1. Code coverage
-   - CodeClimate offers plugins in order to enforce code coverage as a status check during pull request review. Consequently, we plan to explore this option during phase two. Since we are relatively inexperienced with software engineering, the degree to which we enforce code coverage will be relaxed (~50%).
-2. TODO/FIXME/misc. markers
-   - Code pushed onto the main branch should exclude any markers that indicate a problem has yet to be dealt with. Traditionally, this is indicated with TODO/FIXME markers. We therefore plan to explore an additional plugin with CodeClimate to determine whether these markers are present in pull requests.
+## Progress for phase 2:
+Below is a flowchart illustrating our CI pipeline for phase 2. Since we got our CI pipeline to function during phase one, this diagram is very similar to phase 1:
+![CI pipeline](phase2.png)
+
+1. Granular control for CodeClimate checks with `.codeclimate.yml` file. Many members of our team were having issues with CodeClimate's [cognitive complexity](https://docs.codeclimate.com/docs/cognitive-complexity) in addition to method line count. On the other hand, we also had issues with Code Climate not picking up on code that is repeated in multiple files (this was sometimes getting by the status checks for pull requests). Consequently, we decided to fine-tune what aspects should be strongly enforced and what should be relaxed in a config file and include it in our CI pipeline.
+2. Removed suggestion for preventing `@TODO/FIXME` markers. Since a lot of high-priority issues with indexedDB are still in progress, we often leave these markers to help supplement what needs to be done for issues listed on our KanBan board. This was also a suggestion made by Jordan during week seven's discussion.
+3. Worked on adding minification. During week 9's discussion, we asked Jordan if it would be fine to look into minifcation since our CI/CD pipeline has all the core features we wished to include. Our phase one pipeline did not include it, but we wish to include additional deployment features for the completed bullet journal. This part of the pipeline should include some form of minification. The best option we looked into is [minify](https://www.npmjs.com/package/minify), but one of our group members mentioned that using this package would be easiest when integrated with a task runner like [Gulp](https://gulpjs.com/) instead of npm scripts, since the minify package is driven by Promise-based behavior. Consequently, we leave this as a stretch goal for the final evaluation of our CI/CD pipeline.
 
