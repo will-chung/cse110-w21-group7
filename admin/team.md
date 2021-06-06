@@ -22,6 +22,7 @@ Ultimately, we identify as team RIVER because these are values that are intrinsi
 Included here is an overview of our team.
 
 - Yuzi Lyu
+  - ![Personal Picture](./photos/Yuzi-pic.jpg)
   - Second year CS major at UCSD, Co-lead for RIVER
   - Enthusiastic about software engineering and product management
   - I love learning about TV/display specs
