@@ -90,6 +90,19 @@ class LogItem extends HTMLElement {
 
     const editable = this._itemEntry.editable
     /*
+     * If the entry is a task
+     * no matter if it's in weekly view or daily
+     * it will have the toggling enabled for now
+     * user can switch it from not finished to finished
+     */
+    if (this._itemEntry.logType === 'task') {
+      this.shadowRoot.querySelector('i').addEventListener('click', (event) => {
+        this._itemEntry.finished = !this._itemEntry.finished
+        this.render()
+        this.setHoverListeners()
+      })
+    }
+    /*
      * This block of code deals with the logic of editable
      * By editable we actually mean deletable
      * if editable = false, then the trash button will not show
