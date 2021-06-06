@@ -73,6 +73,7 @@ collapse.addEventListener('click', () => {
 
 tagOptions.addEventListener('click', (event) => {
   const collectionName = event.target.textContent
+  console.log('clicked!')
   document.querySelector('.tags').append(new Tag(collectionName))
   addCollectionTag(collectionName)
 })
@@ -90,7 +91,7 @@ function addCollectionTag (collectionName) {
         const json = cursor.value
         const collections = json.properties.collections
         const router = new Router()
-        const params = router.url.params
+        const params = router.url.searchParams
         const timestamp = Number(params.get('timestamp'))
 
         collections.forEach(collection => {
@@ -395,7 +396,7 @@ function setTagOptions (json) {
 
   collections.forEach(collection => {
     // only add option if daily log doesn't already belong to the collection
-    if (containsLog(collection.logs)) {
+    if (!containsLog(collection.logs)) {
       const anchor = document.createElement('a')
       anchor.setAttribute('href', '#')
       anchor.textContent = collection.name
