@@ -103,6 +103,5 @@ describe('Testing DateConverter', function () {
  * tests can be reused
  */
 function fakeNow () {
-  // mock now = 	1621834530 sec = May 23, 2021 at 22:35:30 (PDT)
-  return 	1621834530000
+  return 1621834530000
 }
