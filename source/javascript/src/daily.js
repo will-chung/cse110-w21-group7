@@ -9,9 +9,9 @@ const quote = document.getElementById('reflection')
 const text = document.getElementById('input-area')
 const date = document.getElementById('date-input')
 const time = document.getElementById('time-input')
-const saveBtn = document.getElementById('cb1')
+const saveBtn = document.getElementById('cb2')
 const realCanBtn = document.getElementById('cancel')
-const cancelBtn = document.getElementById('cb2')
+const cancelBtn = document.getElementById('cb1')
 const refRadio = document.getElementById('input1')
 const eventRadio = document.getElementById('input2')
 const taskRadio = document.getElementById('input3')
@@ -31,43 +31,19 @@ radioContainer.addEventListener('change', () => {
   resetEverything()
   if (refRadio.checked) {
     text.style.visibility = 'visible'
-    saveBtn.style.visibility = 'visible'
-    cancelBtn.style.visibility = 'visible'
+    saveBtn.style.display = 'inline-block'
+    cancelBtn.style.display = 'inline-block'
   } else if (eventRadio.checked) {
-    date.style.visibility = 'visible'
+    time.style.display = 'inline-block'
     time.style.visibility = 'visible'
-    time.addEventListener('change', () => {
-      text.style.visibility = 'visible'
-      saveBtn.style.visibility = 'visible'
-      cancelBtn.style.visibility = 'visible'
-    })
   } else if (taskRadio.checked) {
     date.style.visibility = 'visible'
-    date.addEventListener('change', () => {
-      text.style.visibility = 'visible'
-      saveBtn.style.visibility = 'visible'
-      cancelBtn.style.visibility = 'visible'
-    })
+    time.style.display = 'none'
+    // we need to remove the eventListener afterwards
   } else if (noteRadio.checked) {
     text.style.visibility = 'visible'
-    saveBtn.style.visibility = 'visible'
-    cancelBtn.style.visibility = 'visible'
-  }
-})
-
-collapse.addEventListener('click', () => {
-  if (quote.style.display === 'none') {
-    collapse.removeChild(collapse.childNodes[0])
-    const downArrow = document.createElement('i')
-    downArrow.className = 'fa fa-chevron-up fa-lg'
-    collapse.appendChild(downArrow)
-    quote.style.display = 'block'
-  } else {
-    collapse.removeChild(collapse.childNodes[0])
-    const upArrow = document.createElement('i')
-    upArrow.className = 'fa fa-chevron-down fa-lg'
-    collapse.appendChild(upArrow)
-    quote.style.display = 'none'
+    saveBtn.style.display = 'inline-block'
+    cancelBtn.style.display = 'inline-block'
   }
 })
 
@@ -175,8 +151,8 @@ function resetEverything () {
   date.value = ''
   text.value = ''
   text.style.visibility = 'hidden'
-  saveBtn.style.visibility = 'hidden'
-  cancelBtn.style.visibility = 'hidden'
+  saveBtn.style.display = 'none'
+  cancelBtn.style.display = 'none'
   time.value = ''
   time.style.visibility = 'hidden'
 }
@@ -438,9 +414,34 @@ function getDateFromUNIXTimestamp (timestamp) {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
+  saveBtn.style.display = 'none'
+  cancelBtn.style.display = 'none'
   saveBtn.addEventListener('click', (event) => {
     event.preventDefault()
     newElement()
+  })
+  collapse.addEventListener('click', () => {
+    if (quote.style.display === '' || quote.style.display === 'none') {
+      collapse.removeChild(collapse.childNodes[1])
+      const downArrow = document.createElement('i')
+      downArrow.className = 'fa fa-chevron-up fa-lg'
+      collapse.appendChild(downArrow)
+      quote.style.display = 'block'
+    } else {
+      collapse.removeChild(collapse.childNodes[1])
+      const upArrow = document.createElement('i')
+      upArrow.className = 'fa fa-chevron-down fa-lg'
+      collapse.appendChild(upArrow)
+      quote.style.display = 'none'
+    }
+  })
+  date.addEventListener('change', () => {
+    text.style.visibility = 'visible'
+    saveBtn.style.display = 'inline-block'
+    cancelBtn.style.display = 'inline-block'
+  })
+  time.addEventListener('change', () => {
+    date.style.visibility = 'visible'
   })
   getLogInfoAsJSON(populateDailyLog)
 })

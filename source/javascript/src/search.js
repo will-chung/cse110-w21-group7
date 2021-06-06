@@ -119,9 +119,13 @@ const searchButton = document.getElementById('search')
 const inputField = document.getElementById('input-area')
 const radioDailyLog = document.getElementById('input1')
 const radioCollection = document.getElementById('input2')
+const resultContainer = document.getElementById('result-container')
+
 document.addEventListener('DOMContentLoaded', (event) => {
   searchButton.addEventListener('click', (event) => {
-    searchResults.innerHTML = ''
+    const resultList = document.getElementById('search-results')
+    resultList.innerHTML = ''
     getLogInfoAsJSON(inputField.value, radioDailyLog.checked ? 'daily-logs' : 'collections')
+    resultContainer.style.visibility = 'visible'
   })
 })

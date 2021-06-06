@@ -33,8 +33,8 @@ class CollectionItem extends HTMLElement {
                                           margin:auto;
                                       }
                                       img {
-                                        background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 100%);
-                                        border-radius: 20px;
+                                        background-color: white;
+                                        border-radius: 10px;
                                       }
                                       .icon-trash {
                                         visibility: hidden;
@@ -54,8 +54,7 @@ class CollectionItem extends HTMLElement {
                                         margin-right: 1vw;
                                         margin-top:1vh;
                                         margin-bottom: 1vh;
-                                        border-width:2px;
-                                        border-radius: 20px;
+                                        
                                         display:flex;
                                         flex-direction: column;
                                         align-items: flex-start;
