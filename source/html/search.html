@@ -68,25 +68,26 @@
           <label class="entry" for="input2"><div class="circle"></div><div class="entry-label">Collection</div></label>
           <input type="radio" class="hidden" id="input3" name="inputs">
           <div class="highlight"></div>
-          <!-- <div class="overlay"></div> -->
         </div>
       </div>
         <div id='text-input'>
-          <input type="text" id="input-area" name="keyword" placeholder="Type here to search">
-          <button type="button" id="search"><i class="fa fa-search fa-lg"></i></button>
+          <input type="text" id="input-area" name="keyword" placeholder="Type here to search" size="32">
+
         </div>
+        <button type="button" id="search"><i class="fa fa-search fa-lg"></i></button>
         
     </form>
-    <div>
-        <ul id="search-results">
-          <!-- <li><search-item></search-item></li>  -->
-        </ul>
-    </div>
+    <div id="result-container">
+      <h2>Search results</h2>
+      <ul id="search-results">
+        <!-- <li><search-item></search-item></li>  -->
+      </ul>
 
+    </div>
+        
     <footer>
-    
-      
     </footer>
+
     <script src="../javascript/src/components/SearchItem.js" type="module"></script>
     <script src="../javascript/src/search.js" type="module"></script>
     <script src="../javascript/src/utils/Router.js" type="module"></script>

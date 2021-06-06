@@ -17,7 +17,8 @@ h3 {
   vertical-align: center;
   font-size: 30px;
   border-style: none;
-  padding-top: 20px;;
+  padding-top:20px;
+  color:white;
 }
 
 .fa-2x {
@@ -446,7 +447,7 @@ a:link {
   }
   
   .addBtn:hover {
-    background-color: #e0fbfc;
+    background-color: #EE6C4D;
   }
   
   #myDIV {

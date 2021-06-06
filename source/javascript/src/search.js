@@ -96,6 +96,7 @@ function getLogInfoAsJSON (pattern, searchBy) {
       }
     }
   })
+
 }
 
 /**
@@ -119,7 +120,10 @@ const searchButton = document.getElementById('search')
 const inputField = document.getElementById('input-area')
 const radioDailyLog = document.getElementById('input1')
 const radioCollection = document.getElementById('input2')
+const resultContainer = document.getElementById('result-container')
+
 document.addEventListener('DOMContentLoaded', (event) => {
+  resultContainer.style.visibility = 'hidden'
   const searchItem = document.createElement('search-item')
   const li = document.createElement('li')
   const searchItem2 = document.createElement('search-item')
@@ -169,12 +173,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
     reflection: [],
     type: 'daily-log'
   }
-  li.appendChild(searchItem)
-  searchResults.appendChild(li)
-  li2.appendChild(searchItem2)
-  searchResults.appendChild(li2)
+  // li.appendChild(searchItem)
+  // searchResults.appendChild(li)
+  // li2.appendChild(searchItem2)
+  // searchResults.appendChild(li2)
   searchButton.addEventListener('click', (event) => {
-    searchResults.innerHTML = ''
+    let resultList = document.getElementById('search-results')
+    resultList.innerHTML = ''
     getLogInfoAsJSON(inputField.value, radioDailyLog.checked ? 'daily-logs' : 'collections')
+    resultContainer.style.visibility = 'visible'
   })
+  
 })
