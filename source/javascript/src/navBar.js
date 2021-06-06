@@ -2,7 +2,6 @@ import { DateConverter } from './utils/DateConverter.js'
 import { Router, ROUTES } from './utils/Router.js'
 import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 
-
 document.addEventListener('DOMContentLoaded', (event) => {
   const indexNavButton = document.querySelector('.nav-index')
   const searchNavButton = document.querySelector('.nav-search')
@@ -10,7 +9,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const collectionNavButton = document.querySelector('.nav-collection')
   const weeklyNavButton = document.querySelector('.nav-weekly')
 
-  let defaultNav = (route, params = new URLSearchParams()) => {
+  const defaultNav = (route, params = new URLSearchParams()) => {
     const url = new URL(route, location.origin)
     url.search = params
     new Router(url).navigate()
@@ -28,7 +27,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   dailyNavButton.addEventListener('click', (event) => {
     event.preventDefault()
-    let params = new URLSearchParams()
+    const params = new URLSearchParams()
     params.append('timestamp', (new DateConverter()).timestamp)
     defaultNav(ROUTES.daily, params)
   })
@@ -43,4 +42,3 @@ document.addEventListener('DOMContentLoaded', (event) => {
     defaultNav(ROUTES.weekly)
   })
 })
-

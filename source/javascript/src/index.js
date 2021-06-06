@@ -4,7 +4,6 @@ import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 import { Shelf } from './components/Shelf.js'
 import { Book } from './components/Book.js'
 
-
 document.addEventListener('DOMContentLoaded', (event) => {
   const addDailyLog = document.getElementById('cb')
 

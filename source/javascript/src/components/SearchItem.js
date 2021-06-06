@@ -64,7 +64,7 @@ class SearchItem extends HTMLElement {
       this.shadowRoot.querySelector('a').addEventListener('click', (event) => {
         event.preventDefault()
         const url = new URL(ROUTES['collection-edit'], window.location.origin)
-        url.searchParams.append('name', encodeURIComponent(that._entry.name.trim()))
+        url.searchParams.append('name', that._entry.name)
         new Router(url).navigate()
       })
       this.populateCollectionTasks()

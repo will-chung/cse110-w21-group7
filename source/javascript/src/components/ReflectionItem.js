@@ -108,7 +108,7 @@ class ReflectionItem extends HTMLElement {
             // current Log we are viewing
             const router = new Router()
             const searchParams = router.url.searchParams
-            
+
             const timestamp = Number(searchParams.get('timestamp'))
             const dateConverter = new DateConverter(timestamp)
             cursor.value.$defs['daily-logs'].forEach((log, index) => {

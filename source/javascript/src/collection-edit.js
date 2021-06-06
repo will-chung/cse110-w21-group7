@@ -1,6 +1,7 @@
 import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 import { MediaItem, MEDIA_TYPE } from './components/MediaItem.js'
 import { PAGES } from './components/LogItem.js'
+import { Router } from './utils/Router.js'
 
 const collapse = document.getElementById('collapse')
 const imageBox = document.getElementById('image-collection')
@@ -33,8 +34,14 @@ function addTask (task) {
     objectStore.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
       if (cursor) {
+        const router = new Router()
+        const url = router.url
         const json = cursor.value
-        const tasks = json.properties.collections[0].tasks
+        const collectionName = url.searchParams.get('name').replace(/\+/g, ' ')
+        const collection = json.properties.collections.find((collection) => {
+          return (collectionName === collection.name)
+        })
+        const tasks = collection.tasks
         const taskJson = {
           description: task,
           logType: 'task',
@@ -124,11 +131,12 @@ function populateTasks (collection) {
  * surfaced from indexedDB
  */
 function populateCollectionName () {
-  let name = window.location.hash.replace(/%20/g, ' ')
-  name = name.slice(1)
+  const router = new Router()
+  const url = router.url
+  const collectionName = url.searchParams.get('name').replace(/\+/g, ' ')
   const title = document.querySelector('#title > h1')
-  title.textContent = name
-  return name
+  title.textContent = collectionName
+  return collectionName
 }
 
 /**
@@ -194,9 +202,9 @@ function getLogInfoAsJSON (cb) {
     store.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
       if (cursor) {
-        let name = window.location.hash.slice(1)
-        name = name.replace(/%20/g, ' ')
-        // const collectionName = cursor.value.current_collection
+        const router = new Router()
+        const url = router.url
+        const name = url.searchParams.get('name').replace(/\+/g, ' ')
         const collection = cursor.value.properties.collections.find((element) => {
           return element.name === name
         })

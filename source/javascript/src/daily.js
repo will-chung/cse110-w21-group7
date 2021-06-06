@@ -206,7 +206,7 @@ function updateElement (logEntry, entry) {
         // Get the cursor value and push the log item entry onto the file
         const router = new Router()
         const searchParams = router.url.searchParams
-        if(searchParams.has('timestamp')) {
+        if (searchParams.has('timestamp')) {
           const timestamp = Number(searchParams.get('timestamp'))
           const dateConverter = new DateConverter(timestamp)
           cursor.value.$defs['daily-logs'].forEach((log, index) => {
@@ -247,7 +247,7 @@ function getLogInfoAsJSON (cb) {
       if (cursor) {
         const router = new Router()
         const searchParams = router.url.searchParams
-        if(searchParams.has('timestamp')) {
+        if (searchParams.has('timestamp')) {
           const timestamp = Number(searchParams.get('timestamp'))
           const dateConverter = new DateConverter(timestamp)
           // console.log(cursor.value)
@@ -364,14 +364,14 @@ function setTags (json) {
   const dateConverter = new DateConverter(Number(params.get('timestamp')))
   const currentLog = dateConverter.timestamp
 
-  let containsLog = (collection) => {
+  const containsLog = (collection) => {
     return !(collection.find((log) => {
       return dateConverter.equals(new DateConverter(log))
     }) === undefined)
   }
 
   collections.forEach(collection => {
-    if(containsLog(collection.logs)) {
+    if (containsLog(collection.logs)) {
       document.querySelector('.tags').append(new Tag(collection.name))
     }
   })
@@ -387,7 +387,7 @@ function setTagOptions (json) {
   const tagOptions = document.querySelector('.tag-options')
   tagOptions.innerHTML = ''
 
-  let containsLog = (collection) => {
+  const containsLog = (collection) => {
     return !(collection.find((log) => {
       return dateConverter.equals(new DateConverter(log))
     }) === undefined)
@@ -395,7 +395,7 @@ function setTagOptions (json) {
 
   collections.forEach(collection => {
     // only add option if daily log doesn't already belong to the collection
-    if(containsLog(collection.logs)) {
+    if (containsLog(collection.logs)) {
       const anchor = document.createElement('a')
       anchor.setAttribute('href', '#')
       anchor.textContent = collection.name
@@ -447,7 +447,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 const yesterdayTodayNav = (yesterday = true) => {
   const router = new Router()
   const searchParams = router.url.searchParams
-  if(searchParams.has('timestamp')) {
+  if (searchParams.has('timestamp')) {
     const timestamp = Number(searchParams.get('timestamp'))
     searchParams.set('timestamp', yesterday ? timestamp - 86400000 : timestamp + 86400000)
     router.navigate()

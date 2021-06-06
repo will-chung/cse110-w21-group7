@@ -1,5 +1,5 @@
 import { IndexedDBWrapper } from '../indexedDB/IndexedDBWrapper.js'
-import { Router, ROUTES} from '../utils/Router.js'
+import { Router, ROUTES } from '../utils/Router.js'
 import { DateConverter } from '../utils/DateConverter.js'
 
 /**
@@ -88,7 +88,7 @@ class LogItem extends HTMLElement {
      * if editable = false, then the trash button will not show
      * Nevertheless, the user is still able to toggle the finished status
      */
-    let that = this
+    const that = this
     if (!editable) {
       this.shadowRoot.querySelector('button').style.display = 'none'
     } else {
@@ -110,15 +110,16 @@ class LogItem extends HTMLElement {
               if (cursor) {
                 const router = new Router()
                 const searchParams = router.url.searchParams
+                let dateConverter
                 let collectionName,
                   collection,
                   entry,
                   timestamp,
                   currTask
                 switch (router.url.pathname) {
-                  case ROUTES['daily']:
-                    timestamp = Number(searchParams.get("timestamp"))
-                    const dateConverter = new DateConverter(timestamp)
+                  case ROUTES.daily:
+                    timestamp = Number(searchParams.get('timestamp'))
+                    dateConverter = new DateConverter(timestamp)
                     entry = cursor.value.$defs['daily-logs'].find((log) => {
                       return dateConverter.equals(Number(log.properties.date.time))
                     })
@@ -127,12 +128,12 @@ class LogItem extends HTMLElement {
                     })
                     currTask.finished = that._itemEntry.finished
                     break
-                  case ROUTES['weekly']:
+                  case ROUTES.weekly:
                     // @TODO
                     break
                   case ROUTES['collection-edit']:
                     // find the collection with the same name
-                    collectionName = cursor.value.current_collection
+                    collectionName = searchParams.get('name').replace(/\+/g, ' ')
                     collection = cursor.value.properties.collections.find((element) => {
                       return element.name === collectionName
                     })
@@ -161,9 +162,9 @@ class LogItem extends HTMLElement {
           const transaction = db.transaction(['currentLogStore'], 'readwrite')
           const store = transaction.objectStore('currentLogStore')
           store.openCursor().onsuccess = function (event) {
-            let entryKey = (() => {
+            const entryKey = (() => {
               let returnKey
-              switch(that._itemEntry.logType) {
+              switch (that._itemEntry.logType) {
                 case 'task':
                   returnKey = 'tasks'
                   break
@@ -184,17 +185,18 @@ class LogItem extends HTMLElement {
             if (cursor) {
               const router = new Router()
               const searchParams = router.url.searchParams
+              let dateConverter
               let collectionName,
                 collection,
                 entry,
                 logItemList,
                 timestamp,
                 currTask
-              
+
               switch (router.url.pathname) {
-                case ROUTES['daily']:
-                  timestamp = Number(searchParams.get("timestamp"))
-                  const dateConverter = new DateConverter(timestamp)
+                case ROUTES.daily:
+                  timestamp = Number(searchParams.get('timestamp'))
+                  dateConverter = new DateConverter(timestamp)
                   entry = cursor.value.$defs['daily-logs'].find((log) => {
                     return dateConverter.equals(Number(log.properties.date.time))
                   })
@@ -202,12 +204,12 @@ class LogItem extends HTMLElement {
                     return !(item.description === that._itemEntry.description)
                   })
                   break
-                case ROUTES['weekly']:
+                case ROUTES.weekly:
                   // @TODO
                   break
                 case ROUTES['collection-edit']:
                   // find the collection with the same name
-                  collectionName = cursor.value.current_collection
+                  collectionName = searchParams.get('name').replace(/\+/g, ' ')
                   collection = cursor.value.properties.collections.find((element) => {
                     return element.name === collectionName
                   })
@@ -229,7 +231,6 @@ class LogItem extends HTMLElement {
       })
     }
   }
-
 
   /*
   * Adds event listeners for all hover events on the collection item

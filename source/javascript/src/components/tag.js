@@ -78,7 +78,7 @@ class Tag extends HTMLElement {
       const objectStore = transaction.objectStore('currentLogStore')
       objectStore.openCursor().onsuccess = function (event) {
         const cursor = event.target.result
-        
+
         if (cursor) {
           const json = cursor.value
           const collections = json.properties.collections
@@ -86,16 +86,16 @@ class Tag extends HTMLElement {
           const params = router.url.searchParams
           const dateConverter = new DateConverter(Number(params.get('timestamp')))
           const currentLog = dateConverter.timestamp
-          let findLog = (collection) => {
+          const findLog = (collection) => {
             return collection.find((log) => {
               return dateConverter.equals(new DateConverter(log))
             })
           }
-          
+
           collections.forEach(collection => {
             if (collection.name === collectionName) {
               const index = findLog(collection.log)
-              if(!(index === undefined)) {
+              if (!(index === undefined)) {
                 collection.logs.splice(index, 1)
               }
             }
