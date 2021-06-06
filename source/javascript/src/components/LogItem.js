@@ -1,4 +1,6 @@
 import { IndexedDBWrapper } from '../indexedDB/IndexedDBWrapper.js'
+import { Router, ROUTES } from '../utils/Router.js'
+import { DateConverter } from '../utils/DateConverter.js'
 
 /**
  * Component class used in order to add individual
@@ -15,16 +17,7 @@ class LogItem extends HTMLElement {
     super()
 
     this.attachShadow({ mode: 'open' })
-    // Unfortunately this cannot be made a private field, since ESLint does not properly
-    // lint private fields.
     this._itemEntry = {}
-    /**
-     * {
-            "description": "Unfinished task for collection one",
-            "logType": "task",
-            "finished": false
-        }
-     */
     this._itemEntry.logType = 'note'
     this._itemEntry.description = ''
     this._page = 'daily'
@@ -90,37 +83,21 @@ class LogItem extends HTMLElement {
 
     const editable = this._itemEntry.editable
     /*
-     * If the entry is a task
-     * no matter if it's in weekly view or daily
-     * it will have the toggling enabled for now
-     * user can switch it from not finished to finished
-     */
-    if (this._itemEntry.logType === 'task') {
-      this.shadowRoot.querySelector('i').addEventListener('click', (event) => {
-        this._itemEntry.finished = !this._itemEntry.finished
-        this.render()
-        this.setHoverListeners()
-      })
-    }
-    /*
      * This block of code deals with the logic of editable
      * By editable we actually mean deletable
      * if editable = false, then the trash button will not show
      * Nevertheless, the user is still able to toggle the finished status
      */
+    const that = this
     if (!editable) {
-      // console.log('toggling display...')
-      // console.log(this.shadowRoot.querySelector('button'));
       this.shadowRoot.querySelector('button').style.display = 'none'
-      // console.log("not editable")
     } else {
-      // console.log("editable")
       // When dealing with log of type task, we must update the task status when it is clicked.
-      const that = this
+      that.setHoverListeners()
       if (this._itemEntry.logType === 'task') {
+        // finished/unfinished task listener
         this.shadowRoot.querySelector('i').addEventListener('click', (event) => {
           this._itemEntry.finished = !this._itemEntry.finished
-          // @TODO indexedDB transactions for check/uncheck tasks
           const wrapper = new IndexedDBWrapper('experimentalDB', 1)
 
           wrapper.transaction((event) => {
@@ -130,21 +107,33 @@ class LogItem extends HTMLElement {
             const store = transaction.objectStore('currentLogStore')
             store.openCursor().onsuccess = function (event) {
               const cursor = event.target.result
-              let collectionName,
-                collection,
-                currTask
               if (cursor) {
-                // @TODO check route to make this decision
-                switch (that._page) {
-                  case PAGES['daily-log']:
+                const router = new Router()
+                const searchParams = router.url.searchParams
+                let dateConverter
+                let collectionName,
+                  collection,
+                  entry,
+                  timestamp,
+                  currTask
+                switch (router.url.pathname) {
+                  case ROUTES.daily:
+                    timestamp = Number(searchParams.get('timestamp'))
+                    dateConverter = new DateConverter(timestamp)
+                    entry = cursor.value.$defs['daily-logs'].find((log) => {
+                      return dateConverter.equals(Number(log.properties.date.time))
+                    })
+                    currTask = entry.properties.tasks.find((task) => {
+                      return task.description === that._itemEntry.description
+                    })
+                    currTask.finished = that._itemEntry.finished
+                    break
+                  case ROUTES.weekly:
                     // @TODO
                     break
-                  case PAGES['weekly-view']:
-                    // @TODO
-                    break
-                  case PAGES['collection-edit']:
+                  case ROUTES['collection-edit']:
                     // find the collection with the same name
-                    collectionName = cursor.value.current_collection
+                    collectionName = searchParams.get('name').replace(/\+/g, ' ')
                     collection = cursor.value.properties.collections.find((element) => {
                       return element.name === collectionName
                     })
@@ -173,20 +162,54 @@ class LogItem extends HTMLElement {
           const transaction = db.transaction(['currentLogStore'], 'readwrite')
           const store = transaction.objectStore('currentLogStore')
           store.openCursor().onsuccess = function (event) {
+            const entryKey = (() => {
+              let returnKey
+              switch (that._itemEntry.logType) {
+                case 'task':
+                  returnKey = 'tasks'
+                  break
+                case 'note':
+                  returnKey = 'notes'
+                  break
+                case 'event':
+                  returnKey = 'events'
+                  break
+                case 'reflection':
+                  returnKey = 'reflection'
+                  break
+              }
+              return returnKey
+            })()
+
             const cursor = event.target.result
-            let collectionName,
-              collection
             if (cursor) {
-              switch (that._page) {
-                case PAGES['daily-log']:
+              const router = new Router()
+              const searchParams = router.url.searchParams
+              let dateConverter
+              let collectionName,
+                collection,
+                entry,
+                logItemList,
+                timestamp,
+                currTask
+
+              switch (router.url.pathname) {
+                case ROUTES.daily:
+                  timestamp = Number(searchParams.get('timestamp'))
+                  dateConverter = new DateConverter(timestamp)
+                  entry = cursor.value.$defs['daily-logs'].find((log) => {
+                    return dateConverter.equals(Number(log.properties.date.time))
+                  })
+                  entry.properties[entryKey] = entry.properties[entryKey].filter((item) => {
+                    return !(item.description === that._itemEntry.description)
+                  })
+                  break
+                case ROUTES.weekly:
                   // @TODO
                   break
-                case PAGES['weekly-view']:
-                  // @TODO
-                  break
-                case PAGES['collection-edit']:
+                case ROUTES['collection-edit']:
                   // find the collection with the same name
-                  collectionName = cursor.value.current_collection
+                  collectionName = searchParams.get('name').replace(/\+/g, ' ')
                   collection = cursor.value.properties.collections.find((element) => {
                     return element.name === collectionName
                   })
@@ -206,7 +229,6 @@ class LogItem extends HTMLElement {
 
         this.parentElement.remove()
       })
-      // this.setHoverListeners()
     }
   }
 
@@ -218,11 +240,11 @@ class LogItem extends HTMLElement {
     const trashBtn = this.shadowRoot.querySelector('button')
 
     // toggles visiblity of trash icon when mouse hovers
-    this.parentElement.addEventListener('mouseenter', () => {
+    trashBtn.parentElement.addEventListener('mouseenter', () => {
       trashBtn.style.visibility = 'visible'
     })
 
-    this.parentElement.addEventListener('mouseleave', () => {
+    trashBtn.parentElement.addEventListener('mouseleave', () => {
       trashBtn.style.visibility = 'hidden'
     })
   }
@@ -237,12 +259,11 @@ class LogItem extends HTMLElement {
     // data massaging from UNIX timestamp given by key 'time'
     // to Date object given by key 'date'. This is done to reflect
     // the changes in our schema
-    if (entry.logType === 'event') {
-      entry.date = new Date(Number(entry.time))
-      delete entry.time
-    }
-    entry.editable = true
     this._itemEntry = entry
+    this._itemEntry.editable = true
+    if (entry.logType === 'event') {
+      this._itemEntry.date = new Date(Number(entry.time))
+    }
     this.render()
   }
 

@@ -20,7 +20,6 @@ class IndexedDBWrapper {
   constructor (dbName, version) {
     this._dbName = dbName
     this._version = version
-    console.log('initialized indexedDBWrapper')
   }
 
   /**
