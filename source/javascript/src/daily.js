@@ -1,8 +1,7 @@
 import { wrapper } from './components/CollectionItem.js'
 import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 import { DateConverter } from './utils/DateConverter.js'
-// import { LogItem } from './components/LogItem.js'
-// having issues using LogItem - I think there's no export in the js
+import { Router, ROUTES } from './utils/Router.js'
 import { Tag } from './components/tag.js'
 
 const collapse = document.getElementById('collapse')
@@ -28,24 +27,6 @@ cancelBtn.addEventListener('click', () => {
   text.value = ''
 })
 
-/*
- * This onclick toggles the display style of the quote to none
- * TODO: Collapse the whole div, not just the quote
- * Resource: https://codepen.io/Mdade89/pen/JKkYGq
- * the link above provides a collapsible text box
- */
-// document.addEventListener('DOMContentLoaded', () => {
-//   saveBtn.style.visibility = 'hidden'
-//   saveBtn.addEventListener('click', (event) => {
-//     event.preventDefault()
-//     newElement()
-//   })
-//   cancelBtn.style.visibility = 'hidden'
-//   text.type = 'hidden'
-//   date.type = 'hidden'
-//   time.type = 'hidden'
-// })
-
 radioContainer.addEventListener('change', () => {
   resetEverything()
   if (refRadio.checked) {
@@ -68,6 +49,7 @@ radioContainer.addEventListener('change', () => {
 
 tagOptions.addEventListener('click', (event) => {
   const collectionName = event.target.textContent
+  console.log('clicked!')
   document.querySelector('.tags').append(new Tag(collectionName))
   addCollectionTag(collectionName)
 })
@@ -84,11 +66,13 @@ function addCollectionTag (collectionName) {
       if (cursor) {
         const json = cursor.value
         const collections = json.properties.collections
-        const currentLog = json.current_log
+        const router = new Router()
+        const params = router.url.searchParams
+        const timestamp = Number(params.get('timestamp'))
 
         collections.forEach(collection => {
           if (collection.name === collectionName) {
-            collection.logs.push(currentLog)
+            collection.logs.push(timestamp)
           }
         })
 
@@ -197,41 +181,21 @@ function updateElement (logEntry, entry) {
       const cursor = event.target.result
       if (cursor) {
         // Get the cursor value and push the log item entry onto the file
-        const json = cursor.value
-        const dailyLog = json.$defs['daily-logs'][0].properties[entry]
-        dailyLog.push(logEntry)
-        const updated = cursor.update(cursor.value)
-
-        // Error of adding data
-        updated.onerror = function (event) {
-          console.log('ERROR: unable to add data')
+        const router = new Router()
+        const searchParams = router.url.searchParams
+        if (searchParams.has('timestamp')) {
+          const timestamp = Number(searchParams.get('timestamp'))
+          const dateConverter = new DateConverter(timestamp)
+          cursor.value.$defs['daily-logs'].forEach((log, index) => {
+            if (dateConverter.equals(Number(log.properties.date.time))) {
+              cursor.value.$defs['daily-logs'][index].properties[entry].push(logEntry)
+            }
+          })
         }
-
-        // Data got successfully added
-        updated.onsuccess = function (event) {
-          console.log('Successfully added data')
-        }
+        cursor.update(cursor.value)
       }
     }
   })
-
-  // const itemEntry = {}
-  // // Check if log type is task
-  // if (logType === 'task') {
-  //   itemEntry.logType = logType
-  //   itemEntry.finished = update
-  //   // put() method will update the record in the db if it exists
-  //   store.put(itemEntry)
-  // }
-
-  // // Check if we instead just want to delete the task/note/event
-  // if (update === 'delete') {
-  //   store.delete(key)
-  // }
-
-  // Get task/note/event from the parameter entry
-  // Create transaction to delete
-  // Delete transaction
 }
 
 /**
@@ -258,47 +222,53 @@ function getLogInfoAsJSON (cb) {
     store.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
       if (cursor) {
-        const dateConverter = new DateConverter(Number(cursor.value.current_log))
-        // console.log(cursor.value)
-        let match = false
-        let lenArr = 0
-        cursor.value.$defs['daily-logs'].forEach((log, index) => {
-          if (dateConverter.equals(Number(log.properties.date.time))) {
-            match = true
-            cb.bind(this)
-            cb(cursor.value.$defs['daily-logs'][index], cursor.value)
-          }
-          lenArr = index
-        })
-        if (!match) {
-          const dlLength = cursor.value.$defs['daily-logs']
-          const appendObj = {
-            type: 'object',
-            required: ['date', 'description'],
-            properties: {
-              date: {
-                type: 'string',
-                time: cursor.value.current_log,
-                description: 'The date of the event.'
-              },
-              events: [],
-              tasks: [],
-              notes: [],
-              reflection: [],
-              mood: {
-                type: 'number',
-                multipleOf: 1,
-                minimum: 0,
-                exclusiveMaximum: 100,
-                value: 50,
-                description: 'Daily mood on a range of 0-99.'
+        const router = new Router()
+        const searchParams = router.url.searchParams
+        if (searchParams.has('timestamp')) {
+          const timestamp = Number(searchParams.get('timestamp'))
+          const dateConverter = new DateConverter(timestamp)
+          // console.log(cursor.value)
+          let match = false
+          let lenArr = 0
+          cursor.value.$defs['daily-logs'].forEach((log, index) => {
+            if (dateConverter.equals(Number(log.properties.date.time))) {
+              match = true
+              cb.bind(this)
+              cb(cursor.value.$defs['daily-logs'][index], cursor.value)
+            }
+            lenArr = index
+          })
+          // if there is no match for the given day, we create a daily log
+          if (!match) {
+            const dlLength = cursor.value.$defs['daily-logs']
+            const appendObj = {
+              type: 'object',
+              required: ['date', 'description'],
+              properties: {
+                date: {
+                  type: 'string',
+                  time: timestamp,
+                  description: 'The date of the event.'
+                },
+                events: [],
+                tasks: [],
+                notes: [],
+                reflection: [],
+                mood: {
+                  type: 'number',
+                  multipleOf: 1,
+                  minimum: 0,
+                  exclusiveMaximum: 100,
+                  value: 50,
+                  description: 'Daily mood on a range of 0-99.'
+                }
               }
             }
+            cursor.value.$defs['daily-logs'].push(appendObj)
+            cb.bind(this)
+            cb(cursor.value.$defs['daily-logs'][lenArr + 1], cursor.value)
+            cursor.update(cursor.value)
           }
-          cursor.value.$defs['daily-logs'].push(appendObj)
-          cb.bind(this)
-          cb(cursor.value.$defs['daily-logs'][lenArr + 1], cursor.value)
-          cursor.update(cursor.value)
         }
       }
     }
@@ -325,7 +295,6 @@ function setEntries (log) {
       li.appendChild(logItem)
       logItem.setHoverListeners()
       document.getElementById('myUL').appendChild(li)
-      console.log('Adding entries for ' + logItem.itemEntry)
     })
   }
 
@@ -333,6 +302,7 @@ function setEntries (log) {
   populateTypeOfEntry(log.properties.tasks)
   populateTypeOfEntry(log.properties.notes)
   populateTypeOfEntry(log.properties.events)
+  populateTypeOfEntry(log.properties.reflection)
 }
 
 /**
@@ -366,13 +336,19 @@ function setDate (log) {
 
 function setTags (json) {
   const collections = json.properties.collections
-  const currentLog = json.current_log
+  const router = new Router()
+  const params = router.url.searchParams
+  const dateConverter = new DateConverter(Number(params.get('timestamp')))
+  const currentLog = dateConverter.timestamp
+
+  const containsLog = (collection) => {
+    return !(collection.find((log) => {
+      return dateConverter.equals(new DateConverter(log))
+    }) === undefined)
+  }
 
   collections.forEach(collection => {
-    const logs = collection.logs
-
-    // if collection has current currentLog
-    if (logs.indexOf(currentLog) !== -1) {
+    if (containsLog(collection.logs)) {
       document.querySelector('.tags').append(new Tag(collection.name))
     }
   })
@@ -380,15 +356,23 @@ function setTags (json) {
 
 function setTagOptions (json) {
   const collections = json.properties.collections
-  const currentLog = json.current_log
+  const router = new Router()
+  const params = router.url.searchParams
+  const dateConverter = new DateConverter(Number(params.get('timestamp')))
+  const currentLog = dateConverter.timestamp
+
   const tagOptions = document.querySelector('.tag-options')
   tagOptions.innerHTML = ''
 
-  collections.forEach(collection => {
-    const logs = collection.logs
+  const containsLog = (collection) => {
+    return !(collection.find((log) => {
+      return dateConverter.equals(new DateConverter(log))
+    }) === undefined)
+  }
 
+  collections.forEach(collection => {
     // only add option if daily log doesn't already belong to the collection
-    if (logs.indexOf(currentLog) === -1) {
+    if (!containsLog(collection.logs)) {
       const anchor = document.createElement('a')
       anchor.setAttribute('href', '#')
       anchor.textContent = collection.name
@@ -422,11 +406,11 @@ function populateDailyLog (response, json) {
  * @author Noah Teshima <nteshima@ucsd.edu>
  * @param {Number} timestamp Number object representing our
  * UNIX timestamp
- * @returns {Date} Date object containing the date contained
+ * @returns {DateConverter} DateConverter object containing the date contained
  * in the UNIX timestamp.
  */
 function getDateFromUNIXTimestamp (timestamp) {
-  return new Date(timestamp)
+  return new DateConverter(timestamp)
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -462,65 +446,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
   getLogInfoAsJSON(populateDailyLog)
 })
 
-// const zoom = document.getElementById('pretty')
-// const custZoom = document.getElementById('button1')
-
-// custZoom.addEventListener('click', function () {
-//   zoom.click()
-// })
+const yesterdayTodayNav = (yesterday = true) => {
+  const router = new Router()
+  const searchParams = router.url.searchParams
+  if (searchParams.has('timestamp')) {
+    const timestamp = Number(searchParams.get('timestamp'))
+    searchParams.set('timestamp', yesterday ? timestamp - 86400000 : timestamp + 86400000)
+    router.navigate()
+  }
+}
 
 /**
  * Business logic for tommorow Button
  * @author Brett Herbst <bherbst@ucsd.edu>
+ * @author Noah Teshima <nteshima@ucsd.edu>
  * Modeled after index.js Rapid Log button
  */
 tmButton.addEventListener('click', () => {
-  const wrapper = new IndexedDBWrapper('experimentalDB', 1)
-  wrapper.transaction((event) => {
-    const db = event.target.result
-
-    const transaction = db.transaction(['currentLogStore'], 'readwrite')
-
-    const store = transaction.objectStore('currentLogStore')
-    const req = store.openCursor()
-    // Fires when cursor is successfully opened.
-    req.onsuccess = function (e) {
-      const cursor = e.target.result
-      if (cursor) {
-        // Iterates current_log forward 1 day
-        cursor.value.current_log = (parseInt(cursor.value.current_log) + 86400000).toString()
-        cursor.update(cursor.value)
-      }
-      getLogInfoAsJSON(populateDailyLog)
-    }
-  })
+  yesterdayTodayNav(false)
 })
 
 /**
  * Business logic for yesterday Button
  * @author Brett Herbst <bherbst@ucsd.edu>
+ * @author Noah Teshima <nteshima@ucsd.edu>
  * Modeled after index.js Rapid Log button
  */
 ytButton.addEventListener('click', () => {
-  const wrapper = new IndexedDBWrapper('experimentalDB', 1)
-  wrapper.transaction((event) => {
-    const db = event.target.result
-
-    const transaction = db.transaction(['currentLogStore'], 'readwrite')
-    // Event triggered when transaction is successfully opened
-
-    const store = transaction.objectStore('currentLogStore')
-
-    const req = store.openCursor()
-    // Fires when cursor is successfully opened.
-    req.onsuccess = function (e) {
-      const cursor = e.target.result
-      if (cursor) {
-        // Iterates current_log back 1 day
-        cursor.value.current_log = (parseInt(cursor.value.current_log) - 86400000).toString()
-        cursor.update(cursor.value)
-      }
-      getLogInfoAsJSON(populateDailyLog)
-    }
-  })
+  yesterdayTodayNav(true)
 })
