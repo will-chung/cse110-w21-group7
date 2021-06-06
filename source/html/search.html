@@ -26,31 +26,31 @@
     <nav class="main-menu">
       <ul>
         <li>
-          <a href="./index.html" id="home" >
+          <a href="./index.html" id="home" class="nav-index">
             <i class="fa fa-home fa-2x"></i>
             <span class="nav-text"> Index </span>
           </a>
         </li>
         <li class="has-subnav">
-          <a href="./search.html" id="current">
+          <a href="./search.html" id="current" class="nav-search">
             <i class="fa fa-search fa-2x"></i>
             <span class="nav-text"> Search </span>
           </a>
         </li>
         <li class="has-subnav">
-          <a href="./daily.html">
+          <a href="./daily.html" class="nav-daily">
             <i class="fa fa-pencil fa-2x"></i>
             <span class="nav-text"> Daily Log </span>
           </a>
         </li>
         <li class="has-subnav">
-          <a href="./collection.html">
+          <a href="./collection.html" class="nav-collection">
             <i class="fa fa-folder-open fa-2x"></i>
             <span class="nav-text"> Collection </span>
           </a>
         </li>
         <li class="has-subnav">
-          <a href="./weekly.html">
+          <a href="./weekly.html" class="nav-weekly">
             <i class="fa fa-calendar fa-2x"></i>
             <span class="nav-text"> Weekly </span>
           </a>
@@ -77,12 +77,12 @@
         <button type="button" id="search"><i class="fa fa-search fa-lg"></i></button>
         
     </form>
+
     <div id="result-container">
       <h2>Search results</h2>
       <ul id="search-results">
         <!-- <li><search-item></search-item></li>  -->
       </ul>
-
     </div>
         
     <footer>
@@ -91,5 +91,7 @@
     <script src="../javascript/src/components/SearchItem.js" type="module"></script>
     <script src="../javascript/src/search.js" type="module"></script>
     <script src="../javascript/src/utils/Router.js" type="module"></script>
+    <script src="../javascript/src/navBar.js" type="module"></script>
+
 </body>
 </html>

@@ -4,7 +4,7 @@
   "description": "RIVER Bullet Journal; CSE110 Spring 2021",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --recursive ./source/javascript/tests/.",
+    "test": "mocha --recursive --require @babel/register ./source/javascript/tests/.",
     "coverage": "nyc npm run test",
     "lint_tests": "./node_modules/.bin/eslint source/javascript/tests/.",
     "fix_tests": "./node_modules/.bin/eslint source/javascript/tests/. --fix",
@@ -60,6 +60,11 @@
   },
   "homepage": "https://github.com/cse110-w21-group7/cse110-SP21-group7#readme",
   "devDependencies": {
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "@babel/register": "^7.13.16",
+    "@sinonjs/referee-sinon": "^9.0.2",
     "chai": "^4.3.4",
     "eslint": "^7.26.0",
     "eslint-config-standard": "^16.0.2",

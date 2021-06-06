@@ -1,4 +1,5 @@
 import { IndexedDBWrapper } from '../indexedDB/IndexedDBWrapper.js'
+import { Router, ROUTES } from '../utils/Router.js'
 
 // Create IndexedDB wrapper
 const wrapper = new IndexedDBWrapper('experimentalDB', 1)
@@ -141,32 +142,11 @@ class CollectionItem extends HTMLElement {
 
     // update current_collection when a collection is clicked
     this.dataset.name = this._entry.name
+    const that = this
     this.shadowRoot.querySelector('img[class="icon-collection"]').addEventListener('click', (event) => {
-      const that = this
-
-      wrapper.transaction((event) => {
-        const db = event.target.result
-
-        const transaction = db.transaction(['currentLogStore'], 'readwrite')
-        const objectStore = transaction.objectStore('currentLogStore')
-        objectStore.openCursor().onsuccess = function (event) {
-          const cursor = event.target.result
-          if (cursor) {
-            // Get JSON
-            const json = cursor.value
-
-            // Set current_collection field
-            json.current_collection = that.dataset.name
-
-            // Save changes
-            const requestUpdate = cursor.update(json)
-          }
-        }
-      })
-
-      // navigate to collection-edit page
-      const url = '/source/html/collection-edit.html' + '#' + this.dataset.name
-      window.location.href = url
+      const url = new URL(ROUTES['collection-edit'], window.location.origin)
+      url.searchParams.append('name', that.dataset.name)
+      new Router(url).navigate()
     })
 
     // onclick allow editing of collection name
