@@ -62,7 +62,12 @@ class ReflectionItem extends HTMLElement {
                                   }
                                   #mood{
                                     margin:auto;
-                                    width: 75vw;
+                                    margin-top: 40px;
+                                    margin-bottom: 25px;
+                                    width: 70vw;
+                                  }
+                                  #mood:hover {
+                                    cursor: pointer;
                                   }
                                   label {
                                     font-family: 'Montserrat', sans-serif;
@@ -85,10 +90,10 @@ class ReflectionItem extends HTMLElement {
                                       
                                         <div id="mood-slider">
                                             <h1>Today, I'm feeling</h1>
-                                            <i class="fas fa-laugh-wink"></i>
+                                            <input type="range" id="mood" name="mood" value="${this._entry.value}" min="${this._MOOD_MIN}" max="${this._MOOD_MAX}">
                                             <i class="icon ${this.getFASymbolClass()}"></i>
                                             <label for="mood">${this.getMoodWord()}</label>
-                                            <input type="range" id="mood" name="mood" value="${this._entry.value}" min="${this._MOOD_MIN}" max="${this._MOOD_MAX}">
+                                            
                                             
                                         </div>
                                   `

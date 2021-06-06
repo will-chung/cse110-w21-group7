@@ -33,9 +33,9 @@
             </div>
           </div>
         </div>
+        <ul id="myUL"></ul>
+        <div id="body-content">
         <div id="entry-area">
-          <ul id="myUL"></ul>
-
           <form id="textbox">
             <div id="dropdown">
               <div class="containerOuter">
@@ -89,8 +89,8 @@
               </div>
             </div>
             <div id="date-time">
-              <input type="date" id="date-input" placeholder="Date" />
               <input type="time" id="time-input" placeholder="Time" />
+              <input type="date" id="date-input" placeholder="Date" />              
             </div>
             <div id="text-input">
               <input
@@ -99,43 +99,54 @@
                 name="todo"
                 placeholder="Input your todo here"
               />
+            </div>
+            <div id="buttons">
               <a href="#" id="cb1" class="customBtn">
-                <span id="span1"></span>
-                <span id="span2"></span>
-                <span id="span3"></span>
-                <span id="span4"></span>
-                <p>Save</p>
-              </a>
-              <a href="#" id="cb2" class="customBtn">
                 <span id="span1"></span>
                 <span id="span2"></span>
                 <span id="span3"></span>
                 <span id="span4"></span>
                 <p>Cancel</p>
               </a>
+              <a href="#" id="cb2" class="customBtn">
+                <span id="span1"></span>
+                <span id="span2"></span>
+                <span id="span3"></span>
+                <span id="span4"></span>
+                <p>Save</p>
+              </a>
             </div>
+              
+            
           </form>
           <!-- <form>
                   <button type="submit">Submit</button>
                 </form> -->
         </div>
-        <div id="mid-section">
-          <a href="#" id="yesterday"><i class="fa fa-chevron-left fa-lg"></i></a>
-          <!-- <button id="collapse">Collapse</button> -->
-          <a href="#" id="collapse"><i class="fa fa-chevron-up fa-lg"></i></a>
-          <a href="#" id="tomorrow"
-            ><i class="fa fa-chevron-right fa-lg"></i
-          ></a>
-        </div>
+       
         <div id="reflection">
           <reflection-item></reflection-item>
         </div>
-
+        <div id="mid-section">
+          <button id="yesterday">
+            <a href="#"><i class="fa fa-chevron-left fa-lg"></i></a>
+            Yesterday
+          </button>
+          
+          <!-- <button id="collapse">Collapse</button> -->
+          <button id="collapse">Mood<a href="#"><i class="fa fa-chevron-down fa-lg"></i></a></button>
+          <button  id="tomorrow">Tomorrow<a href="#"
+            ><i class="fa fa-chevron-right fa-lg"></i
+          ></a>
+          </button>
+          
+        </div>
         <!-- <button id="pretty" hidden="hidden">zoom</button>
         <div id="button1">
           <a href="#" class="myButton">zoom </a>
         </div> -->
-        
+           
+        </div>
       </div>
     </div>
     <nav class="main-menu">

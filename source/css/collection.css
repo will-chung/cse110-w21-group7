@@ -66,10 +66,6 @@ nav.main-menu.expanded {
   height: 106px;
 }
 
-#current > .fa {
-  padding-top: 30px;
-}
-
 #current {
   background: #EE6C4D;
   border-color: black;
@@ -270,10 +266,13 @@ a:link {
   justify-content: center;
   align-items: center;
   border-style: solid;
-  border-color: #e0fbfc;
+  border-color: #98c1d9;
   margin-top: 5vh;
   border-radius:20px;
+  border-width: 5px;
   padding-bottom: 30px;
+  /* background-color: white;
+  box-shadow: 200px 20px 20px black; */
   /* flex-basis: 50%; */
 }
 
