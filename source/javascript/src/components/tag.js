@@ -87,14 +87,14 @@ class Tag extends HTMLElement {
           const dateConverter = new DateConverter(Number(params.get('timestamp')))
           const currentLog = dateConverter.timestamp
           const findLog = (collection) => {
-            return collection.find((log) => {
+            return collection.findIndex((log) => {
               return dateConverter.equals(new DateConverter(log))
             })
           }
 
           collections.forEach(collection => {
             if (collection.name === collectionName) {
-              const index = findLog(collection.log)
+              const index = findLog(collection.logs)
               if (!(index === undefined)) {
                 collection.logs.splice(index, 1)
               }
