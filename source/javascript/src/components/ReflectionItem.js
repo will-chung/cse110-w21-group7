@@ -54,7 +54,6 @@ class ReflectionItem extends HTMLElement {
                                       background: url(../images/reflection-item_icons/happy-regular.svg) no-repeat center center;
                                     }
                                   #mood-slider {
-                                    margin-top: 100px;
                                     font-size:40px;
                                     display: flex;
                                     flex-direction: column;
@@ -65,12 +64,32 @@ class ReflectionItem extends HTMLElement {
                                     margin:auto;
                                     width: 75vw;
                                   }
+                                  label {
+                                    font-family: 'Montserrat', sans-serif;
+                                    color: white;
+                                    text-transform: uppercase;
+                                    font-weight: bold;
+                                    margin-bottom: 30px;
+                                  }
+                                  .iconokay-icon {
+                                    color: white;
+                                  }
+                                  h1{
+                                    font-family: "Montserrat", sans-serif;
+                                    margin-top: 15px;
+                                    font-size: 38px;
+                                    line-height:40px;
+                                    color: #e0fbfc;
+                                  }
                                  </style> 
                                       
                                         <div id="mood-slider">
-                                            <label for="mood">Today, I'm feeling ${this.getMoodWord()}</label>
-                                            <input type="range" id="mood" name="mood" value="${this._entry.value}" min="${this._MOOD_MIN}" max="${this._MOOD_MAX}">
+                                            <h1>Today, I'm feeling</h1>
+                                            <i class="fas fa-laugh-wink"></i>
                                             <i class="icon ${this.getFASymbolClass()}"></i>
+                                            <label for="mood">${this.getMoodWord()}</label>
+                                            <input type="range" id="mood" name="mood" value="${this._entry.value}" min="${this._MOOD_MIN}" max="${this._MOOD_MAX}">
+                                            
                                         </div>
                                   `
     const that = this

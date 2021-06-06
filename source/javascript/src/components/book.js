@@ -5,9 +5,6 @@ const template = document.createElement('template')
 const NUM_BOOKS = 12
 const BOOK_WIDTH = 350
 
-const colors = []
-colors.push()
-
 template.innerHTML = `
   <style>
     :host {
@@ -31,7 +28,7 @@ template.innerHTML = `
     }
 
     .book-color {
-      background: #EE6C4D;
+      background: grey;
       width: 100%;
       height: 10%;
       border-radius: 4px 4px 0px 0px;
@@ -97,7 +94,7 @@ class Book extends HTMLElement {
       params.append('year', year)
       params.append('month', month)
       params.append('displayFirstOfMonth', true)
-      const url = new URL(ROUTES.weekly, 'http://127.0.0.1:5501')
+      const url = new URL(ROUTES.weekly, location.origin)
       url.search = params
       new Router(url).navigate()
     })
