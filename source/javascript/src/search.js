@@ -96,7 +96,6 @@ function getLogInfoAsJSON (pattern, searchBy) {
       }
     }
   })
-
 }
 
 /**
@@ -178,10 +177,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
   // li2.appendChild(searchItem2)
   // searchResults.appendChild(li2)
   searchButton.addEventListener('click', (event) => {
-    let resultList = document.getElementById('search-results')
+    const resultList = document.getElementById('search-results')
     resultList.innerHTML = ''
     getLogInfoAsJSON(inputField.value, radioDailyLog.checked ? 'daily-logs' : 'collections')
     resultContainer.style.visibility = 'visible'
   })
-  
 })
