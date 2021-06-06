@@ -1,6 +1,8 @@
 import { wrapper } from './components/CollectionItem.js'
 import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 import { DateConverter } from './utils/DateConverter.js'
+// import { LogItem } from './components/LogItem.js'
+// having issues using LogItem - I think there's no export in the js
 import { Tag } from './components/tag.js'
 
 const collapse = document.getElementById('collapse')
@@ -105,7 +107,7 @@ function addCollectionTag (collectionName) {
 }
 
 /**
- * Adds tasks, notes, and events to the daily log. If the entry is evmpty,
+ * Adds tasks, notes, and events to the daily log. If the entry is empty,
  * then the bullet journal alerts the user that they must write something
  * for that task/note/event.
  *
@@ -119,13 +121,20 @@ function newElement () {
   const li = document.createElement('li')
   const logItem = document.createElement('log-item')
   const itemEntry = {}
+  // entry specifies what log entry is falls under (for data purposes)
+  let entry = ''
+
+  // Update log type according to which item was checked
   if (taskRadio.checked) {
     itemEntry.logType = 'task'
     itemEntry.finished = false
+    entry = 'tasks'
   } else if (noteRadio.checked) {
     itemEntry.logType = 'note'
+    entry = 'notes'
   } else if (eventRadio.checked) {
     itemEntry.logType = 'event'
+    entry = 'events'
     // parse the number of hours
     const hours = Number(time.value.substring(0, 2))
     // parse the number of minutes
@@ -140,6 +149,7 @@ function newElement () {
     itemEntry.time = dateConverter.timestamp
   } else {
     itemEntry.logType = 'reflection'
+    entry = 'reflection'
   }
   itemEntry.description = inputValue
   logItem.itemEntry = itemEntry
@@ -147,6 +157,9 @@ function newElement () {
   logItem.setHoverListeners()
   document.getElementById('myUL').appendChild(li)
   document.getElementById('input-area').value = ''
+
+  // Call updateElement to save the new tasks
+  updateElement(itemEntry, entry)
 }
 
 function resetEverything () {
@@ -158,6 +171,67 @@ function resetEverything () {
   cancelBtn.style.display = 'none'
   time.value = ''
   time.style.visibility = 'hidden'
+}
+
+/**
+ * Updates tasks, notes, and events in the daily log.
+ * (i.e. deleting entries, editing entries, or toggling tasks)
+ * These changes should be saved and reflected the next time
+ * the user opens the daily log.
+ *
+ * @param logEntry
+ * @param entry
+ */
+function updateElement (logEntry, entry) {
+  const wrapper = new IndexedDBWrapper('experimentalDB', 1)
+
+  // Created when the IDB makes a transaction
+  wrapper.transaction((event) => {
+    // Create transaction for the updated log store
+    const db = event.target.result
+    const transaction = db.transaction(['currentLogStore'], 'readwrite')
+    const store = transaction.objectStore('currentLogStore')
+
+    // Open the object store
+    store.openCursor().onsuccess = function (event) {
+      const cursor = event.target.result
+      if (cursor) {
+        // Get the cursor value and push the log item entry onto the file
+        const json = cursor.value
+        const dailyLog = json.$defs['daily-logs'][0].properties[entry]
+        dailyLog.push(logEntry)
+        const updated = cursor.update(cursor.value)
+
+        // Error of adding data
+        updated.onerror = function (event) {
+          console.log('ERROR: unable to add data')
+        }
+
+        // Data got successfully added
+        updated.onsuccess = function (event) {
+          console.log('Successfully added data')
+        }
+      }
+    }
+  })
+
+  // const itemEntry = {}
+  // // Check if log type is task
+  // if (logType === 'task') {
+  //   itemEntry.logType = logType
+  //   itemEntry.finished = update
+  //   // put() method will update the record in the db if it exists
+  //   store.put(itemEntry)
+  // }
+
+  // // Check if we instead just want to delete the task/note/event
+  // if (update === 'delete') {
+  //   store.delete(key)
+  // }
+
+  // Get task/note/event from the parameter entry
+  // Create transaction to delete
+  // Delete transaction
 }
 
 /**
@@ -223,7 +297,7 @@ function getLogInfoAsJSON (cb) {
           }
           cursor.value.$defs['daily-logs'].push(appendObj)
           cb.bind(this)
-          cb(cursor.value.$defs['daily-logs'][lenArr + 1])
+          cb(cursor.value.$defs['daily-logs'][lenArr + 1], cursor.value)
           cursor.update(cursor.value)
         }
       }
@@ -251,6 +325,7 @@ function setEntries (log) {
       li.appendChild(logItem)
       logItem.setHoverListeners()
       document.getElementById('myUL').appendChild(li)
+      console.log('Adding entries for ' + logItem.itemEntry)
     })
   }
 
@@ -304,10 +379,10 @@ function setTags (json) {
 }
 
 function setTagOptions (json) {
-  console.log(json)
   const collections = json.properties.collections
   const currentLog = json.current_log
   const tagOptions = document.querySelector('.tag-options')
+  tagOptions.innerHTML = ''
 
   collections.forEach(collection => {
     const logs = collection.logs
@@ -387,6 +462,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
   getLogInfoAsJSON(populateDailyLog)
 })
 
+// const zoom = document.getElementById('pretty')
+// const custZoom = document.getElementById('button1')
+
+// custZoom.addEventListener('click', function () {
+//   zoom.click()
+// })
+
 /**
  * Business logic for tommorow Button
  * @author Brett Herbst <bherbst@ucsd.edu>
@@ -400,7 +482,6 @@ tmButton.addEventListener('click', () => {
     const transaction = db.transaction(['currentLogStore'], 'readwrite')
 
     const store = transaction.objectStore('currentLogStore')
-
     const req = store.openCursor()
     // Fires when cursor is successfully opened.
     req.onsuccess = function (e) {

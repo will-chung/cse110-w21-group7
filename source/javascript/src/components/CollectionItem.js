@@ -272,7 +272,7 @@ class CollectionItem extends HTMLElement {
  * Update given collection to have given name.
  * @author William Chung <wchung@ucsd.edu>
  * @param prevName Name of the collection to be udpated.
- * @param newName New name of the collection .
+ * @param newName New name of the collection.
  */
 function updateCollectionName (prevName, newName) {
   wrapper.transaction((event) => {
