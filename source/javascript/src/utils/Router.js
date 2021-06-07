@@ -1,4 +1,4 @@
-const prod = true
+const prod = false
 
 /**
  * Routing class used to help with navigating between pages
@@ -21,7 +21,6 @@ class Router {
         break
       case 1:
         this._url = params[0]
-        this._url.pathname = prod ? `/cse110-w21-group7${this._url.pathname}` : `/source${this._url.pathname}`
         break
     }
   }
@@ -62,13 +61,17 @@ class Router {
 /**
  * Constant field containing all the routes for our bullet journal.
  */
-const ROUTES = {
+let ROUTES = {
   index: '/index.html',
   search: '/search.html',
   collections: '/collection.html',
   'collection-edit': '/collection-edit.html',
   daily: '/daily.html',
   weekly: '/weekly.html'
+}
+let prefix = (prod) ? '/cse110-w21-group7' : '/source'
+for (let route in ROUTES) {
+  ROUTES[route] = `${prefix}${ROUTES[route]}`
 }
 
 export { Router, ROUTES }
