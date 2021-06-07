@@ -60,12 +60,12 @@ class Router {
  * Constant field containing all the routes for our bullet journal.
  */
 const ROUTES = {
-  index: '/source/index.html',
-  search: '/source/search.html',
-  collections: '/source/collection.html',
-  'collection-edit': '/source/collection-edit.html',
-  daily: '/source/daily.html',
-  weekly: '/source/weekly.html'
+  index: '/index.html',
+  search: '/search.html',
+  collections: '/collection.html',
+  'collection-edit': '/collection-edit.html',
+  daily: '/daily.html',
+  weekly: '/weekly.html'
 }
 
 export { Router, ROUTES }
