@@ -29,6 +29,7 @@ Included here is an overview of our team.
   - More about me [here](https://www.linkedin.com/in/yuzi-lyu/)
   - Github: [@github/yuzilyu](https://yuzilyu.github.io/Introduction/)
 - Noah Teshima 
+  - ![Personal Picture](./photos/Noah-pic.jpg)
   - Fourth year Mathematics, Computer Science major at UCSD.
   - In his free time during the pandemic, he enjoys playing with return tops (yo-yos) and hiking.
   - Github: ([@github/noahT](https://github.com/NoahT))  
