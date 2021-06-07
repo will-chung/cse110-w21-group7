@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer')
 const expect = require('chai').expect
 
 describe('testing index page', () => {
-  it('Test1: adding a reflection', async () => {  
+  it('Test1: adding a reflection', async () => {
   })
 
   it('Test2: adding an event', async () => {
