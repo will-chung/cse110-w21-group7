@@ -34,6 +34,7 @@ Included here is an overview of our team.
   - In his free time during the pandemic, he enjoys playing with return tops (yo-yos) and hiking.
   - Github: ([@github/noahT](https://github.com/NoahT))  
 - William Chung
+  - ![Personal Picture](./photos/William-pic.jpg)
   - Sophomore Computer Science 🖥️ major, Mathematics 📘 minor 
   - Aspiring software engineer and computer scientist
   - Enjoys spending time in nature
