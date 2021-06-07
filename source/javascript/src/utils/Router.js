@@ -1,4 +1,4 @@
-const prod = false
+const prod = true
 
 /**
  * Routing class used to help with navigating between pages
@@ -61,7 +61,7 @@ class Router {
 /**
  * Constant field containing all the routes for our bullet journal.
  */
-let ROUTES = {
+const ROUTES = {
   index: '/index.html',
   search: '/search.html',
   collections: '/collection.html',
@@ -69,8 +69,8 @@ let ROUTES = {
   daily: '/daily.html',
   weekly: '/weekly.html'
 }
-let prefix = (prod) ? '/cse110-w21-group7' : '/source'
-for (let route in ROUTES) {
+const prefix = (prod) ? '/cse110-w21-group7' : '/source'
+for (const route in ROUTES) {
   ROUTES[route] = `${prefix}${ROUTES[route]}`
 }
 
