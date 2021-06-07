@@ -48,7 +48,7 @@ class CollectionItem extends HTMLElement {
                                         transform: scale(1.2);
                                       }
                                       .trash-button-icon {
-                                        background: url(../images/log-item_icons/trash-solid.svg) no-repeat center center;
+                                        background: url(./images/log-item_icons/trash-solid.svg) no-repeat center center;
                                       }
                                       .folder {
                                         margin-right: 1vw;
@@ -88,7 +88,7 @@ class CollectionItem extends HTMLElement {
                                       </style>
                                     <div class="folder">
                                         <span class="icon-trash trash-button-icon"></span>
-                                        <img src="/source/images/icon-collection.svg" class="icon-collection">
+                                        <img src="./images/icon-collection.svg" class="icon-collection">
                                         <h1>${this.getCollectionName()}</h1>
                                     </div>`
     this.setClickListeners()
