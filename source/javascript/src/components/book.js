@@ -79,13 +79,6 @@ class Book extends HTMLElement {
 
   makeClickable () {
     this.addEventListener('click', () => {
-      console.log('book clicked')
-      /**
-       * we need the month
-       * we need the year
-       * [RELATIVE URL]?displayFirstOfMonth=true
-       */
-
       // Get month and year of the clicked book
       const month = this.title
       const year = this.shelf

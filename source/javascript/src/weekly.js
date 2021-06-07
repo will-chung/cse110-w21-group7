@@ -1,6 +1,6 @@
 import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 import { DateConverter } from './utils/DateConverter.js'
-import { Router } from './utils/Router.js'
+import { Router, ROUTES } from './utils/Router.js'
 
 const weekly = document.getElementById('weekly-div')
 const monday = document.getElementById('Monday')
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 })
 
 /**
- * @author Katherine Baker <klbaker@ucsd.edu> and Yuzi Lyu <>
+ * @author Katherine Baker <klbaker@ucsd.edu>, and Yuzi Lyu <>, Noah Teshima <nteshima@ucsd.edu>
  * @param {HTMLElement} targetElement div element that is a direct
  * child of the div with identifier #weekly-div. From this element, we
  * are able to
@@ -136,28 +136,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
  */
 function appendNavLinks (targetElement, date) {
   const anchor = targetElement.querySelector('a')
-  anchor.dataset.unixTimestamp = date.getTime()
-  anchor.href = '/source/html/daily.html' // @TODO refactor with routing
-  // adjusts current_log in DB
   anchor.onclick = function (event) {
     event.preventDefault()
-    const wrapper = new IndexedDBWrapper('experimentalDB', 1)
-    const that = event
-
-    wrapper.transaction((event) => {
-      const db = event.target.result
-      const store = db.transaction(['currentLogStore'], 'readwrite').objectStore('currentLogStore')
-
-      const req = store.openCursor()
-      req.onsuccess = (e) => {
-        const cursor = e.target.result
-        if (cursor) {
-          cursor.value.current_log = that.target.dataset.unixTimestamp
-          cursor.update(cursor.value)
-        }
-      }
-    })
-    window.location.href = '/source/html/daily.html'
+    const params = new URLSearchParams()
+    params.append('timestamp', date.timestamp)
+    const url = new URL(ROUTES.daily, location.origin)
+    url.search = params
+    new Router(url).navigate()
   }
 }
 

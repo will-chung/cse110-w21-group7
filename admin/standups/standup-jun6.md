@@ -1,31 +1,31 @@
-# Standup June 3, 2021
+# Standup Jun 6, 2021
 ## Yuzi Lyu
 ### Present:
 - [X] Yes
 - [ ] No
 
 ### What I did yesterday:
-* Trash can is fixed on weekly view and collection edit
-* search styling is implemented
+* Search Ui improvement, Daily log UI improvement
+* Looked in deployment on heroku and netlify
+
 
 ### What I plan to do today:
-* resolve the conflicts and review
-* Take the bug issues
-* Look into the Router
+* Help out with QA and make modifications to the code
 
 ### Blocking issues:
-* 
+* deployment on github pages
 
 
 ## Zhiyuan Zhang
 ### Present:
-- [ ] Yes
-- [X] No
+- [X] Yes
+- [ ] No
 
 ### What I did yesterday:
-* finished integrating custom buttons
+* working on finals
+* daily log logic
 ### What I plan to do today:
-* 
+* Onboarding.md
   
 ### Blocking issues:
 * N/A
@@ -38,11 +38,11 @@
 - [ ] No
 
 ### What I did yesterday:
-* Worked on search, ADR, flowchart, architecture diagrams
-* actual implementation for search
+* Integrating routing, some schema changes
 
 ### What I plan to do today:
-* Helping with resolving merge conflicts
+* ADR update
+* Deployment
 
 ### Blocking issues:
 * N/A 
@@ -55,14 +55,13 @@
 - [ ] No
 
 ### What I did yesterday:
-* updated the wireframe to dark mode
-* Worked on testing
+* Testing
+* final
 
 ### What I plan to do today:
-* more testcases
-
+* Keep working on testing
 ### Blocking issues:
-* testing takes a long time
+* CI/CD pipeline kept failing
 
 
 
@@ -72,27 +71,27 @@
 - [ ] No
 
 ### What I did yesterday:
-* More testing on DataConverter
-* finalized styling for weekly view
+* Tried to work on routing
+* merge conflict for PR
+* worked on e2e with Rachel
 
 ### What I plan to do today:
-* Search page wireframe
-* more e2e testing
+* More tests
+* UI improvement
 
 ### Blocking issues:
-* indexeddb wrapper testing
+* same as rachel, CI CD Pipeline
 
 
 ## Alvin Wang
 ### Present:
 - [X] Yes
-- [ ] No
+- [] No
 
 ### What I did yesterday:
-* completed most part of collection edit
-
+* Adding tasks and toggling in collection-edit all works now
 ### What I plan to do today:
-* Finish collection-edit by tonight
+* QA on the whole webapp and make issues 
 
 ### Blocking issues:
 * N/A
@@ -105,11 +104,10 @@
 - [ ] No
 
 ### What I did yesterday:
-* Collection tags to work
+* squashed some small bugs 
 
 ### What I plan to do today:
-* Routing refactored by Saturday
-* issue with daily log add tag
+* Fixing the issues and bugs 
 
 ### Blocking issues:
 * N/A 
@@ -121,10 +119,10 @@
 - [ ] No
 
 ### What I did yesterday:
-* Populating daily log fixed
+* Deleting tasks for daily log
 
 ### What I plan to do today:
-* delete and toggling tasks
+* QA submitting bugs
 
 ### Blocking issues:
 * N/A
@@ -133,16 +131,13 @@
 
 ## Brett Herbst
 ### Present:
-- [X] Yes
-- [ ] No
+- [ ] Yes
+- [X] No
 
 ### What I did yesterday:
-* Yesterday and Today button works, current log should work
-* helped Noah with merging conflicts
+*
 
 ### What I plan to do today:
-* More on merging conflicts
-* Work with Katherine on Router.js
-
+* Onboarding and README
 ### Blocking issues:
 * 
