@@ -1,15 +1,12 @@
 import { DateConverter } from './utils/DateConverter.js'
 import { Router, ROUTES } from './utils/Router.js'
 import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
-import { Shelf } from './components/Shelf.js'
-import { Book } from './components/Book.js'
 
 document.addEventListener('DOMContentLoaded', (event) => {
   const addDailyLog = document.getElementById('cb')
 
   addDailyLog.onclick = function (event) {
     event.preventDefault()
-    const wrapper = new IndexedDBWrapper('experimentalDB', 1)
     const params = new URLSearchParams()
     params.append('timestamp', (new DateConverter()).timestamp)
     const url = new URL(ROUTES.daily, location.origin)

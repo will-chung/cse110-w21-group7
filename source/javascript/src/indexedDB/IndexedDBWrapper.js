@@ -127,7 +127,7 @@ class IndexedDBWrapper {
     const request = window.indexedDB.open(this._dbName, this._version)
     const that = this
     request.onupgradeneeded = function (event) {
-      upgradeCb(event, synthetic ? '/source/models/mock_data.json' : '/source/models/schema_empty.json')
+      upgradeCb(event, synthetic ? '../models/mock_data.json' : '../models/schema_empty.json')
     }
     request.onsuccess = function (event) {
       successCb(event)
