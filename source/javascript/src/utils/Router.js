@@ -1,3 +1,5 @@
+const prod = true
+
 /**
  * Routing class used to help with navigating between pages
  * for our site.
@@ -19,6 +21,7 @@ class Router {
         break
       case 1:
         this._url = params[0]
+        this._url.pathname = prod ? `/cse110-w21-group7${this._url.pathname}` : `/source${this._url.pathname}`
         break
     }
   }
