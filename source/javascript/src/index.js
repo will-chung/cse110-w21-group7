@@ -1,6 +1,8 @@
 import { DateConverter } from './utils/DateConverter.js'
 import { Router, ROUTES } from './utils/Router.js'
 import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
+import { Shelf } from './components/shelf.js'
+import { Book } from './components/book.js'
 
 document.addEventListener('DOMContentLoaded', (event) => {
   const addDailyLog = document.getElementById('cb')
