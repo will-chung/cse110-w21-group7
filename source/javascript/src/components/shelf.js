@@ -75,7 +75,6 @@ class Shelf extends HTMLElement {
             if (that.hasEntryForYearMonth(dailyLogs, monthIndex)) {
               book.color = '#ee6c4d'
               book.makeClickable()
-              console.log('not found')
             }
           })
         }
