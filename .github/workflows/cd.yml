@@ -17,7 +17,6 @@ jobs:
       with:
         node-version: "10.x"
     - run: npm i
-    - run: npm test
     - run: npm deploy
     - uses: crazy-max/ghaction-github-pages@v2
       with:
