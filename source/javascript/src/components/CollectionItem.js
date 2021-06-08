@@ -25,7 +25,6 @@ class CollectionItem extends HTMLElement {
 
   render () {
     this.shadowRoot.innerHTML = `<style>
-                                      @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
                                       .icon-collection {
                                           background-size: contain;
                                           width:50%;
@@ -165,6 +164,7 @@ class CollectionItem extends HTMLElement {
       const textInput = document.createElement('input')
       textInput.setAttribute('type', 'text')
       textInput.style.height = '40px'
+      textInput.style.fontStyle = 'italic'
       textInput.style.width = '392.5px'
       textInput.style.marginTop = '20px'
       textInput.style.color = 'white'
