@@ -1,4 +1,5 @@
 import { IndexedDBWrapper } from '../indexedDB/IndexedDBWrapper.js'
+import { Router, ROUTES } from '../utils/Router.js'
 
 // Create IndexedDB wrapper
 const wrapper = new IndexedDBWrapper('experimentalDB', 1)
@@ -32,8 +33,8 @@ class CollectionItem extends HTMLElement {
                                           margin:auto;
                                       }
                                       img {
-                                        background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 100%);
-                                        border-radius: 20px;
+                                        background-color: white;
+                                        border-radius: 10px;
                                       }
                                       .icon-trash {
                                         visibility: hidden;
@@ -53,8 +54,7 @@ class CollectionItem extends HTMLElement {
                                         margin-right: 1vw;
                                         margin-top:1vh;
                                         margin-bottom: 1vh;
-                                        border-width:2px;
-                                        border-radius: 20px;
+                                        
                                         display:flex;
                                         flex-direction: column;
                                         align-items: flex-start;
@@ -142,32 +142,11 @@ class CollectionItem extends HTMLElement {
 
     // update current_collection when a collection is clicked
     this.dataset.name = this._entry.name
+    const that = this
     this.shadowRoot.querySelector('img[class="icon-collection"]').addEventListener('click', (event) => {
-      const that = this
-
-      wrapper.transaction((event) => {
-        const db = event.target.result
-
-        const transaction = db.transaction(['currentLogStore'], 'readwrite')
-        const objectStore = transaction.objectStore('currentLogStore')
-        objectStore.openCursor().onsuccess = function (event) {
-          const cursor = event.target.result
-          if (cursor) {
-            // Get JSON
-            const json = cursor.value
-
-            // Set current_collection field
-            json.current_collection = that.dataset.name
-
-            // Save changes
-            const requestUpdate = cursor.update(json)
-          }
-        }
-      })
-
-      // navigate to collection-edit page
-      const url = '/source/html/collection-edit.html' + '#' + this.dataset.name
-      window.location.href = url
+      const url = new URL(ROUTES['collection-edit'], window.location.origin)
+      url.searchParams.append('name', that.dataset.name)
+      new Router(url).navigate()
     })
 
     // onclick allow editing of collection name
@@ -182,14 +161,16 @@ class CollectionItem extends HTMLElement {
        * Insert text input for in-place editing
        */
       const form = document.createElement('form')
-      form.style.margin = 'auto'
 
       const textInput = document.createElement('input')
       textInput.setAttribute('type', 'text')
       textInput.style.height = '40px'
+      textInput.style.width = '392.5px'
+      textInput.style.marginTop = '20px'
+      textInput.style.color = 'white'
       textInput.style.fontSize = '32px'
       textInput.style.fontWeight = 'bold'
-      textInput.style.fontFamily = '"Pattaya", sans-serif'
+      textInput.style.fontFamily = '"Montserrat", sans-serif'
       textInput.style.textAlign = 'center'
       textInput.style.background = 'transparent'
       textInput.value = name.textContent

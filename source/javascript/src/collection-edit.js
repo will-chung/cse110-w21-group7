@@ -1,5 +1,7 @@
 import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 import { MediaItem, MEDIA_TYPE } from './components/MediaItem.js'
+import { PAGES } from './components/LogItem.js'
+import { Router } from './utils/Router.js'
 
 const collapse = document.getElementById('collapse')
 const imageBox = document.getElementById('image-collection')
@@ -8,6 +10,49 @@ const gallery = document.getElementById('media-gallery')
 const addBtn = document.querySelector('.addBtn')
 const imageButton = document.getElementById('add-image-btn')
 const videoButton = document.getElementById('add-video-btn')
+
+const addTaskBtn = document.getElementById('addTaskBtn')
+
+addTaskBtn.addEventListener('click', () => {
+  const task = document.getElementById('myInput').value
+  addTask(task)
+})
+
+/**
+ * Add new task to collection in database.
+ */
+function addTask (task) {
+  if (task === null || task === '') {
+    return
+  }
+  const wrapper = new IndexedDBWrapper('experimentalDB', 1)
+  wrapper.transaction((event) => {
+    const db = event.target.result
+
+    const transaction = db.transaction(['currentLogStore'], 'readwrite')
+    const objectStore = transaction.objectStore('currentLogStore')
+    objectStore.openCursor().onsuccess = function (event) {
+      const cursor = event.target.result
+      if (cursor) {
+        const router = new Router()
+        const url = router.url
+        const json = cursor.value
+        const collectionName = url.searchParams.get('name').replace(/\+/g, ' ')
+        const collection = json.properties.collections.find((collection) => {
+          return (collectionName === collection.name)
+        })
+        const tasks = collection.tasks
+        const taskJson = {
+          description: task,
+          logType: 'task',
+          finished: false
+        }
+        tasks.push(taskJson)
+        cursor.update(json)
+      }
+    }
+  })
+}
 
 /*
  * This onclick toggles the display style of the media gallery
@@ -65,6 +110,7 @@ function populateTasks (collection) {
   function createLogItem (task) {
     const logItem = document.createElement('log-item')
     logItem.itemEntry = task
+    logItem.page = PAGES['collection-edit']
     return logItem
   }
   const tasks = collection.tasks
@@ -85,11 +131,12 @@ function populateTasks (collection) {
  * surfaced from indexedDB
  */
 function populateCollectionName () {
-  let name = window.location.hash.replace(/%20/g, ' ')
-  name = name.slice(1)
+  const router = new Router()
+  const url = router.url
+  const collectionName = url.searchParams.get('name').replace(/\+/g, ' ')
   const title = document.querySelector('#title > h1')
-  title.textContent = name
-  return name
+  title.textContent = collectionName
+  return collectionName
 }
 
 /**
@@ -155,9 +202,9 @@ function getLogInfoAsJSON (cb) {
     store.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
       if (cursor) {
-        let name = window.location.hash.slice(1)
-        name = name.replace(/%20/g, ' ')
-        // const collectionName = cursor.value.current_collection
+        const router = new Router()
+        const url = router.url
+        const name = url.searchParams.get('name').replace(/\+/g, ' ')
         const collection = cursor.value.properties.collections.find((element) => {
           return element.name === name
         })
@@ -239,6 +286,9 @@ function insertMedia (collectionName, event, media = MEDIA_TYPE.IMAGE) {
  * collection data for the collection to view
  */
 function populatePage (response) {
+  if(!response) {
+    return
+  }
   populateTasks(response)
   populateMedia(response, MEDIA_TYPE.IMAGE, false)
   if (response.videos.length !== 0) {

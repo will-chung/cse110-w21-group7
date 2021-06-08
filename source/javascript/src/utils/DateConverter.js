@@ -35,7 +35,7 @@ class DateConverter extends Date {
 
   /**
      * Converts a UNIX timestamp to the number of days since
-     * January 1, 1970
+     * January 1, 1970 in local time.
      * @returns {Number} Number of days since January 1, 1970 given
      * by the UNIX timestamp
      */

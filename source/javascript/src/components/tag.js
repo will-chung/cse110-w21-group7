@@ -1,4 +1,6 @@
+import { DateConverter } from '../utils/DateConverter.js'
 import { wrapper } from './CollectionItem.js'
+import { ROUTES, Router } from '../utils/Router.js'
 
 const template = document.createElement('template')
 
@@ -8,6 +10,7 @@ template.innerHTML = `
 
   :host {
     display: inline-flex;
+    margin-left: 5px;
     align-items: center;
     background: #EE6C4D;
     color: white;
@@ -24,6 +27,10 @@ template.innerHTML = `
     font-size: 16px;
     font-weight: bold;
     font-family: sans-serif;
+  }
+
+  .tag-name:hover {
+    cursor: pointer;
   }
 
   .bi-x {
@@ -52,6 +59,12 @@ class Tag extends HTMLElement {
 
     this.name = name
 
+    this.shadowRoot.querySelector('.tag-name').addEventListener('click', () => {
+      const url = new URL(ROUTES['collection-edit'], window.location.origin)
+      url.searchParams.append('name', this.name)
+      new Router(url).navigate()
+    })
+
     this.shadowRoot.querySelector('.bi-x').addEventListener('click', () => {
       const collectionName = this.shadowRoot.querySelector('.tag-name').textContent
       this.removeCollectionTag(collectionName)
@@ -72,7 +85,6 @@ class Tag extends HTMLElement {
   removeCollectionTag (collectionName) {
     wrapper.transaction((event) => {
       const db = event.target.result
-
       const transaction = db.transaction(['currentLogStore'], 'readwrite')
       const objectStore = transaction.objectStore('currentLogStore')
       objectStore.openCursor().onsuccess = function (event) {
@@ -81,15 +93,24 @@ class Tag extends HTMLElement {
         if (cursor) {
           const json = cursor.value
           const collections = json.properties.collections
-          const currentLog = json.current_log
+          const router = new Router()
+          const params = router.url.searchParams
+          const dateConverter = new DateConverter(Number(params.get('timestamp')))
+          const currentLog = dateConverter.timestamp
+          const findLog = (collection) => {
+            return collection.findIndex((log) => {
+              return dateConverter.equals(new DateConverter(log))
+            })
+          }
 
           collections.forEach(collection => {
             if (collection.name === collectionName) {
-              const index = collection.logs.indexOf(currentLog)
-              collection.logs.splice(index, 1)
+              const index = findLog(collection.logs)
+              if (!(index === undefined)) {
+                collection.logs.splice(index, 1)
+              }
             }
           })
-
           cursor.update(json)
         }
       }

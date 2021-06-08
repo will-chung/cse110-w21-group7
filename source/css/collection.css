@@ -66,10 +66,6 @@ nav.main-menu.expanded {
   height: 106px;
 }
 
-#current > .fa {
-  padding-top: 30px;
-}
-
 #current {
   background: #EE6C4D;
   border-color: black;
@@ -270,10 +266,13 @@ a:link {
   justify-content: center;
   align-items: center;
   border-style: solid;
-  border-color: #e0fbfc;
+  border-color: #98c1d9;
   margin-top: 5vh;
   border-radius:20px;
+  border-width: 5px;
   padding-bottom: 30px;
+  /* background-color: white;
+  box-shadow: 200px 20px 20px black; */
   /* flex-basis: 50%; */
 }
 
@@ -323,7 +322,7 @@ a.custAdd:hover {
 
 #cb {
   font-family: "Pattaya", sans-serif;
-  position: relative;
+  position: fixed;
   display: inline-block;
   text-align: center;
   padding-left:20px;
@@ -337,12 +336,11 @@ a.custAdd:hover {
   font-size: 40px;
   overflow: hidden;
   transition: 0.2s;
-  position: absolute;
   border-style:solid;
   border-color:#EE6C4D;
   border-radius: 100px;
-  top: 80%;
-  left: 85%;
+  bottom: 50px;
+  right: 50px;
 }
 
 #cb:hover {

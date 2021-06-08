@@ -34,9 +34,9 @@
             </div>
           </div>
         </div>
+        <ul id="myUL"></ul>
+        <div id="body-content">
         <div id="entry-area">
-          <ul id="myUL"></ul>
-
           <form id="textbox">
             <div id="dropdown">
               <div class="containerOuter">
@@ -90,8 +90,8 @@
               </div>
             </div>
             <div id="date-time">
-              <input type="date" id="date-input" placeholder="Date" />
               <input type="time" id="time-input" placeholder="Time" />
+              <input type="date" id="date-input" placeholder="Date" />              
             </div>
             <div id="text-input">
               <input
@@ -100,33 +100,47 @@
                 name="todo"
                 placeholder="Input your todo here"
               />
+            </div>
+            <div id="buttons">
               <a href="#" id="cb1" class="customBtn">
-                <span id="span1"></span>
-                <span id="span2"></span>
-                <span id="span3"></span>
-                <span id="span4"></span>
-                <p>Save</p>
-              </a>
-              <a href="#" id="cb2" class="customBtn">
                 <span id="span1"></span>
                 <span id="span2"></span>
                 <span id="span3"></span>
                 <span id="span4"></span>
                 <p>Cancel</p>
               </a>
+              <a href="#" id="cb2" class="customBtn">
+                <span id="span1"></span>
+                <span id="span2"></span>
+                <span id="span3"></span>
+                <span id="span4"></span>
+                <p>Save</p>
+              </a>
             </div>
+              
+            
           </form>
           <!-- <form>
                   <button type="submit">Submit</button>
                 </form> -->
         </div>
+       
+        <div id="reflection">
+          <reflection-item></reflection-item>
+        </div>
         <div id="mid-section">
-          <a href="#" id="yesterday"><i class="fa fa-chevron-left fa-lg"></i></a>
+          <button id="yesterday">
+            <a href="#"><i class="fa fa-chevron-left fa-lg"></i></a>
+            Yesterday
+          </button>
+          
           <!-- <button id="collapse">Collapse</button> -->
-          <a href="#" id="collapse"><i class="fa fa-chevron-up fa-lg"></i></a>
-          <a href="#" id="tomorrow"
+          <button id="collapse">Mood<a href="#"><i class="fa fa-chevron-down fa-lg"></i></a></button>
+          <button  id="tomorrow">Tomorrow<a href="#"
             ><i class="fa fa-chevron-right fa-lg"></i
           ></a>
+          </button>
+          
         </div>
         <div id="reflection">
           <reflection-item></reflection-item>
@@ -136,31 +150,31 @@
     <nav class="main-menu">
       <ul>
         <li>
-          <a href="./index.html" class="underline" id="home">
+          <a href="./index.html" class="underline nav-index" id="home">
             <i class="fa fa-home fa-2x"></i>
             <span class="nav-text"> Index </span>
           </a>
         </li>
         <li class="has-subnav">
-          <a href="./search.html" class="underline">
+          <a href="./search.html" class="underline nav-search">
             <i class="fa fa-search fa-2x"></i>
             <span class="nav-text"> Search </span>
           </a>
         </li>
         <li class="has-subnav">
-          <a href="./daily.html" class="underline" id="current">
+          <a href="./daily.html" class="underline nav-daily" id="current">
             <i class="fa fa-pencil fa-2x"></i>
             <span class="nav-text"> Daily Log </span>
           </a>
         </li>
         <li class="has-subnav">
-          <a href="./collection.html" class="underline">
+          <a href="./collection.html" class="underline nav-collection">
             <i class="fa fa-folder-open fa-2x"></i>
             <span class="nav-text"> Collection </span>
           </a>
         </li>
         <li class="has-subnav">
-          <a href="./weekly.html" class="underline">
+          <a href="./weekly.html" class="underline nav-weekly">
             <i class="fa fa-calendar fa-2x"></i>
             <span class="nav-text"> Weekly </span>
           </a>
@@ -177,5 +191,7 @@
       src="../javascript/src/components/ReflectionItem.js"
       type="module"
     ></script>
+    <script src="../javascript/src/navBar.js" type="module"></script>
+
   </body>
 </html>

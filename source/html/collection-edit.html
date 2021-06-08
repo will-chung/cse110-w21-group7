@@ -16,7 +16,7 @@
     <nav id="main-menu">
         <ul>
           <li >
-            <a href="./index.html" id="home">
+            <a href="./index.html" id="home" class="nav-index">
               <i class="fa fa-home fa-2x"></i>
               <span class="nav-text" >
                 Index
@@ -25,7 +25,7 @@
     
           </li>
           <li class="has-subnav">
-            <a href="./search.html" class="underline">
+            <a href="./search.html" class="underline nav-search">
               <i class="fa fa-search fa-2x"></i>
               <span class="nav-text">
                 Search
@@ -34,7 +34,7 @@
     
           </li>
           <li class="has-subnav">
-            <a href="./daily.html" class="underline"  >
+            <a href="./daily.html" class="underline nav-daily"  >
               <i class="fa fa-pencil fa-2x"></i>
               <span class="nav-text">
                 Daily Log
@@ -43,7 +43,7 @@
     
           </li>
           <li class="has-subnav">
-            <a href="./collection.html" class="underline"  id="current">
+            <a href="./collection.html" class="underline nav-collection"  id="current">
               <i class="fa fa-folder-open fa-2x"></i>
               <span class="nav-text">
                 Collection
@@ -52,7 +52,7 @@
     
           </li>
           <li class="has-subnav">
-            <a href="./weekly.html" class="underline">
+            <a href="./weekly.html" class="underline nav-weekly">
               <i class="fa fa-calendar fa-2x"></i>
               <span class="nav-text">
                 Weekly
@@ -71,11 +71,9 @@
                 <ul id="myUL">
                 </ul>
                 <div id="myDIV" class="header">
-
-                  <!-- <h3 style="margin:5px">Enter new tasks</h2> -->
-                  <input type="text" id="myInput" placeholder="Enter new tasks">
-                  <span class="addBtn">Add</span>
-
+                  <h3>Enter Tasks</h3>
+                  <input type="text" id="myInput" placeholder="what do you need for this collection...">
+                  <span class="addBtn" id="addTaskBtn"><h3>Add</h3></span>
                 </div>
 
             </div>
@@ -112,7 +110,8 @@
         </div>
     </div>
     <script src="../javascript/src/collection-edit.js" type="module"></script>
-    <script src="../javascript/src/components/LogItem.js"></script>
+    <script src="../javascript/src/components/LogItem.js" type="module"></script>
     <script src="../javascript/src/components/MediaItem.js" type="module"></script>
+    <script src="../javascript/src/navBar.js" type="module"></script>
 </body>
 </html>

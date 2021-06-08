@@ -296,15 +296,9 @@ h1 {
 .shelf {
   box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   border-style: solid;
-  border-width: 2px;
+  border-width: 4px;
   border-color: #98c1d9;
-  background: rgb(224, 251, 252);
-  background: radial-gradient(
-    circle,
-    rgba(224, 251, 252, 1) 0%,
-    rgba(152, 193, 217, 1) 100%
-  );
-  border-radius: 25px;
+  border-radius: 10px;
   height: 125px;
   margin-top: 5vh;
   display: flex;
@@ -400,7 +394,7 @@ h1 {
 
   #cb {
     font-family: "Pattaya", sans-serif;
-    position: relative;
+    position: fixed;
     display: inline-block;
     text-align: center;
     padding-left:20px;
@@ -414,12 +408,11 @@ h1 {
     font-size: 40px;
     overflow: hidden;
     transition: 0.2s;
-    position: absolute;
     border-style:solid;
     border-color:#EE6C4D;
     border-radius: 100px;
-    top: 80%;
-    left: 85%;
+    bottom: 50px;
+    right: 50px;
   }
   
   #cb:hover {

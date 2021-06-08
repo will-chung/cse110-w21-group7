@@ -36,12 +36,16 @@
         "properties": {
           "date": {
             "type": "string",
-            "time": "1622752964489",
+            "time": "1623312720000",
             "description": "The date of the event."
           },
           "events": [
             {
-              "description": "February 28, 2022",
+<<<<<<< HEAD
+              "description": "June 3, 2021",
+=======
+              "description": "June 10, 2021",
+>>>>>>> 61b572caf579b3f16a261b99ce79cd3095a3157a
               "logType": "event",
               "time": "1621718384658"
             }
@@ -65,12 +69,12 @@
         "properties": {
           "date": {
             "type": "string",
-            "time": "1646251200000",
+            "time": "1623485280000",
             "description": "The date of the event."
           },
           "events": [
             {
-              "description": "March 2, 2022",
+              "description": "June 12, 2021",
               "logType": "event",
               "time": "1621718384658"
             }
@@ -83,7 +87,7 @@
             "multipleOf": 1,
             "minimum": 0,
             "exclusiveMaximum": 100,
-            "value": 20,
+            "value": 40,
             "description": "Daily mood on a range of 0-99."
           }
         }
@@ -94,12 +98,12 @@
         "properties": {
           "date": {
             "type": "string",
-            "time": "1646510400000",
+            "time": "1625386080000",
             "description": "The date of the event."
           },
           "events": [
             {
-              "description": "March 5, 2022",
+              "description": "July 4, 2021",
               "logType": "event",
               "time": "1621718384658"
             }
@@ -112,7 +116,7 @@
             "multipleOf": 1,
             "minimum": 0,
             "exclusiveMaximum": 100,
-            "value": 20,
+            "value": 60,
             "description": "Daily mood on a range of 0-99."
           }
         }
