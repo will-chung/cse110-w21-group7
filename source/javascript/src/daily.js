@@ -27,6 +27,7 @@ cancelBtn.addEventListener('click', () => {
   text.value = ''
 })
 
+// TODO
 radioContainer.addEventListener('change', () => {
   resetEverything()
   if (refRadio.checked) {
@@ -47,6 +48,10 @@ radioContainer.addEventListener('change', () => {
   }
 })
 
+/**
+ * Onclick of the "Add tag" button will trigger this event and add
+ * the collection tag to the daily log
+ */
 tagOptions.addEventListener('click', (event) => {
   const collectionName = event.target.textContent
   console.log('clicked!')
@@ -54,6 +59,11 @@ tagOptions.addEventListener('click', (event) => {
   addCollectionTag(collectionName)
 })
 
+/**
+ * Adds a collection tag to the user's daily log
+ * @param {String} collectionName Collection that will be added as a
+ * tag to the daily log
+ */
 function addCollectionTag (collectionName) {
   wrapper.transaction((event) => {
     const db = event.target.result
@@ -91,10 +101,9 @@ function addCollectionTag (collectionName) {
 }
 
 /**
- * Adds tasks, notes, and events to the daily log. If the entry is empty,
- * then the bullet journal alerts the user that they must write something
- * for that task/note/event.
- *
+ * Adds tasks, notes, events, and reflections to the daily log. If the entry is
+ * empty, then the bullet journal alerts the user that they must write 
+ * something for that entry
  */
 function newElement () {
   const inputValue = document.getElementById('input-area').value
@@ -157,13 +166,13 @@ function resetEverything () {
 }
 
 /**
- * Updates tasks, notes, and events in the daily log.
- * (i.e. deleting entries, editing entries, or toggling tasks)
+ * Adds tasks, notes, and events in the daily log.
  * These changes should be saved and reflected the next time
  * the user opens the daily log.
- *
- * @param logEntry
- * @param entry
+ * @param {Object} logEntry Log entry and associated description
+ * to be added to the schema
+ * @param {String} entry Category that logEntry should go under
+ * for the schema (notes/tasks/events/reflection)
  */
 function updateElement (logEntry, entry) {
   const wrapper = new IndexedDBWrapper('experimentalDB', 1)
@@ -300,11 +309,11 @@ function setEntries (log) {
     })
   }
 
-  /* make tasks */
+  /* Populate entries in daily log */
+  populateTypeOfEntry(log.properties.reflection)
+  populateTypeOfEntry(log.properties.events)
   populateTypeOfEntry(log.properties.tasks)
   populateTypeOfEntry(log.properties.notes)
-  populateTypeOfEntry(log.properties.events)
-  populateTypeOfEntry(log.properties.reflection)
 }
 
 /**
@@ -314,7 +323,6 @@ function setEntries (log) {
  * @param {Object} log JSON object formatted based on the schema for
  * a single daily log
  */
-
 function setReflection (log) {
   const reflection = log.properties.mood
   const reflectionItem = document.querySelector('reflection-item')
@@ -336,6 +344,10 @@ function setDate (log) {
   dateElement.innerText = date.toLocaleDateString()
 }
 
+/**
+ * Business logic subroutine for adding collection tags to the daily log.
+ * @param {Object} json JSON object for the collection tag
+ */
 function setTags (json) {
   const collections = json.properties.collections
   const router = new Router()
@@ -356,6 +368,12 @@ function setTags (json) {
   })
 }
 
+/**
+ * Business logic subroutine for adding the collection tag options
+ * for the "Add tag" button. Only give collection options that are
+ * not already tagged for the daily log.
+ * @param {Object} json JSON object for the add collection tag options
+ */
 function setTagOptions (json) {
   const collections = json.properties.collections
   const router = new Router()
@@ -415,6 +433,7 @@ function getDateFromUNIXTimestamp (timestamp) {
   return new DateConverter(timestamp)
 }
 
+// TODO: not sure what this one does
 document.addEventListener('DOMContentLoaded', (event) => {
   saveBtn.style.display = 'none'
   cancelBtn.style.display = 'none'
@@ -456,6 +475,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     })
 })
 
+/**
+ * Routes the user from the current daily log they are on
+ * to yesterday's daily log
+ */
 const yesterdayTodayNav = (yesterday = true) => {
   const router = new Router()
   const searchParams = router.url.searchParams
