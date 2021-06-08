@@ -73,9 +73,7 @@ class Shelf extends HTMLElement {
 
           that._books.forEach((book, monthIndex) => {
             if (that.hasEntryForYearMonth(dailyLogs, monthIndex)) {
-              book.color = '#ee6c4d'
-              book.makeClickable()
-              console.log('not found')
+              book.makeInteractive()
             }
           })
         }

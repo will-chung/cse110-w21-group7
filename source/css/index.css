@@ -413,7 +413,7 @@ h1 {
 
   #cb {
     font-family: "Pattaya", sans-serif;
-    position: relative;
+    position: fixed;
     display: inline-block;
     text-align: center;
     padding-left:20px;
@@ -427,12 +427,11 @@ h1 {
     font-size: 40px;
     overflow: hidden;
     transition: 0.2s;
-    position: absolute;
     border-style:solid;
     border-color:#EE6C4D;
     border-radius: 100px;
-    top: 80%;
-    left: 85%;
+    bottom: 50px;
+    right: 50px;
   }
   
   #cb:hover {

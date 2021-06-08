@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Log</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="./css/daily.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;1,700&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div id="content">
+      <div id="journal-content">
+        <div id="title">
+          <div class="date">
+            <h1></h1>
+          </div>
+          <div class="tag-container" style="display: inline-block;">
+            <div class="tags" style="display: inline-block;"></div>
+            <div class="addTags">
+              <button class="tagBtn">Add<i class="bi bi-tag" style="font-size: 24px; margin-left: 5px;"></i></button>
+              <div class="tag-options"></div>
+            </div>
+          </div>
+        </div>
+        <ul id="myUL"></ul>
+        <div id="body-content">
+        <div id="entry-area">
+          <form id="textbox">
+            <div id="dropdown">
+              <div class="containerOuter">
+                <div class="container">
+                  <label class="entry"
+                    ><div class="entry-prompt">Entry type:</div></label
+                  >
+                  <input
+                    type="radio"
+                    class="hidden"
+                    id="input1"
+                    name="inputs"
+                  />
+                  <label class="entry" for="input1"
+                    ><div class="circle"></div>
+                    <div class="entry-label">Reflection</div></label
+                  >
+                  <input
+                    type="radio"
+                    class="hidden"
+                    id="input2"
+                    name="inputs"
+                  />
+                  <label class="entry" for="input2"
+                    ><div class="circle"></div>
+                    <div class="entry-label">Event</div></label
+                  >
+                  <input
+                    type="radio"
+                    class="hidden"
+                    id="input3"
+                    name="inputs"
+                  />
+                  <label class="entry" for="input3"
+                    ><div class="circle"></div>
+                    <div class="entry-label">Task</div></label
+                  >
+                  <input
+                    type="radio"
+                    class="hidden"
+                    id="input4"
+                    name="inputs"
+                  />
+                  <label class="entry" for="input4"
+                    ><div class="circle"></div>
+                    <div class="entry-label">Note</div></label
+                  >
+                  <div class="highlight"></div>
+                </div>
+              </div>
+            </div>
+            <div id="date-time">
+              <input type="time" id="time-input" placeholder="Time" />
+              <input type="date" id="date-input" placeholder="Date" />              
+            </div>
+            <div id="text-input">
+              <input
+                type="text"
+                id="input-area"
+                name="todo"
+                placeholder="Input your todo here"
+              />
+            </div>
+            <div id="buttons">
+              <a href="#" id="cb1" class="customBtn">
+                <span id="span1"></span>
+                <span id="span2"></span>
+                <span id="span3"></span>
+                <span id="span4"></span>
+                <p>Cancel</p>
+              </a>
+              <a href="#" id="cb2" class="customBtn">
+                <span id="span1"></span>
+                <span id="span2"></span>
+                <span id="span3"></span>
+                <span id="span4"></span>
+                <p>Save</p>
+              </a>
+            </div>
+              
+            
+          </form>
+        </div>
+       
+        <div id="reflection">
+          <reflection-item></reflection-item>
+        </div>
+        <div id="mid-section">
+          <button id="yesterday">
+            <a href="#"><i class="fa fa-chevron-left fa-lg"></i></a>
+            Yesterday
+          </button>
+          
+          <button id="collapse">Mood<a href="#"><i class="fa fa-chevron-down fa-lg"></i></a></button>
+          <button  id="tomorrow">Tomorrow<a href="#"
+            ><i class="fa fa-chevron-right fa-lg"></i
+          ></a>
+          </button>
+          
+        </div>
+        <div id="reflection">
+          <reflection-item></reflection-item>
+        </div>
+      </div>
+    </div>
+    <nav class="main-menu">
+      <ul>
+        <li>
+          <a href="./index.html" class="underline nav-index" id="home">
+            <i class="fa fa-home fa-2x"></i>
+            <span class="nav-text"> Index </span>
+          </a>
+        </li>
+        <li class="has-subnav">
+          <a href="./search.html" class="underline nav-search">
+            <i class="fa fa-search fa-2x"></i>
+            <span class="nav-text"> Search </span>
+          </a>
+        </li>
+        <li class="has-subnav">
+          <a href="./daily.html" class="underline nav-daily" id="current">
+            <i class="fa fa-pencil fa-2x"></i>
+            <span class="nav-text"> Daily Log </span>
+          </a>
+        </li>
+        <li class="has-subnav">
+          <a href="./collection.html" class="underline nav-collection">
+            <i class="fa fa-folder-open fa-2x"></i>
+            <span class="nav-text"> Collection </span>
+          </a>
+        </li>
+        <li class="has-subnav">
+          <a href="./weekly.html" class="underline nav-weekly">
+            <i class="fa fa-calendar fa-2x"></i>
+            <span class="nav-text"> Weekly </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <script src="./javascript/src/daily.js" type="module"></script>
+    <script src="./javascript/src/components/tag.js" type="module"></script>
+    <script
+      src="./javascript/src/components/LogItem.js"
+      type="module"
+    ></script>
+    <script
+      src="./javascript/src/components/ReflectionItem.js"
+      type="module"
+    ></script>
+    <script src="./javascript/src/navBar.js" type="module"></script>
+
+  </body>
+</html>

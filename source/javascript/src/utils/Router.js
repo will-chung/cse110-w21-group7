@@ -1,3 +1,5 @@
+const prod = true
+
 /**
  * Routing class used to help with navigating between pages
  * for our site.
@@ -60,12 +62,16 @@ class Router {
  * Constant field containing all the routes for our bullet journal.
  */
 const ROUTES = {
-  index: '/source/html/index.html',
-  search: '/source/html/search.html',
-  collections: '/source/html/collection.html',
-  'collection-edit': '/source/html/collection-edit.html',
-  daily: '/source/html/daily.html',
-  weekly: '/source/html/weekly.html'
+  index: '/index.html',
+  search: '/search.html',
+  collections: '/collection.html',
+  'collection-edit': '/collection-edit.html',
+  daily: '/daily.html',
+  weekly: '/weekly.html'
+}
+const prefix = (prod) ? '/cse110-SP21-group7' : '/source'
+for (const route in ROUTES) {
+  ROUTES[route] = `${prefix}${ROUTES[route]}`
 }
 
 export { Router, ROUTES }
