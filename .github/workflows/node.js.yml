@@ -47,9 +47,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - run: npm run build --if-present
     - run: npm run lint_tests --if-present
     - run: npm run lint_src --if-present
+    - run: npm run build --if-present
   
   coverage:
     name: Code coverage ${{ matrix.node_version }}
