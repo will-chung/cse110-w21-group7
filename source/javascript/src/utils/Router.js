@@ -69,7 +69,7 @@ const ROUTES = {
   daily: '/daily.html',
   weekly: '/weekly.html'
 }
-const prefix = (prod) ? '/cse110-w21-group7' : '/source'
+const prefix = (prod) ? '/cse110-SP21-group7' : '/source'
 for (const route in ROUTES) {
   ROUTES[route] = `${prefix}${ROUTES[route]}`
 }
