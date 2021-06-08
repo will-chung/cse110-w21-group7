@@ -245,11 +245,12 @@ button:hover {
   cursor: pointer;
 }
 #collapse {
-  position: fixed;
+  position: absolute;
   left: 45%;
   font-family: "Montserrat", sans-serif;
   display: inline-block;
   margin:5px;
+  margin-top:2vh;
   padding-left:30px;
   text-align: center;
   color: white;
@@ -268,11 +269,12 @@ button:hover {
   transform:translateY(10px);
 }
 #yesterday {
-  position: fixed;
-  left:20%;
+  position: relative;
+  left:0%;
   font-family: "Montserrat", sans-serif;
   display: inline-block;
   margin:5px;
+  margin-top:2vh;
   padding-top:10px;
   padding-right:15px;
   text-align: center;
@@ -292,11 +294,12 @@ button:hover {
 }
 #tomorrow {
   margin: 10px;
-  position: fixed;
-  left: 70%;
+  position: absolute;
+  left: 81%;
   font-family: "Montserrat", sans-serif;
   display: inline-block;
   margin:5px;
+  margin-top:2vh;
   padding-top:10px;
   padding-left:15px;
   text-align: center;
