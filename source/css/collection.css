@@ -160,23 +160,7 @@ body {
   font-size: 3.5vw;
   line-height: 4vh;
   margin:auto;*/
-  text-align: center;
-  vertical-align: center;
-  font-family: "Montserrat", sans-serif;
-  font-size: 3.5vw;
-  line-height: 4vw;
-  padding:1vh;
 
-  border-style: solid;
-  border-color: #98c1d9;
-  border-width: 5px;
-  width: 35vw;
-  box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-  border-radius: 20px;
-  color: white;
-  margin:auto;
-  margin-top: 3vh;
-  margin-bottom: 3vh;
 }
 
 #nav-menu {
@@ -309,9 +293,18 @@ a:link {
   text-align: center;
   vertical-align: center;
   font-family: "Montserrat", sans-serif;
-  font-size: 60px;
-  margin: 0;
-  line-height: 120px;
+  font-size: 3.5vw;
+  line-height: 4vw;
+  border-style: solid;
+  border-color: #98c1d9;
+  border-width: 5px;
+  width: 35vw;
+  box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  border-radius: 20px;
+  color: white;
+  margin:auto;
+  margin-top: 3vh;
+  margin-bottom: 10vh;
 }
 
 .custAdd {

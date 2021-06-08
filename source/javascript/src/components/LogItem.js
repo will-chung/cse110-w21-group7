@@ -91,6 +91,7 @@ class LogItem extends HTMLElement {
     const that = this
     if (!editable) {
       this.shadowRoot.querySelector('button').style.display = 'none'
+      // this.shadowRoot.querySelector('i').removeEventListener('click')
     } else {
       // When dealing with log of type task, we must update the task status when it is clicked.
       that.setHoverListeners()
