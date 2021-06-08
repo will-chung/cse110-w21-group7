@@ -46,7 +46,7 @@ function minifyHTML(cb) {
 function minifyJS(cb) {
     gulp.src(`${SRC.js}/**/*.js`)
         .pipe(babel({
-            presets: ['@babel/env']
+            presets: ["env", { "modules": false }]
         }))
         .pipe(uglify())
         .pipe(rename(function(path) {
