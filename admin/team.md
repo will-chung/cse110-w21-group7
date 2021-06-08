@@ -22,22 +22,26 @@ Ultimately, we identify as team RIVER because these are values that are intrinsi
 Included here is an overview of our team.
 
 - Yuzi Lyu
+  - ![Personal Picture](./photos/Yuzi-pic.jpg)
   - Second year CS major at UCSD, Co-lead for RIVER
   - Enthusiastic about software engineering and product management
   - I love learning about TV/display specs
   - More about me [here](https://www.linkedin.com/in/yuzi-lyu/)
   - Github: [@github/yuzilyu](https://yuzilyu.github.io/Introduction/)
 - Noah Teshima 
+  - ![Personal Picture](./photos/Noah-pic.jpg)
   - Fourth year Mathematics, Computer Science major at UCSD.
   - In his free time during the pandemic, he enjoys playing with return tops (yo-yos) and hiking.
   - Github: ([@github/noahT](https://github.com/NoahT))  
 - William Chung
+  - ![Personal Picture](./photos/William-pic.jpg)
   - Sophomore Computer Science 🖥️ major, Mathematics 📘 minor 
   - Aspiring software engineer and computer scientist
   - Enjoys spending time in nature
   - Thinks Team7 is the best team 😎
   - GitHub: [@github/will-chung](https://github.com/will-chung)
 - Alvin Wang
+  - ![Personal Picture](./photos/Alvin-pic.jpg)
   - Second year Computer Science major
   - Aspiring software or machine learning engineer
   - Enjoys playing the saxophone and golfing

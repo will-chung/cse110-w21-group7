@@ -22,7 +22,7 @@ addTaskBtn.addEventListener('click', () => {
  * Add new task to collection in database.
  */
 function addTask (task) {
-  if (task === null) {
+  if (task === null || task === '') {
     return
   }
   const wrapper = new IndexedDBWrapper('experimentalDB', 1)
