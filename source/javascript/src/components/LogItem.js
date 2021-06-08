@@ -37,22 +37,22 @@ class LogItem extends HTMLElement {
                                       cursor: pointer;
                                     }
                                     .trash-button-icon {
-                                        background: url(../images/log-item_icons/trash-solid.svg) no-repeat center center;
+                                        background: url(./images/log-item_icons/trash-solid.svg) no-repeat center center;
                                     }
                                     .task-unfinished-icon {
-                                        background: url(../images/log-item_icons/times-solid.svg) no-repeat center center;
+                                        background: url(./images/log-item_icons/times-solid.svg) no-repeat center center;
                                     }
                                     .task-finished-icon {
-                                        background: url(../images/log-item_icons/check-solid.svg) no-repeat center center;
+                                        background: url(./images/log-item_icons/check-solid.svg) no-repeat center center;
                                     }
                                     .note-icon {
-                                        background: url(../images/log-item_icons/note-solid.svg) no-repeat center center;
+                                        background: url(./images/log-item_icons/note-solid.svg) no-repeat center center;
                                     }
                                     .event-icon {
-                                        background: url(../images/log-item_icons/event-solid.svg) no-repeat center center;
+                                        background: url(./images/log-item_icons/event-solid.svg) no-repeat center center;
                                     }
                                     .reflection-icon {
-                                        background: url(../images/log-item_icons/reflection-solid.svg) no-repeat center center;
+                                        background: url(./images/log-item_icons/reflection-solid.svg) no-repeat center center;
                                     }
                                     button {
                                         background-color: rgba(0,0,0,0);
@@ -262,7 +262,7 @@ class LogItem extends HTMLElement {
     this._itemEntry = entry
     this._itemEntry.editable = true
     if (entry.logType === 'event') {
-      this._itemEntry.date = new Date(Number(entry.time))
+      this._itemEntry.date = new DateConverter(Number(entry.time))
     }
     this.render()
   }
