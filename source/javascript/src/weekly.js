@@ -56,7 +56,7 @@ function getLogInfoAsJSON (cb) {
         if (searchParams.has('displayFirstOfMonth')) {
           // gets all daily logs with the requested month and year
           result = dailyLogs.filter((log) => {
-            // timestamp of milliseconds since Jan 1. 1970 in local time
+            // timestamp of milliseconds since Jan 1. 1970 in GMT time
             const timestamp = Number(log.properties.date.time)
             const date = new Date(timestamp)
             return (date.getFullYear() === year) && (date.getMonth() === month)
@@ -74,7 +74,7 @@ function getLogInfoAsJSON (cb) {
           })
         } else {
           // @TODO get results for navigating from menu
-          dateToCompare = new DateConverter(Date.now())
+          dateToCompare = new DateConverter()
           dailyLogResult = dailyLogs.filter((log) => {
             const timestamp = log.properties.date.time
             return dateToCompare.timestampsInSameWeek(Number(timestamp))
@@ -139,7 +139,7 @@ function appendNavLinks (targetElement, date) {
   anchor.onclick = function (event) {
     event.preventDefault()
     const params = new URLSearchParams()
-    params.append('timestamp', date.timestamp)
+    params.append('timestamp', date.getTime())
     const url = new URL(ROUTES.daily, location.origin)
     url.search = params
     new Router(url).navigate()

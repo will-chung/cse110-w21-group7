@@ -12,7 +12,6 @@ class DateConverter extends Date {
      */
   constructor (timestamp = Date.now()) {
     super(timestamp)
-    this._timestamp = timestamp
   }
 
   /**
@@ -21,7 +20,7 @@ class DateConverter extends Date {
      * formatting
      */
   get timestamp () {
-    return this._timestamp + (this.getTimezoneOffset() * 60 * 1000)
+    return this.getTime() - (this.getTimezoneOffset() * 60 * 1000)
   }
 
   /**
@@ -30,16 +29,18 @@ class DateConverter extends Date {
      * formatting
      */
   set timestamp (timestamp) {
-    this._timestamp = timestamp
+    this.setTime(timestamp)
   }
 
   /**
      * Converts a UNIX timestamp to the number of days since
      * January 1, 1970 in local time.
+     * @param {timestamp} Number containing the UNIX timestamp
+     * in local time
      * @returns {Number} Number of days since January 1, 1970 given
      * by the UNIX timestamp
      */
-  getDaysFromTimeStamp (timestamp = this._timestamp) {
+  getDaysFromTimeStamp (timestamp = this.timestamp) {
     // Number of days since January 1, 1970
     const days = Math.floor(timestamp / (24 * 60 * 60 * 1000))
     return days
@@ -61,11 +62,20 @@ class DateConverter extends Date {
     // compare to this._timestamp
     // get the days correspond to _timestamp
     const that = this
-    const timestampDateConverter = new DateConverter(timestamp)
-    if (Math.abs(timestampDateConverter.getDaysFromTimeStamp(timestamp) - that.getDaysFromTimeStamp()) < 7) {
-      if (((that.getDay() + 6) % 7) - ((timestampDateConverter.getDay() + 6) % 7) >= 0) {
-        return true
-      }
+    let timestampDateConverter
+    let timestampBeginningOfWeek
+    if (timestamp > that.getTime()) {
+      timestampDateConverter = new DateConverter(timestamp)
+      timestampBeginningOfWeek = new DateConverter(this.getBeginningOfWeek())
+      console.log('aa')
+    } else {
+      console.log('no')
+      timestampDateConverter = that // may 23
+      timestampBeginningOfWeek = new DateConverter(new DateConverter(timestamp).getBeginningOfWeek()) // may 17
+    }
+    const diff = timestampDateConverter.getDaysFromTimeStamp() - timestampBeginningOfWeek.getDaysFromTimeStamp()
+    if (diff >= 0 && diff < 7) {
+      return true
     }
     return false
   }
@@ -108,11 +118,12 @@ class DateConverter extends Date {
   /**
      * Checks if the given UNIX timestamp is correct up to the
      * number of days.
-     * @param {Number} timestamp UNIX timestamp to check for
-     * equality to the number of days
+     * @param {Number} timestamp UNIX timestamp (in GMT time) to
+     * check for equality to the number of days
      */
   equals (timestamp) {
-    return (this.getDaysFromTimeStamp() === this.getDaysFromTimeStamp(timestamp))
+    const dateConverter = new DateConverter(timestamp)
+    return (this.getDaysFromTimeStamp() === dateConverter.getDaysFromTimeStamp())
   }
 }
 
