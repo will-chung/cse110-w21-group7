@@ -41,7 +41,7 @@
           },
           "events": [
             {
-              "description": "June 10, 2021",
+              "description": "This is one day before 110 final",
               "logType": "event",
               "time": "1621718384658"
             }
@@ -70,7 +70,7 @@
           },
           "events": [
             {
-              "description": "June 12, 2021",
+              "description": "This is one day after 110 final",
               "logType": "event",
               "time": "1621718384658"
             }

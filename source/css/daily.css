@@ -902,7 +902,7 @@ background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 
 }
 
 #cb1 > p:hover{
-  color:#266150;
+  color:red;
   transition: 1s;
 }
 
@@ -999,7 +999,7 @@ background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 
 }
 
 #cb2 > p:hover{
-  color:red;
+  color:green;
   transition:1s;
 }
 
