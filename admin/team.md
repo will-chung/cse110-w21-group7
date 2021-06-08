@@ -34,12 +34,14 @@ Included here is an overview of our team.
   - In his free time during the pandemic, he enjoys playing with return tops (yo-yos) and hiking.
   - Github: ([@github/noahT](https://github.com/NoahT))  
 - William Chung
+  - ![Personal Picture](./photos/William-pic.jpg)
   - Sophomore Computer Science 🖥️ major, Mathematics 📘 minor 
   - Aspiring software engineer and computer scientist
   - Enjoys spending time in nature
   - Thinks Team7 is the best team 😎
   - GitHub: [@github/will-chung](https://github.com/will-chung)
 - Alvin Wang
+  - ![Personal Picture](./photos/Alvin-pic.jpg)
   - Second year Computer Science major
   - Aspiring software or machine learning engineer
   - Enjoys playing the saxophone and golfing
@@ -51,11 +53,13 @@ Included here is an overview of our team.
   - I play way too much Apex Legends
   - GitHub: [@github//brettherbst](https://github.com/brettherbst)
 - Rachel Doron 
+  - ![Personal Picture](./photos/rachel-pic.JPG)
   - Second year Cognitive Science major, Computer Science minor at UCSD
   - Intrested in software engineering and Artificial Intelligence 
   - Hobbies: traveling, cooking, and ballet 
   - GitHub: [@github/rdoron](https://github.com/rdoron)
 - Zhiyuan Zhang
+  - ![Personal Picture](./photos/Zhiyuan-pic.png)
   - Third year Computer Science major, Mathematics minor at UCSD
   - Enjoy coding in general and still exploring my interests
   - I love swimmimg and watching anime (That's right, I'm a weeb.)

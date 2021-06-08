@@ -245,11 +245,12 @@ button:hover {
   cursor: pointer;
 }
 #collapse {
-  position: relative;
-  left: 34%;
+  position: absolute;
+  left: 45%;
   font-family: "Montserrat", sans-serif;
   display: inline-block;
   margin:5px;
+  margin-top:2vh;
   padding-left:30px;
   text-align: center;
   color: white;
@@ -269,9 +270,11 @@ button:hover {
 }
 #yesterday {
   position: relative;
+  left:0%;
   font-family: "Montserrat", sans-serif;
   display: inline-block;
   margin:5px;
+  margin-top:2vh;
   padding-top:10px;
   padding-right:15px;
   text-align: center;
@@ -291,11 +294,12 @@ button:hover {
 }
 #tomorrow {
   margin: 10px;
-  position: relative;
-  left: 70%;
+  position: absolute;
+  left: 81%;
   font-family: "Montserrat", sans-serif;
   display: inline-block;
   margin:5px;
+  margin-top:2vh;
   padding-top:10px;
   padding-left:15px;
   text-align: center;
@@ -549,7 +553,7 @@ input {
 }
 
 #date-input {
-  width: 10vw;
+  width: fit-content;
   flex: 2;
   outline: none;
   color:#e0fbfc;
