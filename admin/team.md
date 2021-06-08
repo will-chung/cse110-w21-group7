@@ -58,6 +58,7 @@ Included here is an overview of our team.
   - Hobbies: traveling, cooking, and ballet 
   - GitHub: [@github/rdoron](https://github.com/rdoron)
 - Zhiyuan Zhang
+  - ![Personal Picture](./photos/Zhiyuan-pic.png)
   - Third year Computer Science major, Mathematics minor at UCSD
   - Enjoy coding in general and still exploring my interests
   - I love swimmimg and watching anime (That's right, I'm a weeb.)
