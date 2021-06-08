@@ -262,7 +262,7 @@ class LogItem extends HTMLElement {
     this._itemEntry = entry
     this._itemEntry.editable = true
     if (entry.logType === 'event') {
-      this._itemEntry.date = new Date(Number(entry.time))
+      this._itemEntry.date = new DateConverter(Number(entry.time))
     }
     this.render()
   }

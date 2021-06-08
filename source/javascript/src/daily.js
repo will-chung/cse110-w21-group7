@@ -123,14 +123,13 @@ function newElement () {
     const hours = Number(time.value.substring(0, 2))
     // parse the number of minutes
     const minutes = Number(time.value.substring(3))
-    // update UNIX timestamp with hours and minutes
+    // update UNIX timestamp with hours and minutes (GMT time)
     const timestamp = Date.parse(date.value) +
                 (hours * 60 * 60 * 1000) +
-                (minutes * 60 * 1000)
-    const dateConverter = new DateConverter(timestamp)
-
+                (minutes * 60 * 1000) +
+                (new Date().getTimezoneOffset() * 60 * 1000)
     // @TODO
-    itemEntry.time = dateConverter.timestamp
+    itemEntry.time = timestamp
   } else {
     itemEntry.logType = 'reflection'
     entry = 'reflection'
@@ -205,13 +204,15 @@ function updateElement (logEntry, entry) {
  * a new daily log is created if the date is the present day.
  * @author Noah Teshima <nteshima@ucsd.edu>
  * @author Brett Herbst <bherbst@ucsd.edu>
+ * @param {String} quote String reference containing resulting quote from
+ * ReST API call. We use this quote for new daily log entries
  * @throws Error object if date reference is null, undefined. Otherwise,
  * an error is thrown if
  * to retrieve log info for given day. the given date is not the present day and failed
  * @returns JSON type response, containing the information needed to
  * initialize the daily log.
  */
-function getLogInfoAsJSON (cb) {
+function getLogInfoAsJSON (cb, quote) {
   const wrapper = new IndexedDBWrapper('experimentalDB', 1)
 
   wrapper.transaction((event) => {
@@ -219,7 +220,7 @@ function getLogInfoAsJSON (cb) {
 
     const store = db.transaction(['currentLogStore'], 'readwrite')
       .objectStore('currentLogStore')
-    store.openCursor().onsuccess = function (event) {
+    store.openCursor().onsuccess = async function (event) {
       const cursor = event.target.result
       if (cursor) {
         const router = new Router()
@@ -229,14 +230,12 @@ function getLogInfoAsJSON (cb) {
           const dateConverter = new DateConverter(timestamp)
           // console.log(cursor.value)
           let match = false
-          let lenArr = 0
           cursor.value.$defs['daily-logs'].forEach((log, index) => {
             if (dateConverter.equals(Number(log.properties.date.time))) {
               match = true
               cb.bind(this)
               cb(cursor.value.$defs['daily-logs'][index], cursor.value)
             }
-            lenArr = index
           })
           // if there is no match for the given day, we create a daily log
           if (!match) {
@@ -253,7 +252,10 @@ function getLogInfoAsJSON (cb) {
                 events: [],
                 tasks: [],
                 notes: [],
-                reflection: [],
+                reflection: [{
+                  description: quote,
+                  logType: 'reflection'
+                }],
                 mood: {
                   type: 'number',
                   multipleOf: 1,
@@ -265,9 +267,9 @@ function getLogInfoAsJSON (cb) {
               }
             }
             cursor.value.$defs['daily-logs'].push(appendObj)
-            cb.bind(this)
-            cb(cursor.value.$defs['daily-logs'][lenArr + 1], cursor.value)
             cursor.update(cursor.value)
+            cb.bind(this)
+            cb(appendObj, cursor.value)
           }
         }
       }
@@ -443,7 +445,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
   time.addEventListener('change', () => {
     date.style.visibility = 'visible'
   })
-  getLogInfoAsJSON(populateDailyLog)
+
+  fetch('https://api.quotable.io/random')
+    .then((result) => result.json())
+    .then((jsonResult) => {
+      return `${jsonResult.content} —${jsonResult.author}`
+    })
+    .then((quote) => {
+      getLogInfoAsJSON(populateDailyLog, quote)
+    })
 })
 
 const yesterdayTodayNav = (yesterday = true) => {
