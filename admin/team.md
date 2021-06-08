@@ -62,6 +62,7 @@ Included here is an overview of our team.
   - Addicted to all kinds of board games
   - Github: [@github/fatIvan](https://github.com/fatIvan)
 - Katherine Baker
+  - ![Personal Picture](./photos/Katherine-pic.png)
   - Second year Computer Science Major
   - Interested in software engineering and intellectual property law.
   - I enjoy doing gymnastics, trying new foods, and learning guitar
