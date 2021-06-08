@@ -130,7 +130,7 @@ class Book extends HTMLElement {
       url.search = params
       new Router(url).navigate()
     })
-         
+
     // change color from grey
     this.color = '#ee6c4d'
   }
