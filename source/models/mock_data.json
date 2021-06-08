@@ -41,11 +41,7 @@
           },
           "events": [
             {
-<<<<<<< HEAD
-              "description": "June 3, 2021",
-=======
               "description": "June 10, 2021",
->>>>>>> 61b572caf579b3f16a261b99ce79cd3095a3157a
               "logType": "event",
               "time": "1621718384658"
             }
