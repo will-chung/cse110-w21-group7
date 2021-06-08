@@ -286,6 +286,9 @@ function insertMedia (collectionName, event, media = MEDIA_TYPE.IMAGE) {
  * collection data for the collection to view
  */
 function populatePage (response) {
+  if (!response) {
+    return
+  }
   populateTasks(response)
   populateMedia(response, MEDIA_TYPE.IMAGE, false)
   if (response.videos.length !== 0) {
