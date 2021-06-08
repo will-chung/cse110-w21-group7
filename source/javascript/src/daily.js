@@ -102,7 +102,7 @@ function addCollectionTag (collectionName) {
 
 /**
  * Adds tasks, notes, events, and reflections to the daily log. If the entry is
- * empty, then the bullet journal alerts the user that they must write 
+ * empty, then the bullet journal alerts the user that they must write
  * something for that entry
  */
 function newElement () {
