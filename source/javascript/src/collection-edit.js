@@ -202,15 +202,6 @@ function getLogInfoAsJSON (cb) {
     store.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
       if (cursor) {
-<<<<<<< HEAD
-        // let name = window.location.hash.slice(1)
-        // name = name.replace(/%20/g, ' ')
-        // // const collectionName = cursor.value.current_collection
-        // const collection = cursor.value.properties.collections.find((element) => {
-        //   return element.name === name
-        // })
-=======
->>>>>>> 61b572caf579b3f16a261b99ce79cd3095a3157a
         const router = new Router()
         const url = router.url
         const name = url.searchParams.get('name').replace(/\+/g, ' ')

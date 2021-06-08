@@ -1,5 +1,4 @@
 import { DateConverter } from '../utils/DateConverter.js'
-import { Router } from '../utils/Router.js'
 import { wrapper } from './CollectionItem.js'
 import { ROUTES, Router } from '../utils/Router.js'
 
