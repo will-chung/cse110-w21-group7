@@ -62,12 +62,20 @@ class DateConverter extends Date {
     // compare to this._timestamp
     // get the days correspond to _timestamp
     const that = this
-    const timestampDateConverter = new DateConverter(timestamp)
-    const timestampBeginningOfWeek = new DateConverter(this.getBeginningOfWeek())
-    if (Math.abs(timestampDateConverter.getDaysFromTimeStamp(timestamp) - timestampBeginningOfWeek.getDaysFromTimeStamp()) < 7) {
-      // if (((that.getDay() + 6) % 7) - ((timestampDateConverter.getDay() + 6) % 7) >= 0) {
+    let timestampDateConverter
+    let timestampBeginningOfWeek
+    if (timestamp > that.getTime()) {
+      timestampDateConverter = new DateConverter(timestamp)
+      timestampBeginningOfWeek = new DateConverter(this.getBeginningOfWeek())
+      console.log('aa')
+    } else {
+      console.log('no')
+      timestampDateConverter = that // may 23
+      timestampBeginningOfWeek = new DateConverter(new DateConverter(timestamp).getBeginningOfWeek()) // may 17
+    }
+    const diff = timestampDateConverter.getDaysFromTimeStamp() - timestampBeginningOfWeek.getDaysFromTimeStamp()
+    if (diff >= 0 && diff < 7) {
       return true
-      // }
     }
     return false
   }

@@ -50,7 +50,7 @@ describe('Testing DateConverter', function () {
 
   describe('testing timestampsInSameWeek', function () {
     it('May 16 is not in the same week as and before May 23', () => {
-      const may16 = new Date('May 16, 2021 22:35:30').getTime()
+      const may16 = new Date('16 May 2021 22:00:00 GMT').getTime()
       testConverter.timestampsInSameWeek(may16).should.equal(false)
     })
 
