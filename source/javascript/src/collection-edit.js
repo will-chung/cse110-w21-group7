@@ -1,6 +1,7 @@
 import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 import { MediaItem, MEDIA_TYPE } from './components/MediaItem.js'
 import { PAGES } from './components/LogItem.js'
+import { Router } from './utils/Router.js'
 
 const collapse = document.getElementById('collapse')
 const imageBox = document.getElementById('image-collection')
@@ -194,9 +195,15 @@ function getLogInfoAsJSON (cb) {
     store.openCursor().onsuccess = function (event) {
       const cursor = event.target.result
       if (cursor) {
-        let name = window.location.hash.slice(1)
-        name = name.replace(/%20/g, ' ')
-        // const collectionName = cursor.value.current_collection
+        // let name = window.location.hash.slice(1)
+        // name = name.replace(/%20/g, ' ')
+        // // const collectionName = cursor.value.current_collection
+        // const collection = cursor.value.properties.collections.find((element) => {
+        //   return element.name === name
+        // })
+        const router = new Router()
+        const url = router.url
+        const name = url.searchParams.get('name').replace(/\+/g, ' ')
         const collection = cursor.value.properties.collections.find((element) => {
           return element.name === name
         })
@@ -278,6 +285,9 @@ function insertMedia (collectionName, event, media = MEDIA_TYPE.IMAGE) {
  * collection data for the collection to view
  */
 function populatePage (response) {
+  if(!response) {
+    return
+  }
   populateTasks(response)
   populateMedia(response, MEDIA_TYPE.IMAGE, false)
   if (response.videos.length !== 0) {

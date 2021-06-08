@@ -1,4 +1,5 @@
 import { wrapper } from './CollectionItem.js'
+import { ROUTES, Router } from '../utils/Router.js'
 
 const template = document.createElement('template')
 
@@ -26,6 +27,10 @@ template.innerHTML = `
     font-family: sans-serif;
   }
 
+  .tag-name:hover {
+    cursor: pointer;
+  }
+
   .bi-x {
     visibility: hidden;
     transition: transform 0.5s;
@@ -51,6 +56,12 @@ class Tag extends HTMLElement {
     this.shadowRoot.appendChild(template.content.cloneNode(true))
 
     this.name = name
+
+    this.addEventListener('click', () => {
+      const url = new URL(ROUTES['collection-edit'], window.location.origin)
+      url.searchParams.append('name', this.name)
+      new Router(url).navigate()
+    })
 
     this.shadowRoot.querySelector('.bi-x').addEventListener('click', () => {
       const collectionName = this.shadowRoot.querySelector('.tag-name').textContent

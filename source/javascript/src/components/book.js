@@ -1,11 +1,50 @@
 import { Router, ROUTES } from '../utils/Router.js'
 
 const template = document.createElement('template')
+const interactive = document.createElement('template')
 
 const NUM_BOOKS = 12
 const BOOK_WIDTH = 350
 
 template.innerHTML = `
+  <style>
+    :host {
+      display: inline-block;
+      width: 50px;
+      height: 100px;
+
+      box-shadow: 0 2px 5px rgb(0 0 0 / 30%);
+      border-radius: 4px;
+    }
+
+    .book-color {
+      background: grey;
+      width: 100%;
+      height: 10%;
+      border-radius: 4px 4px 0px 0px;
+    }
+
+    .book-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      background: white;
+      width: 100%;
+      height: 90%;
+    }
+
+    .book-title {
+      transform: rotate(90deg);
+    }
+  </style>
+  <div class="book-color"></div>
+  <div class="book-content">
+    <span class="book-title"></span>
+  </div>
+`
+
+interactive.innerHTML = `
   <style>
     :host {
       display: inline-block;
@@ -49,11 +88,8 @@ template.innerHTML = `
       transition: transform 1s;
     }
   </style>
-  <div class="book-color"></div>
-  <div class="book-content">
-    <span class="book-title"></span>
-  </div>
 `
+
 /**
  * Component class used to create a new book containing
  * the month of a given year. This component is clickable,
@@ -77,7 +113,10 @@ class Book extends HTMLElement {
     this.shadowRoot.appendChild(template.content.cloneNode(true))
   }
 
-  makeClickable () {
+  makeInteractive () {
+    this.shadowRoot.removeChild(this.shadowRoot.querySelector('style'))
+    this.shadowRoot.appendChild(interactive.content.cloneNode(true))
+
     this.addEventListener('click', () => {
       console.log('book clicked')
       /**
@@ -98,6 +137,9 @@ class Book extends HTMLElement {
       url.search = params
       new Router(url).navigate()
     })
+         
+    // change color from grey
+    this.color = '#ee6c4d'
   }
 
   /**
