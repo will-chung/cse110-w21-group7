@@ -11,6 +11,7 @@
     "lint_src": "./node_modules/.bin/eslint source/javascript/src/.",
     "fix_src": "./node_modules/.bin/eslint source/javascript/src/. --fix",
     "docs": "npx jsdoc source/javascript/src/. --destination specs/ci-cd/docs/",
+    "build": "npx gulp",
     "predeploy": "npm run build --if-present",
     "deploy": "gh-pages -d source"
   },
@@ -74,6 +75,11 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.3.1",
     "gh-pages": "^3.2.0",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-terser": "^2.0.1",
     "istanbul": "^0.4.5",
     "jsdoc": "^3.6.6",
     "mocha": "^8.4.0",
@@ -82,8 +88,6 @@
     "sinon": "^10.0.0"
   },
   "dependencies": {
-    "fullcalendar": "^5.7.0",
-    "fuse.js": "^6.4.6",
     "googleapis": "^39.2.0"
   }
 }
