@@ -60,7 +60,7 @@ function minifyHTML(cb) {
  * to indicate when our task finishes
  */
 function minifyJS(cb) {
-    gulp.src('${SRC.js}/**/*.js')
+    gulp.src(`${SRC.js}/**/*.js`)
         .pipe(uglify().on('error', console.error))
         .pipe(rename(function(path) {
             return {
@@ -69,7 +69,7 @@ function minifyJS(cb) {
                 extname: path.extname
             }
         }))
-        .pipe(gulp.dest('${SRC.js}/'));
+        .pipe(gulp.dest(`${SRC.js}/`));
     cb();
 }
 
