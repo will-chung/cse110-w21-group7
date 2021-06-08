@@ -55,7 +55,7 @@ class ReflectionItem extends HTMLElement {
                                       background: url(../images/reflection-item_icons/happy-regular.svg) no-repeat center center;
                                     }
                                   #mood-slider {
-                                    font-size:40px;
+                                    font-size:3vw;
                                     display: flex;
                                     flex-direction: column;
                                     align-items: center;
@@ -63,8 +63,8 @@ class ReflectionItem extends HTMLElement {
                                   }
                                   #mood{
                                     margin:auto;
-                                    margin-top: 40px;
-                                    margin-bottom: 25px;
+                                    margin-top: 2vh;
+                                    margin-bottom: 3vh;
                                     width: 70vw;
                                   }
                                   #mood:hover {

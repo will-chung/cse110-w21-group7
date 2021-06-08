@@ -134,32 +134,32 @@ border-color:#98c1d9; */
   text-align: center;
   vertical-align: center;
   font-family: "Montserrat", sans-serif;
-  font-size: 4vw;
-  line-height: 5vw;
+  font-size: 3.5vw;
+  line-height: 4vw;
 
   border-style: solid;
   border-color: #98c1d9;
   border-width: 5px;
   width: 25vw;
-  margin: auto;
   box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   border-radius: 20px;
   color: white;
-  margin-bottom: 7vh;
+  margin:auto;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
 }
-
+/*
 #header{
   border-style: solid;
   border-color: #98c1d9;
-  border-width: 5px;
   width: 20vmin;
   height: 7vmin;
+  margin-top:5vh;
   margin: auto;
-  box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   border-radius: 10px;
   color: #293241;
   margin-bottom: 4vh;
-}
+}*/
 
 body {
   background: rgb(21,159,247);
@@ -236,30 +236,32 @@ a:link {
     border-style:solid;
     border-color:#98c1d9;
     border-width:4px;
-    border-radius:5px;
+    border-radius:10px;
+    margin-left:0.5vw;
+    margin-right: 1vw;
     width: 22.5vw;
     height: 50vh;
     overflow: hidden;
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
 
 .weekly {
   border-style: dashed;
-  border-color: green;
-  border-radius: 5px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   vertical-align: top;
   align-content: space-between;
-  margin-left: 4px;
+  box-shadow: 15px 15px 15px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
 
 #weekly-div {
     border-style:solid;
     border-color:#98c1d9;
-    border-width:2px;
+    border-width:4px;
     box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-    border-radius: 20px;
+    border-radius: 10px;
+    min-height:50vh;
 }
 
 .content {
@@ -272,21 +274,21 @@ a:link {
 
 }
 
-#Monday {
-  border-top-left-radius:5px;
-  border-bottom-left-radius:5px;
+hr {
+  border:none;
+  border-top:2.5px solid #98c1d9;
+  color:#98c1d9;
 }
 
 #Sunday {
-  border-top-right-radius:5px;
-  border-bottom-right-radius:5px;
+  border-width: 0;
 }
 
 .weekday {
     border-style:solid;
     border-color:#98c1d9;
-    border-width:2px;
-    width: 9.8vw;
+    border-width:0 2.5px 0 0;
+    width: 9.7vw;
     line-height:2vh;
     text-align: center;
     font-size: 10pt;
@@ -294,8 +296,10 @@ a:link {
 
 
 .weekday > a{
-  font-size: 1vw;
+  font-size: 1.5vw;
   font-family: 'Montserrat', sans-serif;
+  line-height: 5vh;
+  text-align:center;
   color:white;
 }
 
