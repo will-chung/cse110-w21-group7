@@ -1,12 +1,8 @@
 const gulp = require('gulp')
 const rename = require('gulp-rename')
-const uglify = require('gulp-uglify')
+const terser = require('terser')
 const cleanCSS = require('gulp-clean-css')
 const htmlmin = require('gulp-htmlmin')
-const babel = require('gulp-babel')
-const browserify = require('browserify');
-const tap = require('gulp-tap');
-const buffer = require('gulp-buffer');
 
 const SRC = {
     html: 'source',
@@ -48,10 +44,7 @@ function minifyHTML(cb) {
  */
 function minifyJS(cb) {
     gulp.src(`${SRC.js}/**/*.js`)
-        .pipe(babel({
-            presets: ['es2015']
-        }))
-        .pipe(uglify())
+        .pipe(terser())
         .pipe(rename(function(path) {
             return {
                 dirname: path.dirname,
@@ -59,25 +52,10 @@ function minifyJS(cb) {
                 extname: path.extname
             }
         }))
-        .pipe(gulp.dest(`${SRC.js}`));
-    cb();
-}
-
-/**
- * Gulp task used to bundle static assets for production
- * @param {Function} cb Gulp callback function. Used
- * to indicate when our task finishes
- */
-function bundle(cb) {
-    gulp.src(`${SRC.js}/**/*.js`, {read: false})
-        .pipe(tap(function (file) {
-            file.contents = browserify(file.path, {debug: false}).bundle();
-        }))
-        .pipe(gulp.dest(`${SRC.js}`));
+        .pipe(gulp.dest(`${SRC.js}/`));
     cb();
 }
 
 exports.default = gulp.parallel(minifyHTML, minifyCSS, minifyJS)
 
 
-exports.js = gulp.series(minifyJS, bundle)
