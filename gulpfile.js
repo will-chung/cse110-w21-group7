@@ -12,22 +12,6 @@ const SRC = {
 }
 
 /**
- * Gulp task used to transpile from ES6 to ES5.
- * This is necessary for Gulp to properly minify
- * files.
- * @param {Function} cb Gulp callback function. Used
- * to indicate when our task finishes
- */
-function transpile(cb) {
-    gulp.src(`${SRC.js}/**/*.js`)
-        .pipe(babel({
-            presets: ['@babel/env']
-        }))
-        .pipe(gulp.dest(`${SRC.js}/`))
-    cb();
-}
-
-/**
  * Gulp task used to minify and clean CSS for production.
  * @param {Function} cb Gulp callback function. Used
  * to indicate when our task finishes
@@ -61,7 +45,10 @@ function minifyHTML(cb) {
  */
 function minifyJS(cb) {
     gulp.src(`${SRC.js}/**/*.js`)
-        .pipe(uglify().on('error', console.error))
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
+        .pipe(uglify())
         .pipe(rename(function(path) {
             return {
                 dirname: path.dirname,
@@ -69,8 +56,10 @@ function minifyJS(cb) {
                 extname: path.extname
             }
         }))
-        .pipe(gulp.dest(`${SRC.js}/`));
+        .pipe(gulp.dest(`${SRC.js}`));
     cb();
 }
 
-exports.default = gulp.series(transpile, gulp.parallel(minifyHTML, minifyCSS, minifyJS))
+exports.default = gulp.parallel(minifyHTML, minifyCSS, minifyJS)
+
+
