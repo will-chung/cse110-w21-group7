@@ -188,13 +188,12 @@ body{
     position: absolute;
   }
   .containerOuter {
-    margin-left: 10px;
+    margin-left: 4vw;
     background: whitesmoke;
     border-radius: 20px;
-    width: 240px;
+    width: 220px;
     height:170px;
-    box-shadow: 20px 20px 5px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-    margin-bottom: 5vh;
+    box-shadow: 10px 10px 5px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   }
   .container {
     position: relative;
@@ -203,7 +202,7 @@ body{
     margin-right:0;
     padding-bottom:20px;
     overflow: hidden;
-    width: 240px;
+    width: 220px;
     height: 170px;
     flex-direction: column;
     justify-content: center;
@@ -414,9 +413,9 @@ form {
     font-size: 30px;
     margin-right: 30px;
     box-shadow: 10px 10px 5px rgba(0,0,0,0.30), 0 10px 12px rgba(0,0,0,0.22);
-    border-radius: 10px;
+    border-radius: 2px;
     border-color: #98c1d9;
-    border-width: 5px;
+    border-width: 2px;
     border-style: solid;
 }
 
@@ -425,7 +424,7 @@ form {
     background-color: #ee6c4d;
     border-style:none;
     box-shadow: 10px 10px 5px rgba(0,0,0,0.30), 0 10px 12px rgba(0,0,0,0.22);
-    border-radius: 20px;
+    border-radius: 10px;
     transition:0.5s;
 }
 
@@ -435,15 +434,12 @@ form {
 }
 
 #search-results {
-  border-style: solid;
-  border-width:5px;
-  border-radius: 20px;
-  border-color: #e0fbfc;
   display: flex;
   flex-direction: column;
   align-items:flex-start;
   margin:auto;
   padding-left:0;
+  grid-area: search-results;
 }
 
 #search-results > li {
@@ -454,8 +450,7 @@ form {
   background: #eee;
   font-family:'Montserrat', sans-serif;
   font-size: 20px;
-  transition: 0.2s;
-  margin: 20px;
+  margin: 3vw;
   border-bottom-right-radius: 20px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
@@ -490,4 +485,45 @@ form {
   background: #e0fbfc;
   /* we might have to change the cursor */
   cursor:default;
+}
+
+#textbox {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    ". . . ."
+    "containerOuter text-input text-input search"
+    ". search-results search-results .";
+}
+
+.containerOuter { grid-area: containerOuter; }
+
+#text-input { 
+  grid-area: text-input; 
+  margin-left: 1vw;
+}
+
+#search { 
+  grid-area: search; 
+  width: 40%;
+}
+
+h2 {
+  text-align: center;
+  color:white;
+  font-family: "Montserrat", sans-serif;
+  margin: 3vw;
+}
+
+#result-container{
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 2px;
+  border-color:#e0fbfc;
+}
+
+#defaultMsg{
+  display:block;
 }

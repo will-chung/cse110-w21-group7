@@ -1,5 +1,6 @@
 import { IndexedDBWrapper } from '../indexedDB/IndexedDBWrapper.js'
 import { DateConverter } from '../utils/DateConverter.js'
+import { Router, ROUTES } from '../utils/Router.js'
 
 /**
  * Component class for creating the reflection field
@@ -62,7 +63,12 @@ class ReflectionItem extends HTMLElement {
                                   }
                                   #mood{
                                     margin:auto;
-                                    width: 75vw;
+                                    margin-top: 40px;
+                                    margin-bottom: 25px;
+                                    width: 70vw;
+                                  }
+                                  #mood:hover {
+                                    cursor: pointer;
                                   }
                                   label {
                                     font-family: 'Montserrat', sans-serif;
@@ -85,10 +91,10 @@ class ReflectionItem extends HTMLElement {
                                       
                                         <div id="mood-slider">
                                             <h1>Today, I'm feeling</h1>
-                                            <i class="fas fa-laugh-wink"></i>
+                                            <input type="range" id="mood" name="mood" value="${this._entry.value}" min="${this._MOOD_MIN}" max="${this._MOOD_MAX}">
                                             <i class="icon ${this.getFASymbolClass()}"></i>
                                             <label for="mood">${this.getMoodWord()}</label>
-                                            <input type="range" id="mood" name="mood" value="${this._entry.value}" min="${this._MOOD_MIN}" max="${this._MOOD_MAX}">
+                                            
                                             
                                         </div>
                                   `
@@ -104,10 +110,12 @@ class ReflectionItem extends HTMLElement {
         store.openCursor().onsuccess = function (event) {
           const cursor = event.target.result
           if (cursor) {
-            console.log(cursor.value)
             // current Log we are viewing
-            const currentLog = cursor.value.current_log
-            const dateConverter = new DateConverter(Number(currentLog))
+            const router = new Router()
+            const searchParams = router.url.searchParams
+
+            const timestamp = Number(searchParams.get('timestamp'))
+            const dateConverter = new DateConverter(timestamp)
             cursor.value.$defs['daily-logs'].forEach((log, index) => {
               // check if we indexed the correct daily log to change
               if (dateConverter.equals(Number(log.properties.date.time))) {
