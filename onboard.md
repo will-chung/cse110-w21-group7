@@ -60,3 +60,23 @@ We keep all of the design documentation of our RIVER Bullet Journal app inside t
 
 
 ## Testing
+
+
+
+
+
+
+
+## Contribute to this project
+If you want to contribute to our RIVER Bullet Journal Project, please follow the instructions below.
+1. Clone this Repository to your local machine by clicking on the green button that says "Code" on the github remote server and copy the URL of the repository. Then open your local terminal and do ``` git clone <Repo-URL>``` to clone the repository from remote to local.
+2. Create a new branch on your local machine and start your work from there. You can use the ```git checkout -b <branch-name>``` command on your local terminal to create a new branch.
+3. After finish working on your branch and committed locally, you can do ```git push -u origin <branch>``` to push your branch to the remote server. 
+4. Make a pull request and give detailed description about the changes you make and wait for response from other group members.
+
+
+
+## Building the APP
+
+## Deploying the APP
+- The RIVER bullet Journal is published through GitHub Pages, so once the changes in the pull requests are merged, the changes to the web app can be seen right away.
