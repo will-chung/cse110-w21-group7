@@ -1,4 +1,4 @@
-const prod = false
+const prod = true
 
 /**
  * Routing class used to help with navigating between pages
