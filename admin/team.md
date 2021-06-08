@@ -41,6 +41,7 @@ Included here is an overview of our team.
   - Thinks Team7 is the best team 😎
   - GitHub: [@github/will-chung](https://github.com/will-chung)
 - Alvin Wang
+  - ![Personal Picture](./photos/Alvin-pic.jpg)
   - Second year Computer Science major
   - Aspiring software or machine learning engineer
   - Enjoys playing the saxophone and golfing
