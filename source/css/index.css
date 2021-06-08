@@ -142,7 +142,7 @@ border-color:#98c1d9; */
     url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff)
       format("woff");
 }
-
+/*
 #bujo-header {
   text-align: center;
   vertical-align: center;
@@ -150,11 +150,30 @@ border-color:#98c1d9; */
   font-size: 60px;
   margin:0;
   line-height: 120px;
-  /* color:#EE6C4D; */
 }
 
 .header {
   margin-bottom: 8vh;
+}
+*/
+
+#bujo-header{
+  text-align: center;
+  vertical-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 3.5vw;
+  line-height: 4vw;
+
+  border-style: solid;
+  border-color: #98c1d9;
+  border-width: 5px;
+  width: 35vw;
+  box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  border-radius: 20px;
+  color: white;
+  margin:auto;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
 }
 
 book-shelf {
@@ -277,7 +296,7 @@ footer > button {
   margin-right: 25px;
   opacity: 1;
 }
-
+/*
 #title {
   border-style: solid;
   border-color: #98c1d9;
@@ -287,7 +306,7 @@ footer > button {
   box-shadow: 20px 20px 5px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   border-radius: 20px;
   color: white;
-}
+}*/
 
 h1 {
   line-height: 60px;
@@ -298,7 +317,7 @@ h1 {
   border-style: solid;
   border-width: 4px;
   border-color: #98c1d9;
-  border-radius: 10px;
+  border-radius: 20px;
   height: 125px;
   margin-top: 5vh;
   display: flex;

@@ -245,8 +245,8 @@ button:hover {
   cursor: pointer;
 }
 #collapse {
-  position: relative;
-  left: 34%;
+  position: fixed;
+  left: 45%;
   font-family: "Montserrat", sans-serif;
   display: inline-block;
   margin:5px;
@@ -268,7 +268,8 @@ button:hover {
   transform:translateY(10px);
 }
 #yesterday {
-  position: relative;
+  position: fixed;
+  left:20%;
   font-family: "Montserrat", sans-serif;
   display: inline-block;
   margin:5px;
@@ -291,7 +292,7 @@ button:hover {
 }
 #tomorrow {
   margin: 10px;
-  position: relative;
+  position: fixed;
   left: 70%;
   font-family: "Montserrat", sans-serif;
   display: inline-block;
