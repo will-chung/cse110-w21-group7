@@ -1,6 +1,6 @@
 const gulp = require('gulp')
 const rename = require('gulp-rename')
-const terser = require('terser')
+const terser = require('gulp-terser')
 const cleanCSS = require('gulp-clean-css')
 const htmlmin = require('gulp-htmlmin')
 
