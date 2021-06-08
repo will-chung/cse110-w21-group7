@@ -53,6 +53,7 @@ Included here is an overview of our team.
   - I play way too much Apex Legends
   - GitHub: [@github//brettherbst](https://github.com/brettherbst)
 - Rachel Doron 
+  - ![Personal Picture](./photos/rachel-pic.JPG)
   - Second year Cognitive Science major, Computer Science minor at UCSD
   - Intrested in software engineering and Artificial Intelligence 
   - Hobbies: traveling, cooking, and ballet 
