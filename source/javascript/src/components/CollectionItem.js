@@ -161,14 +161,16 @@ class CollectionItem extends HTMLElement {
        * Insert text input for in-place editing
        */
       const form = document.createElement('form')
-      form.style.margin = 'auto'
 
       const textInput = document.createElement('input')
       textInput.setAttribute('type', 'text')
       textInput.style.height = '40px'
+      textInput.style.width = '392.5px'
+      textInput.style.marginTop = '20px'
+      textInput.style.color = 'white'
       textInput.style.fontSize = '32px'
       textInput.style.fontWeight = 'bold'
-      textInput.style.fontFamily = '"Pattaya", sans-serif'
+      textInput.style.fontFamily = '"Montserrat", sans-serif'
       textInput.style.textAlign = 'center'
       textInput.style.background = 'transparent'
       textInput.value = name.textContent

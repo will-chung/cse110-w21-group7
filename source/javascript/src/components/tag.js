@@ -10,6 +10,7 @@ template.innerHTML = `
 
   :host {
     display: inline-flex;
+    margin-left: 5px;
     align-items: center;
     background: #EE6C4D;
     color: white;
@@ -58,7 +59,7 @@ class Tag extends HTMLElement {
 
     this.name = name
 
-    this.addEventListener('click', () => {
+    this.shadowRoot.querySelector('.tag-name').addEventListener('click', () => {
       const url = new URL(ROUTES['collection-edit'], window.location.origin)
       url.searchParams.append('name', this.name)
       new Router(url).navigate()
