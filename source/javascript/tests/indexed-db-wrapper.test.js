@@ -1,4 +1,4 @@
-/*const sinon = require("sinon");
+/* const sinon = require("sinon");
 const referee = require("@sinonjs/referee");
 import { init, transaction } from '../src/indexedDB/IndexedDBWrapper.js'
 const assert = referee.assert;

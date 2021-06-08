@@ -27,14 +27,25 @@ class MediaItem extends HTMLElement {
     this.shadowRoot.innerHTML = `<style>
                                     .container {
                                         display: flex;
-                                        width: 400px;
+                                        width: 300px;
                                         height: auto;
                                     }
                                     .media-wrapper {
                                         // align-self: stretch;
                                     }
                                     .media-wrapper > img {
-                                        border-style: solid;
+                                        
+                                        border-color: #e0fbfc;
+                                        border-width: 5px;
+                                        border-radius: 20px;
+                                        box-shadow: 20px 20px 5px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+                                        height: auto;
+                                        width: 100%;
+                                        display:inline-block;
+                                    }
+                                    .media-wrapper > video {
+                                      
+                                        border-color: #e0fbfc;
                                         border-width: 5px;
                                         border-radius: 20px;
                                         box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
@@ -42,15 +53,11 @@ class MediaItem extends HTMLElement {
                                         width: 100%;
                                         display:inline-block;
                                     }
-                                    .media-wrapper > video {
-                                        height: auto;
-                                        width: 100%;
-                                        display:inline-block;
-                                    }
                                     button {
-                                        background-color: rgba(0, 0, 0, 0);
+                                        background-color:white;
                                         border-radius: 200px;
                                         border-style: solid;
+                                        border-color:#EE6C4D;
                                         padding:0;
                                         font-size: inherit;
                                         width: 3rem;
@@ -200,6 +207,19 @@ class MediaItem extends HTMLElement {
     reader.onload = (event) => {
       media.src = event.target.result
     }
+    // media.onloadstart = function () {
+    //   //document.getElementById('loading').style.display = 'flex'
+    //   console.timeEnd()
+    //   console.log('Starting to load video')
+    //   console.time()
+    // }
+    // media.onloadeddata = function () {
+    //   console.log('Browser has loaded the current frame')
+    //   //document.getElementById('loading').style.display = 'none'
+    //   console.timeEnd()
+    //   console.log('loading next video...')
+    //   console.time()
+    // }
     reader.readAsDataURL(this._file)
     return media
   }
