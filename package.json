@@ -11,6 +11,7 @@
     "lint_src": "./node_modules/.bin/eslint source/javascript/src/.",
     "fix_src": "./node_modules/.bin/eslint source/javascript/src/. --fix",
     "docs": "npx jsdoc source/javascript/src/. --destination specs/ci-cd/docs/",
+    "build": "npx gulp",
     "predeploy": "npm run build --if-present",
     "deploy": "gh-pages -d source"
   },
