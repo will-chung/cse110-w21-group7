@@ -553,7 +553,7 @@ input {
 }
 
 #date-input {
-  width: 10vw;
+  width: fit-content;
   flex: 2;
   outline: none;
   color:#e0fbfc;

@@ -1,17 +1,57 @@
 import { Router, ROUTES } from '../utils/Router.js'
 
+// template element for default configuration (no entries in book)
 const template = document.createElement('template')
-
-const NUM_BOOKS = 12
-const BOOK_WIDTH = 350
+// template element for interactive configuration (entries in book)
+const interactive = document.createElement('template')
 
 template.innerHTML = `
   <style>
     :host {
       display: inline-block;
-      width: 50px;
+      width: 3.25vw;
       height: 100px;
 
+      font-size:1.25vw;
+      box-shadow: 0 2px 5px rgb(0 0 0 / 30%);
+      border-radius: 4px;
+    }
+
+    .book-color {
+      background: grey;
+      width: 100%;
+      height: 10%;
+      border-radius: 4px 4px 0px 0px;
+    }
+
+    .book-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      background: white;
+      width: 100%;
+      height: 90%;
+    }
+
+    .book-title {
+      transform: rotate(90deg);
+    }
+  </style>
+  <div class="book-color"></div>
+  <div class="book-content">
+    <span class="book-title"></span>
+  </div>
+`
+
+interactive.innerHTML = `
+  <style>
+    :host {
+      display: inline-block;
+      width: 3.25vw;
+      height: 100px;
+
+      font-size:1.25vw;
       box-shadow: 0 2px 5px rgb(0 0 0 / 30%);
       border-radius: 4px;
 
@@ -49,11 +89,8 @@ template.innerHTML = `
       transition: transform 1s;
     }
   </style>
-  <div class="book-color"></div>
-  <div class="book-content">
-    <span class="book-title"></span>
-  </div>
 `
+
 /**
  * Component class used to create a new book containing
  * the month of a given year. This component is clickable,
@@ -77,7 +114,16 @@ class Book extends HTMLElement {
     this.shadowRoot.appendChild(template.content.cloneNode(true))
   }
 
-  makeClickable () {
+  /**
+   * Makes a book interactive by adding a transition on hover, adding an event
+   * listener to navigate to Weekly View on click, and changing color from grey
+   */
+  makeInteractive () {
+    // replace style to add transition on hover
+    this.shadowRoot.removeChild(this.shadowRoot.querySelector('style'))
+    this.shadowRoot.appendChild(interactive.content.cloneNode(true))
+
+    // navigate to Weekly View on click
     this.addEventListener('click', () => {
       // Get month and year of the clicked book
       const month = this.title
@@ -91,6 +137,9 @@ class Book extends HTMLElement {
       url.search = params
       new Router(url).navigate()
     })
+
+    // change color from grey
+    this.color = '#ee6c4d'
   }
 
   /**
@@ -154,8 +203,6 @@ class Book extends HTMLElement {
    * @param {Number} month The month of the book to offset
    */
   offset (month) {
-    const parentWidth = this.parentElement.scrollWidth - BOOK_WIDTH
-    // const offset = parentWidth / (NUM_BOOKS-1)
     const offset = 50
     this.style.left = offset * (month - 1) + 'px'
   }

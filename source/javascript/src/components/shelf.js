@@ -40,8 +40,15 @@ myTemplate.innerHTML = `
   <div class="shelf-label"><span id="label"></span></div>
   <div class="shelf-content"></div>
 `
-
+/**
+ * Represents a book shelf.
+ * @author William Chung <wchung@ucsd.edu>
+ */
 class Shelf extends HTMLElement {
+  /**
+   * Creates new book shelf and populates with books (one for each month of the year).
+   * @constructor
+   */
   constructor () {
     super()
 
@@ -54,6 +61,7 @@ class Shelf extends HTMLElement {
     const that = this
     const wrapper = new IndexedDBWrapper('experimentalDB', 1)
 
+    // database transaction to set interactivity of books
     wrapper.transaction((event) => {
       const db = event.target.result
       const transaction = db.transaction(['currentLogStore'], 'readonly') // mode should be readonly
@@ -71,11 +79,11 @@ class Shelf extends HTMLElement {
           // current date
           const dailyLogs = cursor.value.$defs['daily-logs']
 
+          // if a daily log exists whose timestamp matches month and year
+          // make corresponding book interactive
           that._books.forEach((book, monthIndex) => {
             if (that.hasEntryForYearMonth(dailyLogs, monthIndex)) {
-              book.color = '#ee6c4d'
-              book.makeClickable()
-              console.log('not found')
+              book.makeInteractive()
             }
           })
         }
@@ -105,10 +113,18 @@ class Shelf extends HTMLElement {
     return !(result === undefined)
   }
 
+  /**
+   * Returns shelf label (year)
+   * @returns {number} Shelf label (year)
+   */
   get label () {
     return this.getAttribute('label')
   }
 
+  /**
+   * Sets shelf label (year)
+   * @param {number} label - Shelf label (year)
+   */
   set label (label) {
     this.setAttribute('label', label)
     const shelfLabel = this.shadowRoot.querySelector('#label')
@@ -116,10 +132,18 @@ class Shelf extends HTMLElement {
     this.updateBooks()
   }
 
+  /**
+   * Returns books on the shelf.
+   * @returns {object[]} Array of books contained on the shelf
+   */
   get books () {
     return this._books
   }
 
+  /**
+   * Sets books on the shelf.
+   * @param {object[]} books - Array of books contained on the shelf
+   */
   set books (books) {
     const content = this.shadowRoot.querySelector('.shelf-content')
     for (let i = 0; i < books.length; i++) {
@@ -131,6 +155,10 @@ class Shelf extends HTMLElement {
     this._books = books
   }
 
+  /**
+   * Creates default array of books containing one book for each month of the year.
+   * @returns Array of books with one book for each month of the year
+   */
   createBooks () {
     // create one book for each month
     const books = []
@@ -141,6 +169,10 @@ class Shelf extends HTMLElement {
     return books
   }
 
+  /**
+   * Updates all books on the shelf.
+   * Sets each books' "shelf" field to the label of this shelf.
+   */
   updateBooks () {
     this.books.forEach(book => {
       book.shelf = this.label
