@@ -1,10 +1,9 @@
 import { Router, ROUTES } from '../utils/Router.js'
 
+// template element for default configuration (no entries in book)
 const template = document.createElement('template')
+// template element for interactive configuration (entries in book)
 const interactive = document.createElement('template')
-
-const NUM_BOOKS = 12
-const BOOK_WIDTH = 350
 
 template.innerHTML = `
   <style>
@@ -113,10 +112,16 @@ class Book extends HTMLElement {
     this.shadowRoot.appendChild(template.content.cloneNode(true))
   }
 
+  /**
+   * Makes a book interactive by adding a transition on hover, adding an event
+   * listener to navigate to Weekly View on click, and changing color from grey
+   */
   makeInteractive () {
+    // replace style to add transition on hover
     this.shadowRoot.removeChild(this.shadowRoot.querySelector('style'))
     this.shadowRoot.appendChild(interactive.content.cloneNode(true))
 
+    // navigate to Weekly View on click
     this.addEventListener('click', () => {
       // Get month and year of the clicked book
       const month = this.title
@@ -196,8 +201,6 @@ class Book extends HTMLElement {
    * @param {Number} month The month of the book to offset
    */
   offset (month) {
-    const parentWidth = this.parentElement.scrollWidth - BOOK_WIDTH
-    // const offset = parentWidth / (NUM_BOOKS-1)
     const offset = 50
     this.style.left = offset * (month - 1) + 'px'
   }

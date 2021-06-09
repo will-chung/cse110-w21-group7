@@ -4,6 +4,7 @@ import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 import { Shelf } from './components/shelf.js'
 import { Book } from './components/book.js'
 
+// once DOM loads add click listener to "+" button
 document.addEventListener('DOMContentLoaded', (event) => {
   const addDailyLog = document.getElementById('cb')
 
@@ -19,6 +20,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 const shelves = document.getElementsByTagName('book-shelf')
 
+// set the label (year) for each shelf
+// set the title and shelf for each book
 for (let i = 0; i < shelves.length; i++) {
   const shelf = shelves[i]
   shelf.label = 2021 + i

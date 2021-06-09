@@ -54,7 +54,6 @@ radioContainer.addEventListener('change', () => {
  */
 tagOptions.addEventListener('click', (event) => {
   const collectionName = event.target.textContent
-  console.log('clicked!')
   document.querySelector('.tags').append(new Tag(collectionName))
   addCollectionTag(collectionName)
 })
