@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 const shelves = document.getElementsByTagName('book-shelf')
 
 // set the label (year) for each shelf
-// set the title and shelf for each book 
+// set the title and shelf for each book
 for (let i = 0; i < shelves.length; i++) {
   const shelf = shelves[i]
   shelf.label = 2021 + i
