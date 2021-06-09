@@ -78,7 +78,7 @@ class MediaItem extends HTMLElement {
                                         margin: auto;
                                     }
                                     .trash-button-icon {
-                                        background: url(../images/log-item_icons/trash-solid.svg) no-repeat center center;
+                                        background: url(./images/log-item_icons/trash-solid.svg) no-repeat center center;
                                     }
                                     </style>
                                     <span class="container">

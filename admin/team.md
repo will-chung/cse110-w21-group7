@@ -72,6 +72,7 @@ Included here is an overview of our team.
   - I enjoy doing gymnastics, trying new foods, and learning guitar
   - GitHub: [@github/klbaker](https://github.com/klbaker)
 - Thanh Tong
+  - ![Personal Picture](./photos/Thanh-pic.jpg)
   - Second year Computer Science major, Cognitive Science minor at UCSD
   - Interested in learning more about software engineering
   - I enjoy playing piano and watching kdramas
