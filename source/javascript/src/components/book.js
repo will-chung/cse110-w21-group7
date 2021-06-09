@@ -10,9 +10,10 @@ template.innerHTML = `
   <style>
     :host {
       display: inline-block;
-      width: 50px;
+      width: 3.25vw;
       height: 100px;
 
+      font-size:1.25vw;
       box-shadow: 0 2px 5px rgb(0 0 0 / 30%);
       border-radius: 4px;
     }
@@ -48,9 +49,10 @@ interactive.innerHTML = `
   <style>
     :host {
       display: inline-block;
-      width: 50px;
+      width: 3.25vw;
       height: 100px;
 
+      font-size:1.25vw;
       box-shadow: 0 2px 5px rgb(0 0 0 / 30%);
       border-radius: 4px;
 

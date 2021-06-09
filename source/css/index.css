@@ -177,7 +177,7 @@ border-color:#98c1d9; */
 }
 
 book-shelf {
-  width: 95%;
+  width: 45vw;
   margin: auto;
 }
 
@@ -361,19 +361,19 @@ h1 {
   border-style: solid;
   border-top: white;
   background-color: #ee6c4d;
-  font-size: 24px;
-  width: 70px;
-  height: 35px;
+  font-size: 3vw;
+  width: 7vw;
+  height: 4vw;
   text-align: center;
   vertical-align: center;
   margin-right: 20px;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
 }
-
+/*
 .shelf-tag:hover {
   transform: scale(1.1);
-}
+}*/
 
 .underline {
     display: inline-block;
@@ -389,7 +389,7 @@ h1 {
   }
   .underline:before {
     content: "";
-    position: absolute;
+    position: fixed;
     z-index: -1;
     left: 0;
     right: 0;
