@@ -41,33 +41,39 @@ Included here is an overview of our team.
   - Thinks Team7 is the best team 😎
   - GitHub: [@github/will-chung](https://github.com/will-chung)
 - Alvin Wang
+  - ![Personal Picture](./photos/Alvin-pic.jpg)
   - Second year Computer Science major
   - Aspiring software or machine learning engineer
   - Enjoys playing the saxophone and golfing
   - GitHub: [@github/alvinwang922](https://github.com/alvinwang922)
 - Brett Herbst
+  - ![Personal Picture](./photos/Brett-pic.jpg)
   - Second year Computer Science major
   - Interested in SWE and Cybersecurity 
   - I am on the club lacrosse team at UCSD- Defensive Midfielder 
   - I play way too much Apex Legends
   - GitHub: [@github//brettherbst](https://github.com/brettherbst)
 - Rachel Doron 
+  - ![Personal Picture](./photos/rachel-pic.JPG)
   - Second year Cognitive Science major, Computer Science minor at UCSD
   - Intrested in software engineering and Artificial Intelligence 
   - Hobbies: traveling, cooking, and ballet 
   - GitHub: [@github/rdoron](https://github.com/rdoron)
 - Zhiyuan Zhang
+  - ![Personal Picture](./photos/Zhiyuan-pic.png)
   - Third year Computer Science major, Mathematics minor at UCSD
   - Enjoy coding in general and still exploring my interests
   - I love swimmimg and watching anime (That's right, I'm a weeb.)
   - Addicted to all kinds of board games
   - Github: [@github/fatIvan](https://github.com/fatIvan)
 - Katherine Baker
+  - ![Personal Picture](./photos/Katherine-pic.png)
   - Second year Computer Science Major
   - Interested in software engineering and intellectual property law.
   - I enjoy doing gymnastics, trying new foods, and learning guitar
   - GitHub: [@github/klbaker](https://github.com/klbaker)
 - Thanh Tong
+  - ![Personal Picture](./photos/Thanh-pic.jpg)
   - Second year Computer Science major, Cognitive Science minor at UCSD
   - Interested in learning more about software engineering
   - I enjoy playing piano and watching kdramas

@@ -40,22 +40,22 @@ class ReflectionItem extends HTMLElement {
                                       height:1em;
                                     }
                                     .angry-icon {
-                                      background: url(../images/reflection-item_icons/angry-regular.svg) no-repeat center center;
+                                      background: url(./images/reflection-item_icons/angry-regular.svg) no-repeat center center;
                                     }
                                     .sad-icon {
-                                      background: url(../images/reflection-item_icons/sad-regular.svg) no-repeat center center;
+                                      background: url(./images/reflection-item_icons/sad-regular.svg) no-repeat center center;
                                     }
                                     .okay-icon {
-                                      background: url(../images/reflection-item_icons/okay-regular.svg) no-repeat center center;
+                                      background: url(./images/reflection-item_icons/okay-regular.svg) no-repeat center center;
                                     }
                                     .happy-icon {
-                                      background: url(../images/reflection-item_icons/great-regular.svg) no-repeat center center;
+                                      background: url(./images/reflection-item_icons/great-regular.svg) no-repeat center center;
                                     }
                                     .great-icon {
-                                      background: url(../images/reflection-item_icons/happy-regular.svg) no-repeat center center;
+                                      background: url(./images/reflection-item_icons/happy-regular.svg) no-repeat center center;
                                     }
                                   #mood-slider {
-                                    font-size:40px;
+                                    font-size:3vw;
                                     display: flex;
                                     flex-direction: column;
                                     align-items: center;
@@ -63,8 +63,8 @@ class ReflectionItem extends HTMLElement {
                                   }
                                   #mood{
                                     margin:auto;
-                                    margin-top: 40px;
-                                    margin-bottom: 25px;
+                                    margin-top: 2vh;
+                                    margin-bottom: 3vh;
                                     width: 70vw;
                                   }
                                   #mood:hover {

@@ -1,5 +1,4 @@
 /* eslint no-undef: "off" */
-import '../../../node_modules/fuse.js/dist/fuse.js'
 import { IndexedDBWrapper } from './indexedDB/IndexedDBWrapper.js'
 
 const searchResults = document.getElementById('search-results')

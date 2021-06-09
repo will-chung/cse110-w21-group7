@@ -25,7 +25,6 @@ class CollectionItem extends HTMLElement {
 
   render () {
     this.shadowRoot.innerHTML = `<style>
-                                      @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
                                       .icon-collection {
                                           background-size: contain;
                                           width:50%;
@@ -48,7 +47,7 @@ class CollectionItem extends HTMLElement {
                                         transform: scale(1.2);
                                       }
                                       .trash-button-icon {
-                                        background: url(../images/log-item_icons/trash-solid.svg) no-repeat center center;
+                                        background: url(./images/log-item_icons/trash-solid.svg) no-repeat center center;
                                       }
                                       .folder {
                                         margin-right: 1vw;
@@ -88,7 +87,7 @@ class CollectionItem extends HTMLElement {
                                       </style>
                                     <div class="folder">
                                         <span class="icon-trash trash-button-icon"></span>
-                                        <img src="/source/images/icon-collection.svg" class="icon-collection">
+                                        <img src="./images/icon-collection.svg" class="icon-collection">
                                         <h1>${this.getCollectionName()}</h1>
                                     </div>`
     this.setClickListeners()
@@ -165,6 +164,7 @@ class CollectionItem extends HTMLElement {
       const textInput = document.createElement('input')
       textInput.setAttribute('type', 'text')
       textInput.style.height = '40px'
+      textInput.style.fontStyle = 'italic'
       textInput.style.width = '392.5px'
       textInput.style.marginTop = '20px'
       textInput.style.color = 'white'
