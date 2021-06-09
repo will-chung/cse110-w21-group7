@@ -47,7 +47,7 @@ Included here is an overview of our team.
   - Enjoys playing the saxophone and golfing
   - GitHub: [@github/alvinwang922](https://github.com/alvinwang922)
 - Brett Herbst
-  - ![Personal Picture](./photos/Brett-pic.JPG)
+  - ![Personal Picture](./photos/Brett-pic.jpg)
   - Second year Computer Science major
   - Interested in SWE and Cybersecurity 
   - I am on the club lacrosse team at UCSD- Defensive Midfielder 
