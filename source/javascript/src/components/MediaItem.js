@@ -13,9 +13,9 @@ const MEDIA_TYPE = {
  */
 class MediaItem extends HTMLElement {
   /**
-       * Constructor containing the business logic for
-       * creating a new media item.
-       */
+     * Constructor containing the business logic for
+     * creating a new media item.
+     */
   constructor () {
     super()
 
@@ -135,9 +135,9 @@ class MediaItem extends HTMLElement {
     this.setHoverListeners()
   }
 
-  /*
-  * Adds event listeners for all hover events on the collection item
-  */
+  /**
+     * Adds event listeners for all hover events on the collection item
+     */
   setHoverListeners () {
     const trashIcon = this.shadowRoot.querySelector('button')
     // toggles visiblity of trash icon when mouse hovers
@@ -151,44 +151,44 @@ class MediaItem extends HTMLElement {
   }
 
   /**
-       * Setter for the file used to render the media item.
-       * Setting the file triggers a re-render of this
-       * component.
-       * @param {File} file File object containing the image
-       * to render.
-       */
+     * Setter for the file used to render the media item.
+     * Setting the file triggers a re-render of this
+     * component.
+     * @param {File} file File object containing the image
+     * to render.
+     */
   set file (file) {
     this._file = file
     this.render()
   }
 
   /**
-       * Getter for the file used to render the media item.
-       * @return {File} File object containing the media item
-       * displayed
-       */
+     * Getter for the file used to render the media item.
+     * @return {File} File object containing the media item
+     * displayed
+     */
   get file () {
     return this._file
   }
 
   /**
-       * Setter for the media type used to render the
-       * component.
-       * Changing the media type triggers a re-render of this
-       * component.
-       * @param {Number} media enum value from the field MEDIA_TYPE.
-       * The possible values are MEDIA_TYPE.IMAGE (0) and MEDIA_TYPE.VIDEO (1)
-       */
+     * Setter for the media type used to render the
+     * component.
+     * Changing the media type triggers a re-render of this
+     * component.
+     * @param {Number} media enum value from the field MEDIA_TYPE.
+     * The possible values are MEDIA_TYPE.IMAGE (0) and MEDIA_TYPE.VIDEO (1)
+     */
   set media (media) {
     this._media = media
     this.render()
   }
 
   /**
-       * Getter for the media type used to render the component.
-       * @return {Number} Enum value containing the enum
-       * from the field MEDIA_TYPE
-       */
+     * Getter for the media type used to render the component.
+     * @return {Number} Enum value containing the enum
+     * from the field MEDIA_TYPE
+     */
   get media () {
     return this._media
   }
@@ -213,19 +213,7 @@ class MediaItem extends HTMLElement {
     reader.onload = (event) => {
       media.src = event.target.result
     }
-    // media.onloadstart = function () {
-    //   //document.getElementById('loading').style.display = 'flex'
-    //   console.timeEnd()
-    //   console.log('Starting to load video')
-    //   console.time()
-    // }
-    // media.onloadeddata = function () {
-    //   console.log('Browser has loaded the current frame')
-    //   //document.getElementById('loading').style.display = 'none'
-    //   console.timeEnd()
-    //   console.log('loading next video...')
-    //   console.time()
-    // }
+
     reader.readAsDataURL(this._file)
     return media
   }

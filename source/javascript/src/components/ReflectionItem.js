@@ -9,9 +9,9 @@ import { Router, ROUTES } from '../utils/Router.js'
  */
 class ReflectionItem extends HTMLElement {
   /**
-       * Constructor containing the business logic for
-       * creating a new reflection item.
-       */
+     * Constructor containing the business logic for
+     * creating a new reflection item.
+     */
   constructor () {
     super()
     this.attachShadow({ mode: 'open' })

@@ -20,10 +20,17 @@ const tmButton = document.getElementById('tomorrow')
 const ytButton = document.getElementById('yesterday')
 const tagOptions = document.querySelector('.tag-options')
 
+/**
+ * Onclick of the cancel button will reset the input container.
+ */
 cancelBtn.addEventListener('click', () => {
   resetEverything()
 })
 
+/**
+ * Onclick of the "Entry type" box; checks which entry
+ * type was checked and updates the input container accordingly.
+ */
 radioContainer.addEventListener('change', () => {
   resetEverything()
   if (refRadio.checked || noteRadio.checked) {
@@ -143,7 +150,6 @@ function newElement () {
                 (hours * 60 * 60 * 1000) +
                 (minutes * 60 * 1000) +
                 (new Date().getTimezoneOffset() * 60 * 1000)
-    // @TODO
     itemEntry.time = timestamp
   } else {
     itemEntry.logType = 'reflection'
@@ -243,7 +249,7 @@ function getLogInfoAsJSON (cb, quote) {
         if (searchParams.has('timestamp')) {
           const timestamp = Number(searchParams.get('timestamp'))
           const dateConverter = new DateConverter(timestamp)
-          // console.log(cursor.value)
+
           let match = false
           cursor.value.$defs['daily-logs'].forEach((log, index) => {
             if (dateConverter.equals(Number(log.properties.date.time))) {
@@ -315,7 +321,7 @@ function setEntries (log) {
     })
   }
 
-  /* Populate entries in daily log */
+  // Populate entries in daily log
   populateTypeOfEntry(log.properties.reflection)
   populateTypeOfEntry(log.properties.events)
   populateTypeOfEntry(log.properties.tasks)
@@ -414,10 +420,6 @@ function setTagOptions (json) {
  * @param json Head of the JSON stored in database
  */
 function populateDailyLog (response, json) {
-  /* TODO: replace response with schema for single daily log
-  (see https://github.com/cse110-w21-group7/cse110-SP21-group7/issues/161
-    and https://github.com/cse110-w21-group7/cse110-SP21-group7/issues/162)
-  */
   if (response) {
     setDate(response)
     setEntries(response)
@@ -439,7 +441,6 @@ function getDateFromUNIXTimestamp (timestamp) {
   return new DateConverter(timestamp)
 }
 
-// TODO: not sure what this one does
 document.addEventListener('DOMContentLoaded', (event) => {
   saveBtn.style.display = 'none'
   cancelBtn.style.display = 'none'

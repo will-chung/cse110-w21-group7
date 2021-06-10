@@ -54,10 +54,10 @@ template.innerHTML = `
  */
 class Tag extends HTMLElement {
   /**
-   * Constructs a Tag with the specified name.
-   * @constructor
-   * @param {string} name - The name of the collection
-   */
+     * Constructs a Tag with the specified name.
+     * @constructor
+     * @param {string} name - The name of the collection
+     */
   constructor (name) {
     super()
 
@@ -84,28 +84,28 @@ class Tag extends HTMLElement {
   }
 
   /**
-   * Returns name of collection tag.
-   * @returns {string} Name of collection tag
-   */
+     * Returns name of collection tag.
+     * @returns {string} Name of collection tag
+     */
   get name () {
     const shadowRoot = this.shadowRoot
     return shadowRoot.querySelector('.tag-name').textContent
   }
 
   /**
-   * Sets name of collection tag.
-   * @param {string} name - Name of collection tag
-   */
+     * Sets name of collection tag.
+     * @param {string} name - Name of collection tag
+     */
   set name (name) {
     const shadowRoot = this.shadowRoot
     shadowRoot.querySelector('.tag-name').textContent = name
   }
 
   /**
-   * Removes collection tag from daily log.
-   * Updates database to reflect removal and replaces option to add removed tag.
-   * @param {string} collectionName - Name of collection to be removed
-   */
+     * Removes collection tag from daily log.
+     * Updates database to reflect removal and replaces option to add removed tag.
+     * @param {string} collectionName - Name of collection to be removed
+     */
   removeCollectionTag (collectionName) {
     wrapper.transaction((event) => {
       const db = event.target.result
