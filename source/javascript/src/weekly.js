@@ -24,14 +24,12 @@ const sunday = document.getElementById('Sunday')
  * initialize the daily log.
  */
 function getLogInfoAsJSON (cb) {
-  // Do we need to open a new db?
   const wrapper = new IndexedDBWrapper('experimentalDB', 1)
 
   wrapper.transaction((event) => {
     const db = event.target.result
     const transaction = db.transaction(['currentLogStore'], 'readonly') // mode should be readonly
     const store = transaction.objectStore('currentLogStore')
-    // this gets all entries and store them as an array, pass in a key, what's the key?
     const getReq = store.getAll()
 
     getReq.onsuccess = (event) => {
@@ -73,7 +71,6 @@ function getLogInfoAsJSON (cb) {
             return dateToCompare.oldTimestampInSameWeek(Number(timestamp))
           })
         } else {
-          // @TODO get results for navigating from menu
           dateToCompare = new DateConverter()
           dailyLogResult = dailyLogs.filter((log) => {
             const timestamp = log.properties.date.time
@@ -115,7 +112,6 @@ function populateDayColumns (weeklyItems, dateToCompare) {
     const weeklyItem = document.createElement('weekly-view-item')
     weeklyItem.entry = entry
     const childDiv = week.children[index]
-    // console.log(week.children[index])
     // business logic for appending the navigation link to each column
     appendNavLinks(childDiv, currentDate)
     childDiv.appendChild(weeklyItem)

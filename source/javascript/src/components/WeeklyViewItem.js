@@ -14,10 +14,7 @@ class WeeklyViewItem extends HTMLElement {
     super()
 
     this.attachShadow({ mode: 'open' })
-    // Unfortunately this cannot be made a private field, since ESLint does not properly
-    // lint private fields.
     this._entry = { name: '' }
-    // this.render()
   }
 
   render () {
@@ -73,40 +70,23 @@ background: linear-gradient(335deg, rgba(247,240,63,1) 0%, rgba(254,255,156,1) 1
     const weekdayCol = this.shadowRoot.getElementById('single-weekday')
 
     const tasks = this._entry.properties.tasks
-    // console.log(tasks);
     const notes = this._entry.properties.notes
-    // console.log(notes);
     const events = this._entry.properties.events
-    // console.log(events);
     const reflection = this._entry.properties.reflection
-    // console.log(reflection);
 
-    tasks.forEach((task, index) => {
-      const taskItem = this.getEntryToWeeklyView(task)
-      taskItem.shadowRoot.querySelector('button').style.display = 'none'
-      const row = this.makeRow(taskItem)
-      weekdayCol.appendChild(row)
-    })
-    notes.forEach((notes, index) => {
-      const noteItem = this.getEntryToWeeklyView(notes)
-      noteItem.shadowRoot.querySelector('button').style.display = 'none'
-      const row = this.makeRow(noteItem)
-      weekdayCol.appendChild(row)
-    })
-    events.forEach((event, index) => {
-      const eventItem = this.getEntryToWeeklyView(event)
-      eventItem.shadowRoot.querySelector('button').style.display = 'none'
-      // li.appendChild(eventItem)
-      const row = this.makeRow(eventItem)
-      weekdayCol.appendChild(row)
-    })
-    reflection.forEach((reflection, index) => {
-      const reflectionItem = this.getEntryToWeeklyView(reflection)
-      const row = this.makeRow(reflectionItem)
-      reflectionItem.shadowRoot.querySelector('button').style.display = 'none'
-      // li.appendChild(reflectionItem)
-      weekdayCol.appendChild(row)
-    })
+    const populateItems = (items) => {
+      items.forEach((item, index) => {
+        const journalItem = this.getEntryToWeeklyView(item)
+        const row = this.makeRow(journalItem)
+        journalItem.shadowRoot.querySelector('button').style.display = 'none'
+        weekdayCol.appendChild(row)
+      })
+    }
+
+    populateItems(reflection)
+    populateItems(events)
+    populateItems(tasks)
+    populateItems(notes)
   }
 
   /**
