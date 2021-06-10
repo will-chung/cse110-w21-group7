@@ -143,7 +143,6 @@ function newElement () {
                 (hours * 60 * 60 * 1000) +
                 (minutes * 60 * 1000) +
                 (new Date().getTimezoneOffset() * 60 * 1000)
-    // @TODO
     itemEntry.time = timestamp
   } else {
     itemEntry.logType = 'reflection'
@@ -414,10 +413,6 @@ function setTagOptions (json) {
  * @param json Head of the JSON stored in database
  */
 function populateDailyLog (response, json) {
-  /* TODO: replace response with schema for single daily log
-  (see https://github.com/cse110-w21-group7/cse110-SP21-group7/issues/161
-    and https://github.com/cse110-w21-group7/cse110-SP21-group7/issues/162)
-  */
   if (response) {
     setDate(response)
     setEntries(response)
@@ -439,7 +434,6 @@ function getDateFromUNIXTimestamp (timestamp) {
   return new DateConverter(timestamp)
 }
 
-// TODO: not sure what this one does
 document.addEventListener('DOMContentLoaded', (event) => {
   saveBtn.style.display = 'none'
   cancelBtn.style.display = 'none'
