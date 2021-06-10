@@ -88,6 +88,13 @@ background: linear-gradient(335deg, rgba(247,240,63,1) 0%, rgba(254,255,156,1) 1
       // li.appendChild(reflectionItem)
       weekdayCol.appendChild(row)
     })
+    events.forEach((event, index) => {
+      const eventItem = this.getEntryToWeeklyView(event)
+      eventItem.shadowRoot.querySelector('button').style.display = 'none'
+      // li.appendChild(eventItem)
+      const row = this.makeRow(eventItem)
+      weekdayCol.appendChild(row)
+    })
     tasks.forEach((task, index) => {
       const taskItem = this.getEntryToWeeklyView(task)
       taskItem.shadowRoot.querySelector('button').style.display = 'none'
@@ -98,13 +105,6 @@ background: linear-gradient(335deg, rgba(247,240,63,1) 0%, rgba(254,255,156,1) 1
       const noteItem = this.getEntryToWeeklyView(notes)
       noteItem.shadowRoot.querySelector('button').style.display = 'none'
       const row = this.makeRow(noteItem)
-      weekdayCol.appendChild(row)
-    })
-    events.forEach((event, index) => {
-      const eventItem = this.getEntryToWeeklyView(event)
-      eventItem.shadowRoot.querySelector('button').style.display = 'none'
-      // li.appendChild(eventItem)
-      const row = this.makeRow(eventItem)
       weekdayCol.appendChild(row)
     })
   }
