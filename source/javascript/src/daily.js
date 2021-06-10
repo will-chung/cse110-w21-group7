@@ -10,43 +10,50 @@ const text = document.getElementById('input-area')
 const date = document.getElementById('date-input')
 const time = document.getElementById('time-input')
 const saveBtn = document.getElementById('cb2')
-const realCanBtn = document.getElementById('cancel')
 const cancelBtn = document.getElementById('cb1')
 const refRadio = document.getElementById('input1')
 const eventRadio = document.getElementById('input2')
 const taskRadio = document.getElementById('input3')
 const noteRadio = document.getElementById('input4')
 const radioContainer = document.getElementsByClassName('container')[0]
-const realSavBtn = document.getElementById('save')
 const tmButton = document.getElementById('tomorrow')
 const ytButton = document.getElementById('yesterday')
 const tagOptions = document.querySelector('.tag-options')
 
 cancelBtn.addEventListener('click', () => {
-  // TODO: implement hide functionality
-  text.value = ''
+  resetEverything()
 })
 
-// TODO
 radioContainer.addEventListener('change', () => {
   resetEverything()
-  if (refRadio.checked) {
-    text.style.visibility = 'visible'
-    saveBtn.style.display = 'inline-block'
-    cancelBtn.style.display = 'inline-block'
+  if (refRadio.checked || noteRadio.checked) {
+    showTextInput()
   } else if (eventRadio.checked) {
-    time.style.display = 'inline-block'
     time.style.visibility = 'visible'
+    time.style.display = 'inline-block'
   } else if (taskRadio.checked) {
     date.style.visibility = 'visible'
     time.style.display = 'none'
-    // we need to remove the eventListener afterwards
-  } else if (noteRadio.checked) {
-    text.style.visibility = 'visible'
-    saveBtn.style.display = 'inline-block'
-    cancelBtn.style.display = 'inline-block'
   }
+  setPlaceholder()
 })
+
+/**
+ * Sets placeholder of text input depending on which entry type if selected.
+ */
+function setPlaceholder () {
+  let placeholder
+  if (refRadio.checked) {
+    placeholder = 'Input your reflection here'
+  } else if (eventRadio.checked) {
+    placeholder = 'Input your event here'
+  } else if (taskRadio.checked) {
+    placeholder = 'Input your task here'
+  } else {
+    placeholder = 'Input your note here'
+  }
+  text.setAttribute('placeholder', placeholder)
+}
 
 /**
  * Onclick of the "Add tag" button will trigger this event and add
@@ -456,9 +463,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
   })
   date.addEventListener('change', () => {
-    text.style.visibility = 'visible'
-    saveBtn.style.display = 'inline-block'
-    cancelBtn.style.display = 'inline-block'
+    showTextInput()
   })
   time.addEventListener('change', () => {
     date.style.visibility = 'visible'
@@ -473,6 +478,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
       getLogInfoAsJSON(populateDailyLog, quote)
     })
 })
+
+/**
+ * Helper method that shows text input field and "Save" and "Cancel" buttons
+ */
+function showTextInput () {
+  text.style.visibility = 'visible'
+  saveBtn.style.display = 'inline-block'
+  cancelBtn.style.display = 'inline-block'
+}
 
 /**
  * Routes the user from the current daily log they are on
