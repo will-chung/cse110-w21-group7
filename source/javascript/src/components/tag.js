@@ -6,7 +6,7 @@ const template = document.createElement('template')
 
 template.innerHTML = `
   <style>
-    @import '/cse110-w21-group7/css/font/bootstrap-icons.css';
+    @import '/cse110-SP21-group7/css/font/bootstrap-icons.css';
 
     :host {
       display: inline-flex;
