@@ -27,9 +27,7 @@ cancelBtn.addEventListener('click', () => {
 radioContainer.addEventListener('change', () => {
   resetEverything()
   if (refRadio.checked || noteRadio.checked) {
-    text.style.visibility = 'visible'
-    saveBtn.style.display = 'inline-block'
-    cancelBtn.style.display = 'inline-block'
+    showTextInput()
   } else if (eventRadio.checked) {
     time.style.visibility = 'visible'
     time.style.display = 'inline-block'
@@ -44,7 +42,7 @@ radioContainer.addEventListener('change', () => {
  * Sets placeholder of text input depending on which entry type if selected.
  */
 function setPlaceholder () {
-  let placeholder;
+  let placeholder
   if (refRadio.checked) {
     placeholder = 'Input your reflection here'
   } else if (eventRadio.checked) {
@@ -465,9 +463,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
   })
   date.addEventListener('change', () => {
-    text.style.visibility = 'visible'
-    saveBtn.style.display = 'inline-block'
-    cancelBtn.style.display = 'inline-block'
+    showTextInput()
   })
   time.addEventListener('change', () => {
     date.style.visibility = 'visible'
@@ -482,6 +478,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
       getLogInfoAsJSON(populateDailyLog, quote)
     })
 })
+
+/**
+ * Helper method that shows text input field and "Save" and "Cancel" buttons
+ */
+function showTextInput () {
+  text.style.visibility = 'visible'
+  saveBtn.style.display = 'inline-block'
+  ancelBtn.style.display = 'inline-block'
+}
 
 /**
  * Routes the user from the current daily log they are on
