@@ -26,6 +26,10 @@ class LogItem extends HTMLElement {
 
   render () {
     this.shadowRoot.innerHTML = `<style>
+                                    span {
+                                      overflow-wrap:anywhere;
+                                    }
+
                                     .icon {
                                         background-size: contain;
                                         display:inline-block;

@@ -205,11 +205,13 @@ body{
     position: absolute;
   }
   .containerOuter {
-    margin-left: 4vw;
+    font-size: 1.75vw;
+    margin-left: 11vw;
+    margin-right:0px;
     background: whitesmoke;
     border-radius: 20px;
-    width: 220px;
-    height:170px;
+    width: 10em;
+    height: 175px;
     box-shadow: 10px 10px 5px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   }
   .container {
@@ -230,7 +232,7 @@ body{
   .entry {
     height: 25px;
     position: absolute;
-    width: 160px;
+    width: 100%;
   }
   .entry:nth-child(3) {
     left: 8px;
@@ -257,14 +259,15 @@ body{
     padding-left: 40px;
     user-select: none;
     -moz-user-select: none;
-    font-size: 25px;
+    font-size: 1.75vw;
     font-family: 'Montserrat', sans-serif;
     width: 200px;
   }
   .entry-prompt {
     margin-top: 10px;
     margin-left: 10px;
-    font-size:24px;
+    font-size:2vw;
+    width: 100%;
   }
   .overlay {
     background: #fff;
@@ -427,8 +430,11 @@ form {
 
 #input-area{
     font-family: Montserrat, sans-serif;
-    font-size: 30px;
-    margin-right: 30px;
+    font-size: 2vw;
+    margin-left:2vw;
+    margin-right: 2vw;
+    padding-left:0.5px;
+    padding-right:1.5em;
     box-shadow: 10px 10px 5px rgba(0,0,0,0.30), 0 10px 12px rgba(0,0,0,0.22);
     border-radius: 2px;
     border-color: #98c1d9;
@@ -437,7 +443,10 @@ form {
 }
 
 #search {
-    font-size: 30px;
+    margin-right:10vw;
+    width:2em;
+    height:2em;
+    font-size: 2vw;
     background-color: #ee6c4d;
     border-style:none;
     box-shadow: 10px 10px 5px rgba(0,0,0,0.30), 0 10px 12px rgba(0,0,0,0.22);
@@ -466,11 +475,9 @@ form {
   list-style-type: none;
   background: #eee;
   font-family:'Montserrat', sans-serif;
-  font-size: 20px;
-  margin: 3vw;
-  border-bottom-right-radius: 20px;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  font-size: 1.25vw;
+  margin: 2vw;
+  border-radius: 20px;
   margin-bottom: 5px;
   box-shadow: 20px 20px 20px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   /* make the list items unselectable */
@@ -505,6 +512,7 @@ form {
 }
 
 #textbox {
+  margin-bottom:10px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr;
@@ -531,10 +539,12 @@ h2 {
   text-align: center;
   color:white;
   font-family: "Montserrat", sans-serif;
-  margin: 3vw;
+  margin: 2vw;
+  margin-bottom:2px;
 }
 
 #result-container{
+  margin-top:0px;
   border-radius: 10px;
   border-style: solid;
   border-width: 2px;

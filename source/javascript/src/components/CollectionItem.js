@@ -27,8 +27,8 @@ class CollectionItem extends HTMLElement {
     this.shadowRoot.innerHTML = `<style>
                                       .icon-collection {
                                           background-size: contain;
-                                          width:50%;
-                                          height:50%;
+                                          width:40%;
+                                          height:40%;
                                           margin:auto;
                                       }
                                       img {
