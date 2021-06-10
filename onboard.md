@@ -10,7 +10,7 @@ You can access tha app [here](https://noaht.github.io/cse110-w21-group7/index.ht
 ![websiteLayout](admin/onboard-images/Front-Page.jpg)  
 
 ## Final project videos
-- [final video public version](TODO)
+- [final video public version](https://youtu.be/U-Qt9tbzNeA)
 - [final video private version](TODO)
 
 ## CI/CD Pipeline Information and Documentation:
