@@ -232,7 +232,7 @@ body{
   .entry {
     height: 25px;
     position: absolute;
-    width: 160px;
+    width: 100%;
   }
   .entry:nth-child(3) {
     left: 8px;
@@ -267,6 +267,7 @@ body{
     margin-top: 10px;
     margin-left: 10px;
     font-size:2vw;
+    width: 100%;
   }
   .overlay {
     background: #fff;
