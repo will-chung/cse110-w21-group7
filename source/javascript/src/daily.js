@@ -20,10 +20,17 @@ const tmButton = document.getElementById('tomorrow')
 const ytButton = document.getElementById('yesterday')
 const tagOptions = document.querySelector('.tag-options')
 
+/**
+ * Onclick of the cancel button will reset the input container.
+ */
 cancelBtn.addEventListener('click', () => {
   resetEverything()
 })
 
+/**
+ * Onclick of the "Entry type" box; checks which entry
+ * type was checked and updates the input container accordingly.
+ */
 radioContainer.addEventListener('change', () => {
   resetEverything()
   if (refRadio.checked || noteRadio.checked) {
@@ -313,7 +320,7 @@ function setEntries (log) {
     })
   }
 
-  /* Populate entries in daily log */
+  // Populate entries in daily log
   populateTypeOfEntry(log.properties.reflection)
   populateTypeOfEntry(log.properties.events)
   populateTypeOfEntry(log.properties.tasks)

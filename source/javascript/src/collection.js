@@ -2,8 +2,11 @@ import { CollectionItem, wrapper } from './components/CollectionItem.js'
 
 const customAdd = document.getElementById('cb')
 
+/**
+ * Onclick of the add button on the Collection page will prompt the
+ * user for the name and create a new collection with the given name.
+ */
 customAdd.addEventListener('click', () => {
-  // location.pathname = '/source/html/collection-edit.html'
   const collectionName = window.prompt('Please enter the name of your new collection:')
   addCollection(collectionName)
 })
@@ -34,11 +37,6 @@ function addCollection (collectionName) {
 
         const collections = json.properties.collections
 
-        // Change button to say 'Add' once first collection has been added
-        // if (collections.length == 0) {
-        //   addBtn.textContent = 'Add'
-        // }
-
         const newCollectionObj = {
           type: 'array',
           name: collectionName,
@@ -56,13 +54,11 @@ function addCollection (collectionName) {
         // Save changes
         const requestUpdate = cursor.update(json)
         requestUpdate.onerror = function (event) {
-          // Do something with the error
+          // Error - Data did not update
         }
         requestUpdate.onsuccess = function (event) {
           // Success - the data is updated!
           console.log('successfully added "' + collectionName + '"')
-          // I think the code below should be added here... Yuzi
-          // document.querySelector('.collection-area').append(newCollection)
         }
       }
     }
@@ -114,10 +110,6 @@ function populateCollections (response) {
   }
 
   const collections = response.properties.collections
-
-  // if (collections.length == 0) {
-  //   addBtn.textContent = "Add First Collection"
-  // }
 
   const container = document.querySelector('.collection-area')
   collections.forEach((collection, index) => {

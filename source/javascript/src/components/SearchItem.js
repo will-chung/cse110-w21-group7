@@ -8,9 +8,9 @@ import { Router, ROUTES } from '../utils/Router.js'
  */
 class SearchItem extends HTMLElement {
   /**
-       * Constructor containing the business logic for
-       * creating a new search item.
-       */
+     * Constructor containing the business logic for
+     * creating a new search item.
+     */
   constructor () {
     super()
 
@@ -72,10 +72,10 @@ class SearchItem extends HTMLElement {
   }
 
   /**
-   * Subroutine used in order to show the relevant tasks, notes,
-   * events, and reflection data in the contained daily log as
-   * list items.
-   */
+     * Subroutine used in order to show the relevant tasks, notes,
+     * events, and reflection data in the contained daily log as
+     * list items.
+     */
   populateLogEntries () {
     this.addAsListItems(this._entry.tasks)
     this.addAsListItems(this._entry.notes)
@@ -84,19 +84,19 @@ class SearchItem extends HTMLElement {
   }
 
   /**
-   * Subroutine used in order to show the relevant tasks
-   * in the contained collection as list items.
-   */
+     * Subroutine used in order to show the relevant tasks
+     * in the contained collection as list items.
+     */
   populateCollectionTasks () {
     this.addAsListItems(this._entry.tasks)
   }
 
   /**
-   * Business/presentation logic subroutine used in order
-   * to display entries as list items on the current search component.
-   * @param {Object[]} list Array of JSON objects with which to create
-   * list entries
-   */
+     * Business/presentation logic subroutine used in order
+     * to display entries as list items on the current search component.
+     * @param {Object[]} list Array of JSON objects with which to create
+     * list entries
+     */
   addAsListItems (list) {
     const that = this
     list.forEach((item) => {
@@ -107,9 +107,9 @@ class SearchItem extends HTMLElement {
   }
 
   /**
-   * Subroutine used in order to show the date of the
-   * entry being shown
-   */
+     * Subroutine used in order to show the date of the
+     * entry being shown
+     */
   getDate () {
     const timestamp = this._entry.time
     const date = new DateConverter(timestamp)
@@ -117,24 +117,24 @@ class SearchItem extends HTMLElement {
   }
 
   /**
-       * Setter for private field entry, containing
-       * the tasks, notes, events, reflections, description,
-       * and date of our search item.
-       * @param {Object} entry JSON object containing the
-       * new fields for our search item.
-       */
+     * Setter for private field entry, containing
+     * the tasks, notes, events, reflections, description,
+     * and date of our search item.
+     * @param {Object} entry JSON object containing the
+     * new fields for our search item.
+     */
   set entry (entry) {
     this._entry = entry
     this.render()
   }
 
   /**
-       * Getter for private field entry, containing
-       * the tasks, notes, events, reflections, description,
-       * and date of our search item.
-       * @return {Object} JSON object containing the
-       * new fields for our search item.
-       */
+     * Getter for private field entry, containing
+     * the tasks, notes, events, reflections, description,
+     * and date of our search item.
+     * @return {Object} JSON object containing the
+     * new fields for our search item.
+     */
   get entry () {
     return this._entry
   }

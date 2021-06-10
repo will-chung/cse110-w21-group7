@@ -46,9 +46,9 @@ myTemplate.innerHTML = `
  */
 class Shelf extends HTMLElement {
   /**
-   * Creates new book shelf and populates with books (one for each month of the year).
-   * @constructor
-   */
+     * Creates new book shelf and populates with books (one for each month of the year).
+     * @constructor
+     */
   constructor () {
     super()
 
@@ -92,15 +92,15 @@ class Shelf extends HTMLElement {
   }
 
   /**
-   * Subroutine used in order to determine whether there exists
-   * daily logs with the given month and year.
-   * @param {Object[]} dailyLogs Array of JSON objects containing the
-   * daily log entries to check.
-   * @param {Number} month Number containing the month (indexed from 1 to 12 inclusive)
-   * with which to compare the date of each daily log
-   * @return {Boolean} boolean value that determines whether there exists
-   * a daily log with the given month and year
-   */
+     * Subroutine used in order to determine whether there exists
+     * daily logs with the given month and year.
+     * @param {Object[]} dailyLogs Array of JSON objects containing the
+     * daily log entries to check.
+     * @param {Number} month Number containing the month (indexed from 1 to 12 inclusive)
+     * with which to compare the date of each daily log
+     * @return {Boolean} boolean value that determines whether there exists
+     * a daily log with the given month and year
+     */
   hasEntryForYearMonth (dailyLogs, month) {
     const year = Number(this.label)
     // finds if a daily log with the given year and month exists
@@ -114,17 +114,17 @@ class Shelf extends HTMLElement {
   }
 
   /**
-   * Returns shelf label (year)
-   * @returns {number} Shelf label (year)
-   */
+     * Returns shelf label (year)
+     * @returns {number} Shelf label (year)
+     */
   get label () {
     return this.getAttribute('label')
   }
 
   /**
-   * Sets shelf label (year)
-   * @param {number} label - Shelf label (year)
-   */
+     * Sets shelf label (year)
+     * @param {number} label - Shelf label (year)
+     */
   set label (label) {
     this.setAttribute('label', label)
     const shelfLabel = this.shadowRoot.querySelector('#label')
@@ -133,17 +133,17 @@ class Shelf extends HTMLElement {
   }
 
   /**
-   * Returns books on the shelf.
-   * @returns {object[]} Array of books contained on the shelf
-   */
+     * Returns books on the shelf.
+     * @returns {object[]} Array of books contained on the shelf
+     */
   get books () {
     return this._books
   }
 
   /**
-   * Sets books on the shelf.
-   * @param {object[]} books - Array of books contained on the shelf
-   */
+     * Sets books on the shelf.
+     * @param {object[]} books - Array of books contained on the shelf
+     */
   set books (books) {
     const content = this.shadowRoot.querySelector('.shelf-content')
     for (let i = 0; i < books.length; i++) {
@@ -156,9 +156,9 @@ class Shelf extends HTMLElement {
   }
 
   /**
-   * Creates default array of books containing one book for each month of the year.
-   * @returns Array of books with one book for each month of the year
-   */
+     * Creates default array of books containing one book for each month of the year.
+     * @returns Array of books with one book for each month of the year
+     */
   createBooks () {
     // create one book for each month
     const books = []
@@ -170,9 +170,9 @@ class Shelf extends HTMLElement {
   }
 
   /**
-   * Updates all books on the shelf.
-   * Sets each books' "shelf" field to the label of this shelf.
-   */
+     * Updates all books on the shelf.
+     * Sets each books' "shelf" field to the label of this shelf.
+     */
   updateBooks () {
     this.books.forEach(book => {
       book.shelf = this.label

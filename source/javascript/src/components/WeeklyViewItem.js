@@ -3,13 +3,14 @@ import { DateConverter } from '../utils/DateConverter.js'
 
 /**
  * Component class for individual columns for daily log information on 'weekly.html'
- * @author Yuzi Lyu <yul134@ucsd.edu>, Noah Teshima <nteshima@ucsd.edu>
+ * @author Yuzi Lyu <yul134@ucsd.edu>
+ * @author Noah Teshima <nteshima@ucsd.edu>
  */
 class WeeklyViewItem extends HTMLElement {
   /**
-       * Constructor containing the business logic for
-       * creating a new container item.
-       */
+     * Constructor containing the business logic for
+     * creating a new container item.
+     */
   constructor () {
     super()
 
@@ -90,9 +91,9 @@ background: linear-gradient(335deg, rgba(247,240,63,1) 0%, rgba(254,255,156,1) 1
   }
 
   /**
-   * subroutine for creating one row of logItem
-   * @returns {p} The row that should be appended to the div
-   */
+     * Subroutine for creating one row of logItem
+     * @returns {p} The row that should be appended to the div
+     */
   makeRow (singleLog) {
     const row = document.createElement('p')
     row.setAttribute('class', 'weekday-entries')
@@ -101,11 +102,11 @@ background: linear-gradient(335deg, rgba(247,240,63,1) 0%, rgba(254,255,156,1) 1
   }
 
   /**
-   * Getter for getting the date correpsonding to the given
-   * weekly view item
-   * @returns {String} The date corresponding to the weekly view
-   * item being displayed, corresponding to
-   */
+     * Getter for getting the date correpsonding to the given
+     * weekly view item
+     * @returns {String} The date corresponding to the weekly view
+     * item being displayed, corresponding to
+     */
   getDate () {
     const timestamp = this._entry.date.time
     const dateConverter = new DateConverter(timestamp)
@@ -113,12 +114,12 @@ background: linear-gradient(335deg, rgba(247,240,63,1) 0%, rgba(254,255,156,1) 1
   }
 
   /**
-   * Subroutine to add a task/note/event to the weekly view.
-   * @param {Object} entry JSON object containing the task/note/event
-   * data to add to the weekly view item.
-   * @returns {LogItem} LogItem object containing the representation of
-   * the given entry as a log item in the weekly view.
-   */
+     * Subroutine to add a task/note/event to the weekly view.
+     * @param {Object} entry JSON object containing the task/note/event
+     * data to add to the weekly view item.
+     * @returns {LogItem} LogItem object containing the representation of
+     * the given entry as a log item in the weekly view.
+     */
   getEntryToWeeklyView (entry) {
     const logItem = document.createElement('log-item')
     logItem.itemEntry = entry
@@ -128,22 +129,22 @@ background: linear-gradient(335deg, rgba(247,240,63,1) 0%, rgba(254,255,156,1) 1
   }
 
   /**
-       * Setter for private field entry, containing
-       * the name of our collection.
-       * @param {Object} entry JSON object containing the
-       * new fields for our log item.
-       */
+     * Setter for private field entry, containing
+     * the name of our collection.
+     * @param {Object} entry JSON object containing the
+     * new fields for our log item.
+     */
   set entry (entry) {
     this._entry = entry
     this.render()
   }
 
   /**
-       * Getter for private field entry, containing the
-       * name of our collection.
-       * @return {Object} JSON object containing the
-       * new fields for our collection item.
-       */
+     * Getter for private field entry, containing the
+     * name of our collection.
+     * @return {Object} JSON object containing the
+     * new fields for our collection item.
+     */
   get entry () {
     return this._entry
   }

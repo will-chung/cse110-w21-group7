@@ -98,6 +98,14 @@ function populateWeeklyView (weeklyItems, dateToCompare) {
   populateDayColumns(weeklyItems, dateToCompare)
 }
 
+/**
+ * Business logic routine used to populate the entries of each day for that week
+ * on the weekly page.
+ * @param {Object[]} weeklyItems JSON object array containing all the daily logs that
+ * should be populated on the weekly view.
+ * @param {DateConverter} dateToCompare DateConverter reference containing the date
+ * with respect to which we will show the weekly view.
+ */
 function populateDayColumns (weeklyItems, dateToCompare) {
   const week = document.getElementById('weekly-div')
   // create a DateConverter object
@@ -123,10 +131,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
 })
 
 /**
- * @author Katherine Baker <klbaker@ucsd.edu>, and Yuzi Lyu <>, Noah Teshima <nteshima@ucsd.edu>
+ * @author Katherine Baker <klbaker@ucsd.edu>
+ * @author Yuzi Lyu <yul134@ucsd.edu>
+ * @author Noah Teshima <nteshima@ucsd.edu>
  * @param {HTMLElement} targetElement div element that is a direct
- * child of the div with identifier #weekly-div. From this element, we
- * are able to
+ * child of the div with identifier #weekly-div.
  * @param {Date} date Date reference containing the date to append to
  * the header for the current column on the monthly/weekly view.
  */
