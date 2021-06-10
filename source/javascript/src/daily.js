@@ -32,10 +32,11 @@ radioContainer.addEventListener('change', () => {
     cancelBtn.style.display = 'inline-block'
     if (refRadio.checked) {
       text.setAttribute('placeholder', 'Input your reflection here')
-    } else { 
+    } else {
       text.setAttribute('placeholder', 'Input your note here')
-    }  
+    }
   } else if (eventRadio.checked) {
+    time.style.display = 'inline-block'
     time.style.visibility = 'visible'
     text.setAttribute('placeholder', 'Input your event here')
   } else if (taskRadio.checked) {
