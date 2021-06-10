@@ -78,7 +78,7 @@ class LogItem extends HTMLElement {
                                     </style>
                                     <span id="single-entry">
                                         <i class="icon ${this.getFASymbolClass()}"></i>
-                                        <b>${this.getMilitaryTime()}</b>
+                                        <b>${this.getFormattedTime()}</b>
                                         <span id="tasks">${this._itemEntry.description}</span>
                                         <button type="button">
                                         <span class="icon trash-button-icon"></span>
@@ -229,8 +229,6 @@ class LogItem extends HTMLElement {
             }
           }
         })
-        // call transaction, with one argument that is a callback function
-        // callback function should have a parameter event
 
         this.parentElement.remove()
       })
@@ -313,6 +311,26 @@ class LogItem extends HTMLElement {
     }
 
     return `${this._itemEntry.date.getHours()}:${this._itemEntry.date.getMinutes()}`
+  }
+
+  /**
+   * Gets the formatted time of the corresponding event. This method
+   * formats time as HH:MM[AM,PM], where AM is displayed if the hour is
+   * on the interval [0, 11]. Otherwise, PM is displayed.
+   */
+  getFormattedTime () {
+    if (this._itemEntry.logType !== 'event') {
+      return ''
+    }
+    const hours = this._itemEntry.date.getHours()
+    const minutes = this._itemEntry.date.getMinutes()
+    // Hours on the interval [0, 12)
+    const hoursModded = hours % 12
+    const AMPM = hours < 12 ? 'AM' : 'PM'
+    const hoursFormatted = hoursModded === 0 ? 12 : hoursModded
+    const minutesFormatted = minutes < 10 ? `0${minutes}` : `${minutes}`
+
+    return `${hoursFormatted}:${minutesFormatted}${AMPM}`
   }
 
   /**
