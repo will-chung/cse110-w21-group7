@@ -7,3 +7,5 @@ Our team is called RIVER, an acronym for Reflection, Improvement, Values, Empowe
 Learn more about each of our members and our goals on the [RIVER Team Page](admin/team.md).
 
 Onboard [here](onboard.md)
+
+Start your reflection on [RIVER](https://cse110-w21-group7.github.io/cse110-SP21-group7/)
