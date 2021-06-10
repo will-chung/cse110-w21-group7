@@ -508,19 +508,15 @@ input {
 
 #textbox {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 0px 0px;
   grid-template-areas:
-    "dropdown date-time date-time date-time date-time date-time"
-    "dropdown text-input text-input text-input buttons buttons"
-    ". . . . . .";
-    /* border-style:solid;
-    border-width: 5px;
-    border-radius: 20px;
-    border-color:#e0fbfc; */
-    width: 100vw;
-  } 
+    "dropdown date-time date-time date-time date-time"
+    "dropdown text-input text-input text-input buttons"
+    ". . . . .";
+  width: 85vw;
+} 
   
   #textbox > div {
     height: 100px
