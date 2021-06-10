@@ -660,12 +660,11 @@ input, select, textarea{
 }
 .containerOuter {
   background: white;
-  /* background: rgb(224,251,252);
-background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 100%); */
+  padding-left: 10px;
   border-radius: 20px;
   margin-left: 50px;
   width: 240px;
-  height: 270px;
+  height: 250px;
   box-shadow: 10px 5px 5px black;
 }
 .container {
@@ -725,6 +724,9 @@ background: radial-gradient(circle, rgba(224,251,252,1) 0%, rgba(152,193,217,1) 
   font-family: 'Montserrat', sans-serif;
 }
 .entry-prompt {
+  font-family: Montserrat, sans-serif;
+  font-weight: bold;
+  color: #EE6C4D; 
   margin-top: 10px;
   margin-left: 10px;
   font-size: 24px;
