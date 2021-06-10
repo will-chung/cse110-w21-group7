@@ -26,11 +26,15 @@ cancelBtn.addEventListener('click', () => {
 
 radioContainer.addEventListener('change', () => {
   resetEverything()
-  if (refRadio.checked) {
+  if (refRadio.checked || noteRadio.checked) {
     text.style.visibility = 'visible'
     saveBtn.style.display = 'inline-block'
     cancelBtn.style.display = 'inline-block'
-    text.setAttribute('placeholder', 'Input your reflection here')
+    if (refRadio.checked) {
+      text.setAttribute('placeholder', 'Input your reflection here')
+    } else { 
+      text.setAttribute('placeholder', 'Input your note here')
+    }
   } else if (eventRadio.checked) {
     time.style.display = 'inline-block'
     time.style.visibility = 'visible'
@@ -39,11 +43,6 @@ radioContainer.addEventListener('change', () => {
     date.style.visibility = 'visible'
     time.style.display = 'none'
     text.setAttribute('placeholder', 'Input your task here')
-  } else if (noteRadio.checked) {
-    text.style.visibility = 'visible'
-    saveBtn.style.display = 'inline-block'
-    cancelBtn.style.display = 'inline-block'
-    text.setAttribute('placeholder', 'Input your note here')
   }
 })
 
