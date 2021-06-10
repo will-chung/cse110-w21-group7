@@ -78,4 +78,4 @@ If you want to contribute to our RIVER Bullet Journal Project, please follow the
 ## Building the APP
 - For our minification step we used Gulp. Gulp helps to remove overhead (node_modules/ which we used for development, artifacts, etc.) in addition to minifying files.  
 ## Deploying the APP
-- The RIVER bullet Journal is published through GitHub Pages, so once the changes in the pull requests are merged, the changes to the web app can be seen right away.
+- The RIVER Bullet Journal is published through GitHub Pages, so once the changes in the pull requests are merged, the changes to the web app can be seen right away.
