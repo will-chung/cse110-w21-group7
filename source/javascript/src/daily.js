@@ -485,7 +485,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 function showTextInput () {
   text.style.visibility = 'visible'
   saveBtn.style.display = 'inline-block'
-  ancelBtn.style.display = 'inline-block'
+  cancelBtn.style.display = 'inline-block'
 }
 
 /**
