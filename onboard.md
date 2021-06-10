@@ -11,7 +11,7 @@ You can access tha app [here](https://cse110-w21-group7.github.io/cse110-SP21-gr
 
 ## Final project videos
 - [final video public version](https://youtu.be/U-Qt9tbzNeA)
-- [final video private version](TODO)
+- [final video private version](https://youtu.be/eA0CEhSUY8E)
 
 ## CI/CD Pipeline Information and Documentation:
 All of the information about the CI/CD pipleine can be found [here](https://github.com/cse110-w21-group7/cse110-SP21-group7/tree/main/admin/cipipeline). In this folder, you can see the full [writeup](admin/cipipeline/phase1.md), [video](admin/cipipeline/phase1.mp4), and accompanying flowcharts [here](admin/cipipeline/phase1.png) and [here](admin/cipipeline/phase2.png). 
