@@ -210,7 +210,6 @@ class LogItem extends HTMLElement {
                   })
                   break
                 case ROUTES.weekly:
-                  // @TODO
                   break
                 case ROUTES['collection-edit']:
                   // find the collection with the same name
@@ -235,9 +234,9 @@ class LogItem extends HTMLElement {
     }
   }
 
-  /*
-  * Adds event listeners for all hover events on the collection item
-  */
+  /**
+     * Adds event listeners for all hover events on the collection item
+     */
   setHoverListeners () {
     const singleEntry = this.shadowRoot.getElementById('single-entry')
     const trashBtn = this.shadowRoot.querySelector('button')
@@ -271,21 +270,21 @@ class LogItem extends HTMLElement {
   }
 
   /**
-   * Getter for field page, which denotes the
-   * page in which the task is being created
-   * @returns {Number} Number corresponding to
-   * the key/value mappings from PAGES
-   */
+     * Getter for field page, which denotes the
+     * page in which the task is being created
+     * @returns {Number} Number corresponding to
+     * the key/value mappings from PAGES
+     */
   get page () {
     return this._page
   }
 
   /**
-   * Setter for field page, which denotes the
-   * page in which the task is being created
-   * @param {Number} page corresponding to
-   * the key/value mappings from PAGES
-   */
+     * Setter for field page, which denotes the
+     * page in which the task is being created
+     * @param {Number} page corresponding to
+     * the key/value mappings from PAGES
+     */
   set page (page) {
     this._page = page
   }
@@ -314,10 +313,10 @@ class LogItem extends HTMLElement {
   }
 
   /**
-   * Gets the formatted time of the corresponding event. This method
-   * formats time as HH:MM[AM,PM], where AM is displayed if the hour is
-   * on the interval [0, 11]. Otherwise, PM is displayed.
-   */
+     * Gets the formatted time of the corresponding event. This method
+     * formats time as HH:MM[AM,PM], where AM is displayed if the hour is
+     * on the interval [0, 11]. Otherwise, PM is displayed.
+     */
   getFormattedTime () {
     if (this._itemEntry.logType !== 'event') {
       return ''

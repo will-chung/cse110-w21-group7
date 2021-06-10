@@ -6,12 +6,12 @@ Welcome to the CSE 110 Group 7 GitHub Repository! Our team is called RIVER, whic
 Learn more about each of our members and our goals on the [RIVER Team Page](admin/team.md).
 
 ## Team River's Bullet Journal: 
-You can access tha app [here](https://cse110-w21-group7.github.io/cse110-SP21-group7/)    
+You can access the app [here](https://cse110-w21-group7.github.io/cse110-SP21-group7/)    
 ![websiteLayout](admin/onboard-images/Front-Page.jpg)  
 
 ## Final project videos
-- [final video public version](https://youtu.be/U-Qt9tbzNeA)
-- [final video private version](https://youtu.be/eA0CEhSUY8E)
+- [Final video: public version](https://youtu.be/U-Qt9tbzNeA)
+- [Final video: private version](https://youtu.be/eA0CEhSUY8E)
 
 ## CI/CD Pipeline Information and Documentation:
 All of the information about the CI/CD pipeline can be found [here](https://github.com/cse110-w21-group7/cse110-SP21-group7/tree/main/admin/cipipeline). In this folder, you can see the full [writeup](admin/cipipeline/phase1.md), [video](admin/cipipeline/phase1.mp4), and accompanying flowcharts [here](admin/cipipeline/phase1.png) and [here](admin/cipipeline/phase2.png). 
@@ -78,4 +78,4 @@ If you want to contribute to our RIVER Bullet Journal Project, please follow the
 ## Building the APP
 - For our minification step we used Gulp. Gulp helps to remove overhead (node_modules/ which we used for development, artifacts, etc.) in addition to minifying files.  
 ## Deploying the APP
-- The RIVER bullet Journal is published through GitHub Pages, so once the changes in the pull requests are merged, the changes to the web app can be seen right away.
+- The RIVER Bullet Journal is published through GitHub Pages, so once the changes in the pull requests are merged, the changes to the web app can be seen right away.

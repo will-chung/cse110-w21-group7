@@ -100,11 +100,11 @@ interactive.innerHTML = `
  */
 class Book extends HTMLElement {
   /**
-   * Constructor for creating a new book component. Note
-   * that initializing a book does not set the title of the
-   * book itself. The title of the book can be set using
-   * the setter for the field 'title'
-   */
+     * Constructor for creating a new book component. Note
+     * that initializing a book does not set the title of the
+     * book itself. The title of the book can be set using
+     * the setter for the field 'title'
+     */
   constructor () {
     super()
 
@@ -115,9 +115,9 @@ class Book extends HTMLElement {
   }
 
   /**
-   * Makes a book interactive by adding a transition on hover, adding an event
-   * listener to navigate to Weekly View on click, and changing color from grey
-   */
+     * Makes a book interactive by adding a transition on hover, adding an event
+     * listener to navigate to Weekly View on click, and changing color from grey
+     */
   makeInteractive () {
     // replace style to add transition on hover
     this.shadowRoot.removeChild(this.shadowRoot.querySelector('style'))
@@ -143,19 +143,19 @@ class Book extends HTMLElement {
   }
 
   /**
-   * Getter used to determine what color is being used for the book componemt.
-   * @returns {String} String reference containing the color being used for
-   * the book.
-   */
+     * Getter used to determine what color is being used for the book componemt.
+     * @returns {String} String reference containing the color being used for
+     * the book.
+     */
   get color () {
     return this.getAttribute('color')
   }
 
   /**
-   * Setter used to define the color that should be used for the book's background.
-   * @param {String} color String reference containing the color that
-   * should be used for the book.
-   */
+     * Setter used to define the color that should be used for the book's background.
+     * @param {String} color String reference containing the color that
+     * should be used for the book.
+     */
   set color (color) {
     this.setAttribute('color', color)
     const bookColor = this.shadowRoot.querySelector('.book-color')
@@ -163,17 +163,17 @@ class Book extends HTMLElement {
   }
 
   /**
-   * Gets the title of a book (the month that a book represents).
-   * @returns {String} String reference containing the title of the book.
-   */
+     * Gets the title of a book (the month that a book represents).
+     * @returns {String} String reference containing the title of the book.
+     */
   get title () {
     return this.getAttribute('title')
   }
 
   /**
-   * Sets the the title of a book (the month that a book represents).
-   * @param {Number} month The month that will serve as the title of a book
-   */
+     * Sets the the title of a book (the month that a book represents).
+     * @param {Number} month The month that will serve as the title of a book
+     */
   set title (month) {
     const title = this.getTitle(month)
     this.setAttribute('title', month)
@@ -183,39 +183,39 @@ class Book extends HTMLElement {
   }
 
   /**
-   * Gets the shelf that book belongs to.
-   * @returns {String} String reference containing the label of the shelf the book belongs to.
-   */
+     * Gets the shelf that book belongs to.
+     * @returns {String} String reference containing the label of the shelf the book belongs to.
+     */
   get shelf () {
     return this.getAttribute('shelf')
   }
 
   /**
-   * Sets the shelf that a book belongs to.
-   * @param {String} shelf The label of the shelf
-   */
+     * Sets the shelf that a book belongs to.
+     * @param {String} shelf The label of the shelf
+     */
   set shelf (shelf) {
     this.setAttribute('shelf', shelf)
   }
 
   /**
-   * Helper method to offset each book from beginning based on the book's month.
-   * @param {Number} month The month of the book to offset
-   */
+     * Helper method to offset each book from beginning based on the book's month.
+     * @param {Number} month The month of the book to offset
+     */
   offset (month) {
     const offset = 50
     this.style.left = offset * (month - 1) + 'px'
   }
 
   /**
-   * Getter used to return the corresponding month for
-   * this book.
-   * @param {Number} month Integer containing the month
-   * corresponding to the month that should be returned.
-   * Months are indexed from 1-12 inclusive,
-   * @returns {String} String containing the month that
-   * should be displayed on the book.
-   */
+     * Getter used to return the corresponding month for
+     * this book.
+     * @param {Number} month Integer containing the month
+     * corresponding to the month that should be returned.
+     * Months are indexed from 1-12 inclusive,
+     * @returns {String} String containing the month that
+     * should be displayed on the book.
+     */
   getTitle (month) {
     switch (month) {
       case 1:

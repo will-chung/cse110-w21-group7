@@ -10,9 +10,9 @@ const wrapper = new IndexedDBWrapper('experimentalDB', 1)
  */
 class CollectionItem extends HTMLElement {
   /**
-       * Constructor containing the business logic for
-       * creating a new container item.
-       */
+     * Constructor containing the business logic for
+     * creating a new container item.
+     */
   constructor () {
     super()
 
@@ -57,7 +57,6 @@ class CollectionItem extends HTMLElement {
                                         display:flex;
                                         flex-direction: column;
                                         align-items: flex-start;
-                                        /*TODO: change the width*/
                                         justify-content: center;
                                         width:400px;
                                         color: #e0fbfc;
@@ -94,9 +93,9 @@ class CollectionItem extends HTMLElement {
     this.setHoverListeners()
   }
 
-  /*
-   * Adds event listeners for all click events on the collection item
-   */
+  /**
+     * Adds event listeners for all click events on the collection item
+     */
   setClickListeners () {
     this.shadowRoot.querySelector('span[class="icon-trash trash-button-icon"]').addEventListener('click', (event) => {
       // Get clicked collection-item
@@ -190,9 +189,6 @@ class CollectionItem extends HTMLElement {
 
       // when user presses enter, update collection name
       form.addEventListener('change', (event) => {
-        // FIXME: a small bug here, if user doesn't hit enter, the name won't get updated
-        // and that's because we are using the submit, maybe we should have a check mark or save button
-        // which makes the name changing process more explicit
         event.preventDefault()
         const collectionName = textInput.value
         collection.entry = { name: collectionName }
@@ -200,9 +196,9 @@ class CollectionItem extends HTMLElement {
     })
   }
 
-  /*
-   * Adds event listeners for all hover events on the collection item
-   */
+  /**
+     * Adds event listeners for all hover events on the collection item
+     */
   setHoverListeners () {
     const trashIcon = this.shadowRoot.querySelector('.icon-trash')
     const border = this.shadowRoot.querySelector('div')
@@ -228,11 +224,11 @@ class CollectionItem extends HTMLElement {
   }
 
   /**
-       * Setter for private field entry, containing
-       * the name of our collection.
-       * @param {Object} entry JSON object containing the
-       * new fields for our log item.
-       */
+     * Setter for private field entry, containing
+     * the name of our collection.
+     * @param {Object} entry JSON object containing the
+     * new fields for our log item.
+     */
   set entry (entry) {
     updateCollectionName(this._entry.name, entry.name)
     this._entry = entry
@@ -240,22 +236,22 @@ class CollectionItem extends HTMLElement {
   }
 
   /**
-       * Getter for private field entry, containing the
-       * name of our collection.
-       * @return {Object} JSON object containing the
-       * new fields for our collection item.
-       */
+     * Getter for private field entry, containing the
+     * name of our collection.
+     * @return {Object} JSON object containing the
+     * new fields for our collection item.
+     */
   get entry () {
     return this._entry
   }
 }
 
 /**
- * Update given collection to have given name.
- * @author William Chung <wchung@ucsd.edu>
- * @param prevName Name of the collection to be udpated.
- * @param newName New name of the collection.
- */
+   * Update given collection to have given name.
+   * @author William Chung <wchung@ucsd.edu>
+   * @param prevName Name of the collection to be udpated.
+   * @param newName New name of the collection.
+   */
 function updateCollectionName (prevName, newName) {
   wrapper.transaction((event) => {
     const db = event.target.result

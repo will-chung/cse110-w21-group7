@@ -54,13 +54,10 @@ function addTask (task) {
   })
 }
 
-/*
- * This onclick toggles the display style of the media gallery
- * TODO: When onclick, the size of the media gallery should be changed
- *
+/**
+ * Onclick toggles the display style of the media gallery
  */
 collapse.addEventListener('click', () => {
-  // console.log(collapse.innerHTML)
   if (collapse.innerHTML === '<i class="fa fa-chevron-up fa-2x"></i>') {
     gallery.style.display = 'none'
     collapse.innerHTML = '<i class="fa fa-chevron-down fa-2x"></i>'
@@ -78,7 +75,6 @@ addBtn.addEventListener('click', () => {
  * Adds tasks, notes, and events to the daily log. If the entry is evmpty,
  * then the bullet journal alerts the user that they must write something
  * for that task/note/event.
- *
  */
 function newElement () {
   const inputValue = document.getElementById('myInput').value
@@ -106,7 +102,6 @@ function newElement () {
  * surfaced from indexedDB
  */
 function populateTasks (collection) {
-  // console.log(collection.items)
   function createLogItem (task) {
     const logItem = document.createElement('log-item')
     logItem.itemEntry = task
@@ -167,13 +162,10 @@ function populateMedia (collection, mediaType = MEDIA_TYPE.IMAGE, hasVideo) {
     inputField = document.getElementById('add-video-btn')
     mediaCollection = document.getElementById('video-collection')
   }
-  // console.log(target.length)
   target.forEach((media, index) => {
     const mediaItem = createMediaItem(media)
     const vid = mediaItem.shadowRoot.querySelector('video')
     if (hasVideo && index === (target.length - 1)) {
-      // @TODO Currently this only works for video
-      // we might need to also consider image
       console.log(index)
       vid.addEventListener('canplaythrough', () => {
         document.getElementById('loading').style.display = 'none'
@@ -313,13 +305,4 @@ document.addEventListener('DOMContentLoaded', (event) => {
     insertMedia.bind(event)
     insertMedia(collectionName, event, MEDIA_TYPE.VIDEO)
   })
-  // const vid = document.querySelector('media-item')
-  // console.log(vid)
-  // vid.addEventListener('loadeddata', function() {
-
-  // if(vid.readyState <= 3) {
-  //   console.log("loading")
-  //   document.getElementById("loading").style.visibility = "visible"
-  //   document.getElementById("collapse").style.visibility = "hidden"
-  // }
 })
