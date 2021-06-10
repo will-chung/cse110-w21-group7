@@ -10,41 +10,40 @@ const text = document.getElementById('input-area')
 const date = document.getElementById('date-input')
 const time = document.getElementById('time-input')
 const saveBtn = document.getElementById('cb2')
-const realCanBtn = document.getElementById('cancel')
 const cancelBtn = document.getElementById('cb1')
 const refRadio = document.getElementById('input1')
 const eventRadio = document.getElementById('input2')
 const taskRadio = document.getElementById('input3')
 const noteRadio = document.getElementById('input4')
 const radioContainer = document.getElementsByClassName('container')[0]
-const realSavBtn = document.getElementById('save')
 const tmButton = document.getElementById('tomorrow')
 const ytButton = document.getElementById('yesterday')
 const tagOptions = document.querySelector('.tag-options')
 
 cancelBtn.addEventListener('click', () => {
-  // TODO: implement hide functionality
-  text.value = ''
+  resetEverything()
 })
 
-// TODO
 radioContainer.addEventListener('change', () => {
   resetEverything()
   if (refRadio.checked) {
     text.style.visibility = 'visible'
     saveBtn.style.display = 'inline-block'
     cancelBtn.style.display = 'inline-block'
+    text.setAttribute('placeholder', 'Input your reflection here')
   } else if (eventRadio.checked) {
     time.style.display = 'inline-block'
     time.style.visibility = 'visible'
+    text.setAttribute('placeholder', 'Input your event here')
   } else if (taskRadio.checked) {
     date.style.visibility = 'visible'
     time.style.display = 'none'
-    // we need to remove the eventListener afterwards
+    text.setAttribute('placeholder', 'Input your task here')
   } else if (noteRadio.checked) {
     text.style.visibility = 'visible'
     saveBtn.style.display = 'inline-block'
     cancelBtn.style.display = 'inline-block'
+    text.setAttribute('placeholder', 'Input your note here')
   }
 })
 
