@@ -95,65 +95,9 @@ class LogItem extends HTMLElement {
     const that = this
     if (!editable) {
       this.shadowRoot.querySelector('button').style.display = 'none'
-      // this.shadowRoot.querySelector('i').removeEventListener('click')
     } else {
       // When dealing with log of type task, we must update the task status when it is clicked.
       that.setHoverListeners()
-      if (this._itemEntry.logType === 'task') {
-        // finished/unfinished task listener
-        this.shadowRoot.querySelector('i').addEventListener('click', (event) => {
-          this._itemEntry.finished = !this._itemEntry.finished
-          const wrapper = new IndexedDBWrapper('experimentalDB', 1)
-
-          wrapper.transaction((event) => {
-            const db = event.target.result
-
-            const transaction = db.transaction(['currentLogStore'], 'readwrite')
-            const store = transaction.objectStore('currentLogStore')
-            store.openCursor().onsuccess = function (event) {
-              const cursor = event.target.result
-              if (cursor) {
-                const router = new Router()
-                const searchParams = router.url.searchParams
-                let dateConverter
-                let collectionName,
-                  collection,
-                  entry,
-                  timestamp,
-                  currTask
-                switch (router.url.pathname) {
-                  case ROUTES.daily:
-                    timestamp = Number(searchParams.get('timestamp'))
-                    dateConverter = new DateConverter(timestamp)
-                    entry = cursor.value.$defs['daily-logs'].find((log) => {
-                      return dateConverter.equals(Number(log.properties.date.time))
-                    })
-                    currTask = entry.properties.tasks.find((task) => {
-                      return task.description === that._itemEntry.description
-                    })
-                    currTask.finished = that._itemEntry.finished
-                    break
-                  case ROUTES.weekly:
-                    // @TODO
-                    break
-                  case ROUTES['collection-edit']:
-                    // find the collection with the same name
-                    collectionName = searchParams.get('name').replace(/\+/g, ' ')
-                    collection = cursor.value.properties.collections.find((element) => {
-                      return element.name === collectionName
-                    })
-                    currTask = collection.tasks.find((task) => {
-                      return task.description === that._itemEntry.description
-                    })
-                    currTask.finished = that._itemEntry.finished
-                }
-                cursor.update(cursor.value)
-              }
-            }
-          })
-          this.render()
-        })
-      }
 
       // click event for the trash (delete) icon
       this.shadowRoot.querySelector('button').addEventListener('click', (event) => {
@@ -210,7 +154,7 @@ class LogItem extends HTMLElement {
                   })
                   break
                 case ROUTES.weekly:
-                  // @TODO
+                  // do nothing (this is reflected in our high-fidelity design)
                   break
                 case ROUTES['collection-edit']:
                   // find the collection with the same name
@@ -231,6 +175,70 @@ class LogItem extends HTMLElement {
         })
 
         this.parentElement.remove()
+      })
+    }
+
+    if (this._itemEntry.logType === 'task') {
+      // finished/unfinished task listener
+      that.shadowRoot.querySelector('i').addEventListener('click', (event) => {
+        this._itemEntry.finished = !this._itemEntry.finished
+        const wrapper = new IndexedDBWrapper('experimentalDB', 1)
+
+        wrapper.transaction((event) => {
+          const db = event.target.result
+
+          const transaction = db.transaction(['currentLogStore'], 'readwrite')
+          const store = transaction.objectStore('currentLogStore')
+          store.openCursor().onsuccess = function (event) {
+            const cursor = event.target.result
+            if (cursor) {
+              const router = new Router()
+              const searchParams = router.url.searchParams
+              let dateConverter
+              let collectionName,
+                collection,
+                entry,
+                timestamp,
+                currTask
+              switch (router.url.pathname) {
+                case ROUTES.daily:
+                  timestamp = Number(searchParams.get('timestamp'))
+                  dateConverter = new DateConverter(timestamp)
+                  entry = cursor.value.$defs['daily-logs'].find((log) => {
+                    return dateConverter.equals(Number(log.properties.date.time))
+                  })
+                  currTask = entry.properties.tasks.find((task) => {
+                    return task.description === that._itemEntry.description
+                  })
+                  currTask.finished = that._itemEntry.finished
+                  break
+                case ROUTES.weekly:
+                  timestamp = Number(that.dataset.timestamp)
+                  dateConverter = new DateConverter(timestamp)
+                  entry = cursor.value.$defs['daily-logs'].find((log) => {
+                    return dateConverter.equals(Number(log.properties.date.time))
+                  })
+                  currTask = entry.properties.tasks.find((task) => {
+                    return task.description === that._itemEntry.description
+                  })
+                  currTask.finished = that._itemEntry.finished
+                  break
+                case ROUTES['collection-edit']:
+                  // find the collection with the same name
+                  collectionName = searchParams.get('name').replace(/\+/g, ' ')
+                  collection = cursor.value.properties.collections.find((element) => {
+                    return element.name === collectionName
+                  })
+                  currTask = collection.tasks.find((task) => {
+                    return task.description === that._itemEntry.description
+                  })
+                  currTask.finished = that._itemEntry.finished
+              }
+              cursor.update(cursor.value)
+            }
+          }
+        })
+        that.render()
       })
     }
   }
