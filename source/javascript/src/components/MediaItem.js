@@ -35,7 +35,7 @@ class MediaItem extends HTMLElement {
                                         // align-self: stretch;
                                     }
                                     .media-wrapper > img {
-                                        
+                                        opacity: 1;
                                         border-color: #e0fbfc;
                                         border-width: 5px;
                                         border-radius: 20px;
@@ -43,6 +43,9 @@ class MediaItem extends HTMLElement {
                                         height: auto;
                                         width: 100%;
                                         display:inline-block;
+                                    }
+                                    .media-wrapper > img:hover {
+                                      opacity: 0.8;
                                     }
                                     .media-wrapper > video {
                                       
