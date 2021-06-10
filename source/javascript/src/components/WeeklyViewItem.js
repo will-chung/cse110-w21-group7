@@ -74,14 +74,14 @@ background: linear-gradient(335deg, rgba(247,240,63,1) 0%, rgba(254,255,156,1) 1
     const events = this._entry.properties.events
     const reflection = this._entry.properties.reflection
 
-    const populateItems = ((items) => {
+    const populateItems = (items) => {
       items.forEach((item, index) => {
         const journalItem = this.getEntryToWeeklyView(item)
         const row = this.makeRow(journalItem)
         journalItem.shadowRoot.querySelector('button').style.display = 'none'
         weekdayCol.appendChild(row)
       })
-    })
+    }
 
     populateItems(reflection)
     populateItems(events)
