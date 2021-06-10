@@ -6,7 +6,7 @@ Welcome to the CSE 110 Group 7 GitHub Repository! Our team is called RIVER, whic
 Learn more about each of our members and our goals on the [RIVER Team Page](admin/team.md).
 
 ## Team River's Bullet Journal: 
-You can access tha app [here](https://noaht.github.io/cse110-w21-group7/index.html)    
+You can access tha app [here](https://cse110-w21-group7.github.io/cse110-SP21-group7/)    
 ![websiteLayout](admin/onboard-images/Front-Page.jpg)  
 
 ## Final project videos
