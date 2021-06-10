@@ -30,21 +30,32 @@ radioContainer.addEventListener('change', () => {
     text.style.visibility = 'visible'
     saveBtn.style.display = 'inline-block'
     cancelBtn.style.display = 'inline-block'
-    if (refRadio.checked) {
-      text.setAttribute('placeholder', 'Input your reflection here')
-    } else {
-      text.setAttribute('placeholder', 'Input your note here')
-    }
   } else if (eventRadio.checked) {
-    time.style.display = 'inline-block'
     time.style.visibility = 'visible'
-    text.setAttribute('placeholder', 'Input your event here')
+    time.style.display = 'inline-block'
   } else if (taskRadio.checked) {
     date.style.visibility = 'visible'
     time.style.display = 'none'
-    text.setAttribute('placeholder', 'Input your task here')
   }
+  setPlaceholder()
 })
+
+/**
+ * Sets placeholder of text input depending on which entry type if selected.
+ */
+function setPlaceholder () {
+  let placeholder;
+  if (refRadio.checked) {
+    placeholder = 'Input your reflection here'
+  } else if (eventRadio.checked) {
+    placeholder = 'Input your event here'
+  } else if (taskRadio.checked) {
+    placeholder = 'Input your task here'
+  } else {
+    placeholder = 'Input your note here'
+  }
+  text.setAttribute('placeholder', placeholder)
+}
 
 /**
  * Onclick of the "Add tag" button will trigger this event and add
