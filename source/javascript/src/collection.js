@@ -17,6 +17,7 @@ customAdd.addEventListener('click', () => {
  * @param collectionName Name to be given to new collection.
  */
 function addCollection (collectionName) {
+  let repeat
   // if user presses 'Cancel' on prompt
   if (collectionName === null) {
     return
@@ -37,34 +38,42 @@ function addCollection (collectionName) {
 
         const collections = json.properties.collections
 
-        const newCollectionObj = {
-          type: 'array',
-          name: collectionName,
-          logs: [
-          ],
-          tasks: [
-          ],
-          images: [
-          ],
-          videos: [
-          ]
-        }
-        collections.push(newCollectionObj)
+        repeat = collections.find(collection => collection.name === collectionName)
+        
+        if (repeat !== undefined) {
+          window.alert('Cannot create collections of the same name!')
+        } else {
+          const newCollectionObj = {
+            type: 'array',
+            name: collectionName,
+            logs: [
+            ],
+            tasks: [
+            ],
+            images: [
+            ],
+            videos: [
+            ]
+          }
+          collections.push(newCollectionObj)
 
-        // Save changes
-        const requestUpdate = cursor.update(json)
-        requestUpdate.onerror = function (event) {
-          // Error - Data did not update
-        }
-        requestUpdate.onsuccess = function (event) {
-          // Success - the data is updated!
-          console.log('successfully added "' + collectionName + '"')
+          // Save changes
+          const requestUpdate = cursor.update(json)
+          requestUpdate.onerror = function (event) {
+            // Error - Data did not update
+          }
+          requestUpdate.onsuccess = function (event) {
+            // Success - the data is updated!
+            console.log('successfully added "' + collectionName + '"')
+          }
         }
       }
     }
   })
 
-  document.querySelector('.collection-area').append(newCollection)
+  if (repeat !== undefined) {
+    document.querySelector('.collection-area').append(newCollection)
+  }
 }
 
 /**
