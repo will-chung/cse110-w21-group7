@@ -10,7 +10,7 @@
     "fix_tests": "./node_modules/.bin/eslint source/javascript/tests/. --fix",
     "lint_src": "./node_modules/.bin/eslint source/javascript/src/.",
     "fix_src": "./node_modules/.bin/eslint source/javascript/src/. --fix",
-    "docs": "npx jsdoc source/javascript/src/. --destination specs/ci-cd/docs/",
+    "docs": "jsdoc2md source/javascript/src/**/*.js > specs/programming_docs/docs.md",
     "build": "npx gulp",
     "predeploy": "npm run build --if-present",
     "deploy": "gh-pages -d source"
@@ -82,6 +82,7 @@
     "gulp-terser": "^2.0.1",
     "istanbul": "^0.4.5",
     "jsdoc": "^3.6.6",
+    "jsdoc-to-markdown": "^7.0.1",
     "mocha": "^8.4.0",
     "npm": "^7.12.0",
     "nyc": "^15.1.0",

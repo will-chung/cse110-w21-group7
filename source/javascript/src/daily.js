@@ -249,7 +249,6 @@ function getLogInfoAsJSON (cb, quote) {
         if (searchParams.has('timestamp')) {
           const timestamp = Number(searchParams.get('timestamp'))
           const dateConverter = new DateConverter(timestamp)
-
           let match = false
           cursor.value.$defs['daily-logs'].forEach((log, index) => {
             if (dateConverter.equals(Number(log.properties.date.time))) {

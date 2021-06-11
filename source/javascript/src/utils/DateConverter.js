@@ -69,9 +69,7 @@ class DateConverter extends Date {
     if (timestamp > that.getTime()) {
       timestampDateConverter = new DateConverter(timestamp)
       timestampBeginningOfWeek = new DateConverter(this.getBeginningOfWeek())
-      console.log('aa')
     } else {
-      console.log('no')
       timestampDateConverter = that // may 23
       timestampBeginningOfWeek = new DateConverter(new DateConverter(timestamp).getBeginningOfWeek()) // may 17
     }
