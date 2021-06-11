@@ -39,7 +39,7 @@ function addCollection (collectionName) {
         const collections = json.properties.collections
 
         repeat = collections.find(collection => collection.name === collectionName)
-        
+
         if (repeat !== undefined) {
           window.alert('Cannot create collections of the same name!')
         } else {
