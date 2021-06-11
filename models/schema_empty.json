@@ -1,0 +1,13 @@
+{
+    "description": "A user's information for their bullet journal",
+    "type": "object",
+    "name": "string",
+    "current_log": "",
+    "current_collection": "",
+    "properties": {
+      "collections": []
+    },
+    "$defs": {
+      "daily-logs": []
+    }
+}

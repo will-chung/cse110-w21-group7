@@ -1,0 +1,1 @@
+class Bar{constructor(r){this.a=r}someFunction(r,t,...s){}get a(){return this.a}set a(r){throw new Error}}
